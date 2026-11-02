@@ -4,15 +4,13 @@
   "files": 244,
   "vendored": 244,
   "loadable": 244,
-  "previewed": "not run",
-  "previewWarn": "-",
-  "wired": 243,
-  "triggered": "not run",
-  "runtimeSessions": 0
+  "previewed": 244,
+  "previewWarn": 0,
+  "wired": 244,
+  "triggered": 244,
+  "runtimeSessions": 22
  },
- "missing": [
-  "fire/fireball"
- ],
+ "missing": [],
  "untriggered": [],
  "rows": [
   {
@@ -20,1950 +18,1953 @@
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 10,
+   "role": "大招·穿云箭（冰封遗迹）：直线贯穿"
   },
   {
    "id": "moves/dash-strike",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 9,
+   "role": "大招·残影突斩（全场景）：冲过敌阵"
   },
   {
    "id": "moves/earth-stomp",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "大招·地裂踏（余烬熔炉）"
   },
   {
    "id": "moves/fireball-throw",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "大招·巨型火球（余烬熔炉）"
   },
   {
    "id": "moves/ground-pound",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "大招·天坠重击（余烬熔炉）"
   },
   {
    "id": "moves/holy-smite",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 11,
+   "role": "大招·圣锤（冰封遗迹/霓虹虚空）"
   },
   {
    "id": "moves/ice-lance-throw",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "大招·冰枪投掷（冰封遗迹）：冻结落点"
   },
   {
    "id": "moves/lightning-call",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 14,
+   "role": "大招·召雷（冰封遗迹/霓虹虚空）：眩晕"
   },
   {
    "id": "moves/meteor-call",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 8,
+   "role": "大招·陨星咏唱（余烬熔炉/霓虹虚空）"
   },
   {
    "id": "moves/pistol-shots",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "大招·快枪三连（霓虹虚空）"
   },
   {
    "id": "moves/rocket-launcher",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "大招·火箭筒（霓虹虚空）"
   },
   {
    "id": "moves/sword-combo",
    "cat": "moves",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 13,
+   "role": "大招·三段剑舞（余烬熔炉/冰封遗迹）"
   },
   {
    "id": "fire/brazier",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 57,
+   "role": "余烬熔炉场景装饰（烘焙帧）"
   },
   {
    "id": "fire/campfire",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 19,
+   "role": "余烬熔炉场景装饰"
   },
   {
    "id": "fire/candle",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 21,
+   "role": "余烬熔炉场景装饰"
   },
   {
    "id": "fire/fire-breath",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "Boss·余烬巨像 吐息攻击"
   },
   {
    "id": "fire/fire-ring",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 52,
+   "role": "技能·烈焰爆破 Lv3 环形新星；Boss1 二阶段"
   },
   {
    "id": "fire/fire-tornado",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 42,
+   "role": "技能·烈焰爆破 Lv5 横扫龙卷；Boss1 二阶段"
   },
   {
    "id": "fire/fireball",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
-   "wired": false,
-   "files": [],
-   "triggered": null,
-   "role": ""
+   "previewed": true,
+   "preview": "pass",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": 8,
+   "role": "火焰骷髅喷吐的火球弹"
   },
   {
    "id": "fire/flame-pillar",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 106,
+   "role": "技能·烈焰爆破 Lv4 火柱；Boss1 火柱连爆"
   },
   {
    "id": "fire/flamethrower",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 2,
+   "role": "精英·熔炉蛮兵 火焰喷射"
   },
   {
    "id": "fire/meteor",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/game.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 82,
+   "role": "技能·陨石天降；陨石雨事件；Boss1 召陨"
   },
   {
    "id": "fire/spirit-flame",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 27,
+   "role": "冰封遗迹 幽蓝鬼火装饰"
   },
   {
    "id": "fire/torch",
    "cat": "fire",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/engine/pfx.js",
     "src/game/stages.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 86,
+   "role": "余烬熔炉 墙上火把装饰"
   },
   {
    "id": "explosions/barrel-explosion",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 16,
+   "role": "余烬熔炉 炸药桶事件"
   },
   {
    "id": "explosions/big-explosion",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 13,
+   "role": "技能·陨石 Lv5 毁灭巨爆；Boss1 死亡"
   },
   {
    "id": "explosions/cartoon-pow",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 201,
+   "role": "暴击超杀 POW!/BAM!；连击 100 WOW!"
   },
   {
    "id": "explosions/dirt-explosion",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 11,
+   "role": "Boss1 重拳砸地"
   },
   {
    "id": "explosions/firework-burst",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 8,
+   "role": "精英击杀庆祝"
   },
   {
    "id": "explosions/firework-rocket",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 15,
+   "role": "关卡通关/胜利烟火"
   },
   {
    "id": "explosions/grenade",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 9,
+   "role": "精英·喷气兵 火箭弹落点爆炸"
   },
   {
    "id": "explosions/implosion",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 65,
+   "role": "技能·黑洞牵引 坍缩"
   },
   {
    "id": "explosions/nuke",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "最终 Boss·虚空之眼 死亡终结"
   },
   {
    "id": "explosions/plasma-explosion",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 6,
+   "role": "虚空水母死亡；Boss2 死亡"
   },
   {
    "id": "explosions/small-explosion",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 547,
+   "role": "技能·烈焰爆破 击杀连锁爆炸；Boss1 死亡连爆"
   },
   {
    "id": "explosions/smoke-bomb",
    "cat": "explosions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "霓虹枪手 烟雾弹脱身"
   },
   {
    "id": "water/bubbles",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 10,
+   "role": "冰封遗迹 温泉气泡装饰"
   },
   {
    "id": "water/drip",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 44,
+   "role": "冰封遗迹 冰棱滴水装饰"
   },
   {
    "id": "water/fountain",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "治愈之泉事件"
   },
   {
    "id": "water/geyser",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 8,
+   "role": "冰封遗迹 间歇泉事件：掀飞敌人"
   },
   {
    "id": "water/rain-splash",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "霓虹酸雨事件 地面水花"
   },
   {
    "id": "water/ripples",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 23,
+   "role": "冰封遗迹 水洼涟漪装饰"
   },
   {
    "id": "water/splash",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/enemies.js",
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 10,
+   "role": "间歇泉/冰球落地水花；冰鱼群死亡"
   },
   {
    "id": "water/water-jet",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "Boss2 高压水柱"
   },
   {
    "id": "water/water-orb",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 6,
+   "role": "Boss2 投掷水球"
   },
   {
    "id": "water/waterfall",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 19,
+   "role": "冰封遗迹 冰瀑装饰"
   },
   {
    "id": "water/wave-crash",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "Boss2 巨浪拍击"
   },
   {
    "id": "water/whirlpool",
    "cat": "water",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "Boss2 二阶段 漩涡"
   },
   {
    "id": "ice/blizzard-vortex",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 60,
+   "role": "技能·寒冰新星 Lv5 暴雪漩涡；Boss2 二阶段"
   },
   {
    "id": "ice/freeze",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "Boss2 登场冰封"
   },
   {
    "id": "ice/frost-breath",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 8,
+   "role": "Boss2 寒霜吐息（减速英雄）"
   },
   {
    "id": "ice/frost-nova",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 148,
+   "role": "技能·寒冰新星：冻结周围"
   },
   {
    "id": "ice/ice-crystal",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 36,
+   "role": "冰封遗迹 浮冰晶装饰"
   },
   {
    "id": "ice/ice-lance",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 36,
+   "role": "冰焰鬼火 射出的冰枪弹"
   },
   {
    "id": "ice/ice-shatter",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/enemies.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 121,
+   "role": "联动·冻结后遭火焰/暴击 碎冰爆裂；Boss2 死亡"
   },
   {
    "id": "ice/ice-spikes",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 118,
+   "role": "技能·寒冰新星 Lv3 地冰刺；Boss2 冰刺波"
   },
   {
    "id": "ice/icicle-fall",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 59,
+   "role": "冰棱坠落事件；Boss2 冰棱雨"
   },
   {
    "id": "ice/snowflake-burst",
    "cat": "ice",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/combat.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 768,
+   "role": "冰属性命中特效；Boss2 死亡"
   },
   {
    "id": "lightning/ball-lightning",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 9,
+   "role": "技能·连锁闪电 Lv5 环绕球形闪电"
   },
   {
    "id": "lightning/chain-lightning",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 54,
+   "role": "技能·连锁闪电 Lv3+ 每第 3 次的直线连锁"
   },
   {
    "id": "lightning/charge-up",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "Boss1 吐息前蓄力"
   },
   {
    "id": "lightning/electrified",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 97,
+   "role": "状态·感电"
   },
   {
    "id": "lightning/lightning-strike",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 97,
+   "role": "技能·雷霆天罚"
   },
   {
    "id": "lightning/plasma-ball",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 35,
+   "role": "霓虹虚空 等离子球装饰"
   },
   {
    "id": "lightning/spark-arc",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 14,
+   "role": "霓虹虚空 电弧装饰"
   },
   {
    "id": "lightning/storm-cloud",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 10,
+   "role": "技能·雷霆天罚 Lv5 随行雷云"
   },
   {
    "id": "lightning/tesla-coil",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "特斯拉线圈事件：替英雄放电"
   },
   {
    "id": "lightning/thunderclap",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 48,
+   "role": "技能·雷霆天罚 Lv3 雷鸣震波"
   },
   {
    "id": "lightning/zap-hit",
    "cat": "lightning",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 621,
+   "role": "电属性命中特效"
   },
   {
    "id": "scifi/emp-blast",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "精英·喷气兵 死亡电磁爆"
   },
   {
    "id": "scifi/energy-core",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 33,
+   "role": "霓虹虚空 能量核心装饰"
   },
   {
    "id": "scifi/force-field",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 7,
+   "role": "精英·喷气兵 力场护盾光环"
   },
   {
    "id": "scifi/glitch",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 43,
+   "role": "Boss3 光束命中：英雄信号故障"
   },
   {
    "id": "scifi/hologram",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 25,
+   "role": "霓虹虚空 全息投影装饰"
   },
   {
    "id": "scifi/jetpack",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 11,
+   "role": "精英·喷气兵 背包推进器"
   },
   {
    "id": "scifi/laser-grid",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 6,
+   "role": "激光栅栏事件：灼烧走入的敌人"
   },
   {
    "id": "scifi/scanner",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "Boss3 光束前锁定扫描（预警）"
   },
   {
    "id": "scifi/teleporter-pad",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 30,
+   "role": "霓虹虚空 传送台装饰"
   },
   {
    "id": "scifi/tractor-beam",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "Boss3 二阶段 牵引光束"
   },
   {
    "id": "scifi/warp-in",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 22,
+   "role": "第 3 关英雄入场；虚空敌人传送出现"
   },
   {
    "id": "scifi/warp-out",
    "cat": "scifi",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "通关时英雄传送离场"
   },
   {
    "id": "melee/claw-swipe",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 2,
+   "role": "敌·灰烬食尸鬼 爪击"
   },
   {
    "id": "melee/dagger-flurry",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "敌·虚空收割者 匕首乱舞"
   },
   {
    "id": "melee/double-slash",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js",
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 508,
+   "role": "英雄普攻第 2 段；剑气斩 Lv2 剑气"
   },
   {
    "id": "melee/hammer-smash",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "精英·熔炉蛮兵 重锤"
   },
   {
    "id": "melee/heavy-cleave",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 375,
+   "role": "英雄普攻第 3 段终结重劈"
   },
   {
    "id": "melee/scythe-reap",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js",
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 14,
+   "role": "敌·虚空收割者 镰刀；剑气斩 Lv5 巨型镰刃"
   },
   {
    "id": "melee/spear-sweep",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "敌·冰霜枪兵 横扫"
   },
   {
    "id": "melee/spin-slash",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 17,
+   "role": "英雄点击连段 旋风斩"
   },
   {
    "id": "melee/sword-slash",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js",
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 702,
+   "role": "英雄普攻第 1 段；剑气斩飞行剑气；灰烬骑士斩击"
   },
   {
    "id": "melee/thrust",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 53,
+   "role": "英雄点击强化突刺；冰霜枪兵突刺"
   },
   {
    "id": "melee/uppercut",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "精英·熔炉蛮兵 上勾拳"
   },
   {
    "id": "melee/whip-crack",
    "cat": "melee",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/moves.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "敌·冰咒女巫 长鞭"
   },
   {
    "id": "impacts/blunt-hit",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1132,
+   "role": "重击命中；大地属性命中"
   },
   {
    "id": "impacts/bullet-impact",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 54,
+   "role": "敌方弹丸落地；箭矢落点"
   },
   {
    "id": "impacts/crit-hit",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1947,
+   "role": "暴击命中"
   },
   {
    "id": "impacts/ground-slam",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 370,
+   "role": "英雄重劈落地冲击；精英登场；Boss1 砸地冲击波"
   },
   {
    "id": "impacts/heavy-landing",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/hero.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 13,
+   "role": "英雄起跳/重落地"
   },
   {
    "id": "impacts/hit-flash",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 171,
+   "role": "英雄受伤闪红"
   },
   {
    "id": "impacts/hit-spark",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3395,
+   "role": "普通命中火花"
   },
   {
    "id": "impacts/impact-frame",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 104,
+   "role": "大招发动；Boss 击杀 动漫冲击帧"
   },
   {
    "id": "impacts/parry",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/combat.js"
+    "src/game/combat.js",
+    "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 85,
+   "role": "英雄挥剑劈落敌方飞弹（弹反）"
   },
   {
    "id": "impacts/ricochet",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "霓虹枪手子弹跳弹"
   },
   {
    "id": "impacts/shield-block",
    "cat": "impacts",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 42,
+   "role": "技能·圣盾反击 格挡"
   },
   {
    "id": "projectiles/arrow",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 28,
+   "role": "敌·冰霜弓手 箭矢"
   },
   {
    "id": "projectiles/bullet-tracer",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 65,
+   "role": "敌·霓虹枪手 曳光弹"
   },
   {
    "id": "projectiles/cannonball",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "熔炉火炮支援事件"
   },
   {
    "id": "projectiles/energy-disc",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 84,
+   "role": "敌·虚空收割者 远程飞盘"
   },
   {
    "id": "projectiles/flare",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 23,
+   "role": "精英来袭 信号弹"
   },
   {
    "id": "projectiles/homing-missile",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "精英·喷气兵 追踪导弹"
   },
   {
    "id": "projectiles/laser-bolt",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 98,
+   "role": "敌·虚空之眼(小怪) 激光"
   },
   {
    "id": "projectiles/magic-missile",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 129,
+   "role": "技能·追踪弹幕 Lv4 重型奥术弹"
   },
   {
    "id": "projectiles/muzzle-pistol",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 20,
+   "role": "敌·霓虹枪手 枪口火光"
   },
   {
    "id": "projectiles/muzzle-shotgun",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 9,
+   "role": "精英·喷气兵 火箭发射火光"
   },
   {
    "id": "projectiles/muzzle-smg",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 34,
+   "role": "敌·霓虹枪手 连射火光"
   },
   {
    "id": "projectiles/plasma-shot",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 761,
+   "role": "技能·追踪弹幕 弹体；虚空水母等离子弹"
   },
   {
    "id": "projectiles/rocket",
    "cat": "projectiles",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 9,
+   "role": "精英·喷气兵 火箭弹"
   },
   {
    "id": "spawn/coin-drop",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 17,
+   "role": "精英击杀 金币四溅"
   },
   {
    "id": "spawn/disintegrate",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 246,
+   "role": "电属性击杀 分解消散；虚空怪死亡"
   },
   {
    "id": "spawn/dissolve-burn",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 202,
+   "role": "火属性击杀 燃烧成灰"
   },
   {
    "id": "spawn/egg-hatch",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 72,
+   "role": "史莱姆破蛋而出"
   },
   {
    "id": "spawn/poof",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 358,
+   "role": "普通击杀 烟团"
   },
   {
    "id": "spawn/respawn-beam",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 27,
+   "role": "第 1/2 关英雄光柱入场"
   },
   {
    "id": "spawn/shatter-death",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 82,
+   "role": "冰属性/冻结击杀 碎冰而亡"
   },
   {
    "id": "spawn/soul-rise",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js",
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 242,
+   "role": "暗影/圣光击杀 灵魂升天"
   },
   {
    "id": "spawn/spawn-portal",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 143,
+   "role": "怪物成群从传送门涌出"
   },
   {
    "id": "spawn/summon-rise",
    "cat": "spawn",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "Boss1 余烬巨像 破土登场"
   },
   {
    "id": "arcane/arcane-beam",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 11,
+   "role": "Boss3 虚空光束"
   },
   {
    "id": "arcane/arcane-missiles",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 72,
+   "role": "技能·追踪弹幕 Lv3 每第 3 次奥术齐射"
   },
   {
    "id": "arcane/arcane-orb",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 14,
+   "role": "技能·追踪弹幕 Lv4 环绕奥术宝珠"
   },
   {
    "id": "arcane/blink-in",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 20,
+   "role": "冰霜敌人闪现入场；枪手闪回"
   },
   {
    "id": "arcane/blink-out",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "霓虹枪手 闪离"
   },
   {
    "id": "arcane/magic-circle-cast",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 24,
+   "role": "精英召唤法阵"
   },
   {
    "id": "arcane/mana-burst",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 107,
+   "role": "技能·追踪弹幕 Lv3 法力爆裂"
   },
   {
    "id": "arcane/portal",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 109,
+   "role": "虚空裂隙刷怪；Boss3 召唤"
   },
   {
    "id": "arcane/rune-circle",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
@@ -1971,501 +1972,501 @@
     "src/game/skills.js",
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 211,
+   "role": "危险落点预警符阵；虚空地面装饰"
   },
   {
    "id": "arcane/spell-charge",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 301,
+   "role": "远程怪 施法蓄力（预警）"
   },
   {
    "id": "arcane/star-fall",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 19,
+   "role": "技能·追踪弹幕 Lv5 流星雨；Boss3 星坠"
   },
   {
    "id": "arcane/time-stop",
    "cat": "arcane",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 37,
+   "role": "连击 150/400 时停：全场沉睡"
   },
   {
    "id": "holy/blessing",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 7,
+   "role": "技能·圣光审判 Lv5 祝福光柱"
   },
   {
    "id": "holy/divine-shield",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 53,
+   "role": "技能·圣盾反击 充能护盾；冰霜守卫精英光环"
   },
   {
    "id": "holy/feather-burst",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 24,
+   "role": "圣盾格挡 羽毛迸散"
   },
   {
    "id": "holy/halo",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 10,
+   "role": "技能·圣光审判 Lv5 光环"
   },
   {
    "id": "holy/heal",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 104,
+   "role": "拾取心形回血；活力卡"
   },
   {
    "id": "holy/heal-aoe",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "治愈之泉 地面治疗环"
   },
   {
    "id": "holy/holy-pillar",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 149,
+   "role": "技能·圣光审判 Lv3 光柱"
   },
   {
    "id": "holy/resurrection",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "每局一次 圣光复活"
   },
   {
    "id": "holy/smite",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 221,
+   "role": "技能·圣光审判 圣锤；圣盾 Lv5"
   },
   {
    "id": "holy/sunburst",
    "cat": "holy",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 37,
+   "role": "圣盾格挡 日冕反击"
   },
   {
    "id": "shadow/black-hole",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 75,
+   "role": "技能·黑洞牵引；Boss3 二阶段"
   },
   {
    "id": "shadow/curse",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "Boss3 诅咒（英雄减速）"
   },
   {
    "id": "shadow/dark-explosion",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 41,
+   "role": "技能·黑洞 Lv5 暗影大爆炸；Boss3 爆发"
   },
   {
    "id": "shadow/eclipse",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/render/background.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "霓虹虚空 天空日蚀"
   },
   {
    "id": "shadow/grasping-hands",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 17,
+   "role": "Boss3 地底鬼手"
   },
   {
    "id": "shadow/hex-sigil",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "Boss3 诅咒符印（预警）"
   },
   {
    "id": "shadow/life-steal",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 7,
+   "role": "嗜血卡 获得演出"
   },
   {
    "id": "shadow/necro-skulls",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "Boss3 二阶段 环绕骷髅"
   },
   {
    "id": "shadow/shadow-flames",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 34,
+   "role": "霓虹虚空 暗焰装饰"
   },
   {
    "id": "shadow/shadow-tendrils",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "Boss3 暗影触手"
   },
   {
    "id": "shadow/soul-drain",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "Boss3 召唤时吸魂"
   },
   {
    "id": "shadow/void-orb",
    "cat": "shadow",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 75,
+   "role": "技能·黑洞 抛射虚空球；Boss3 本体虚空光晕"
   },
   {
    "id": "status/bleeding",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 15,
+   "role": "状态·流血（剑气斩 Lv2）"
   },
   {
    "id": "status/burning",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 20,
+   "role": "状态·燃烧（烈焰/陨石/吐息）"
   },
   {
    "id": "status/charmed",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 57,
+   "role": "状态·魅惑（圣光审判 Lv2）"
   },
   {
    "id": "status/confused",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 38,
+   "role": "状态·混乱（追踪弹幕 Lv2）"
   },
   {
    "id": "status/cursed",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 126,
+   "role": "状态·诅咒 增伤（黑洞 Lv2）"
   },
   {
    "id": "status/frozen",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 48,
+   "role": "状态·冻结（寒冰新星）"
   },
   {
    "id": "status/haste",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/game/skills.js",
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 19,
+   "role": "狂怒卡；星星无敌"
   },
   {
    "id": "status/petrified",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "状态·石化（大地之怒 Lv3）"
   },
   {
    "id": "status/poisoned",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 445,
+   "role": "状态·中毒（剧毒瘟疫）"
   },
   {
    "id": "status/rage",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js",
@@ -2473,610 +2474,610 @@
     "src/game/skills.js",
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 38,
+   "role": "精英·熔炉蛮兵光环；锋锐/力量卡；星星无敌"
   },
   {
    "id": "status/sleep",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 33,
+   "role": "状态·沉睡（时停）"
   },
   {
    "id": "status/slowed",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 211,
+   "role": "状态·减速（寒冰 Lv2）；英雄被吐息/诅咒"
   },
   {
    "id": "status/stunned",
    "cat": "status",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 67,
+   "role": "状态·眩晕（雷霆/连锁闪电 Lv3）"
   },
   {
    "id": "nature/acid-splash",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 228,
+   "role": "剧毒瘟疫 Lv2 中毒者死亡酸液传染"
   },
   {
    "id": "nature/boulder",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 7,
+   "role": "Boss1 投掷巨石"
   },
   {
    "id": "nature/earth-spike",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 59,
+   "role": "大地之怒 Lv3 石刺"
   },
   {
    "id": "nature/healing-bloom",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "低血时每关一次 治愈之花"
   },
   {
    "id": "nature/leaf-storm",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 69,
+   "role": "大地之怒 Lv2 施法落叶风暴"
   },
   {
    "id": "nature/poison-cloud",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 202,
+   "role": "技能·剧毒瘟疫 毒云"
   },
   {
    "id": "nature/quake",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 29,
+   "role": "大地之怒 Lv5 全屏地震"
   },
   {
    "id": "nature/root-snare",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/status.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 38,
+   "role": "状态·定身（荆棘）"
   },
   {
    "id": "nature/spore-burst",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 95,
+   "role": "剧毒瘟疫 Lv5 孢子爆发"
   },
   {
    "id": "nature/thorns",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 131,
+   "role": "技能·大地之怒 荆棘破土"
   },
   {
    "id": "nature/tornado",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "冰封遗迹 寒风龙卷事件"
   },
   {
    "id": "nature/toxic-puddle",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 72,
+   "role": "剧毒瘟疫 Lv3 毒沼"
   },
   {
    "id": "nature/vine-whip",
    "cat": "nature",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 57,
+   "role": "大地之怒 Lv4 藤鞭横扫"
   },
   {
    "id": "weather/aurora",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/render/background.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "冰封遗迹 天空极光（天空层）"
   },
   {
    "id": "weather/blizzard",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "Boss2 二阶段 暴风雪"
   },
   {
    "id": "weather/cherry-blossoms",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "胜利结算 樱花"
   },
   {
    "id": "weather/clouds",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/main.js",
     "src/render/background.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "标题画面 夜云天空"
   },
   {
    "id": "weather/falling-leaves",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 19,
+   "role": "余烬熔炉 飘落灰烬（重新着色）"
   },
   {
    "id": "weather/fireflies",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 25,
+   "role": "标题画面 萤火"
   },
   {
    "id": "weather/fog",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "冰封遗迹 雾（高画质）"
   },
   {
    "id": "weather/god-rays",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 2,
+   "role": "Boss2 登场 光束"
   },
   {
    "id": "weather/rain",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "霓虹酸雨事件"
   },
   {
    "id": "weather/shooting-stars",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 9,
+   "role": "霓虹虚空 流星（中高画质）"
   },
   {
    "id": "weather/snow",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 7,
+   "role": "冰封遗迹 降雪"
   },
   {
    "id": "weather/storm",
    "cat": "weather",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "Boss3 二阶段 雷暴"
   },
   {
    "id": "ui/achievement",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 17,
+   "role": "精英击杀 ELITE DOWN"
   },
   {
    "id": "ui/coin-collect",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 41,
+   "role": "拾取金币"
   },
   {
    "id": "ui/combo-counter",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 118,
+   "role": "连击 100/150/200… 里程碑"
   },
   {
    "id": "ui/confetti",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "胜利结算 彩带"
   },
   {
    "id": "ui/countdown",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "Boss 登场倒数 FIGHT!"
   },
   {
    "id": "ui/crit-number",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 207,
+   "role": "大暴击数字"
   },
   {
    "id": "ui/damage-number",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 769,
+   "role": "重击伤害数字；英雄受伤数字"
   },
   {
    "id": "ui/exclamation",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 104,
+   "role": "敌人攻击预警 !"
   },
   {
    "id": "ui/health-bar-hit",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/combat.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 24,
+   "role": "精英受重击 血条掉块"
   },
   {
    "id": "ui/heart-lost",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 14,
+   "role": "英雄受重伤 HUD 心碎"
   },
   {
    "id": "ui/level-up",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 122,
+   "role": "升级 光柱"
   },
   {
    "id": "ui/quest-complete",
    "cat": "ui",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "STAGE CLEAR / VICTORY"
   },
   {
    "id": "pickups/chest-open",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 18,
+   "role": "精英掉落宝箱"
   },
   {
    "id": "pickups/coin-spin",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 61,
+   "role": "金币"
   },
   {
    "id": "pickups/collect-burst",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js",
@@ -3084,432 +3085,432 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 116,
+   "role": "拾取/选卡 光爆"
   },
   {
    "id": "pickups/crystal-shard",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 8,
+   "role": "水晶碎片：Rush 槽 +20%"
   },
   {
    "id": "pickups/gem-spin",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 20,
+   "role": "宝石：大量经验"
   },
   {
    "id": "pickups/heart-pickup",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 90,
+   "role": "心：回血"
   },
   {
    "id": "pickups/key-glint",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 12,
+   "role": "Boss 钥匙：通关"
   },
   {
    "id": "pickups/loot-beam",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 17,
+   "role": "稀有掉落光柱"
   },
   {
    "id": "pickups/potion",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 11,
+   "role": "药水：Rush 槽 +30%"
   },
   {
    "id": "pickups/power-star",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "星星：无敌 + 攻速"
   },
   {
    "id": "pickups/xp-orb",
    "cat": "pickups",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "经验球"
   },
   {
    "id": "transitions/blinds",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 6,
+   "role": "重新开始 百叶窗"
   },
   {
    "id": "transitions/burn-away",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "第 1→2 关 燃尽"
   },
   {
    "id": "transitions/crt-off",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "返回标题 关屏"
   },
   {
    "id": "transitions/diamond-wipe",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "第 2→3 关 菱形擦除"
   },
   {
    "id": "transitions/glitch-wipe",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 8,
+   "role": "第 3 关入场 故障擦除"
   },
   {
    "id": "transitions/iris",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 3,
+   "role": "战败 光圈收拢"
   },
   {
    "id": "transitions/pixel-dissolve",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 22,
+   "role": "标题画面 像素溶解浮现"
   },
   {
    "id": "transitions/shatter-wipe",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "第 2 关入场 碎玻璃"
   },
   {
    "id": "transitions/slash-wipe",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/stages.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 31,
+   "role": "开始游戏 一刀斩开标题"
   },
   {
    "id": "transitions/star-iris",
    "cat": "transitions",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/game.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 4,
+   "role": "最终胜利 星形光圈"
   },
   {
    "id": "critters/bat",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·熔炉蝙蝠"
   },
   {
    "id": "critters/bird",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·霜鸦（俯冲）"
   },
   {
    "id": "critters/butterfly",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "怪·霓虹飞蛾"
   },
   {
    "id": "critters/eyeball",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 5,
+   "role": "怪·虚空之眼（激光）"
   },
   {
    "id": "critters/fish-school",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·幽灵冰鱼群"
   },
   {
    "id": "critters/flying-skull",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·火焰骷髅（俯冲/火球）"
   },
   {
    "id": "critters/frog",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·熔岩蟾蜍"
   },
   {
    "id": "critters/ghost",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·冰魂"
   },
   {
    "id": "critters/jellyfish",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·虚空水母（等离子弹）"
   },
   {
    "id": "critters/slime",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 7,
+   "role": "怪·熔岩/冰霜/虚空史莱姆"
   },
   {
    "id": "critters/snake",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·熔火蛇（突袭）"
   },
   {
    "id": "critters/wisp",
    "cat": "critters",
    "vendored": true,
    "loadable": true,
-   "previewed": null,
-   "preview": "n/a",
+   "previewed": true,
+   "preview": "pass",
    "wired": true,
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": null,
-   "role": ""
+   "triggered": 1,
+   "role": "怪·冰焰鬼火（冰枪）"
   }
  ]
 }

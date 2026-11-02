@@ -4,7 +4,7 @@
 // fades. The same bake gives each monster an `actor` (mask + pixels) so PixelFX's status effects (frozen,
 // burning, poisoned...) wrap the monster's real silhouette instead of the stock humanoid.
 
-import { createFrame, clearFrame, painterFor, resolveOptions, fxModule, frame, posed, STAND } from "../engine/pfx.js";
+import { createFrame, clearFrame, painterFor, resolveOptions, fxModule, frame, posed, STAND, markUsed } from "../engine/pfx.js";
 import { addLight, mixc } from "./rig.js";
 
 const BAKE_FPS = 24;
@@ -24,6 +24,7 @@ function ensureMod(b) {
   const mod = fxModule(b.id);
   if (!mod) return false;
   b.mod = mod;
+  markUsed(b.id);
   b.resolved = resolveOptions(mod.meta, { ...b.opts, x: 0, y: 0 });
   b.n = Math.max(1, Math.round(mod.meta.duration * BAKE_FPS));
   const [w, h] = mod.meta.size;

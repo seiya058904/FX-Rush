@@ -360,13 +360,13 @@ class Colossus extends Boss {
   onDie() {
     const g = this.g;
     for (let i = 0; i < 5; i++)
-      this.later(0.15 + i * 0.22, () => {
+      g.later(0.15 + i * 0.22, () => {
         const x = this.x + (g.rng() - 0.5) * 50, y = -10 - g.rng() * 60;
         g.fx.play("explosions/small-explosion", { x, y: Math.min(0, y + 20), palette: RAMPS.fire, prio: 0, life: 1.6, size: 0.8 });
         sfx("explode", { pan: g.pan(x) });
         g.shake(3, 0.2);
       });
-    this.later(1.3, () => {
+    g.later(1.3, () => {
       g.fx.play("explosions/big-explosion", { x: this.x, y: 0, palette: RAMPS.fire, prio: 0, life: 3.4, light: 1 });
       sfx("bigboom");
       g.shake(4, 0.7);
@@ -419,7 +419,7 @@ class Colossus extends Boss {
   draw() {
     if (this.removed) return;
     const p = painterFor(frame).place(this.x, this.y, this.facing < 0);
-    const fl = this.flash > 0.5 ? 0.8 : this.dead ? Math.min(1, this.dying * 0.6) : 0;
+    const fl = this.flash > 0.5 ? 0.3 : this.dead ? Math.min(1, this.dying * 0.6) : 0;
     if (this.dead && this.dying > 1.35) return;
     this.drawBody(p, this.t, fl);
   }
@@ -607,12 +607,12 @@ class Glacier extends Boss {
     const g = this.g;
     this.blizzard?.stop();
     for (let i = 0; i < 6; i++)
-      this.later(0.1 + i * 0.18, () => {
+      g.later(0.1 + i * 0.18, () => {
         const x = this.x + (g.rng() - 0.5) * 50, y = -40 - g.rng() * 50;
         g.fx.play("ice/snowflake-burst", { x, y: y + 22, palette: RAMPS.frost, prio: 0, life: 1.6, count: 12 });
         sfx("shatter", { pan: g.pan(x) });
       });
-    this.later(1.2, () => {
+    g.later(1.2, () => {
       g.fx.play("ice/ice-shatter", { x: this.x, y: -20, palette: RAMPS.frost, prio: 0, life: 2.4 });
       g.fx.play("explosions/plasma-explosion", { x: this.x, y: -10, palette: RAMPS.frost, accent: ["#ffffff", "#c8f0ff"], prio: 0, life: 2, light: 1 });
       sfx("bigboom");
@@ -659,7 +659,7 @@ class Glacier extends Boss {
   draw() {
     if (this.removed || (this.dead && this.dying > 1.25)) return;
     const p = painterFor(frame).place(this.x, 0, this.facing < 0);
-    const fl = this.flash > 0.5 ? 0.8 : this.dead ? Math.min(1, this.dying * 0.7) : 0;
+    const fl = this.flash > 0.5 ? 0.3 : this.dead ? Math.min(1, this.dying * 0.7) : 0;
     this.drawBody(p, this.t, fl);
   }
 }
@@ -836,8 +836,8 @@ class Oculus extends Boss {
   onDie() {
     const g = this.g;
     for (const hh of this.handles ?? []) hh?.stop();
-    this.later(0.2, () => g.fx.play("impacts/impact-frame", { x: Math.round(this.x - g.camX), y: 80, screen: true, layer: "screen", prio: 0, life: 0.3, lines: 64 }));
-    this.later(1.1, () => {
+    g.later(0.2, () => g.fx.play("impacts/impact-frame", { x: Math.round(this.x - g.camX), y: 80, screen: true, layer: "screen", prio: 0, life: 0.3, lines: 64 }));
+    g.later(1.1, () => {
       g.fx.play("explosions/nuke", { x: this.x, y: 0, prio: 0, life: 5, light: 1 });
       sfx("bigboom");
       g.shake(4, 1.2);
@@ -881,7 +881,7 @@ class Oculus extends Boss {
   draw() {
     if (this.removed || (this.dead && this.dying > 1.2)) return;
     const p = painterFor(frame).place(this.x, 0, false);
-    const fl = this.flash > 0.5 ? 0.7 : this.dead ? Math.min(1, this.dying) : 0;
+    const fl = this.flash > 0.5 ? 0.3 : this.dead ? Math.min(1, this.dying) : 0;
     this.drawBody(p, this.t, fl);
   }
 }

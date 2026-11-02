@@ -61,7 +61,7 @@ export function drawHud(ctx, g, dt) {
     const b = g.boss, f = Math.max(0, b.hp / b.maxHp);
     trails.boss = trails.boss > f ? Math.max(f, trails.boss - dt * 0.35) : f;
     panel(ctx, 110, 3, 150, 21, { rim: "#5a1a2a" });
-    drawText(ctx, b.title, 185, 5, { align: "center", color: "#ffd0d8", shadow: INK });
+    drawText(ctx, b.title.split(" · ")[0], 185, 5, { align: "center", color: "#ffd0d8", shadow: INK });
     bar(ctx, 114, 16, 142, 6, f, trails.boss, b.phase2 ? "#ff3a2a" : "#d02a48", "#ff8a9a");
     rect(ctx, 114 + 71, 16, 1, 6, INK);
   } else if (st) {
@@ -173,7 +173,7 @@ export function drawFlash(ctx, g) {
 }
 
 // ---------------------------------------------------------------- level-up cards
-export const CARD = { w: 94, h: 104, y: 44, gap: 7 };
+export const CARD = { w: 92, h: 86, y: 54, gap: 8 };
 export function cardRect(i) {
   const total = CARD.w * 3 + CARD.gap * 2, x0 = Math.round((W - total) / 2);
   return [x0 + i * (CARD.w + CARD.gap), CARD.y, CARD.w, CARD.h];
@@ -182,10 +182,10 @@ export function drawCards(ctx, g) {
   const cs = g.cards;
   if (!cs) return;
   const open = Math.min(1, cs.t / 0.22), closing = cs.chosen >= 0 ? 1 - Math.max(0, cs.closeT) / 0.28 : 0;
-  ctx.fillStyle = `rgba(5,3,12,${0.5 * open * (1 - closing)})`;
+  ctx.fillStyle = `rgba(5,3,12,${0.36 * open * (1 - closing)})`;
   ctx.fillRect(0, 0, W, H);
-  drawText(ctx, "LEVEL UP", 160, 18 - (1 - open) * 10, { font: "big", scale: 2, color: UI.gold, outline: INK, align: "center", alpha: 1 - closing });
-  drawText(ctx, "选择一项强化", 160, 34, { color: "#e8dcff", align: "center", shadow: INK, alpha: open * (1 - closing) });
+  drawText(ctx, "LEVEL UP", 160, 10 - (1 - open) * 10, { font: "big", scale: 2, color: UI.gold, outline: INK, align: "center", alpha: 1 - closing });
+  drawText(ctx, "选择一项强化", 160, 33, { color: "#e8dcff", align: "center", shadow: INK, alpha: open * (1 - closing) });
   cs.list.forEach((c, i) => {
     let [x, y, w, h] = cardRect(i);
     const def = c.skill ? SKILLS[c.id] : STAT_CARDS[c.id];
@@ -195,30 +195,30 @@ export function drawCards(ctx, g) {
     y += Math.round((1 - delay) * 40) - (hover ? 3 : 0);
     if (cs.chosen >= 0 && !chosen) ctx.globalAlpha = 1 - closing;
     if (chosen) y -= Math.round(closing * 8);
-    panel(ctx, x, y, w, h, { rim: hover || chosen ? def.color : UI.line, fill: chosen ? "rgba(60,40,90,0.95)" : "rgba(12,9,24,0.93)", hi: hover ? "#ffffff" : null });
+    panel(ctx, x, y, w, h, { rim: hover || chosen ? def.color : UI.line, fill: chosen ? "rgba(60,40,90,0.95)" : "rgba(12,9,24,0.9)", hi: hover ? "#ffffff" : null });
     // icon block
-    rect(ctx, x + w / 2 - 15, y + 6, 30, 30, INK);
-    rect(ctx, x + w / 2 - 14, y + 7, 28, 28, "#1a1430");
-    ctx.drawImage(icon(def.icon, def.color), x + w / 2 - 12, y + 9, 24, 24);
+    rect(ctx, x + w / 2 - 14, y + 4, 28, 28, INK);
+    rect(ctx, x + w / 2 - 13, y + 5, 26, 26, "#1a1430");
+    ctx.drawImage(icon(def.icon, def.color), x + w / 2 - 12, y + 6, 24, 24);
     // new / level
     if (c.skill && !lvNow) drawText(ctx, "NEW", x + 5, y + 5, { font: "mini", color: "#3af0c0", outline: INK });
-    drawText(ctx, def.name, x + w / 2, y + 40, { color: def.color, align: "center", outline: INK });
+    drawText(ctx, def.name, x + w / 2, y + 34, { color: def.color, align: "center", outline: INK });
     // level pips
     const max = def.max, pw = max * 5 - 1;
     for (let k = 0; k < max; k++) {
       const filled = k < lvNow, next = k === lvNow;
-      rect(ctx, x + w / 2 - pw / 2 + k * 5, y + 54, 4, 3, filled ? def.color : next ? (Math.floor(g.realTime * 4) & 1 ? "#ffffff" : def.color) : "#2a2240");
+      rect(ctx, x + w / 2 - pw / 2 + k * 5, y + 47, 4, 2, filled ? def.color : next ? (Math.floor(g.realTime * 4) & 1 ? "#ffffff" : def.color) : "#2a2240");
     }
     // what this level does
     const text = c.skill ? def.desc[Math.min(def.desc.length - 1, lvNow)] : def.desc[0];
     const lines = wrapText(text, w - 10);
-    lines.slice(0, 3).forEach((ln, k) => drawText(ctx, ln, x + w / 2, y + 61 + k * 11, { color: UI.text, align: "center" }));
-    drawText(ctx, `${i + 1}`, x + w / 2, y + h - 9, { font: "mini", color: hover ? "#ffffff" : "#6a5a80", align: "center" });
+    lines.slice(0, 2).forEach((ln, k) => drawText(ctx, ln, x + w / 2, y + 52 + k * 11, { color: UI.text, align: "center" }));
+    drawText(ctx, `${i + 1}`, x + w / 2, y + h - 8, { font: "mini", color: hover ? "#ffffff" : "#6a5a80", align: "center" });
     ctx.globalAlpha = 1;
   });
   // the auto-pick countdown
   if (cs.auto && cs.chosen < 0) {
     const left = Math.max(0, 6 - cs.t);
-    drawText(ctx, `${Math.ceil(left)}秒后自动选择`, 160, 152, { color: "#8a7ea8", align: "center", shadow: INK });
+    drawText(ctx, `${Math.ceil(left)}秒后自动选择`, 160, 146, { color: "#8a7ea8", align: "center", shadow: INK });
   }
 }

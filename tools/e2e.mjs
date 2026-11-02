@@ -20,7 +20,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, arr) => (a.startsWith("--") ? [...acc, [a.slice(2), arr[i + 1]?.startsWith("--") || arr[i + 1] === undefined ? true : arr[i + 1]]] : acc), []));
 const BASE = args.url ?? "http://localhost:5173/";
 const SPEED = +(args.speed ?? 4);
-const only = args.only ? String(args.only).split(",") : ["afk", "builds", "manual", "mobile"];
+const only = args.only ? String(args.only).split(",") : ["afk", "builds", "branches", "manual", "mobile"];
 const SHOTS = join(ROOT, "docs/screenshots");
 mkdirSync(SHOTS, { recursive: true });
 
@@ -63,8 +63,8 @@ const state = (page) =>
       heap: performance.memory ? Math.round(performance.memory.usedJSHeapSize / 1048576) : null,
     };
   });
-const waitFor = (page, pred, ms, every = 500) =>
-  page.waitForFunction(pred, null, { timeout: ms, polling: every });
+const waitFor = (page, pred, ms, every = 500, arg = null) =>
+  page.waitForFunction(pred, arg, { timeout: ms, polling: every });
 const shot = (page, file) => page.screenshot({ path: join(SHOTS, file) });
 
 // ---------------------------------------------------------------- afk: a whole run, nobody touching anything
@@ -101,12 +101,46 @@ if (only.includes("builds"))
   for (const b of BUILDS)
     await session(`build-s${b.stage}-${b.seed}`, `${BASE}?auto&god&speed=${SPEED}&stage=${b.stage}&seed=${b.seed}&build=${b.build}`, { width: 1280, height: 720 }, async (page, res) => {
       // through the scene, its boss and into the next one (or the victory screen)
-      await waitFor(page, (s) => { const g = window.__fxrush.game; return g && (g.stageIndex >= s || window.__fxrush.state === "results"); }, (130000 / SPEED) * 1.6 + 90000, 1000).catch(() => res.notes.push("did not clear the scene in time"));
+      await waitFor(page, (s) => { const g = window.__fxrush.game; return g && (g.stageIndex >= s || window.__fxrush.state === "results"); }, (130000 / SPEED) * 1.6 + 90000, 1000, b.stage).catch(() => res.notes.push("did not clear the scene in time"));
       const s = await state(page);
       res.notes.push(`stage ${s.stage} phase ${s.phase} lv ${s.lv} kills ${s.kills}`);
       if (b.seed === 11) await shot(page, "stage2-frozen-ruins.png");
       if (b.seed === 15) await shot(page, "victory.png");
     }).then(() => 0);
+
+// ---------------------------------------------------------------- rare branches, driven directly through the QA hooks
+if (only.includes("branches"))
+  await session("rare-branches", `${BASE}?god&stage=3&seed=21`, { width: 1280, height: 720 }, async (page, res) => {
+    await page.waitForTimeout(2000);
+    const [cx, cy] = await page.evaluate(() => { const r = document.getElementById("game").getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; });
+    await page.mouse.click(cx, cy);
+    await page.waitForTimeout(2500);
+    const T = (js) => page.evaluate(js);
+    // a gunner spawned on top of him: it shoots (ricochets off the hero), then smoke-bombs away
+    await T(() => { const t = window.__fxrush.test; t.spawn("gunner", 70); });
+    await page.waitForTimeout(2500);
+    await T(() => { const g = window.__fxrush.game, e = g.enemies.find((m) => m.typeId === "gunner" && !m.dead); if (e) e.x = g.hero.x + 30; });
+    await page.waitForTimeout(3500);
+    // the jet trooper: rocket, homing missile, then its EMP death
+    await T(() => { window.__fxrush.game.trooperTest = window.__fxrush.test.spawn("trooper", 120, 6); });
+    await page.waitForFunction(() => (window.__fxrush.game.trooperTest?.shots ?? 0) >= 2, null, { timeout: 20000 }).catch(() => res.notes.push("trooper did not fire twice"));
+    await page.waitForTimeout(1500);
+    await T(() => window.__fxrush.test.kill(window.__fxrush.game.trooperTest));
+    await page.waitForTimeout(1500);
+    // a ghoul's claws
+    await T(() => { window.__fxrush.test.spawn("ghoul", 36, 8); window.__fxrush.game.hero.introT = 3.5; });
+    await page.waitForTimeout(4000);
+    // low health: the healing bloom; then a death: the one-time resurrection
+    await T(() => { window.__fxrush.test.god(false); window.__fxrush.test.lowHp(); });
+    await page.waitForTimeout(2500);
+    await T(() => window.__fxrush.test.die());
+    await page.waitForTimeout(2600);
+    const back = await T(() => { const g = window.__fxrush.game; g.hero.god = true; return { revived: g.revived, dead: g.hero.dead, hp: Math.round(g.hero.hp) }; });
+    await page.waitForTimeout(1500);
+    const s = await state(page);
+    res.notes.push(`after the death: ${JSON.stringify(back)}, state ${s.state}`);
+    if (!back.revived || back.dead || !(back.hp > 0) || s.state !== "play") (res.ok = false), res.notes.push("resurrection did not bring him back");
+  });
 
 // ---------------------------------------------------------------- manual input, pause, focus, resize, restart flows
 if (only.includes("manual"))

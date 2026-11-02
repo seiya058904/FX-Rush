@@ -131,7 +131,10 @@ export class Hero {
       moveDir = R ? 1 : -1;
       this.manualT = 0.5;
     } else this.manualT = Math.max(0, this.manualT - dt);
-    if (input.take("jump") && this.onGround && !this.act) {
+    const free = !this.act || this.act.t < 0 || this.act.t >= ATTACKS[this.actName].cancel;
+    if (input.take("jump") && this.onGround && free) {
+      this.act = null;
+      this.actName = null;
       this.vy = -285;
       this.onGround = false;
       this.airAttacked = false;
@@ -169,6 +172,12 @@ export class Hero {
       }
     }
     this.evading = evade;
+
+    // a held direction takes over at once: cut the wind-up or the recovery, never the blow itself
+    if (moveDir && this.act && (this.act.t < 0 || this.act.t >= ATTACKS[this.actName].cancel)) {
+      this.act = null;
+      this.actName = null;
+    }
 
     // ---- attacks in progress
     if (this.act) {

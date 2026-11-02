@@ -64,6 +64,9 @@ export function loadFx(id) {
 export function preload(ids) {
   return Promise.all([...new Set(ids)].map(loadFx));
 }
+/** Effects drawn outside the director (baked monsters, the sky): counted here for the coverage report. */
+export const extraUsed = new Map();
+export const markUsed = (id) => extraUsed.set(id, (extraUsed.get(id) ?? 0) + 1);
 export const loadStats = () => ({ loaded: mods.size, pending: pending.size, failed: [...failed.entries()], total: ALL_IDS.length });
 export const hasLoader = (id) => !!loaders[id];
 

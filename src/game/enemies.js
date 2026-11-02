@@ -289,6 +289,7 @@ export class Enemy {
           this.aiT = 2.4;
           break;
         }
+        if (T.ai === "gunner" && g.gunnerEscape(this)) break;
         const reach = T.reach;
         const ranged = T.ai !== "walker";
         if (Math.abs(dx) > reach - 6 || (ranged && Math.abs(dx) < 50)) {
@@ -296,10 +297,11 @@ export class Enemy {
           this.vx += (dir * T.speed - this.vx) * Math.min(1, tdt * 4);
         } else this.vx *= Math.pow(0.001, tdt);
         if (Math.abs(dx) <= reach && this.aiT <= 0 && hero.y > -40) {
+          // busy until the attack itself says when it's ready again
+          this.aiT = 99;
           if (ranged) g.enemyGun(this);
           else if (T.flame && Math.random() < 0.3) g.enemyFlame(this);
           else this.startAttack(Math.random() < 0.35 && T.alt ? T.alt : T.attack);
-          this.aiT = 99;
         }
         break;
       }

@@ -4,7 +4,7 @@
 // into the background buffer that PixelFX's composite() puts the game's color and light over, so every effect's
 // glow lights the scene behind it.
 
-import { bg32, createFrame, clearFrame, makeFx, composite, hex, mix, rand, noise2, fbm } from "../engine/pfx.js";
+import { bg32, createFrame, clearFrame, makeFx, composite, hex, mix, rand, noise2, fbm, markUsed } from "../engine/pfx.js";
 import { FW, FH, M, FLOOR, W } from "../config.js";
 
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
@@ -330,15 +330,18 @@ const motes = [];
 /** Fill bg32 for this frame. camX: world x of the screen's left edge. t: scene time. */
 export function drawBackground(S, camX, t, dt, quality = 2) {
   // sky (with an optional PixelFX loop living in it, refreshed at 20 fps)
-  if (S.skyFx && quality > 0) {
+  if (S.skyFx) {
     if (skyId !== S.skyFx.id) {
       skyInst = makeFx(S.skyFx.id, { x: (S.skyFx.x ?? 160) + M, y: (S.skyFx.y ?? 180) + M, ...S.skyFx.opts, light: S.skyFx.light });
-      if (skyInst) skyId = S.skyFx.id;
+      if (skyInst) {
+        skyId = S.skyFx.id;
+        markUsed(skyId);
+      }
       skyTick = 1;
     }
     if (skyInst) {
       skyAcc += dt;
-      if (skyAcc >= 0.05 || skyTick) {
+      if (skyAcc >= (quality > 0 ? 0.05 : 0.1) || skyTick) {
         skyInst.update(skyAcc);
         skyAcc = 0;
         skyTick = 0;

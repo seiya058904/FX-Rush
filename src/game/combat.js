@@ -122,7 +122,8 @@ export function kill(g, e, { el = "melee", dir = 1, crit = false, overkill = 0 }
   const fy = e.y + (ai?.footY ?? 0), fx = e.x + (ai?.footX ?? 0) * (e.facing < 0 ? -1 : 1);
   // the death effect: frozen things shatter, burnt things crumble to ash, shocked things come apart in light
   let id = T.deathFx, pal = T.deathPal;
-  if (e.status.frozen > 0 || el === "ice") (id = "spawn/shatter-death"), (pal = RAMPS.frost);
+  if (e.elite) void 0;
+  else if (e.status.frozen > 0 || el === "ice") (id = "spawn/shatter-death"), (pal = RAMPS.frost);
   else if (e.status.burning > 0 || el === "fire") (id = "spawn/dissolve-burn"), (pal = RAMPS.fire);
   else if (el === "shock") (id = "spawn/disintegrate"), (pal = RAMPS.electric);
   else if (el === "shadow") (id = "spawn/soul-rise"), (pal = RAMPS.void);

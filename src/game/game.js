@@ -314,7 +314,8 @@ export class Game {
   damageNumber(dmg, x, y, crit, el) {
     // PixelFX's damage and crit numbers when the budget allows; a light-weight number otherwise
     const pal = crit ? RAMPS.crit : el === "melee" ? ["#3a2a20", "#8a6a4a", "#d8c8a8", "#fff0d0", "#ffffff", "#ffffff"] : null;
-    if (crit && dmg >= this.hero.stats.atk * 3) {
+    if (crit && dmg >= this.hero.stats.atk * 4.5 && this.time - (this.lastCritFx ?? -9) > 1.2) {
+      this.lastCritFx = this.time;
       const h = this.fx.play("ui/crit-number", { x, y: y - 8, center: true, text: `${dmg}!`, label: "CRIT", prio: 1, layer: "top", life: 0.95, speed: 1.35, maxSame: 1, palette: pal });
       if (h) return;
     } else if (dmg >= this.hero.stats.atk * 1.4 && this.rng() < 0.5) {
@@ -345,6 +346,14 @@ export class Game {
       }
     } });
   }
+  /** QA hook: a monster of a given type right next to the hero (used by the end-to-end branch tests). */
+  testSpawn(type, dx = 40, hpMul = 1) {
+    const T = TYPES[type];
+    const e = new Enemy(this, type, this.hero.x + dx, T.hover ? -T.hover : 0, { hpMul });
+    this.enemies.push(e);
+    if (T.jet) this.fx.play("scifi/jetpack", { follow: e, x: e.x, y: e.y, dy: -2, center: true, palette: RAMPS.neon, prio: 1, layer: "back", life: 999, light: 0.8 });
+    return e;
+  }
   heroActor() {
     return rigActor(SKINS.hero).actor;
   }
@@ -369,6 +378,14 @@ export class Game {
       el: "melee", dir: f, push: a.push, lift: a.lift, stop: a.stop * (empowered ? 1.4 : 1), shake: a.shake, weight: a.weight, heavy: a.heavy, crit: crit || undefined,
     });
     if (i === 0) this.skills.onAttack(a);
+    // a blade through an enemy shot knocks it out of the air
+    for (const p of this.projectiles) {
+      if (!p.hostile || p.dead || p.x < bx0 || p.x > bx1 || p.y < h.y + y0 || p.y > h.y + y1) continue;
+      p.end(false);
+      this.fx.play("impacts/parry", { x: p.x, y: 0, height: Math.max(4, -p.y), flip: f < 0, palette: RAMPS.hero, prio: 0, layer: "top", life: 0.9 });
+      this.hitStop(0.05);
+      sfx("shield", { pan: this.pan(p.x) });
+    }
     if (!hit2.length) return;
     if (empowered) this.rush(2);
     if (a.heavy) {
@@ -419,18 +436,7 @@ export class Game {
       });
       return;
     }
-    if (e.T.ai === "gunner" && Math.abs(h.x - e.x) < 46 && (e.escapeT ?? 0) <= this.time) {
-      // too close: a smoke bomb and he's gone, back in a moment further off
-      e.escapeT = this.time + 6;
-      const ai = e.actorInfo;
-      this.fx.play("explosions/smoke-bomb", { x: e.x, y: 0, prio: 1, life: 1.8 });
-      this.fx.play("arcane/blink-out", { x: e.x, y: 0, actor: ai.actor, palette: RAMPS.neon, prio: 1, life: 1.2, speed: 1.6, layer: "split" });
-      e.spawning = 0.9;
-      e.x = this.clampX(e.x + (e.x > h.x ? 1 : -1) * 120, true);
-      this.later(0.9, () => !e.dead && this.fx.play("arcane/blink-in", { x: e.x, y: 0, actor: ai.actor, palette: RAMPS.neon, prio: 2, life: 1.2, speed: 1.8, layer: "split" }));
-      e.aiT = 1.5;
-      return;
-    }
+    if (this.gunnerEscape(e)) return;
     if (e.T.ai === "trooper" && (e.shots = (e.shots ?? 0) + 1) % 2 === 0) {
       // a homing missile arcs over and comes down where he stood
       const tx = h.x;
@@ -546,6 +552,20 @@ export class Game {
       } });
     });
     this.later(1.8, () => (e.aiT = 0.8));
+  }
+  /** A gunner with the hero on top of him smoke-bombs away and blinks back in further off. */
+  gunnerEscape(e) {
+    const h = this.hero;
+    if (e.T.ai !== "gunner" || Math.abs(h.x - e.x) >= 46 || (e.escapeT ?? 0) > this.time || e.dead) return false;
+    e.escapeT = this.time + 6;
+    const ai = e.actorInfo;
+    this.fx.play("explosions/smoke-bomb", { x: e.x, y: 0, prio: 1, life: 1.8 });
+    this.fx.play("arcane/blink-out", { x: e.x, y: 0, actor: ai.actor, palette: RAMPS.neon, prio: 1, life: 1.2, speed: 1.6, layer: "split" });
+    e.spawning = 0.9;
+    e.x = this.clampX(e.x + (e.x > h.x ? 1 : -1) * 120, true);
+    this.later(0.9, () => !e.dead && this.fx.play("arcane/blink-in", { x: e.x, y: 0, actor: ai.actor, palette: RAMPS.neon, prio: 2, life: 1.2, speed: 1.8, layer: "split" }));
+    e.aiT = 1.5;
+    return true;
   }
   enemyDisc(e) {
     const f = e.facing;
@@ -685,7 +705,7 @@ export class Game {
   }
   comboMilestone(n) {
     const h = this.hero;
-    if (n >= 50) this.fx.play("ui/combo-counter", { x: 214, y: 54, screen: true, count: n, label: "COMBO", prio: 1, layer: "top", life: 1.3, palette: n >= 50 ? RAMPS.crit : RAMPS.gold });
+    if (n >= 100) this.fx.play("ui/combo-counter", { x: 160, y: 40, screen: true, count: n, label: "COMBO", prio: 1, layer: "top", life: 1.3, palette: n >= 50 ? RAMPS.crit : RAMPS.gold });
     sfx("combo", { pitch: 1 + Math.min(1, n / 200) });
     this.rush(n >= 50 ? 10 : 5);
     if (n === 150 || n === 400) this.timeStop();
@@ -714,7 +734,7 @@ export class Game {
     if (!this.revived) {
       // one second wind per run: light pours down and he stands back up
       this.revived = true;
-      this.later(0.9, () => {
+      this.later(0.35, () => {
         h.dead = false;
         h.deadT = 0;
         h.hp = h.maxHp * 0.6;
@@ -990,8 +1010,8 @@ export class Game {
         this.floatText("激光栅栏：把敌人逼进去！", h.x, -70, "info");
       },
       rain: () => {
-        const r = this.fx.play("weather/rain", { x: 160, y: 170, screen: true, layer: "front", prio: 3, life: 14, palette: ["#05020a", "#140628", "#2a0e4a", "#5a2a8a", "#a85ad8", "#e0a0ff", "#ffffff"], light: 0.6 });
-        this.fx.play("water/rain-splash", { x: h.x + 30, y: 0, prio: 3, life: 14, layer: "ground" });
+        const r = this.fx.play("weather/rain", { x: 160, y: 170, screen: true, layer: "front", prio: 1, every: 2, life: 14, palette: ["#05020a", "#140628", "#2a0e4a", "#5a2a8a", "#a85ad8", "#e0a0ff", "#ffffff"], light: 0.6 });
+        this.fx.play("water/rain-splash", { x: h.x + 30, y: 0, prio: 1, life: 14, layer: "ground" });
         void r;
         this.floatText("霓虹酸雨", h.x, -70, "info");
       },
@@ -1074,7 +1094,10 @@ export class Game {
     this.floats = this.floats.filter((f) => f.t < 0.9);
     if (this.shakeT > 0) this.shakeT -= rdt;
     if (this.mode === "over") {
-      this.fx.update(rdt * 0.5, rdt);
+      // the celebration (confetti, fireworks) keeps going behind the results
+      for (const t of this.timers) if (t.once && !t.done && (t.t -= rdt) <= 0) (t.done = true), t.fn();
+      this.fx.camX = Math.round(this.camX);
+      this.fx.update(rdt * 0.6, rdt);
       return;
     }
     // the card choice pauses the world (effects keep breathing at a crawl)

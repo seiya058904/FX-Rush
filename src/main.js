@@ -5,7 +5,7 @@ import { canvas, ctx, view } from "./engine/screen.js";
 import { input, pointer, idleFor } from "./engine/input.js";
 import { loadFonts, drawText } from "./engine/text.js";
 import { initAudio, sfx, toggleMute, playMusic, setVolume, audioSettings, suspendAudio } from "./engine/audio.js";
-import { preload, loadStats, makeFx, fxModule, beginFrame, endFrame, setCamera, image, frame, ALL_IDS } from "./engine/pfx.js";
+import { preload, loadStats, makeFx, fxModule, beginFrame, endFrame, setCamera, image, frame, ALL_IDS, extraUsed } from "./engine/pfx.js";
 import { Game } from "./game/game.js";
 import { Director } from "./fx/director.js";
 import { RAMPS } from "./fx/palettes.js";
@@ -97,6 +97,8 @@ async function boot() {
   await Promise.all(CORE.map((id) => preload([id]).then(() => done++)));
   state = "title";
   titleAmbience();
+  // the title assembles out of pixels
+  title.fx.play("transitions/pixel-dissolve", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" })?.inst.update(FX["transitions/pixel-dissolve"].duration * 0.5);
   if (TEST.auto) startRun();
   // the rest of the library streams in while the player is on the title
   setTimeout(() => preload(ALL_IDS), 1500);
@@ -114,7 +116,8 @@ function startRun() {
   game.start(TEST.seed ?? undefined, TEST);
   if (TEST.god) game.hero.god = true;
   state = "play";
-  game.fx.play("transitions/pixel-dissolve", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" })?.inst.update(1.1);
+  // the title is cut away by a blade
+  game.fx.play("transitions/slash-wipe", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" })?.inst.update(FX["transitions/slash-wipe"].duration * 0.5);
 }
 
 // ---- input routing per screen
@@ -412,9 +415,19 @@ window.__fxrush = {
   usedAll() {
     keepUsed(game?.fx);
     keepUsed(title.fx);
-    return Object.fromEntries(usedEver);
+    const all = new Map(usedEver);
+    extraUsed.forEach((n, id) => all.set(id, (all.get(id) ?? 0) + n));
+    return Object.fromEntries(all);
   },
   pauseAction,
+  /** QA: drive rare branches directly. */
+  test: {
+    spawn: (type, dx, hpMul) => game?.testSpawn(type, dx, hpMul),
+    kill: (e) => e && game && e.hp > 0 && (e.hp = 1) && game.enemies.includes(e) && import("./game/combat.js").then((m) => m.damage(game, e, 99999, { crit: true })),
+    lowHp: () => game && (game.hero.hp = game.hero.maxHp * 0.2),
+    die: () => { if (!game) return; game.hero.god = false; game.hero.iframes = 0; game.hero.invuln = 0; game.hero.hurt(99999, game.hero.x + 10); },
+    god: (on) => game && (game.hero.god = !!on),
+  },
   resultsAction(i) {
     if (state !== "results") return;
     resultsSel = i;
