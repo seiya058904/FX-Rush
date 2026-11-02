@@ -4,7 +4,7 @@
 // into the background buffer that PixelFX's composite() puts the game's color and light over, so every effect's
 // glow lights the scene behind it.
 
-import { bg32, createFrame, clearFrame, makeFx, composite, hex, mix, rand, noise2, fbm, markUsed } from "../engine/pfx.js";
+import { bg32, frame, createFrame, clearFrame, makeFx, composite, hex, mix, rand, noise2, fbm, markUsed } from "../engine/pfx.js";
 import { FW, FH, M, FLOOR, W } from "../config.js";
 
 const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5].map((v) => (v + 0.5) / 16);
@@ -100,6 +100,19 @@ function emberScene() {
     }
   }
   far.rim(c("#1c0c12"), c("#3a1416"));
+  // the Cinder Colossus looms in the haze: a horned head and shoulders, two embers for eyes
+  {
+    const cx = 420, base = 110, sil = c("#170a0e");
+    far.ellipse(cx, base - 30, 34, 30, sil);
+    far.ellipse(cx - 34, base - 22, 16, 14, sil);
+    far.ellipse(cx + 34, base - 22, 16, 14, sil);
+    far.ellipse(cx, base - 62, 12, 11, sil);
+    far.poly([[cx - 8, base - 66], [cx - 22, base - 86], [cx - 16, base - 88], [cx - 4, base - 70]], sil);
+    far.poly([[cx + 8, base - 66], [cx + 22, base - 86], [cx + 16, base - 88], [cx + 4, base - 70]], sil);
+    far.px(cx - 4, base - 63, c("#ff7a2a"));
+    far.px(cx + 4, base - 63, c("#ff7a2a"));
+    far.px(cx, base - 40, c("#b8401a"));
+  }
   S.far = far;
   // mid: forge architecture, arches and pillars, lit from below by the lava
   const midL = new Layer(960, 120, 34, 0.42);
@@ -193,6 +206,16 @@ function frostScene() {
       far.px(x, y, d < 3 + 4 * noise2(x * 0.2, 1, 2) ? (d < 1 ? snowH : snow) : rock);
     }
   }
+  // the Glacier Warden's silhouette: a vast crystal standing in the peaks
+  {
+    const cx = 330, base = 100, sil = c("#132238"), rim = c("#3a5a80");
+    far.poly([[cx, base - 92], [cx - 26, base - 40], [cx, base - 6], [cx + 26, base - 40]], (x) => (x < cx ? sil : c("#0f1c30")));
+    far.poly([[cx - 40, base - 52], [cx - 52, base - 36], [cx - 40, base - 24], [cx - 30, base - 38]], sil);
+    far.poly([[cx + 40, base - 56], [cx + 30, base - 40], [cx + 40, base - 28], [cx + 52, base - 42]], sil);
+    for (let k = 0; k < 40; k++) far.px(cx - 26 + Math.round(k * 0.65), base - 40 - Math.round(k * 1.3), rim);
+    far.px(cx + 3, base - 58, c("#c8f8ff"));
+    far.px(cx + 7, base - 58, c("#c8f8ff"));
+  }
   S.far = far;
   // mid: ruined colonnade with frozen arches, icicles
   const midL = new Layer(960, 118, 36, 0.4);
@@ -265,6 +288,15 @@ function voidScene() {
     far.rect(mx, 40 - mh, 1, mh, c("#ff3df0"));
     far.rect(mx + 11, 40 - mh, 1, mh, c("#3a0a4a"));
   }
+  // the Void Oculus watches from the sky: a ring with a slit of a pupil
+  {
+    const cx = 470, cy = 22, R = 20;
+    for (let a = 0; a < 360; a += 2) {
+      const r = (a * Math.PI) / 180;
+      far.px(cx + Math.cos(r) * R, cy + Math.sin(r) * R * 0.7, c("#3a0a4a"));
+    }
+    for (let y = -9; y <= 9; y++) far.px(cx, cy + y, c(y === 0 ? "#ff3df0" : "#5a1070"));
+  }
   S.far = far;
   // mid: broken platforms and neon arches drifting
   const midL = new Layer(960, 110, 40, 0.38);
@@ -313,10 +345,42 @@ function titleScene() {
   return S;
 }
 
+// ---------------------------------------------------------------- foreground: sparse silhouettes passing in front
+function foreground(kind) {
+  const L = new Layer(1400, 48, FLOOR - 8, 1.35), k = kind;
+  const ink = c(k === "ember" ? "#08040a" : k === "frost" ? "#050912" : "#05020a");
+  const edge = c(k === "ember" ? "#4a1a12" : k === "frost" ? "#3a6a9a" : "#ff2dd0");
+  for (const x0 of [90, 610, 1080]) {
+    if (k === "ember") {
+      // a broken chain post and rubble
+      L.rect(x0, 6, 7, 42, ink);
+      for (let y = 6; y < 30; y += 4) L.rect(x0 + 8, y, 3, 2, ink);
+      L.ellipse(x0 + 30, 46, 26, 9, ink);
+      L.ellipse(x0 + 52, 47, 14, 6, ink);
+    } else if (k === "frost") {
+      // ice shards jutting up
+      L.poly([[x0, 48], [x0 + 6, 4], [x0 + 12, 48]], ink);
+      L.poly([[x0 + 10, 48], [x0 + 20, 18], [x0 + 28, 48]], ink);
+      L.poly([[x0 + 26, 48], [x0 + 31, 30], [x0 + 36, 48]], ink);
+    } else {
+      // a broken neon pylon
+      L.rect(x0, 10, 6, 38, ink);
+      L.rect(x0 - 4, 8, 14, 3, ink);
+      L.ellipse(x0 + 24, 47, 20, 6, ink);
+    }
+  }
+  L.rim(edge);
+  return L;
+}
+
 const BUILDERS = { ember: emberScene, frost: frostScene, void: voidScene, title: titleScene };
 const cache = new Map();
 export function scene(id) {
-  if (!cache.has(id)) cache.set(id, BUILDERS[id]());
+  if (!cache.has(id)) {
+    const S = BUILDERS[id]();
+    if (id !== "title") S.fore = foreground(id);
+    cache.set(id, S);
+  }
   return cache.get(id);
 }
 
@@ -408,6 +472,22 @@ function ambient(S, camX, t, dt, quality) {
     if (y < FLOOR + M) {
       const k = 0.5 + 0.5 * Math.sin(t * 4 + m.ph);
       bg32[y * FW + x] = lerpC(bg32[y * FW + x], A.color, 0.4 + 0.6 * k);
+    }
+  }
+}
+
+/** The near layer, painted into the game frame over the characters (sparse, at the bottom edge). */
+export function drawForeground(S, camX, quality = 2) {
+  const L = S.fore;
+  if (!L || quality === 0) return;
+  const off = Math.floor(camX * L.parallax) - M, C = frame.color;
+  for (let y = 0; y < L.h; y++) {
+    const fy = L.y0 + y + M;
+    if (fy < 0 || fy >= FH) continue;
+    const row = y * L.w, frow = fy * FW;
+    for (let x = 0; x < FW; x++) {
+      const v = L.data[row + ((((x + off) % L.w) + L.w) % L.w)];
+      if (v) C[frow + x] = v;
     }
   }
 }

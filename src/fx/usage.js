@@ -210,7 +210,7 @@ const R = {
   "weather/blizzard": "Boss2 二阶段 暴风雪",
   "weather/cherry-blossoms": "胜利结算 樱花",
   "weather/clouds": "标题画面 夜云天空",
-  "weather/falling-leaves": "余烬熔炉 飘落灰烬（重新着色）",
+  "weather/falling-leaves": "战败结算 落叶飘零",
   "weather/fireflies": "标题画面 萤火",
   "weather/fog": "冰封遗迹 雾（高画质）",
   "weather/god-rays": "Boss2 登场 光束",

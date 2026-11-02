@@ -30,8 +30,7 @@ export const STAGES = [
       { id: "fire/campfire", every: 640, off: 420, y: 0, layer: "back", light: 0.6, prio: 3 },
       { id: "fire/candle", every: 540, off: 250, y: -6, layer: "back", light: 0.6, prio: 3, cull: true },
     ],
-    // ash drifting down from the forge's chimneys (PixelFX's falling leaves, recolored)
-    weather: [{ id: "weather/falling-leaves", opts: { palette: ["#0a0606", "#1e1414", "#3a2a28", "#5a4644", "#8a7068", "#b8a090", "#e0d0c0"], reds: ["#3a0a06", "#8a2a10", "#ff7a2a"], golds: ["#4a2a0a", "#c8781a", "#ffd060"] }, layer: "back", light: 0.5, quality: 2 }],
+    weather: [],
     transitionIn: "transitions/slash-wipe",
   },
   {

@@ -169,21 +169,32 @@ if (only.includes("manual"))
       await page.waitForTimeout(110);
     }
     await shot(page, "fight-clicks.png");
-    // walk left and right, jump
+    // walk left and right, jump (first close a level-up card screen if one is up: it pauses the world)
+    const noCards = async () => {
+      for (let i = 0; i < 4 && (await page.evaluate(() => !!window.__fxrush.game.cards)); i++) {
+        await page.keyboard.press("Digit1");
+        await page.waitForTimeout(500);
+      }
+      await page.evaluate(() => { const g = window.__fxrush.game; g.pendingLevels = 0; });
+    };
+    await noCards();
     const x0 = await page.evaluate(() => window.__fxrush.game.hero.x);
     await page.keyboard.down("KeyD");
     await page.waitForTimeout(700);
     await page.keyboard.up("KeyD");
     const x1 = await page.evaluate(() => window.__fxrush.game.hero.x);
+    await noCards();
+    const x1b = await page.evaluate(() => window.__fxrush.game.hero.x);
     await page.keyboard.down("ArrowLeft");
     await page.waitForTimeout(700);
     await page.keyboard.up("ArrowLeft");
     const x2 = await page.evaluate(() => window.__fxrush.game.hero.x);
+    await noCards();
     await page.keyboard.press("Space");
     await page.waitForTimeout(160);
     const air = await page.evaluate(() => window.__fxrush.game.hero.y);
-    res.notes.push(`move D ${Math.round(x1 - x0)}px, Left ${Math.round(x2 - x1)}px, jump y ${Math.round(air)}`);
-    if (!(x1 - x0 > 20 && x2 - x1 < -20 && air < -10)) (res.ok = false), res.notes.push("movement/jump did not respond");
+    res.notes.push(`move D ${Math.round(x1 - x0)}px, Left ${Math.round(x2 - x1b)}px, jump y ${Math.round(air)}`);
+    if (!(x1 - x0 > 20 && x2 - x1b < -20 && air < -10)) (res.ok = false), res.notes.push("movement/jump did not respond");
     // the auto AI takes back over
     await page.waitForTimeout(3000);
     s = await state(page);
@@ -196,6 +207,7 @@ if (only.includes("manual"))
     await shot(page, "pause.png");
     if (Math.abs(p1 - p0) > 0.001 || (await state(page)).state !== "pause") (res.ok = false), res.notes.push("pause did not freeze the game");
     await page.keyboard.press("Escape");
+    await page.waitForTimeout(300);
     // losing focus pauses
     await page.evaluate(() => window.dispatchEvent(new Event("blur")));
     await page.waitForTimeout(300);

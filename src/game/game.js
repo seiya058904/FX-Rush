@@ -17,7 +17,7 @@ import { Projectile, updateProjectiles } from "./projectiles.js";
 import { Pickup, collectFx } from "./pickups.js";
 import { STAGES, along, mixAt } from "./stages.js";
 import { makeBoss } from "./boss.js";
-import { scene, drawBackground, shadowAt, resetSky } from "../render/background.js";
+import { scene, drawBackground, drawForeground, shadowAt, resetSky } from "../render/background.js";
 import { sfx, playMusic, musicIntensity } from "../engine/audio.js";
 import { settings } from "../settings.js";
 import { rigActor, clearBanks } from "./sprites.js";
@@ -758,7 +758,11 @@ export class Game {
       this.fx.play("weather/cherry-blossoms", { x: 160, y: 170, screen: true, layer: "front", prio: 0, life: 999, every: 2, light: 0.6 });
       for (let i = 0; i < 4; i++) this.later(0.2 + i * 0.5, () => this.fx.play("ui/confetti", { x: this.camX + 60 + i * 66, y: 0, prio: 0, life: 3.4 }));
       for (let i = 0; i < 3; i++) this.later(0.6 + i * 0.9, () => this.fx.play("explosions/firework-rocket", { x: this.camX + 80 + i * 80, y: 0, prio: 1, life: 3.8 }));
-    } else this.fx.play("transitions/iris", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" });
+    } else {
+      this.fx.play("transitions/iris", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" });
+      // autumn leaves drift down over the defeat screen
+      this.fx.play("weather/falling-leaves", { x: 160, y: 170, screen: true, layer: "front", prio: 0, life: 999, every: 2, light: 0.5 });
+    }
     this.result = { won, gameTime: Math.round(this.time), time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, stageTimes: this.stats.stageTimes, bossTimes: this.stats.bossTimes, ultimates: this.stats.ultimates, skills: { ...this.skills.lv } };
     this.mode = "over";
   }
@@ -1217,6 +1221,7 @@ export class Game {
     if (!(h.introT > 0) && !h.hidden) h.draw();
     for (const e of this.enemies) if (e.hover && !e.boss) e.draw();
     this.fx.draw("front");
+    drawForeground(this.scene, this.camX, q);
     this.fx.draw("top");
     this.fx.draw("screen");
     endFrame(this.scene.lightK);
