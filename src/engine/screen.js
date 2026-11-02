@@ -4,7 +4,8 @@
 import { W, H } from "../config.js";
 
 export const canvas = document.getElementById("game");
-export const ctx = canvas.getContext("2d", { alpha: false, desynchronized: true });
+// not desynchronized: the frame must only reach the screen once the HUD is drawn over the game
+export const ctx = canvas.getContext("2d", { alpha: false });
 canvas.width = W;
 canvas.height = H;
 ctx.imageSmoothingEnabled = false;
