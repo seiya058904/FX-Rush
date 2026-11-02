@@ -42,7 +42,7 @@ const CORE = [
 ];
 
 // ---- the title: the hero shows off in front of the logo
-const title = { fx: new Director(), act: null, t: 0, next: 0.6, i: 0, x: 120 };
+const title = { fx: new Director(), act: null, t: 0, next: 0.6, i: 0, x: 140 };
 const SHOW = ["melee/sword-slash", "melee/spin-slash", "melee/double-slash", "melee/heavy-cleave", "melee/thrust"];
 const SHOW_FX = [
   ["ice/frost-nova", RAMPS.frost, 0], ["fire/fire-ring", RAMPS.fire, 0], ["lightning/lightning-strike", RAMPS.volt, 70],

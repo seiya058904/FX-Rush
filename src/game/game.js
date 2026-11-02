@@ -1075,7 +1075,7 @@ export class Game {
       for (const w of st.weather) {
         if ((w.quality ?? 0) > q) continue;
         const info = FX[w.id];
-        const h = this.fx.play(w.id, { x: info.ox, y: info.oy, screen: true, layer: w.layer, prio: 3, life: 9999, light: w.light, every: 3, ...w.opts });
+        const h = this.fx.play(w.id, { x: info.ox, y: info.oy, screen: true, layer: w.layer, prio: 3, life: 9999, light: w.light, every: 4, ...w.opts });
         if (h) this.weatherFx.push(h);
       }
     }

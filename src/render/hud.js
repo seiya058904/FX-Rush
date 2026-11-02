@@ -64,7 +64,7 @@ export function drawHud(ctx, g, dt) {
     drawText(ctx, b.title.split(" · ")[0], 185, 5, { align: "center", color: "#ffd0d8", shadow: INK });
     bar(ctx, 114, 16, 142, 6, f, trails.boss, b.phase2 ? "#ff3a2a" : "#d02a48", "#ff8a9a");
     rect(ctx, 114 + 71, 16, 1, 6, INK);
-  } else if (st) {
+  } else if (st && !g.cards) {
     const prog = g.phase === "boss" ? 1 : Math.min(1, g.stageT / st.length);
     panel(ctx, 112, 3, 96, 14);
     drawText(ctx, st.name, 117, 5, { color: UI.text, shadow: INK });

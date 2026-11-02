@@ -341,7 +341,7 @@ export function drawBackground(S, camX, t, dt, quality = 2) {
     }
     if (skyInst) {
       skyAcc += dt;
-      if (skyAcc >= (quality > 0 ? 0.05 : 0.1) || skyTick) {
+      if (skyAcc >= (quality > 1 ? 0.08 : quality > 0 ? 0.12 : 0.2) || skyTick) {
         skyInst.update(skyAcc);
         skyAcc = 0;
         skyTick = 0;

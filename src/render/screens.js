@@ -46,6 +46,11 @@ export function drawTitle(ctx, t, loading) {
     rect(ctx, 111, 133, Math.round(98 * loading), 3, "#c86aff");
     drawText(ctx, "载入特效库…", 160, 140, { color: UI.dim, align: "center", shadow: INK });
   } else if (Math.floor(t * 2.2) % 2 === 0) drawText(ctx, "点击 或 按任意键 开始", 160, 132, { color: "#ffffff", align: "center", outline: INK });
+  // a dark strip so the controls stay legible over whatever the hero is showing off
+  ctx.fillStyle = "rgba(5,3,10,0.62)";
+  ctx.fillRect(0, 153, W, 27);
+  ctx.fillStyle = "rgba(200,170,255,0.25)";
+  ctx.fillRect(0, 153, W, 1);
   drawText(ctx, "自动战斗 · 点击/J 强化攻击 · A/D 移动 · 空格 跳跃", 160, 156, { color: "#b8acd0", align: "center", shadow: INK });
   drawText(ctx, "Esc 暂停/设置 · M 静音", 160, 167, { color: "#8a7ea8", align: "center", shadow: INK });
 }

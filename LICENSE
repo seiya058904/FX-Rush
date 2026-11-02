@@ -1,0 +1,26 @@
+# License
+
+Copyright (c) 2026 seiya058904. All rights reserved.
+
+FX Rush, including its original source code, game rules, boss artwork, scenes,
+sound design, branding and documentation, is made public for viewing, review
+and playing the official build at https://seiya058904.github.io/FX-Rush/.
+No other rights are granted.
+
+You may not copy, modify, redistribute, sublicense, sell, or use the original
+source, artwork, audio or branding in another product, or distribute modified
+builds as FX Rush or under any confusingly similar name, without prior written
+permission from the copyright holder.
+
+Third-party components remain under their own licenses and are NOT covered by
+the reservation above:
+
+- PixelFX (https://github.com/patch-gg/pixelfx), vendored unmodified under
+  `third_party/pixelfx/` — MIT License, Copyright (c) 2026 Patch and
+  Copyright (c) 2026 Hugo Duprez; see `third_party/pixelfx/LICENSE`,
+  `third_party/pixelfx/NOTICE.md` and `third_party/pixelfx/UPSTREAM.md`.
+  The Patch Pixel font from PixelFX's gallery is not included.
+- Fusion Pixel Font 10px (https://github.com/TakWolf/fusion-pixel-font),
+  bundled unmodified under `public/fonts/fusion-pixel/` — SIL Open Font
+  License 1.1, with its component font licenses in that folder.
+- Vite and playwright-core are build/test tools only and are not shipped.

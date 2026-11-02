@@ -4,7 +4,7 @@
   "private": true,
   "description": "FX Rush: a short, explosive side-view pixel auto-battler built on the PixelFX effect library.",
   "type": "module",
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
