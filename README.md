@@ -122,7 +122,7 @@ npm run dev        # http://localhost:5173 — the game;  /fxlab.html — the FX
 npm run build      # static site in dist/, deployable to any static host
 ```
 
-Requires Node 20.19+ (tested on Node 24). No backend, accounts or network services: the build runs fully offline.
+Requires Node 20.19+ or 22.12+ (tested on Node 24). No backend, accounts or network services: the build runs fully offline.
 
 ## 🧪 PixelFX, All of It
 

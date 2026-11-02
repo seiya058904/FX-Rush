@@ -115,14 +115,14 @@ if (only.includes("branches"))
     const [cx, cy] = await page.evaluate(() => { const r = document.getElementById("game").getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; });
     await page.mouse.click(cx, cy);
     await page.waitForTimeout(2500);
-    const T = (js) => page.evaluate(js);
+    const T = (js, arg) => page.evaluate(js, arg);
     // a gunner spawned on top of him: it shoots (ricochets off the hero), then smoke-bombs away
     await T(() => { const t = window.__fxrush.test; t.spawn("gunner", 70); });
     await page.waitForTimeout(2500);
     await T(() => { const g = window.__fxrush.game, e = g.enemies.find((m) => m.typeId === "gunner" && !m.dead); if (e) e.x = g.hero.x + 30; });
     await page.waitForTimeout(3500);
     // the jet trooper: rocket, homing missile, then its EMP death
-    await T(() => { window.__fxrush.game.trooperTest = window.__fxrush.test.spawn("trooper", 120, 6); });
+    await T(() => { window.__fxrush.game.trooperTest = window.__fxrush.test.spawn("trooper", 120, 6); window.__fxrush.game.hero.introT = 8; });
     await page.waitForFunction(() => (window.__fxrush.game.trooperTest?.shots ?? 0) >= 2, null, { timeout: 20000 }).catch(() => res.notes.push("trooper did not fire twice"));
     await page.waitForTimeout(1500);
     await T(() => window.__fxrush.test.kill(window.__fxrush.game.trooperTest));
@@ -130,6 +130,14 @@ if (only.includes("branches"))
     // a ghoul's claws
     await T(() => { window.__fxrush.test.spawn("ghoul", 36, 8); window.__fxrush.game.hero.introT = 3.5; });
     await page.waitForTimeout(4000);
+    // every melee alternative and the fire jet, performed on cue next to the frozen hero
+    for (const [type, attack] of [["brute", "eHammer"], ["brute", "eUpper"], ["brute", "flame"], ["lancer", "eSweep"], ["lancer", "eThrust"], ["reaper", "eFlurry"], ["reaper", "eScythe"], ["witch", "eWhip"], ["ghoul", "eClaw"], ["knight", "eSlash"]]) {
+      await T(([t, a]) => window.__fxrush.test.attackWith(t, a), [type, attack]);
+      await page.waitForTimeout(1800);
+    }
+    // the shield takes a hit: block, sunburst, feathers
+    await T(() => window.__fxrush.test.aegisBlock());
+    await page.waitForTimeout(2200);
     // low health: the healing bloom; then a death: the one-time resurrection
     await T(() => { window.__fxrush.test.god(false); window.__fxrush.test.lowHp(); });
     await page.waitForTimeout(2500);

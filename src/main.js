@@ -7,6 +7,7 @@ import { loadFonts, drawText } from "./engine/text.js";
 import { initAudio, sfx, toggleMute, playMusic, setVolume, audioSettings, suspendAudio } from "./engine/audio.js";
 import { preload, loadStats, makeFx, fxModule, beginFrame, endFrame, setCamera, image, frame, ALL_IDS, extraUsed } from "./engine/pfx.js";
 import { Game } from "./game/game.js";
+import { damage } from "./game/combat.js";
 import { Director } from "./fx/director.js";
 import { RAMPS } from "./fx/palettes.js";
 import { drawHud, drawFloats, drawBanner, drawFlash, drawCards, cardRect } from "./render/hud.js";
@@ -423,10 +424,35 @@ window.__fxrush = {
   /** QA: drive rare branches directly. */
   test: {
     spawn: (type, dx, hpMul) => game?.testSpawn(type, dx, hpMul),
-    kill: (e) => e && game && e.hp > 0 && (e.hp = 1) && game.enemies.includes(e) && import("./game/combat.js").then((m) => m.damage(game, e, 99999, { crit: true })),
-    lowHp: () => game && (game.hero.hp = game.hero.maxHp * 0.2),
-    die: () => { if (!game) return; game.hero.god = false; game.hero.iframes = 0; game.hero.invuln = 0; game.hero.hurt(99999, game.hero.x + 10); },
+    kill: (e) => e && game && e.hp > 0 && (e.hp = 1) && game.enemies.includes(e) && damage(game, e, 99999, { crit: true }),
+    lowHp: () => { if (!game) return; if (game.cards) game.cards = null; game.pendingLevels = 0; game.bloomUsed = false; game.hero.hp = game.hero.maxHp * 0.2; },
+    die: () => { if (!game) return; if (game.cards) game.cards = null; game.pendingLevels = 0; game.aegisReady = false; game.aegisT = 99; game.hero.god = false; game.hero.iframes = 0; game.hero.invuln = 0; game.hero.hurt(99999, game.hero.x + 10); },
     god: (on) => game && (game.hero.god = !!on),
+    /** A monster of `type` right beside the (frozen) hero performs `attack` ("flame" for the fire jet). */
+    attackWith(type, attack) {
+      if (!game) return;
+      const e = game.testSpawn(type, 30, 20);
+      e.facing = -1;
+      game.hero.introT = 2.2;
+      if (attack === "flame") game.enemyFlame(e);
+      else e.startAttack(attack);
+      e.aiT = 99;
+      return true;
+    },
+    aegisBlock() {
+      if (!game) return;
+      if (!game.skills.level("aegis")) game.skills.add("aegis");
+      game.aegisReady = false;
+      game.aegisT = 0;
+      setTimeout(() => {
+        const h = game.hero;
+        h.god = false;
+        h.iframes = 0;
+        h.invuln = 0;
+        h.hurt(5, h.x + 20);
+        h.god = true;
+      }, 900);
+    },
   },
   resultsAction(i) {
     if (state !== "results") return;
