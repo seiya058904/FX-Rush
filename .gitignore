@@ -1,0 +1,9 @@
+node_modules/
+dist/
+output/
+# PixelFX tool outputs (contact sheets, sprite sheets): regenerate with the tools
+third_party/pixelfx/records/
+third_party/pixelfx/sheets/
+*.log
+.DS_Store
+Thumbs.db

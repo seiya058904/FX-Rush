@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FX Lab</title>
+    <style>
+      :root { --bg: #0b0910; --panel: #15111f; --line: #2c2440; --text: #e8e0f4; --dim: #8a80a0; --ok: #5ae0a0; --warn: #ffc65a; --bad: #ff5a7a; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 ui-monospace, Consolas, monospace; }
+      header { display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+      header h1 { font-size: 15px; margin: 0 12px 0 0; letter-spacing: 1px; }
+      input, select, button { background: var(--panel); color: var(--text); border: 1px solid var(--line); padding: 5px 8px; font: inherit; }
+      button { cursor: pointer; } button:hover { border-color: #6a5a90; }
+      main { display: grid; grid-template-columns: minmax(260px, 340px) 1fr; height: calc(100vh - 52px); }
+      #list { overflow: auto; border-right: 1px solid var(--line); }
+      #list .cat { padding: 6px 10px; color: var(--dim); background: #100d18; position: sticky; top: 0; }
+      #list .item { padding: 3px 10px; cursor: pointer; display: flex; justify-content: space-between; gap: 6px; }
+      #list .item:hover, #list .item.on { background: #221a33; }
+      #list .tag { color: var(--dim); font-size: 11px; }
+      .ok { color: var(--ok); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+      #view { padding: 12px; overflow: auto; }
+      canvas { image-rendering: pixelated; background: #000; display: block; max-width: 100%; border: 1px solid var(--line); }
+      #info { margin: 8px 0; color: var(--dim); white-space: pre-wrap; }
+      table { border-collapse: collapse; margin-top: 10px; width: 100%; }
+      td, th { border-bottom: 1px solid var(--line); padding: 2px 6px; text-align: left; }
+      #summary { margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>FX LAB · PixelFX × FX Rush</h1>
+      <input id="q" placeholder="搜索 id / 类别" size="22" />
+      <label>背景 <select id="bg"><option value="dark">dark</option><option value="ground">ground</option><option value="black">black</option></select></label>
+      <label><input type="checkbox" id="act" checked /> 带动作(act)</label>
+      <button id="runAll">全量自检 244</button>
+      <button id="dl" disabled>下载报告 JSON</button>
+      <a href="./index.html" style="color: var(--dim); margin-left: auto">← 回到游戏</a>
+    </header>
+    <main>
+      <div id="list"></div>
+      <div id="view">
+        <canvas id="cv" width="400" height="260"></canvas>
+        <div id="info">选择左侧特效预览。</div>
+        <div id="summary"></div>
+        <table id="report"></table>
+      </div>
+    </main>
+    <script type="module" src="/src/dev/fxlab.js"></script>
+  </body>
+</html>
