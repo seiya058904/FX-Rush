@@ -75,7 +75,7 @@ export function damage(g, e, base, o = {}) {
   }
 
   // numbers
-  g.damageNumber(dmg, cx, cy - 6, crit, el);
+  if (!o.quiet || crit) g.damageNumber(dmg, cx, cy - 6, crit, el);
   g.combo.hit();
   g.rush(crit ? 0.9 : 0.35);
   g.stats.damage += dmg;
@@ -84,6 +84,8 @@ export function damage(g, e, base, o = {}) {
   // skills react to hits (bleed, chain, freeze...)
   g.skills.onHit(e, dmg, { el, crit, src: o.src });
 
+  if (e.elite && !e.boss && e.hp > 0 && dmg >= e.maxHp * 0.06)
+    g.fx.play("ui/health-bar-hit", { x: e.x, y: e.y - e.h - 12, center: true, from: Math.min(1, (e.hp + dmg) / e.maxHp), to: e.hp / e.maxHp, prio: 2, layer: "top", life: 1.3, maxSame: 1, speed: 1.4 });
   if (e.hp <= 0) kill(g, e, { el, dir, crit, overkill: -e.hp / e.maxHp });
   else if (e.boss) g.onBossHit?.(e, dmg);
   return dmg;

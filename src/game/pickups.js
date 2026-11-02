@@ -10,17 +10,17 @@ import { hex } from "../engine/pfx.js";
 const XP_C = [hex("#e0fff0") >>> 0, hex("#5ae8c0") >>> 0, hex("#18948a") >>> 0];
 const XP_L = hex("#36d0a8") >>> 0;
 
-// kind -> [effect id, palette, y offset of the effect origin from the pickup's floor point]
+// kind -> [effect id, palette, height of its center above the pickup's point]
 const LOOK = {
-  gem: ["pickups/gem-spin", null, 30],
-  heart: ["pickups/heart-pickup", null, 30],
-  coin: ["pickups/coin-spin", null, 28],
-  potion: ["pickups/potion", null, 34],
-  shard: ["pickups/crystal-shard", null, 36],
-  star: ["pickups/power-star", null, 40],
-  key: ["pickups/key-glint", null, 30],
-  orb: ["pickups/xp-orb", RAMPS.xp, 28],
-  loot: ["pickups/loot-beam", null, 0],
+  gem: ["pickups/gem-spin", null, 8],
+  heart: ["pickups/heart-pickup", null, 8],
+  coin: ["pickups/coin-spin", null, 6],
+  potion: ["pickups/potion", null, 9],
+  shard: ["pickups/crystal-shard", null, 10],
+  star: ["pickups/power-star", null, 12],
+  key: ["pickups/key-glint", null, 9],
+  orb: ["pickups/xp-orb", RAMPS.xp, 6],
+  chest: ["pickups/chest-open", null, 0],
 };
 
 export class Pickup {
@@ -28,9 +28,10 @@ export class Pickup {
     Object.assign(this, { g, kind, x, y, vx: o.vx ?? (Math.random() - 0.5) * 80, vy: o.vy ?? -120 - Math.random() * 80, value: o.value ?? 1, age: 0, dead: false, magnet: false, grounded: false });
     const look = LOOK[kind];
     if (look) {
-      this.handle = g.fx.play(look[0], { x, y, follow: this, dy: 0, prio: kind === "orb" ? 2 : 1, layer: "front", life: 99, palette: look[1] ?? undefined, light: 0.8 });
-      this.fxDy = look[2];
-      if (this.handle) this.handle.dy = this.fxDy;
+      const chest = kind === "chest";
+      this.handle = g.fx.play(look[0], { x, y, follow: this, dy: -look[2], center: !chest, prio: kind === "orb" ? 2 : 1, layer: chest ? "back" : "front", life: 99, palette: look[1] ?? undefined, light: 0.8 });
+      // a chest waits, shut, until the hero walks into it
+      if (chest && this.handle) this.handle.speed = 0;
     }
     if (kind === "key" || kind === "star") this.beam = g.fx.play("pickups/loot-beam", { x, y: 0, follow: this, prio: 1, layer: "back", life: 99, light: 0.7 });
   }
@@ -40,7 +41,12 @@ export class Pickup {
     const dx = h.x - this.x, dy = h.y - 18 - this.y, d = Math.hypot(dx, dy);
     const auto = g.vacuum || (this.kind === "xp" && this.age > 7);
     if (!this.magnet && this.age > 0.35 && (d < h.stats.magnet * (this.kind === "xp" ? 1 : 0.8) || auto) && this.kind !== "key") this.magnet = true;
-    if (this.kind === "key" && d < 22 && this.age > 0.8) this.magnet = true;
+    // the boss's key finds its way to him: an idle hero still clears the scene
+    if (this.kind === "key" && (d < 22 || this.age > 1.6) && this.age > 0.8) this.magnet = true;
+    if (this.kind === "chest") {
+      this.magnet = false;
+      if (this.grounded && Math.abs(dx) < 18 && this.age > 0.7) return this.collect();
+    }
     if (this.magnet) {
       const sp = 140 + this.age * 60 + (auto ? 200 : 0);
       this.vx += ((dx / (d || 1)) * sp - this.vx) * Math.min(1, dt * 8);
@@ -71,6 +77,13 @@ export class Pickup {
   collect() {
     if (this.dead) return;
     this.dead = true;
+    if (this.kind === "chest" && this.handle) {
+      this.handle.speed = 1;
+      this.handle.follow = null;
+      this.handle.life = 3.6;
+      this.g.collect(this);
+      return;
+    }
     this.handle?.stop();
     this.beam?.stop();
     this.g.collect(this);
@@ -134,6 +147,9 @@ export function collectFx(g, p) {
     case "star":
       g.starPower(7);
       sfx("levelup");
+      break;
+    case "chest":
+      g.openChest(p.x);
       break;
     case "key":
       g.onKey();

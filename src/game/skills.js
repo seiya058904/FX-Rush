@@ -45,6 +45,19 @@ export const SKILLS = {
     cd: [2.8, 2.5, 2.1, 1.8, 1.6],
     cast(g, lv) {
       const h = g.hero, hops = 3 + lv + (lv >= 4 ? 1 : 0), dmg = A(g) * (0.75 + lv * 0.12);
+      if (lv >= 3 && (this.casts = (this.casts ?? 0) + 1) % 3 === 0 && g.nearestEnemy(h.x, h.y - 20, 150)) {
+        // every third cast: PixelFX's chain lightning volley straight ahead, through three points
+        const f = h.facing, x0 = h.x;
+        g.fx.play("lightning/chain-lightning", { x: x0, y: 0, flip: f < 0, palette: RAMPS.electric, prio: 1, layer: "split", life: 1.6 });
+        [58, 104, 150].forEach((d, i) =>
+          g.later(0.05 + i * 0.09, () => {
+            const hit = damageRadius(g, x0 + f * d, -22, 26, dmg * 1.3, { el: "shock", stop: 0.02, quiet: i > 0, src: "chain" });
+            for (const m of hit) afflict(g, m, "shocked", 1.2);
+          }),
+        );
+        sfx("zap", { pan: g.pan(h.x) });
+        return true;
+      }
       const first = g.nearestEnemy(h.x, h.y - 24, 170);
       if (!first) return false;
       const hx = h.x + h.facing * 12, hy = h.y - 26, pts = [[0, 0]], seen = new Set();
@@ -96,7 +109,7 @@ export const SKILLS = {
       g.blastBudget--;
       const x = e.x, y = e.y - e.cy, r = 30 + lv * 5;
       g.later(0.05, () => {
-        g.fx.play("explosions/small-explosion", { x, y: Math.min(0, y + 14), palette: RAMPS.fire, prio: 1, life: 1.4, size: 0.55 + lv * 0.08, light: 0.9, layer: "front" });
+        g.fx.play("explosions/small-explosion", { x, y: Math.min(0, y + 14), palette: RAMPS.fire, prio: 1, life: 1, size: 0.4 + lv * 0.05, light: 0.9, layer: "back" });
         damageRadius(g, x, y, r, A(g) * (0.9 + lv * 0.15), { el: "fire", push: 150, lift: 90, stop: 0.03, shake: 1.5, quiet: true, src: "inferno" });
         if (lv >= 2) for (const m of g.enemies) if (!m.dead && Math.abs(m.x - x) < r + 10) afflict(g, m, "burning", 2.5, { power: 0.2 });
         sfx("explode", { w: 0.4, pan: g.pan(x) });
@@ -181,6 +194,25 @@ export const SKILLS = {
     cast(g, lv) {
       const h = g.hero, n = [2, 3, 4, 4, 5][lv - 1], dmg = A(g) * (0.65 + lv * 0.1);
       if (!g.nearestEnemy(h.x, h.y, 220)) return false;
+      this.n = (this.n ?? 0) + 1;
+      if (lv >= 4 && this.n % 2 === 0) {
+        // a heavy aimed bolt that weaves onto the toughest target
+        const tgt = g.strongestEnemy(200);
+        if (tgt) {
+          g.fx.play("projectiles/magic-missile", { x: h.x, y: 0, flip: tgt.x < h.x, reach: Math.max(40, Math.min(200, Math.abs(tgt.x - h.x))), palette: RAMPS.arcane, prio: 1, life: 1.8 });
+          g.later(0.82, () => {
+            damageRadius(g, tgt.x, tgt.y - tgt.cy, 30, dmg * 3, { el: "arcane", stop: 0.06, shake: 2, src: "missile" });
+            sfx("magic");
+          });
+          return true;
+        }
+      }
+      if (lv >= 3 && this.n % 3 === 0) {
+        const f = h.facing, x0 = h.x;
+        g.fx.play("arcane/arcane-missiles", { x: x0, y: 0, flip: f < 0, palette: RAMPS.arcane, prio: 1, layer: "split", life: 1.8 });
+        [0.77, 0.85, 0.95, 1.08, 1.2].forEach((t, i) => g.later(t, () => damageRadius(g, x0 + f * 152, -24, 30, dmg * 0.9, { el: "arcane", stop: i === 4 ? 0.05 : 0.01, quiet: i < 4, src: "missile" })));
+        return true;
+      }
       for (let i = 0; i < n; i++) {
         g.later(i * 0.07, () => {
           const tgt = g.nearestEnemy(h.x, h.y - 20, 240, null, i);
@@ -193,7 +225,7 @@ export const SKILLS = {
               damage(g2, e, dmg, { el: "arcane", push: 70, stop: 0.025, quiet: !last, src: "missile" });
               if (lv >= 2 && g2.rng() < 0.25) afflict(g2, e, "confused", 2);
               if (lv >= 3 && last) {
-                g2.fx.play("arcane/mana-burst", { x: e.x, y: e.y - e.cy, center: true, palette: RAMPS.arcane, prio: 1, life: 1.2, speed: 1.4, light: 0.8 });
+                g2.fx.play("arcane/mana-burst", { x: e.x, y: e.y - e.cy, center: true, palette: RAMPS.arcane, prio: 1, life: 1, speed: 1.5, light: 0.7, layer: "back" });
                 damageRadius(g2, e.x, e.y - e.cy, 36, dmg, { el: "arcane", stop: 0.02, quiet: true, src: "missile" });
               }
             },
@@ -424,6 +456,7 @@ export const SKILLS = {
       const h = g.hero, f = h.facing;
       if (!g.nearestEnemy(h.x, h.y, 150)) return false;
       const x0 = h.x + f * 10, count = 5 + lv;
+      if (lv >= 2) g.fx.play("nature/leaf-storm", { x: h.x, y: h.y, follow: h, actor: g.heroActor(), palette: RAMPS.earth, prio: 2, layer: "split", life: 1.2 });
       g.fx.play("nature/thorns", { x: x0, y: 0, flip: f < 0, palette: RAMPS.earth, count, prio: 1, life: 2, layer: "split" });
       for (let i = 0; i < count; i++)
         g.later(0.11 + i * 0.05, () => {
@@ -465,7 +498,7 @@ export const SKILLS = {
     cast(g, lv) {
       const c = g.clusterPoint(170);
       if (!c) return false;
-      g.fx.play("nature/poison-cloud", { x: c.x, y: 0, palette: RAMPS.poison, prio: 1, life: 3, layer: "front", light: 0.6 });
+      g.fx.play("nature/poison-cloud", { x: c.x, y: 0, palette: RAMPS.poison, prio: 1, life: 3, layer: "back", light: 0.6 });
       g.timers.push({ t: 3, tick: 0, update(dt) {
         if ((this.tick -= dt) <= 0) {
           this.tick = 0.5;

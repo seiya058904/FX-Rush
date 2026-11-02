@@ -17,9 +17,10 @@ import { ActPlayer } from "./game/moves.js";
 import { settings, saveSettings } from "./settings.js";
 import { READY, poseAt } from "./engine/pfx.js";
 import { M, FLOOR } from "./config.js";
+import { FX } from "./fx/registry.gen.js";
 
 const params = new URLSearchParams(location.search);
-const TEST = { speed: Math.max(1, Math.min(8, +(params.get("speed") ?? 1))), god: params.has("god"), seed: +(params.get("seed") ?? 0) || null, auto: params.has("auto") };
+const TEST = { speed: Math.max(1, Math.min(8, +(params.get("speed") ?? 1))), god: params.has("god"), seed: +(params.get("seed") ?? 0) || null, auto: params.has("auto"), stage: +(params.get("stage") ?? 1), build: Object.fromEntries((params.get("build") ?? "").split(",").filter(Boolean).map((s) => [s.split(":")[0], +(s.split(":")[1] ?? 1)])) };
 
 let state = "loading";
 let game = null;
@@ -82,6 +83,12 @@ function drawTitleScene(t) {
   ctx.putImageData(image, -M, -M);
 }
 
+// fireflies drifting over the ruins on the title
+function titleAmbience() {
+  title.fx.play("weather/fireflies", { x: 160, y: 170, screen: true, layer: "back", prio: 3, life: 1e9, every: 2, light: 0.8,
+    palette: ["#04060e", "#0a2030", "#145060", "#2aa0a0", "#7af0d0", "#e0fff0"], grass: ["#0a1020", "#101a2e", "#182640"] });
+}
+
 // ---- boot
 async function boot() {
   await loadFonts();
@@ -89,17 +96,22 @@ async function boot() {
   let done = 0;
   await Promise.all(CORE.map((id) => preload([id]).then(() => done++)));
   state = "title";
+  titleAmbience();
   if (TEST.auto) startRun();
   // the rest of the library streams in while the player is on the title
   setTimeout(() => preload(ALL_IDS), 1500);
   void total;
 }
 
+// every effect id that reached the screen in this page's life (all runs, the title too), for the tests
+const usedEver = new Map();
+const keepUsed = (d) => d && d.used.forEach((n, id) => usedEver.set(id, (usedEver.get(id) ?? 0) + n)) && d.used.clear();
 function startRun() {
   initAudio();
+  keepUsed(game?.fx);
   game = new Game();
   game.fx.quality = quality;
-  game.start(TEST.seed ?? undefined);
+  game.start(TEST.seed ?? undefined, TEST);
   if (TEST.god) game.hero.god = true;
   state = "play";
   game.fx.play("transitions/pixel-dissolve", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" })?.inst.update(1.1);
@@ -187,8 +199,8 @@ function handleInput() {
       }
     if (act) {
       sfx("select");
-      if (resultsSel === 0) startRun();
-      else toTitle();
+      if (resultsSel === 0) outroThen("transitions/blinds", startRun);
+      else outroThen("transitions/crt-off", toTitle);
     }
   }
 }
@@ -213,10 +225,20 @@ function resume() {
   sfx("ui");
   last = performance.now();
 }
+// a closing screen transition over the current run, then the next screen once it has covered it
+let outro = null;
+function outroThen(id, fn) {
+  if (outro || !game) return fn();
+  const h = game.fx.play(id, { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" });
+  const info = FX[id];
+  outro = { t: h ? info.duration * 0.46 : 0, fn };
+}
 function toTitle() {
   state = "title";
+  keepUsed(game?.fx);
   game = null;
   title.fx.reset();
+  titleAmbience();
   playMusic("title");
 }
 function pauseAction(id) {
@@ -225,9 +247,9 @@ function pauseAction(id) {
     case "resume":
       return resume();
     case "restart":
-      return startRun();
+      return outroThen("transitions/blinds", startRun);
     case "title":
-      return toTitle();
+      return outroThen("transitions/crt-off", toTitle);
     case "shake":
       settings.shake = settings.shake >= 1 ? 0.5 : settings.shake > 0 ? 0 : 1;
       break;
@@ -297,6 +319,15 @@ function step(now) {
   rdt = Math.min(rdt, MAX_FRAME);
   const t0 = performance.now();
   handleInput();
+  if (outro) {
+    outro.t -= rdt;
+    if (game) game.fx.update(0, rdt);
+    if (outro.t <= 0) {
+      const f = outro.fn;
+      outro = null;
+      f();
+    }
+  }
   if (state === "loading" || state === "title") {
     updateTitle(rdt);
     drawTitleScene(title.t);
@@ -337,16 +368,16 @@ function step(now) {
   }
   // automatic quality: drop non-essential detail when frames run long, bring it back when they don't
   frameMs = frameMs * 0.95 + (performance.now() - t0) * 0.05;
-  if (settings.quality === "auto" && state === "play") {
+  if (settings.quality === "auto" && state === "play" && game && game.stageT > 3 && !game.cards) {
     if (frameMs > 11 || fps < 50) slowFrames++;
     else slowFrames = Math.max(0, slowFrames - 1);
-    if (frameMs < 6 && fps >= 58) fastFrames++;
+    if (frameMs < 7 && fps >= 58) fastFrames++;
     else fastFrames = 0;
     if (slowFrames > 90 && quality > 0) {
       quality--;
       slowFrames = 0;
       if (game) game.fx.quality = quality;
-    } else if (fastFrames > 600 && quality < 2) {
+    } else if (fastFrames > 300 && quality < 2) {
       quality++;
       fastFrames = 0;
       if (game) game.fx.quality = quality;
@@ -378,6 +409,18 @@ window.__fxrush = {
     startRun();
   },
   used: () => (game ? Object.fromEntries(game.fx.used) : {}),
+  usedAll() {
+    keepUsed(game?.fx);
+    keepUsed(title.fx);
+    return Object.fromEntries(usedEver);
+  },
+  pauseAction,
+  resultsAction(i) {
+    if (state !== "results") return;
+    resultsSel = i;
+    if (i === 0) outroThen("transitions/blinds", startRun);
+    else outroThen("transitions/crt-off", toTitle);
+  },
   loadStats,
   pause,
   resume,

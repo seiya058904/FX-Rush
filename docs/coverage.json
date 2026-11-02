@@ -1,0 +1,3515 @@
+{
+ "summary": {
+  "upstream": 244,
+  "files": 244,
+  "vendored": 244,
+  "loadable": 244,
+  "previewed": "not run",
+  "previewWarn": "-",
+  "wired": 243,
+  "triggered": "not run",
+  "runtimeSessions": 0
+ },
+ "missing": [
+  "fire/fireball"
+ ],
+ "untriggered": [],
+ "rows": [
+  {
+   "id": "moves/arrow-shot",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/dash-strike",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/earth-stomp",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/fireball-throw",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/ground-pound",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/holy-smite",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/ice-lance-throw",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/lightning-call",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/meteor-call",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/pistol-shots",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/rocket-launcher",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "moves/sword-combo",
+   "cat": "moves",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/brazier",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/campfire",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/candle",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/fire-breath",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/fire-ring",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/fire-tornado",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/fireball",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": false,
+   "files": [],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/flame-pillar",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/flamethrower",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/meteor",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/game.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/spirit-flame",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "fire/torch",
+   "cat": "fire",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/engine/pfx.js",
+    "src/game/stages.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/barrel-explosion",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/big-explosion",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/cartoon-pow",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/dirt-explosion",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/firework-burst",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/firework-rocket",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/grenade",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/implosion",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/nuke",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/plasma-explosion",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/small-explosion",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "explosions/smoke-bomb",
+   "cat": "explosions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/bubbles",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/drip",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/fountain",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/geyser",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/rain-splash",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/ripples",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/splash",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/enemies.js",
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/water-jet",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/water-orb",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/waterfall",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/wave-crash",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "water/whirlpool",
+   "cat": "water",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/blizzard-vortex",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/freeze",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/frost-breath",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/frost-nova",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/ice-crystal",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/ice-lance",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/ice-shatter",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/enemies.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/ice-spikes",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/icicle-fall",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ice/snowflake-burst",
+   "cat": "ice",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/combat.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/ball-lightning",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/chain-lightning",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/charge-up",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/electrified",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/lightning-strike",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/plasma-ball",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/spark-arc",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/storm-cloud",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/tesla-coil",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/thunderclap",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "lightning/zap-hit",
+   "cat": "lightning",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/emp-blast",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/energy-core",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/force-field",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/glitch",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/hologram",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/jetpack",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/laser-grid",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/scanner",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/teleporter-pad",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/tractor-beam",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/warp-in",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "scifi/warp-out",
+   "cat": "scifi",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/claw-swipe",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/dagger-flurry",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/double-slash",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js",
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/hammer-smash",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/heavy-cleave",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/scythe-reap",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js",
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/spear-sweep",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/spin-slash",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/sword-slash",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js",
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/thrust",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/uppercut",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "melee/whip-crack",
+   "cat": "melee",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/moves.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/blunt-hit",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/bullet-impact",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/crit-hit",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/ground-slam",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/heavy-landing",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/hero.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/hit-flash",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/hit-spark",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/impact-frame",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/parry",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/ricochet",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "impacts/shield-block",
+   "cat": "impacts",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/arrow",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/bullet-tracer",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/cannonball",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/energy-disc",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/flare",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/homing-missile",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/laser-bolt",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/magic-missile",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/muzzle-pistol",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/muzzle-shotgun",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/muzzle-smg",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/plasma-shot",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "projectiles/rocket",
+   "cat": "projectiles",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/coin-drop",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/disintegrate",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/dissolve-burn",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/enemies.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/egg-hatch",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/poof",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/enemies.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/respawn-beam",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/shatter-death",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/soul-rise",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js",
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/spawn-portal",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "spawn/summon-rise",
+   "cat": "spawn",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/arcane-beam",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/arcane-missiles",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/arcane-orb",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/blink-in",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/blink-out",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/magic-circle-cast",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/mana-burst",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/portal",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/rune-circle",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/game.js",
+    "src/game/skills.js",
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/spell-charge",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/star-fall",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "arcane/time-stop",
+   "cat": "arcane",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/blessing",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/divine-shield",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/feather-burst",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/halo",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/heal",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/heal-aoe",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/holy-pillar",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/resurrection",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/smite",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "holy/sunburst",
+   "cat": "holy",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/black-hole",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/curse",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/dark-explosion",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/eclipse",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/render/background.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/grasping-hands",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/hex-sigil",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/life-steal",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/necro-skulls",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/shadow-flames",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/shadow-tendrils",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/soul-drain",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "shadow/void-orb",
+   "cat": "shadow",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js",
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/bleeding",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/burning",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/charmed",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/confused",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/cursed",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/frozen",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/haste",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/game/skills.js",
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/petrified",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/poisoned",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/rage",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js",
+    "src/game/game.js",
+    "src/game/skills.js",
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/sleep",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/slowed",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "status/stunned",
+   "cat": "status",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/acid-splash",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/boulder",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/earth-spike",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/healing-bloom",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/leaf-storm",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/poison-cloud",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/quake",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/root-snare",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/status.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/spore-burst",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/thorns",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/tornado",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/toxic-puddle",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "nature/vine-whip",
+   "cat": "nature",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/skills.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/aurora",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/render/background.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/blizzard",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/cherry-blossoms",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/clouds",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/main.js",
+    "src/render/background.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/falling-leaves",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/fireflies",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/fog",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/god-rays",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/rain",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/shooting-stars",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/snow",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "weather/storm",
+   "cat": "weather",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/achievement",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/coin-collect",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/combo-counter",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/confetti",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/countdown",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/boss.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/crit-number",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/damage-number",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/exclamation",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/health-bar-hit",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/combat.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/heart-lost",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/level-up",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "ui/quest-complete",
+   "cat": "ui",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/chest-open",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/coin-spin",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/collect-burst",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js",
+    "src/game/pickups.js",
+    "src/game/skills.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/crystal-shard",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/gem-spin",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/heart-pickup",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/key-glint",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/loot-beam",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/potion",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/power-star",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "pickups/xp-orb",
+   "cat": "pickups",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/pickups.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/blinds",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/burn-away",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/crt-off",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/diamond-wipe",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/glitch-wipe",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/iris",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/pixel-dissolve",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/shatter-wipe",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/slash-wipe",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/stages.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "transitions/star-iris",
+   "cat": "transitions",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/game.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/bat",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/bird",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/butterfly",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/eyeball",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/fish-school",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/flying-skull",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/frog",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/ghost",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/jellyfish",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/slime",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js",
+    "src/main.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/snake",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  },
+  {
+   "id": "critters/wisp",
+   "cat": "critters",
+   "vendored": true,
+   "loadable": true,
+   "previewed": null,
+   "preview": "n/a",
+   "wired": true,
+   "files": [
+    "src/game/enemies.js"
+   ],
+   "triggered": null,
+   "role": ""
+  }
+ ]
+}

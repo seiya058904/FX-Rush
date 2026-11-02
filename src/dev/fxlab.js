@@ -95,7 +95,7 @@ async function test(id) {
   try {
     const inst = createFx(mod, { x: info.ox + M, y: info.oy + M });
     const fps = 30, n = Math.min(360, Math.ceil(info.duration * fps) + (info.loop ? 0 : 1));
-    let drawn = 0, outside = 0, ms = 0, worst = 0;
+    let drawn = 0, outside = 0, glowOut = 0, ms = 0, worst = 0;
     for (let i = 0; i < n; i++) {
       const a = performance.now();
       if (i) inst.update(1 / fps);
@@ -104,14 +104,21 @@ async function test(id) {
       const d = performance.now() - a;
       ms += d;
       worst = Math.max(worst, d);
-      let any = false;
+      let any = false, spill = 0, glow = 0;
       for (let y = 0; y < h; y++)
         for (let x = 0; x < w; x++) {
           const j = y * w + x;
-          if (!frame.color[j] && !(frame.light[j] & 0xffffff)) continue;
+          const c = frame.color[j], l = frame.light[j];
+          if (!c && !(l & 0xffffff)) continue;
           any = true;
-          if (x < M || y < M || x >= M + info.w || y >= M + info.h) outside++;
+          // the same rule as upstream tools/check.mjs: any color past the canvas, or bright glow past it
+          if (x < M || y < M || x >= M + info.w || y >= M + info.h) {
+            if (c >>> 24) spill++;
+            else if ((l & 255) + ((l >>> 8) & 255) + ((l >>> 16) & 255) > 90) glow++;
+          }
         }
+      outside = Math.max(outside, spill);
+      glowOut = Math.max(glowOut, glow);
       if (any) drawn++;
     }
     r.frames = n;
@@ -120,7 +127,8 @@ async function test(id) {
     r.worstMs = +worst.toFixed(2);
     r.outsidePx = outside;
     if (!drawn) (r.status = "fail"), r.notes.push("never draws anything");
-    if (outside > 0) (r.status = r.status === "fail" ? "fail" : "warn"), r.notes.push(`${outside} px outside its canvas`);
+    if (outside > 0) (r.status = r.status === "fail" ? "fail" : "warn"), r.notes.push(`${outside} px drawn outside its canvas`);
+    if (glowOut > 60) (r.status = r.status === "fail" ? "fail" : "warn"), r.notes.push(`glow spills ${glowOut} px past its canvas`);
     // endings: a loop must stop when told; a one-shot must report done
     if (info.loop) {
       inst.stop();

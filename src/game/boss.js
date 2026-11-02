@@ -159,7 +159,7 @@ const BASALT = { ink: C("#0a0508"), dark: C("#1c0f12"), mid: C("#2a171a"), base:
 
 class Colossus extends Boss {
   constructor(g, x) {
-    super(g, x, { hp: 4200, dmg: 16, box: [-28, -78, 28, 0], cy: 44, title: "余烬巨像 · CINDER COLOSSUS", intro: 2.4 });
+    super(g, x, { hp: 3200, dmg: 13, box: [-28, -78, 28, 0], cy: 44, title: "余烬巨像 · CINDER COLOSSUS", intro: 2.4 });
     this.arms = { f: [30, -20], b: [-28, -22] }; // fists (front, back), local, facing right
     this.target = { f: [30, -20], b: [-28, -22] };
     this.eye = 0;
@@ -203,7 +203,7 @@ class Colossus extends Boss {
     this.later(after * 0.3, () => {
       this.state = "idle";
     });
-    this.stateT = after;
+    this.stateT = after + 0.9;
   }
   later(t, fn) {
     this.g.later(t, () => !this.dead && fn());
@@ -430,7 +430,7 @@ const ICE = { ink: C("#04081a"), dark: C("#1a3a6a"), mid: C("#2a5a94"), base: C(
 
 class Glacier extends Boss {
   constructor(g, x) {
-    super(g, x, { hp: 6400, dmg: 18, box: [-26, -96, 26, -24], cy: 62, title: "冰川守望者 · GLACIER WARDEN", intro: 2.4, hoverY: 0 });
+    super(g, x, { hp: 4800, dmg: 14, box: [-26, -96, 26, -24], cy: 62, title: "冰川守望者 · GLACIER WARDEN", intro: 2.4, hoverY: 0 });
     this.hands = { f: [34, -50], b: [-34, -54] };
     this.target = { f: [34, -50], b: [-34, -54] };
     this.order = ["spikes", "icicles", "breath", "orb", "wave", "spikes", "jet"];
@@ -455,7 +455,7 @@ class Glacier extends Boss {
     this.stateT = t;
   }
   done(after = 1.2) {
-    this.stateT = after;
+    this.stateT = after + 0.9;
     this.later(after * 0.3, () => (this.state = "idle"));
   }
   nextAttack() {
@@ -667,7 +667,7 @@ class Glacier extends Boss {
 // ================================================================ Void Oculus
 class Oculus extends Boss {
   constructor(g, x) {
-    super(g, x, { hp: 9000, dmg: 20, box: [-24, -96, 24, -46], cy: 70, title: "虚空之眼 · VOID OCULUS", intro: 2.6 });
+    super(g, x, { hp: 5400, dmg: 15, box: [-24, -96, 24, -46], cy: 70, title: "虚空之眼 · VOID OCULUS", intro: 2.6 });
     this.order = ["beam", "hands", "starfall", "tendrils", "beam", "hex", "summon"];
     this.look = 0;
     this.blink = 0;
@@ -693,7 +693,7 @@ class Oculus extends Boss {
     this.stateT = t;
   }
   done(after = 1.2) {
-    this.stateT = after;
+    this.stateT = after + 0.9;
     this.later(after * 0.3, () => (this.state = "idle"));
   }
   nextAttack() {

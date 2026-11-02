@@ -20,7 +20,7 @@ import { makeBoss } from "./boss.js";
 import { scene, drawBackground, shadowAt, resetSky } from "../render/background.js";
 import { sfx, playMusic, musicIntensity } from "../engine/audio.js";
 import { settings } from "../settings.js";
-import { rigActor } from "./sprites.js";
+import { rigActor, clearBanks } from "./sprites.js";
 import { SKINS } from "./rig.js";
 
 // ultimates: PixelFX moves performed by the hero when the rush meter fills.
@@ -78,7 +78,7 @@ export class Game {
   }
 
   // ------------------------------------------------------------------ setup
-  start(seed = (Date.now() & 0xffff) + 1) {
+  start(seed = (Date.now() & 0xffff) + 1, test = {}) {
     this.seed = seed;
     this.R = new Rng(seed);
     this.fx.reset();
@@ -111,8 +111,8 @@ export class Game {
     this.slow = null;
     this.screenFlash = null;
     this.camX = 0;
-    this.stageIndex = -1;
-    this.stats = { kills: 0, damage: 0, ultimates: 0, startedAt: performance.now(), stageTimes: [], elites: 0 };
+    this.stageIndex = (test.stage ?? 1) - 2;
+    this.stats = { kills: 0, damage: 0, ultimates: 0, startedAt: performance.now(), stageTimes: [], bossTimes: [], elites: 0 };
     this.revived = false;
     this.aegisReady = false;
     this.aegisT = 0;
@@ -125,6 +125,7 @@ export class Game {
     this.boss = null;
     this.banner = null;
     this.nextStage();
+    for (const [id, n] of Object.entries(test.build ?? {})) for (let i = 0; i < n; i++) this.skills.add(id);
   }
 
   nextStage() {
@@ -134,7 +135,9 @@ export class Game {
     this.theme = THEME[st.theme];
     this.scene = scene(st.theme);
     resetSky();
+    if (this.stageIndex > 0) clearBanks();
     this.stageT = 0;
+    this.stageStart = this.time;
     this.spawnT = 0.4;
     this.portalT = 3;
     this.elitesLeft = st.elites.slice();
@@ -144,6 +147,9 @@ export class Game {
     this.advance = false;
     this.vacuum = false;
     this.bossDefeated = false;
+    this.warped = false;
+    this.bloomUsed = false;
+    if (this.hero) this.hero.hidden = false;
     for (const h of this.weatherFx) h.stop();
     for (const h of this.decorAt.values()) h?.stop();
     this.decorAt.clear();
@@ -316,6 +322,7 @@ export class Game {
       if (h) return;
     }
     this.floats.push({ text: String(dmg), x: x + (this.rng() - 0.5) * 8, y, t: 0, kind: crit ? "crit" : "dmg", el });
+    if (this.floats.length > 10) this.floats.splice(0, this.floats.length - 10);
   }
   /** Slow the hero (frost breath, curses): half speed, and PixelFX's slowed clock behind his head. */
   slowHero(t) {
@@ -337,6 +344,9 @@ export class Game {
         return true;
       }
     } });
+  }
+  heroActor() {
+    return rigActor(SKINS.hero).actor;
   }
   heroBuffFx(id, pal, life) {
     const h = this.hero;
@@ -394,6 +404,48 @@ export class Game {
   enemyGun(e) {
     // a gunner: a muzzle flash, then a tracer across the floor; the trooper fires a rocket
     const h = this.hero, f = e.facing, mx = e.x + f * 22, my = -26;
+    if (e.T.ai === "archer") {
+      this.telegraph(e);
+      this.later(0.5, () => {
+        if (e.dead) return;
+        const ff = e.facing;
+        const p = new Projectile(this, {
+          x: e.x + ff * 14, y: -24, vx: ff * 230, vy: -24, gravity: 50, fx: "projectiles/arrow", rotate: true, fxOpts: { light: 0.4 }, hostile: true, dmg: e.dmg, r: 4, life: 2,
+          onEnd: (g, pr, imp) => imp && g.fx.play("impacts/bullet-impact", { x: pr.x, y: 0, height: Math.max(2, -pr.y), flip: pr.vx > 0, prio: 2, life: 0.6 }),
+        });
+        this.projectiles.push(p);
+        sfx("whoosh", { pan: this.pan(e.x) });
+        e.aiT = 2 + this.rng();
+      });
+      return;
+    }
+    if (e.T.ai === "gunner" && Math.abs(h.x - e.x) < 46 && (e.escapeT ?? 0) <= this.time) {
+      // too close: a smoke bomb and he's gone, back in a moment further off
+      e.escapeT = this.time + 6;
+      const ai = e.actorInfo;
+      this.fx.play("explosions/smoke-bomb", { x: e.x, y: 0, prio: 1, life: 1.8 });
+      this.fx.play("arcane/blink-out", { x: e.x, y: 0, actor: ai.actor, palette: RAMPS.neon, prio: 1, life: 1.2, speed: 1.6, layer: "split" });
+      e.spawning = 0.9;
+      e.x = this.clampX(e.x + (e.x > h.x ? 1 : -1) * 120, true);
+      this.later(0.9, () => !e.dead && this.fx.play("arcane/blink-in", { x: e.x, y: 0, actor: ai.actor, palette: RAMPS.neon, prio: 2, life: 1.2, speed: 1.8, layer: "split" }));
+      e.aiT = 1.5;
+      return;
+    }
+    if (e.T.ai === "trooper" && (e.shots = (e.shots ?? 0) + 1) % 2 === 0) {
+      // a homing missile arcs over and comes down where he stood
+      const tx = h.x;
+      this.danger(tx - 34, tx + 34, 1.15, 0.3);
+      this.fx.play("arcane/rune-circle", { x: tx, y: 0, palette: this.theme.danger, prio: 1, life: 1.2, layer: "ground" });
+      this.fx.play("projectiles/homing-missile", { x: tx, y: 0, flip: e.x > tx, prio: 0, life: 2.4, light: 0.8 });
+      this.later(1.15, () => {
+        if (Math.abs(this.hero.x - tx) < 34 && this.hero.y > -30) this.hero.hurt(e.dmg * 0.7, tx, { lift: 140 });
+        damageRadius(this, tx, -10, 34, h.stats.atk * 1.5, { el: "fire", quiet: true, stop: 0 });
+        sfx("explode", { pan: this.pan(tx) });
+      });
+      sfx("missile");
+      e.aiT = 2.8;
+      return;
+    }
     if (e.T.ai === "trooper") {
       this.fx.play("projectiles/muzzle-shotgun", { x: mx, y: 0, height: 26, flip: f < 0, prio: 1, life: 1.2 });
       const p = new Projectile(this, {
@@ -436,9 +488,7 @@ export class Game {
     const xp = Math.max(1, Math.round(T.xp * this.xpMul));
     if (e.elite) {
       this.stats.elites++;
-      this.pickups.push(new Pickup(this, "gem", e.x, e.y - 20, { value: xp, vy: -200 }));
-      this.pickups.push(new Pickup(this, "heart", e.x + 10, e.y - 20, { vy: -220 }));
-      this.pickups.push(new Pickup(this, this.rng() < 0.5 ? "potion" : "star", e.x - 10, e.y - 20, { vy: -240 }));
+      this.pickups.push(new Pickup(this, "chest", e.x, e.y - 20, { value: xp, vy: -160, vx: 0 }));
       this.fx.play("spawn/coin-drop", { x: e.x, y: 0, prio: 1, coins: 9, life: 2 });
       this.coins += 9;
       this.fx.play("explosions/firework-burst", { x: e.x, y: 0, prio: 2, life: 2.2, light: 0.6, palette: this.theme.accent });
@@ -449,7 +499,7 @@ export class Game {
     } else {
       for (let i = 0; i < xp; i++) this.pickups.push(new Pickup(this, "xp", e.x, e.y - e.cy, { value: 1 }));
       const r = this.rng();
-      if (r < 0.022) this.pickups.push(new Pickup(this, "heart", e.x, e.y - e.cy));
+      if (r < 0.03) this.pickups.push(new Pickup(this, "heart", e.x, e.y - e.cy));
       else if (r < 0.034) this.pickups.push(new Pickup(this, "shard", e.x, e.y - e.cy));
       else if (r < 0.04) this.pickups.push(new Pickup(this, "coin", e.x, e.y - e.cy, { value: 3 }));
       else if (r < 0.043) this.pickups.push(new Pickup(this, "orb", e.x, e.y - e.cy, { value: 6 }));
@@ -457,6 +507,53 @@ export class Game {
   }
   collect(p) {
     collectFx(this, p);
+  }
+  /** An elite's chest bursts open: experience, a heart, and a potion or a power star spill out. */
+  openChest(x) {
+    sfx("chest");
+    this.later(1.2, () => {
+      this.pickups.push(new Pickup(this, "gem", x, -20, { value: 20, vy: -220 }));
+      this.pickups.push(new Pickup(this, "heart", x + 10, -20, { vy: -240 }));
+      this.pickups.push(new Pickup(this, this.rng() < 0.5 ? "potion" : "star", x - 10, -20, { vy: -260 }));
+      for (let i = 0; i < 3; i++) this.pickups.push(new Pickup(this, "coin", x, -20, { value: 2 }));
+      this.shake(1.5, 0.2);
+    });
+  }
+  /** Combo 150: the clock face springs open and every monster on screen falls asleep. */
+  timeStop() {
+    const h = this.hero;
+    this.fx.play("arcane/time-stop", { x: h.x, y: 0, palette: RAMPS.arcane, prio: 0, life: 2.6, layer: "split" });
+    this.banner = { title: "TIME STOP", sub: "时间静止 · 全场沉睡", t: 0, dur: 1.6, small: true };
+    sfx("magic", { pitch: 0.6 });
+    this.later(0.35, () => {
+      for (const e of this.enemies) if (!e.dead && Math.abs(e.x - this.camX - 160) < 190) afflict(this, e, "sleep", 3.2);
+    });
+  }
+  enemyFlame(e) {
+    const f = e.facing, x = e.x + f * 14;
+    this.telegraph(e);
+    this.danger(f > 0 ? x : x - 120, f > 0 ? x + 120 : x, 0.45, 1.2);
+    this.later(0.45, () => {
+      if (e.dead) return;
+      this.fx.play("fire/flamethrower", { x, y: -24, flip: f < 0, palette: this.theme.danger, prio: 0, life: 1.2, light: 0.9 });
+      sfx("fire", { w: 1, pan: this.pan(x) });
+      this.timers.push({ t: 1.2, tick: 0, update: (dt) => {
+        if ((this.flameTick = (this.flameTick ?? 0) - dt) <= 0) {
+          this.flameTick = 0.25;
+          const h = this.hero, x0 = f > 0 ? x : x - 112, x1 = f > 0 ? x + 112 : x;
+          if (h.x > x0 && h.x < x1 && h.y > -44) h.hurt(e.dmg * 0.4, e.x, { push: 90 });
+        }
+      } });
+    });
+    this.later(1.8, () => (e.aiT = 0.8));
+  }
+  enemyDisc(e) {
+    const f = e.facing;
+    const p = new Projectile(this, {
+      x: e.x + f * 14, y: -22, vx: f * 170, vy: 0, fx: "projectiles/energy-disc", fxOpts: { palette: this.theme.danger, light: 0.8 }, hostile: true, dmg: e.dmg * 0.8, r: 6, life: 2,
+    });
+    this.projectiles.push(p);
+    sfx("laser", { pan: this.pan(e.x) });
   }
   gainXp(n) {
     this.xp += n;
@@ -471,7 +568,9 @@ export class Game {
     this.pendingLevels--;
     const h = this.hero;
     this.fx.play("ui/level-up", { x: h.x, y: h.y, follow: h, prio: 0, layer: "split", life: 1.8, speed: 1.3, palette: RAMPS.gold });
-    h.heal(h.maxHp * 0.08, true);
+    h.maxHp += 6;
+    h.stats.armor = Math.min(0.35, h.stats.armor + 0.015);
+    h.heal(h.maxHp * 0.1, true);
     sfx("levelup");
     this.slowMo(0.25, 0.3);
     this.later(0.25, () => this.openCards());
@@ -586,9 +685,10 @@ export class Game {
   }
   comboMilestone(n) {
     const h = this.hero;
-    if (n >= 25) this.fx.play("ui/combo-counter", { x: 214, y: 62, screen: true, count: n, label: "COMBO", prio: 1, layer: "top", life: 1.3, palette: n >= 50 ? RAMPS.crit : RAMPS.gold });
+    if (n >= 50) this.fx.play("ui/combo-counter", { x: 214, y: 54, screen: true, count: n, label: "COMBO", prio: 1, layer: "top", life: 1.3, palette: n >= 50 ? RAMPS.crit : RAMPS.gold });
     sfx("combo", { pitch: 1 + Math.min(1, n / 200) });
     this.rush(n >= 50 ? 10 : 5);
+    if (n === 150 || n === 400) this.timeStop();
     if (n >= 100) this.fx.play("explosions/cartoon-pow", { x: h.x, y: h.y - 40, center: true, text: "WOW!", prio: 2, life: 0.9, palette: RAMPS.crit });
   }
 
@@ -633,7 +733,13 @@ export class Game {
   }
   end(won) {
     if (this.result) return;
-    this.result = { won, time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, ultimates: this.stats.ultimates, skills: { ...this.skills.lv } };
+    if (won) {
+      // the celebration plays on behind the results
+      this.fx.play("weather/cherry-blossoms", { x: 160, y: 170, screen: true, layer: "front", prio: 0, life: 999, every: 2, light: 0.6 });
+      for (let i = 0; i < 4; i++) this.later(0.2 + i * 0.5, () => this.fx.play("ui/confetti", { x: this.camX + 60 + i * 66, y: 0, prio: 0, life: 3.4 }));
+      for (let i = 0; i < 3; i++) this.later(0.6 + i * 0.9, () => this.fx.play("explosions/firework-rocket", { x: this.camX + 80 + i * 80, y: 0, prio: 1, life: 3.8 }));
+    } else this.fx.play("transitions/iris", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" });
+    this.result = { won, gameTime: Math.round(this.time), time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, stageTimes: this.stats.stageTimes, bossTimes: this.stats.bossTimes, ultimates: this.stats.ultimates, skills: { ...this.skills.lv } };
     this.mode = "over";
   }
 
@@ -653,7 +759,8 @@ export class Game {
     sfx("bigboom");
     this.musicDown = true;
     this.bossDefeated = true;
-    this.stats.stageTimes.push(this.stageT);
+    this.stats.stageTimes.push(Math.round(this.time - (this.stageStart ?? 0)));
+    this.stats.bossTimes.push(Math.round(this.time - (this.bossStart ?? 0)));
     // the key: walk into it to clear the scene
     this.later(1.4, () => this.pickups.push(new Pickup(this, "key", e.x, -30, { vy: -160, vx: 0 })));
   }
@@ -676,8 +783,15 @@ export class Game {
       return;
     }
     if (this.phase === "clear") {
-      // walk off, then the next scene (or the end)
+      // he beams out, then the next scene (or the end)
       this.advance = true;
+      if (this.phaseT > 1.1 && !this.warped) {
+        this.warped = true;
+        const hh = this.hero;
+        this.fx.play("scifi/warp-out", { x: hh.x, y: hh.y, actor: rigActor(SKINS.hero).actor, palette: [RAMPS.holy, RAMPS.frost, RAMPS.cyber][this.stageIndex], prio: 0, layer: "split", life: 2.6 });
+        this.later(0.45, () => (hh.hidden = true));
+        sfx("portal");
+      }
       if (this.phaseT > 2.4 && !this.transitioning) {
         this.transitioning = true;
         const last = this.stageIndex === STAGES.length - 1;
@@ -756,7 +870,8 @@ export class Game {
   }
   spawnElite(type) {
     const h = this.hero, x = h.x + 110;
-    const e = new Enemy(this, type, x, 0, { hpMul: 1 + this.stageIndex * 0.2, spawnDelay: 1.4 });
+    this.fx.play("projectiles/flare", { x, y: 0, prio: 1, life: 2.4, light: 0.9 });
+    const e = new Enemy(this, type, x, 0, { hpMul: 0.75 + this.stageIndex * 0.1, spawnDelay: 1.4 });
     this.enemies.push(e);
     this.fx.play("arcane/magic-circle-cast", { x, y: 0, palette: this.theme.danger, prio: 0, layer: "split", speed: 2, life: 2.4, light: 0.9 });
     this.later(1.3, () => {
@@ -764,6 +879,7 @@ export class Game {
       this.shake(3, 0.3);
       sfx("heavy");
       const T = TYPES[type];
+      if (T.jet) this.fx.play("scifi/jetpack", { follow: e, x: e.x, y: e.y, dy: -2, center: true, palette: RAMPS.neon, prio: 1, layer: "back", life: 999, light: 0.8, tag: "jet" + e.id });
       if (T.aura) {
         const ai = e.actorInfo;
         e.aura = this.fx.play(T.aura, { x: e.x, y: e.y, follow: e, actor: ai.actor, palette: T.auraPal, prio: 1, layer: "split", life: 99, light: 0.7 });
@@ -788,6 +904,33 @@ export class Game {
           });
         }
         this.floatText("小心！炸药桶", h.x, -70, "warn");
+      },
+      cannons: () => {
+        // the forge's cannons fire on the crowd from behind the hero
+        for (let i = 0; i < 3; i++)
+          this.later(i * 0.6, () => {
+            const x = this.camX + 18 + i * 30;
+            this.fx.play("projectiles/cannonball", { x, y: 0, height: 14, prio: 1, life: 2.6, light: 0.8 });
+            sfx("explode", { w: 0.3, pan: -0.8 });
+            this.later(0.32, () => {
+              damageBox(this, x + 70, -40, x + 150, 4, h.stats.atk * 2.2, { el: "fire", lift: 220, push: 200, stop: 0.04, shake: 2 });
+              sfx("heavy", { pan: this.pan(x + 100) });
+            });
+          });
+        this.floatText("熔炉火炮支援！", h.x, -70, "info");
+      },
+      tornado: () => {
+        const tor = { x: h.x + 150, y: 0 };
+        this.fx.play("nature/tornado", { follow: tor, palette: RAMPS.frost, prio: 1, life: 4.4, layer: "split", light: 0.7 });
+        this.timers.push({ t: 4.4, tick: 0, update: (dt) => {
+          tor.x -= 70 * dt;
+          if ((this.torTick = (this.torTick ?? 0) - dt) <= 0) {
+            this.torTick = 0.25;
+            for (const e of this.enemies) if (!e.dead && !e.boss && Math.abs(e.x - tor.x) < 26) damage(this, e, h.stats.atk * 0.8, { el: "ice", lift: 260, stop: 0, quiet: true, noSpark: true });
+          }
+        } });
+        this.floatText("寒风龙卷席卷敌群", h.x, -70, "info");
+        sfx("whoosh");
       },
       meteorShower: () => {
         for (let i = 0; i < 4; i++) {
@@ -873,6 +1016,7 @@ export class Game {
   }
   startBoss() {
     this.phase = "boss";
+    this.bossStart = this.time;
     const h = this.hero;
     const bx = h.x + 140;
     this.arena = [h.x - 140, h.x + 220];
@@ -911,7 +1055,7 @@ export class Game {
       for (const w of st.weather) {
         if ((w.quality ?? 0) > q) continue;
         const info = FX[w.id];
-        const h = this.fx.play(w.id, { x: info.ox, y: info.oy, screen: true, layer: w.layer, prio: 3, life: 9999, light: w.light, ...w.opts });
+        const h = this.fx.play(w.id, { x: info.ox, y: info.oy, screen: true, layer: w.layer, prio: 3, life: 9999, light: w.light, every: 3, ...w.opts });
         if (h) this.weatherFx.push(h);
       }
     }
@@ -979,6 +1123,16 @@ export class Game {
     for (const o of this.orbs) o.update?.(dt, this.time);
     if (this.pendingLevels > 0 && !h.moveOverride && !this.slow && this.phase !== "clear" && !h.dead) this.beginLevelUp();
     this.tryUltimate();
+    // a mercy bloom: once per scene, when he's low, a healing flower sprouts beside him
+    if (!this.bloomUsed && h.hp < h.maxHp * 0.35 && !h.dead && this.phase !== "intro") {
+      this.bloomUsed = true;
+      const bx = h.x + h.facing * 18;
+      this.fx.play("nature/healing-bloom", { x: bx, y: 0, palette: RAMPS.heal, prio: 0, life: 2.6, layer: "split" });
+      this.later(1.05, () => {
+        if (Math.abs(this.hero.x - bx) < 90) this.hero.heal(35);
+        sfx("heal");
+      });
+    }
 
     // monsters
     for (const e of this.enemies) {
@@ -1037,7 +1191,7 @@ export class Game {
     // monsters behind, then the hero, flyers over the top
     for (const e of this.enemies) if (!e.hover && !e.boss) e.draw();
     this.boss?.draw();
-    if (!(h.introT > 0)) h.draw();
+    if (!(h.introT > 0) && !h.hidden) h.draw();
     for (const e of this.enemies) if (e.hover && !e.boss) e.draw();
     this.fx.draw("front");
     this.fx.draw("top");

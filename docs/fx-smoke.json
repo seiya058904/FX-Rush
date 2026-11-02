@@ -1,0 +1,2451 @@
+{
+ "when": "2026-11-02T16:31:33.103Z",
+ "node": "v24.15.0",
+ "total": 244,
+ "pass": 244,
+ "warn": 0,
+ "fail": 0,
+ "seconds": 17.355,
+ "results": [
+  {
+   "id": "moves/arrow-shot",
+   "status": "pass",
+   "notes": [],
+   "frames": 58,
+   "drawnFrames": 22,
+   "avgMs": 0.092,
+   "worstMs": 1.92,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/dash-strike",
+   "status": "pass",
+   "notes": [],
+   "frames": 70,
+   "drawnFrames": 25,
+   "avgMs": 0.222,
+   "worstMs": 2.4,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/earth-stomp",
+   "status": "pass",
+   "notes": [],
+   "frames": 105,
+   "drawnFrames": 97,
+   "avgMs": 1,
+   "worstMs": 2.63,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/fireball-throw",
+   "status": "pass",
+   "notes": [],
+   "frames": 206,
+   "drawnFrames": 193,
+   "avgMs": 0.349,
+   "worstMs": 3.62,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/ground-pound",
+   "status": "pass",
+   "notes": [],
+   "frames": 116,
+   "drawnFrames": 89,
+   "avgMs": 0.462,
+   "worstMs": 1.98,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/holy-smite",
+   "status": "pass",
+   "notes": [],
+   "frames": 85,
+   "drawnFrames": 79,
+   "avgMs": 0.252,
+   "worstMs": 1.14,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/ice-lance-throw",
+   "status": "pass",
+   "notes": [],
+   "frames": 132,
+   "drawnFrames": 122,
+   "avgMs": 0.152,
+   "worstMs": 1.18,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/lightning-call",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 86,
+   "avgMs": 0.51,
+   "worstMs": 3.14,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/meteor-call",
+   "status": "pass",
+   "notes": [],
+   "frames": 194,
+   "drawnFrames": 184,
+   "avgMs": 1.079,
+   "worstMs": 4.9,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/pistol-shots",
+   "status": "pass",
+   "notes": [],
+   "frames": 79,
+   "drawnFrames": 67,
+   "avgMs": 0.188,
+   "worstMs": 3.19,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/rocket-launcher",
+   "status": "pass",
+   "notes": [],
+   "frames": 198,
+   "drawnFrames": 170,
+   "avgMs": 0.47,
+   "worstMs": 3.39,
+   "outsidePx": 0
+  },
+  {
+   "id": "moves/sword-combo",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 85,
+   "avgMs": 0.497,
+   "worstMs": 1.8,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/brazier",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.483,
+   "worstMs": 1.97,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/campfire",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.534,
+   "worstMs": 1.69,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/candle",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.065,
+   "worstMs": 0.38,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/fire-breath",
+   "status": "pass",
+   "notes": [],
+   "frames": 45,
+   "drawnFrames": 45,
+   "avgMs": 0.887,
+   "worstMs": 1.63,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/fire-ring",
+   "status": "pass",
+   "notes": [],
+   "frames": 118,
+   "drawnFrames": 110,
+   "avgMs": 0.453,
+   "worstMs": 1.26,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/fire-tornado",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.617,
+   "worstMs": 1.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/fireball",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.253,
+   "worstMs": 0.34,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/flame-pillar",
+   "status": "pass",
+   "notes": [],
+   "frames": 151,
+   "drawnFrames": 131,
+   "avgMs": 0.578,
+   "worstMs": 2.21,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/flamethrower",
+   "status": "pass",
+   "notes": [],
+   "frames": 48,
+   "drawnFrames": 48,
+   "avgMs": 0.45,
+   "worstMs": 1.36,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/meteor",
+   "status": "pass",
+   "notes": [],
+   "frames": 151,
+   "drawnFrames": 143,
+   "avgMs": 0.641,
+   "worstMs": 1.42,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/spirit-flame",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.169,
+   "worstMs": 0.71,
+   "outsidePx": 0
+  },
+  {
+   "id": "fire/torch",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.22,
+   "worstMs": 0.62,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/barrel-explosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 157,
+   "drawnFrames": 156,
+   "avgMs": 0.612,
+   "worstMs": 1.87,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/big-explosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 217,
+   "drawnFrames": 210,
+   "avgMs": 1.832,
+   "worstMs": 4.83,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/cartoon-pow",
+   "status": "pass",
+   "notes": [],
+   "frames": 33,
+   "drawnFrames": 31,
+   "avgMs": 0.709,
+   "worstMs": 1.48,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/dirt-explosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 109,
+   "drawnFrames": 104,
+   "avgMs": 0.765,
+   "worstMs": 1.65,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/firework-burst",
+   "status": "pass",
+   "notes": [],
+   "frames": 109,
+   "drawnFrames": 97,
+   "avgMs": 0.318,
+   "worstMs": 1.16,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/firework-rocket",
+   "status": "pass",
+   "notes": [],
+   "frames": 115,
+   "drawnFrames": 115,
+   "avgMs": 0.201,
+   "worstMs": 0.76,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/grenade",
+   "status": "pass",
+   "notes": [],
+   "frames": 127,
+   "drawnFrames": 118,
+   "avgMs": 0.152,
+   "worstMs": 0.85,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/implosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 51,
+   "drawnFrames": 46,
+   "avgMs": 0.407,
+   "worstMs": 0.99,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/nuke",
+   "status": "pass",
+   "notes": [],
+   "frames": 271,
+   "drawnFrames": 255,
+   "avgMs": 2.116,
+   "worstMs": 9.46,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/plasma-explosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 52,
+   "drawnFrames": 43,
+   "avgMs": 0.426,
+   "worstMs": 1.8,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/small-explosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 163,
+   "drawnFrames": 153,
+   "avgMs": 0.293,
+   "worstMs": 0.94,
+   "outsidePx": 0
+  },
+  {
+   "id": "explosions/smoke-bomb",
+   "status": "pass",
+   "notes": [],
+   "frames": 151,
+   "drawnFrames": 145,
+   "avgMs": 0.574,
+   "worstMs": 1.57,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/bubbles",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.649,
+   "worstMs": 1.8,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/drip",
+   "status": "pass",
+   "notes": [],
+   "frames": 48,
+   "drawnFrames": 48,
+   "avgMs": 0.085,
+   "worstMs": 0.52,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/fountain",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.338,
+   "worstMs": 1.52,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/geyser",
+   "status": "pass",
+   "notes": [],
+   "frames": 151,
+   "drawnFrames": 145,
+   "avgMs": 0.547,
+   "worstMs": 1.32,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/rain-splash",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.871,
+   "worstMs": 4.73,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/ripples",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.525,
+   "worstMs": 1.92,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/splash",
+   "status": "pass",
+   "notes": [],
+   "frames": 76,
+   "drawnFrames": 71,
+   "avgMs": 0.253,
+   "worstMs": 0.89,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/water-jet",
+   "status": "pass",
+   "notes": [],
+   "frames": 30,
+   "drawnFrames": 30,
+   "avgMs": 0.386,
+   "worstMs": 1,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/water-orb",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.361,
+   "worstMs": 1.43,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/waterfall",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 1.028,
+   "worstMs": 3.7,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/wave-crash",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 91,
+   "avgMs": 0.284,
+   "worstMs": 0.84,
+   "outsidePx": 0
+  },
+  {
+   "id": "water/whirlpool",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 1.204,
+   "worstMs": 2.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/blizzard-vortex",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.582,
+   "worstMs": 1.66,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/freeze",
+   "status": "pass",
+   "notes": [],
+   "frames": 121,
+   "drawnFrames": 118,
+   "avgMs": 0.241,
+   "worstMs": 2.42,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/frost-breath",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 1.539,
+   "worstMs": 2.64,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/frost-nova",
+   "status": "pass",
+   "notes": [],
+   "frames": 103,
+   "drawnFrames": 102,
+   "avgMs": 0.36,
+   "worstMs": 1.24,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/ice-crystal",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.153,
+   "worstMs": 1.44,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/ice-lance",
+   "status": "pass",
+   "notes": [],
+   "frames": 24,
+   "drawnFrames": 24,
+   "avgMs": 0.276,
+   "worstMs": 0.46,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/ice-shatter",
+   "status": "pass",
+   "notes": [],
+   "frames": 85,
+   "drawnFrames": 82,
+   "avgMs": 0.482,
+   "worstMs": 1.84,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/ice-spikes",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 87,
+   "avgMs": 0.615,
+   "worstMs": 2.35,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/icicle-fall",
+   "status": "pass",
+   "notes": [],
+   "frames": 79,
+   "drawnFrames": 74,
+   "avgMs": 0.1,
+   "worstMs": 0.48,
+   "outsidePx": 0
+  },
+  {
+   "id": "ice/snowflake-burst",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 94,
+   "avgMs": 0.114,
+   "worstMs": 0.55,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/ball-lightning",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.112,
+   "worstMs": 0.42,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/chain-lightning",
+   "status": "pass",
+   "notes": [],
+   "frames": 55,
+   "drawnFrames": 50,
+   "avgMs": 0.156,
+   "worstMs": 0.48,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/charge-up",
+   "status": "pass",
+   "notes": [],
+   "frames": 82,
+   "drawnFrames": 78,
+   "avgMs": 0.216,
+   "worstMs": 1.61,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/electrified",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.105,
+   "worstMs": 0.61,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/lightning-strike",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 89,
+   "avgMs": 0.498,
+   "worstMs": 3.77,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/plasma-ball",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.391,
+   "worstMs": 1.11,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/spark-arc",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.15,
+   "worstMs": 0.71,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/storm-cloud",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 1.602,
+   "worstMs": 4.04,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/tesla-coil",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.323,
+   "worstMs": 2.86,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/thunderclap",
+   "status": "pass",
+   "notes": [],
+   "frames": 58,
+   "drawnFrames": 54,
+   "avgMs": 0.274,
+   "worstMs": 1.32,
+   "outsidePx": 0
+  },
+  {
+   "id": "lightning/zap-hit",
+   "status": "pass",
+   "notes": [],
+   "frames": 28,
+   "drawnFrames": 27,
+   "avgMs": 0.126,
+   "worstMs": 0.47,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/emp-blast",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 89,
+   "avgMs": 0.224,
+   "worstMs": 1.32,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/energy-core",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.331,
+   "worstMs": 1.71,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/force-field",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 1.021,
+   "worstMs": 7.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/glitch",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.06,
+   "worstMs": 0.37,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/hologram",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.356,
+   "worstMs": 1.64,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/jetpack",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.723,
+   "worstMs": 2.65,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/laser-grid",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 1.631,
+   "worstMs": 3.62,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/scanner",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 88,
+   "avgMs": 0.031,
+   "worstMs": 0.59,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/teleporter-pad",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.366,
+   "worstMs": 1.17,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/tractor-beam",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.718,
+   "worstMs": 2.73,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/warp-in",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 90,
+   "avgMs": 0.635,
+   "worstMs": 3.03,
+   "outsidePx": 0
+  },
+  {
+   "id": "scifi/warp-out",
+   "status": "pass",
+   "notes": [],
+   "frames": 79,
+   "drawnFrames": 69,
+   "avgMs": 0.155,
+   "worstMs": 0.51,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/claw-swipe",
+   "status": "pass",
+   "notes": [],
+   "frames": 28,
+   "drawnFrames": 23,
+   "avgMs": 0.546,
+   "worstMs": 1.34,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/dagger-flurry",
+   "status": "pass",
+   "notes": [],
+   "frames": 30,
+   "drawnFrames": 27,
+   "avgMs": 0.239,
+   "worstMs": 0.73,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/double-slash",
+   "status": "pass",
+   "notes": [],
+   "frames": 25,
+   "drawnFrames": 22,
+   "avgMs": 0.563,
+   "worstMs": 1.44,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/hammer-smash",
+   "status": "pass",
+   "notes": [],
+   "frames": 61,
+   "drawnFrames": 55,
+   "avgMs": 0.292,
+   "worstMs": 1.05,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/heavy-cleave",
+   "status": "pass",
+   "notes": [],
+   "frames": 58,
+   "drawnFrames": 55,
+   "avgMs": 0.321,
+   "worstMs": 1.12,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/scythe-reap",
+   "status": "pass",
+   "notes": [],
+   "frames": 64,
+   "drawnFrames": 55,
+   "avgMs": 0.46,
+   "worstMs": 1.12,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/spear-sweep",
+   "status": "pass",
+   "notes": [],
+   "frames": 46,
+   "drawnFrames": 43,
+   "avgMs": 0.267,
+   "worstMs": 0.66,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/spin-slash",
+   "status": "pass",
+   "notes": [],
+   "frames": 25,
+   "drawnFrames": 22,
+   "avgMs": 0.367,
+   "worstMs": 0.99,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/sword-slash",
+   "status": "pass",
+   "notes": [],
+   "frames": 24,
+   "drawnFrames": 18,
+   "avgMs": 0.237,
+   "worstMs": 1.06,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/thrust",
+   "status": "pass",
+   "notes": [],
+   "frames": 24,
+   "drawnFrames": 19,
+   "avgMs": 0.057,
+   "worstMs": 0.26,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/uppercut",
+   "status": "pass",
+   "notes": [],
+   "frames": 27,
+   "drawnFrames": 18,
+   "avgMs": 0.178,
+   "worstMs": 0.62,
+   "outsidePx": 0
+  },
+  {
+   "id": "melee/whip-crack",
+   "status": "pass",
+   "notes": [],
+   "frames": 27,
+   "drawnFrames": 25,
+   "avgMs": 0.057,
+   "worstMs": 0.26,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/blunt-hit",
+   "status": "pass",
+   "notes": [],
+   "frames": 28,
+   "drawnFrames": 27,
+   "avgMs": 0.23,
+   "worstMs": 0.58,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/bullet-impact",
+   "status": "pass",
+   "notes": [],
+   "frames": 43,
+   "drawnFrames": 38,
+   "avgMs": 0.022,
+   "worstMs": 0.27,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/crit-hit",
+   "status": "pass",
+   "notes": [],
+   "frames": 28,
+   "drawnFrames": 25,
+   "avgMs": 0.126,
+   "worstMs": 0.47,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/ground-slam",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 90,
+   "avgMs": 0.588,
+   "worstMs": 1.16,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/heavy-landing",
+   "status": "pass",
+   "notes": [],
+   "frames": 49,
+   "drawnFrames": 44,
+   "avgMs": 0.294,
+   "worstMs": 0.76,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/hit-flash",
+   "status": "pass",
+   "notes": [],
+   "frames": 16,
+   "drawnFrames": 11,
+   "avgMs": 0.061,
+   "worstMs": 0.25,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/hit-spark",
+   "status": "pass",
+   "notes": [],
+   "frames": 16,
+   "drawnFrames": 14,
+   "avgMs": 0.022,
+   "worstMs": 0.09,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/impact-frame",
+   "status": "pass",
+   "notes": [],
+   "frames": 10,
+   "drawnFrames": 8,
+   "avgMs": 0.641,
+   "worstMs": 1.36,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/parry",
+   "status": "pass",
+   "notes": [],
+   "frames": 31,
+   "drawnFrames": 26,
+   "avgMs": 0.06,
+   "worstMs": 0.31,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/ricochet",
+   "status": "pass",
+   "notes": [],
+   "frames": 34,
+   "drawnFrames": 31,
+   "avgMs": 0.024,
+   "worstMs": 0.14,
+   "outsidePx": 0
+  },
+  {
+   "id": "impacts/shield-block",
+   "status": "pass",
+   "notes": [],
+   "frames": 34,
+   "drawnFrames": 33,
+   "avgMs": 0.456,
+   "worstMs": 1.37,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/arrow",
+   "status": "pass",
+   "notes": [],
+   "frames": 18,
+   "drawnFrames": 18,
+   "avgMs": 0.011,
+   "worstMs": 0.06,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/bullet-tracer",
+   "status": "pass",
+   "notes": [],
+   "frames": 18,
+   "drawnFrames": 18,
+   "avgMs": 0.185,
+   "worstMs": 0.23,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/cannonball",
+   "status": "pass",
+   "notes": [],
+   "frames": 115,
+   "drawnFrames": 98,
+   "avgMs": 0.377,
+   "worstMs": 3.77,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/energy-disc",
+   "status": "pass",
+   "notes": [],
+   "frames": 15,
+   "drawnFrames": 15,
+   "avgMs": 0.118,
+   "worstMs": 0.44,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/flare",
+   "status": "pass",
+   "notes": [],
+   "frames": 151,
+   "drawnFrames": 147,
+   "avgMs": 0.181,
+   "worstMs": 0.51,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/homing-missile",
+   "status": "pass",
+   "notes": [],
+   "frames": 115,
+   "drawnFrames": 106,
+   "avgMs": 0.38,
+   "worstMs": 1.22,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/laser-bolt",
+   "status": "pass",
+   "notes": [],
+   "frames": 15,
+   "drawnFrames": 15,
+   "avgMs": 0.092,
+   "worstMs": 0.38,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/magic-missile",
+   "status": "pass",
+   "notes": [],
+   "frames": 58,
+   "drawnFrames": 58,
+   "avgMs": 0.071,
+   "worstMs": 0.24,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/muzzle-pistol",
+   "status": "pass",
+   "notes": [],
+   "frames": 55,
+   "drawnFrames": 52,
+   "avgMs": 0.044,
+   "worstMs": 0.38,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/muzzle-shotgun",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 95,
+   "avgMs": 0.19,
+   "worstMs": 1.29,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/muzzle-smg",
+   "status": "pass",
+   "notes": [],
+   "frames": 30,
+   "drawnFrames": 30,
+   "avgMs": 0.286,
+   "worstMs": 0.87,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/plasma-shot",
+   "status": "pass",
+   "notes": [],
+   "frames": 24,
+   "drawnFrames": 24,
+   "avgMs": 0.452,
+   "worstMs": 3.13,
+   "outsidePx": 0
+  },
+  {
+   "id": "projectiles/rocket",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.592,
+   "worstMs": 0.73,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/coin-drop",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 91,
+   "avgMs": 0.044,
+   "worstMs": 0.22,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/disintegrate",
+   "status": "pass",
+   "notes": [],
+   "frames": 103,
+   "drawnFrames": 93,
+   "avgMs": 0.138,
+   "worstMs": 0.65,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/dissolve-burn",
+   "status": "pass",
+   "notes": [],
+   "frames": 109,
+   "drawnFrames": 105,
+   "avgMs": 0.208,
+   "worstMs": 0.52,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/egg-hatch",
+   "status": "pass",
+   "notes": [],
+   "frames": 94,
+   "drawnFrames": 94,
+   "avgMs": 0.192,
+   "worstMs": 1.09,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/poof",
+   "status": "pass",
+   "notes": [],
+   "frames": 49,
+   "drawnFrames": 43,
+   "avgMs": 0.082,
+   "worstMs": 0.3,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/respawn-beam",
+   "status": "pass",
+   "notes": [],
+   "frames": 76,
+   "drawnFrames": 72,
+   "avgMs": 0.298,
+   "worstMs": 2.42,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/shatter-death",
+   "status": "pass",
+   "notes": [],
+   "frames": 100,
+   "drawnFrames": 97,
+   "avgMs": 0.208,
+   "worstMs": 1.03,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/soul-rise",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 93,
+   "avgMs": 0.11,
+   "worstMs": 0.44,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/spawn-portal",
+   "status": "pass",
+   "notes": [],
+   "frames": 115,
+   "drawnFrames": 109,
+   "avgMs": 0.364,
+   "worstMs": 1.04,
+   "outsidePx": 0
+  },
+  {
+   "id": "spawn/summon-rise",
+   "status": "pass",
+   "notes": [],
+   "frames": 139,
+   "drawnFrames": 134,
+   "avgMs": 0.374,
+   "worstMs": 0.91,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/arcane-beam",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.811,
+   "worstMs": 1.57,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/arcane-missiles",
+   "status": "pass",
+   "notes": [],
+   "frames": 54,
+   "drawnFrames": 51,
+   "avgMs": 0.228,
+   "worstMs": 0.64,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/arcane-orb",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.259,
+   "worstMs": 0.77,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/blink-in",
+   "status": "pass",
+   "notes": [],
+   "frames": 43,
+   "drawnFrames": 39,
+   "avgMs": 0.084,
+   "worstMs": 0.31,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/blink-out",
+   "status": "pass",
+   "notes": [],
+   "frames": 49,
+   "drawnFrames": 44,
+   "avgMs": 0.085,
+   "worstMs": 0.32,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/magic-circle-cast",
+   "status": "pass",
+   "notes": [],
+   "frames": 118,
+   "drawnFrames": 105,
+   "avgMs": 0.808,
+   "worstMs": 3.4,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/mana-burst",
+   "status": "pass",
+   "notes": [],
+   "frames": 55,
+   "drawnFrames": 53,
+   "avgMs": 0.237,
+   "worstMs": 0.66,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/portal",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 1.177,
+   "worstMs": 2.55,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/rune-circle",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.561,
+   "worstMs": 1.33,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/spell-charge",
+   "status": "pass",
+   "notes": [],
+   "frames": 48,
+   "drawnFrames": 48,
+   "avgMs": 0.162,
+   "worstMs": 0.24,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/star-fall",
+   "status": "pass",
+   "notes": [],
+   "frames": 76,
+   "drawnFrames": 71,
+   "avgMs": 0.189,
+   "worstMs": 0.35,
+   "outsidePx": 0
+  },
+  {
+   "id": "arcane/time-stop",
+   "status": "pass",
+   "notes": [],
+   "frames": 109,
+   "drawnFrames": 106,
+   "avgMs": 0.49,
+   "worstMs": 0.95,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/blessing",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.634,
+   "worstMs": 2.37,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/divine-shield",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.541,
+   "worstMs": 1.79,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/feather-burst",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 79,
+   "avgMs": 0.194,
+   "worstMs": 0.9,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/halo",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.039,
+   "worstMs": 0.27,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/heal",
+   "status": "pass",
+   "notes": [],
+   "frames": 58,
+   "drawnFrames": 52,
+   "avgMs": 0.14,
+   "worstMs": 0.31,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/heal-aoe",
+   "status": "pass",
+   "notes": [],
+   "frames": 88,
+   "drawnFrames": 84,
+   "avgMs": 0.463,
+   "worstMs": 1.11,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/holy-pillar",
+   "status": "pass",
+   "notes": [],
+   "frames": 106,
+   "drawnFrames": 101,
+   "avgMs": 0.526,
+   "worstMs": 2.34,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/resurrection",
+   "status": "pass",
+   "notes": [],
+   "frames": 145,
+   "drawnFrames": 136,
+   "avgMs": 0.557,
+   "worstMs": 1.67,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/smite",
+   "status": "pass",
+   "notes": [],
+   "frames": 85,
+   "drawnFrames": 77,
+   "avgMs": 0.225,
+   "worstMs": 0.86,
+   "outsidePx": 0
+  },
+  {
+   "id": "holy/sunburst",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.338,
+   "worstMs": 0.88,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/black-hole",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.798,
+   "worstMs": 2.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/curse",
+   "status": "pass",
+   "notes": [],
+   "frames": 103,
+   "drawnFrames": 101,
+   "avgMs": 0.132,
+   "worstMs": 0.41,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/dark-explosion",
+   "status": "pass",
+   "notes": [],
+   "frames": 115,
+   "drawnFrames": 114,
+   "avgMs": 0.975,
+   "worstMs": 3.96,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/eclipse",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.45,
+   "worstMs": 1.18,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/grasping-hands",
+   "status": "pass",
+   "notes": [],
+   "frames": 94,
+   "drawnFrames": 84,
+   "avgMs": 0.385,
+   "worstMs": 0.81,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/hex-sigil",
+   "status": "pass",
+   "notes": [],
+   "frames": 127,
+   "drawnFrames": 114,
+   "avgMs": 0.116,
+   "worstMs": 0.51,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/life-steal",
+   "status": "pass",
+   "notes": [],
+   "frames": 67,
+   "drawnFrames": 63,
+   "avgMs": 0.094,
+   "worstMs": 0.34,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/necro-skulls",
+   "status": "pass",
+   "notes": [],
+   "frames": 90,
+   "drawnFrames": 90,
+   "avgMs": 0.371,
+   "worstMs": 0.9,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/shadow-flames",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.301,
+   "worstMs": 0.93,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/shadow-tendrils",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 88,
+   "avgMs": 0.502,
+   "worstMs": 0.96,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/soul-drain",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.165,
+   "worstMs": 0.75,
+   "outsidePx": 0
+  },
+  {
+   "id": "shadow/void-orb",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.479,
+   "worstMs": 3.42,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/bleeding",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.02,
+   "worstMs": 0.73,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/burning",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.177,
+   "worstMs": 1.3,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/charmed",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.108,
+   "worstMs": 0.82,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/confused",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.057,
+   "worstMs": 0.34,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/cursed",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.305,
+   "worstMs": 0.72,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/frozen",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.104,
+   "worstMs": 0.98,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/haste",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.122,
+   "worstMs": 0.53,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/petrified",
+   "status": "pass",
+   "notes": [],
+   "frames": 115,
+   "drawnFrames": 110,
+   "avgMs": 0.069,
+   "worstMs": 0.31,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/poisoned",
+   "status": "pass",
+   "notes": [],
+   "frames": 48,
+   "drawnFrames": 48,
+   "avgMs": 0.138,
+   "worstMs": 1.06,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/rage",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.132,
+   "worstMs": 0.69,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/sleep",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.062,
+   "worstMs": 0.39,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/slowed",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.17,
+   "worstMs": 0.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "status/stunned",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.282,
+   "worstMs": 1.37,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/acid-splash",
+   "status": "pass",
+   "notes": [],
+   "frames": 85,
+   "drawnFrames": 82,
+   "avgMs": 0.124,
+   "worstMs": 0.37,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/boulder",
+   "status": "pass",
+   "notes": [],
+   "frames": 70,
+   "drawnFrames": 69,
+   "avgMs": 0.293,
+   "worstMs": 0.67,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/earth-spike",
+   "status": "pass",
+   "notes": [],
+   "frames": 103,
+   "drawnFrames": 97,
+   "avgMs": 0.678,
+   "worstMs": 1.29,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/healing-bloom",
+   "status": "pass",
+   "notes": [],
+   "frames": 100,
+   "drawnFrames": 97,
+   "avgMs": 0.22,
+   "worstMs": 0.53,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/leaf-storm",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.393,
+   "worstMs": 0.9,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/poison-cloud",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.841,
+   "worstMs": 2.24,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/quake",
+   "status": "pass",
+   "notes": [],
+   "frames": 94,
+   "drawnFrames": 88,
+   "avgMs": 0.365,
+   "worstMs": 0.84,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/root-snare",
+   "status": "pass",
+   "notes": [],
+   "frames": 82,
+   "drawnFrames": 80,
+   "avgMs": 0.32,
+   "worstMs": 0.67,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/spore-burst",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 94,
+   "avgMs": 0.494,
+   "worstMs": 1.04,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/thorns",
+   "status": "pass",
+   "notes": [],
+   "frames": 73,
+   "drawnFrames": 71,
+   "avgMs": 0.821,
+   "worstMs": 1.92,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/tornado",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.859,
+   "worstMs": 2.45,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/toxic-puddle",
+   "status": "pass",
+   "notes": [],
+   "frames": 120,
+   "drawnFrames": 120,
+   "avgMs": 0.214,
+   "worstMs": 0.91,
+   "outsidePx": 0
+  },
+  {
+   "id": "nature/vine-whip",
+   "status": "pass",
+   "notes": [],
+   "frames": 43,
+   "drawnFrames": 41,
+   "avgMs": 0.265,
+   "worstMs": 1.24,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/aurora",
+   "status": "pass",
+   "notes": [],
+   "frames": 360,
+   "drawnFrames": 360,
+   "avgMs": 1.282,
+   "worstMs": 26.73,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/blizzard",
+   "status": "pass",
+   "notes": [],
+   "frames": 240,
+   "drawnFrames": 240,
+   "avgMs": 1.578,
+   "worstMs": 62.07,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/cherry-blossoms",
+   "status": "pass",
+   "notes": [],
+   "frames": 300,
+   "drawnFrames": 300,
+   "avgMs": 0.854,
+   "worstMs": 6.22,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/clouds",
+   "status": "pass",
+   "notes": [],
+   "frames": 360,
+   "drawnFrames": 360,
+   "avgMs": 1.853,
+   "worstMs": 5.55,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/falling-leaves",
+   "status": "pass",
+   "notes": [],
+   "frames": 300,
+   "drawnFrames": 300,
+   "avgMs": 1.272,
+   "worstMs": 5.25,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/fireflies",
+   "status": "pass",
+   "notes": [],
+   "frames": 360,
+   "drawnFrames": 360,
+   "avgMs": 1.712,
+   "worstMs": 3.2,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/fog",
+   "status": "pass",
+   "notes": [],
+   "frames": 360,
+   "drawnFrames": 360,
+   "avgMs": 1.549,
+   "worstMs": 73.9,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/god-rays",
+   "status": "pass",
+   "notes": [],
+   "frames": 300,
+   "drawnFrames": 300,
+   "avgMs": 2.3,
+   "worstMs": 5.29,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/rain",
+   "status": "pass",
+   "notes": [],
+   "frames": 240,
+   "drawnFrames": 240,
+   "avgMs": 1.669,
+   "worstMs": 37.55,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/shooting-stars",
+   "status": "pass",
+   "notes": [],
+   "frames": 300,
+   "drawnFrames": 300,
+   "avgMs": 1.548,
+   "worstMs": 2.79,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/snow",
+   "status": "pass",
+   "notes": [],
+   "frames": 360,
+   "drawnFrames": 360,
+   "avgMs": 1.988,
+   "worstMs": 3.84,
+   "outsidePx": 0
+  },
+  {
+   "id": "weather/storm",
+   "status": "pass",
+   "notes": [],
+   "frames": 300,
+   "drawnFrames": 300,
+   "avgMs": 2.645,
+   "worstMs": 70.43,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/achievement",
+   "status": "pass",
+   "notes": [],
+   "frames": 73,
+   "drawnFrames": 65,
+   "avgMs": 0.516,
+   "worstMs": 1.83,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/coin-collect",
+   "status": "pass",
+   "notes": [],
+   "frames": 75,
+   "drawnFrames": 66,
+   "avgMs": 0.255,
+   "worstMs": 0.61,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/combo-counter",
+   "status": "pass",
+   "notes": [],
+   "frames": 45,
+   "drawnFrames": 44,
+   "avgMs": 0.781,
+   "worstMs": 4.58,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/confetti",
+   "status": "pass",
+   "notes": [],
+   "frames": 103,
+   "drawnFrames": 99,
+   "avgMs": 0.375,
+   "worstMs": 0.86,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/countdown",
+   "status": "pass",
+   "notes": [],
+   "frames": 94,
+   "drawnFrames": 92,
+   "avgMs": 0.804,
+   "worstMs": 3.16,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/crit-number",
+   "status": "pass",
+   "notes": [],
+   "frames": 46,
+   "drawnFrames": 44,
+   "avgMs": 1.107,
+   "worstMs": 3.75,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/damage-number",
+   "status": "pass",
+   "notes": [],
+   "frames": 33,
+   "drawnFrames": 31,
+   "avgMs": 0.077,
+   "worstMs": 0.32,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/exclamation",
+   "status": "pass",
+   "notes": [],
+   "frames": 43,
+   "drawnFrames": 41,
+   "avgMs": 0.135,
+   "worstMs": 0.52,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/health-bar-hit",
+   "status": "pass",
+   "notes": [],
+   "frames": 61,
+   "drawnFrames": 53,
+   "avgMs": 0.235,
+   "worstMs": 0.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/heart-lost",
+   "status": "pass",
+   "notes": [],
+   "frames": 46,
+   "drawnFrames": 42,
+   "avgMs": 0.111,
+   "worstMs": 0.33,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/level-up",
+   "status": "pass",
+   "notes": [],
+   "frames": 97,
+   "drawnFrames": 97,
+   "avgMs": 0.304,
+   "worstMs": 0.77,
+   "outsidePx": 0
+  },
+  {
+   "id": "ui/quest-complete",
+   "status": "pass",
+   "notes": [],
+   "frames": 79,
+   "drawnFrames": 75,
+   "avgMs": 0.43,
+   "worstMs": 0.97,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/chest-open",
+   "status": "pass",
+   "notes": [],
+   "frames": 139,
+   "drawnFrames": 136,
+   "avgMs": 0.548,
+   "worstMs": 1.32,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/coin-spin",
+   "status": "pass",
+   "notes": [],
+   "frames": 48,
+   "drawnFrames": 48,
+   "avgMs": 0.049,
+   "worstMs": 0.38,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/collect-burst",
+   "status": "pass",
+   "notes": [],
+   "frames": 42,
+   "drawnFrames": 33,
+   "avgMs": 0.071,
+   "worstMs": 0.25,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/crystal-shard",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.255,
+   "worstMs": 2.38,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/gem-spin",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.175,
+   "worstMs": 1.52,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/heart-pickup",
+   "status": "pass",
+   "notes": [],
+   "frames": 36,
+   "drawnFrames": 36,
+   "avgMs": 0.104,
+   "worstMs": 0.53,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/key-glint",
+   "status": "pass",
+   "notes": [],
+   "frames": 60,
+   "drawnFrames": 60,
+   "avgMs": 0.078,
+   "worstMs": 0.47,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/loot-beam",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.536,
+   "worstMs": 1.38,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/potion",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.092,
+   "worstMs": 0.64,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/power-star",
+   "status": "pass",
+   "notes": [],
+   "frames": 48,
+   "drawnFrames": 48,
+   "avgMs": 1.513,
+   "worstMs": 2.05,
+   "outsidePx": 0
+  },
+  {
+   "id": "pickups/xp-orb",
+   "status": "pass",
+   "notes": [],
+   "frames": 54,
+   "drawnFrames": 54,
+   "avgMs": 0.137,
+   "worstMs": 0.43,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/blinds",
+   "status": "pass",
+   "notes": [],
+   "frames": 61,
+   "drawnFrames": 58,
+   "avgMs": 0.751,
+   "worstMs": 1.96,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/burn-away",
+   "status": "pass",
+   "notes": [],
+   "frames": 91,
+   "drawnFrames": 89,
+   "avgMs": 2.23,
+   "worstMs": 4.31,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/crt-off",
+   "status": "pass",
+   "notes": [],
+   "frames": 61,
+   "drawnFrames": 57,
+   "avgMs": 0.959,
+   "worstMs": 3.15,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/diamond-wipe",
+   "status": "pass",
+   "notes": [],
+   "frames": 61,
+   "drawnFrames": 55,
+   "avgMs": 2.438,
+   "worstMs": 6.66,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/glitch-wipe",
+   "status": "pass",
+   "notes": [],
+   "frames": 55,
+   "drawnFrames": 48,
+   "avgMs": 0.497,
+   "worstMs": 1.13,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/iris",
+   "status": "pass",
+   "notes": [],
+   "frames": 67,
+   "drawnFrames": 55,
+   "avgMs": 0.793,
+   "worstMs": 2.76,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/pixel-dissolve",
+   "status": "pass",
+   "notes": [],
+   "frames": 67,
+   "drawnFrames": 62,
+   "avgMs": 1.971,
+   "worstMs": 3.56,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/shatter-wipe",
+   "status": "pass",
+   "notes": [],
+   "frames": 85,
+   "drawnFrames": 80,
+   "avgMs": 1.759,
+   "worstMs": 5.46,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/slash-wipe",
+   "status": "pass",
+   "notes": [],
+   "frames": 52,
+   "drawnFrames": 47,
+   "avgMs": 1.11,
+   "worstMs": 4.5,
+   "outsidePx": 0
+  },
+  {
+   "id": "transitions/star-iris",
+   "status": "pass",
+   "notes": [],
+   "frames": 67,
+   "drawnFrames": 53,
+   "avgMs": 0.861,
+   "worstMs": 2.54,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/bat",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.206,
+   "worstMs": 1.41,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/bird",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.147,
+   "worstMs": 0.71,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/butterfly",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.854,
+   "worstMs": 2.14,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/eyeball",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.538,
+   "worstMs": 1.34,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/fish-school",
+   "status": "pass",
+   "notes": [],
+   "frames": 144,
+   "drawnFrames": 144,
+   "avgMs": 1.143,
+   "worstMs": 2.59,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/flying-skull",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 1.165,
+   "worstMs": 2.82,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/frog",
+   "status": "pass",
+   "notes": [],
+   "frames": 78,
+   "drawnFrames": 78,
+   "avgMs": 0.267,
+   "worstMs": 3.42,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/ghost",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.663,
+   "worstMs": 1.77,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/jellyfish",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.592,
+   "worstMs": 1.99,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/slime",
+   "status": "pass",
+   "notes": [],
+   "frames": 54,
+   "drawnFrames": 54,
+   "avgMs": 0.706,
+   "worstMs": 1.93,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/snake",
+   "status": "pass",
+   "notes": [],
+   "frames": 72,
+   "drawnFrames": 72,
+   "avgMs": 0.118,
+   "worstMs": 0.56,
+   "outsidePx": 0
+  },
+  {
+   "id": "critters/wisp",
+   "status": "pass",
+   "notes": [],
+   "frames": 96,
+   "drawnFrames": 96,
+   "avgMs": 0.411,
+   "worstMs": 0.75,
+   "outsidePx": 0
+  }
+ ]
+}

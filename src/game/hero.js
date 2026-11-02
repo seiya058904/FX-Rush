@@ -68,7 +68,7 @@ export class Hero {
     this.ghostAcc = 0;
     this.glow = 0;
     this.scarf = Array.from({ length: 8 }, () => ({ x: 40, y: -30, px: 40, py: -30 }));
-    this.stats = { atk: 10, atkSpeed: 1, crit: 0.08, critMul: 2.2, speed: 86, magnet: 34, armor: 0, regen: 0, lifesteal: 0 };
+    this.stats = { atk: 10, atkSpeed: 1, crit: 0.08, critMul: 2.2, speed: 86, magnet: 34, armor: 0, regen: 0.8, lifesteal: 0 };
     this.lastPose = GUARD;
     this.moveOverride = null; // an ultimate (PixelFX move) in progress
     this.statusFx = new Map();
@@ -148,7 +148,7 @@ export class Hero {
     if (this.manualT <= 0 && g.dangers.length) {
       for (const d of g.dangers) {
         const tt = d.at - g.time;
-        if (tt > 0.8 || g.time > d.until) continue;
+        if (tt > 0.55 || g.time > d.until) continue;
         if (!(this.x > d.x0 - 9 && this.x < d.x1 + 9)) continue;
         if (d.kind === "jump") {
           if (tt < 0.22 && this.onGround && !this.act) {
@@ -249,7 +249,7 @@ export class Hero {
   pickTarget(enemies) {
     let best = null, bd = 1e9;
     for (const e of enemies) {
-      if (e.dead || e.spawning || e.untargetable) continue;
+      if (e.dead || e.spawning > 0 || e.untargetable) continue;
       const dx = e.x - this.x, ady = Math.abs(e.y + (e.cy ?? 10) - (this.y - 20));
       if (Math.abs(dx) > 240) continue;
       // prefer what's in front, then what's close; flyers far overhead count as further away

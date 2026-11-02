@@ -179,3 +179,8 @@ export function rigActor(skin) {
   rigActors.set(skin, a);
   return a;
 }
+
+/** Forget every baked bank (between scenes: the next scene bakes its own monsters and scenery lazily). */
+export function clearBanks() {
+  banks.clear();
+}

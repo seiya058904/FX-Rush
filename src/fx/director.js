@@ -9,7 +9,7 @@
 // - Long tails (explosions keep smoking for 5 s) are trimmed per category; stop() fades them over 0.3 s.
 // - Every id that actually reaches the screen is recorded, for the runtime coverage report.
 
-import { makeFx, fxModule, frame } from "../engine/pfx.js";
+import { makeFx, fxModule, frame, createFrame, clearFrame } from "../engine/pfx.js";
 import { critterBank, drawCritter } from "../game/sprites.js";
 import { FX } from "./registry.gen.js";
 import { W, M, FLOOR } from "../config.js";
@@ -23,6 +23,28 @@ const TRIM = {
 };
 const CAP = [34, 56, 80];
 const PER_ID = [4, 6, 8];
+
+/** Lay one frame's pixels over another's (color over color respecting alpha, light added). */
+function blendInto(src, dst) {
+  const S = src.color, SL = src.light, D = dst.color, DL = dst.light, n = S.length;
+  for (let i = 0; i < n; i++) {
+    const c = S[i];
+    if (c) {
+      const a = c >>> 24;
+      if (a >= 250 || !D[i]) D[i] = c;
+      else {
+        const d = D[i], k = a / 255;
+        const r = (c & 255) * k + (d & 255) * (1 - k), g = ((c >>> 8) & 255) * k + ((d >>> 8) & 255) * (1 - k), b = ((c >>> 16) & 255) * k + ((d >>> 16) & 255) * (1 - k);
+        D[i] = ((Math.max(a, d >>> 24) << 24) | ((b & 255) << 16) | ((g & 255) << 8) | (r & 255)) >>> 0;
+      }
+    }
+    const l = SL[i];
+    if (l & 0xffffff) {
+      const d = DL[i];
+      DL[i] = ((255 << 24) | (Math.min(255, ((d >>> 16) & 255) + ((l >>> 16) & 255)) << 16) | (Math.min(255, ((d >>> 8) & 255) + ((l >>> 8) & 255)) << 8) | Math.min(255, (d & 255) + (l & 255))) >>> 0;
+    }
+  }
+}
 
 export class Director {
   constructor() {
@@ -96,7 +118,7 @@ export class Director {
       speed: speed ?? 1,
       follow: follow ?? null,
       dx, dy, vx: vx ?? 0, vy: vy ?? 0,
-      screen: !!screen, tag, onUpdate, bank, fade: 1, phase: bank ? (this.seed % 97) / 13 : 0,
+      screen: !!screen, tag, onUpdate, bank, fade: 1, every: opts.every ?? 0, tick: 0, buf: null, phase: bank ? (this.seed % 97) / 13 : 0,
       age: 0, alive: true, stopping: false,
       stop() {
         if (!this.stopping) {
@@ -166,6 +188,17 @@ export class Director {
       const info = h.info, reach = Math.max(info.ox, info.w - info.ox) + 16;
       if (!h.screen && !h.angle && Math.abs(o.x - (this.camX + W / 2)) > W / 2 + M + reach) continue;
       if (h.bank) drawCritter(h.bank, h.age + h.phase, o.x, o.y, { flip: !!o.flip, alpha: h.fade, lightK: o.light ?? 1 });
+      else if (h.every > 1) {
+        // full-screen weather: redrawn every few frames into its own buffer, blended in every frame
+        if (!h.buf) h.buf = createFrame(frame.w, frame.h, 0, 0);
+        h.buf.ox = frame.ox;
+        h.buf.oy = frame.oy;
+        if (h.tick++ % h.every === 0) {
+          clearFrame(h.buf);
+          h.inst.draw(h.buf, part);
+        }
+        blendInto(h.buf, frame);
+      }
       else h.inst.draw(frame, part);
     }
   }
