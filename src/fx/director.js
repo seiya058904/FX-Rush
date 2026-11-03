@@ -16,9 +16,9 @@ import { W, M, FLOOR } from "../config.js";
 
 // how long a one-shot of each category may run in play before it's faded out (quality 2 / 1 / 0)
 const TRIM = {
-  explosions: [3.2, 2.4, 1.6], fire: [3.2, 2.4, 1.6], impacts: [1.6, 1.2, 0.9], spawn: [2.6, 2, 1.4], nature: [2.8, 2.2, 1.5],
-  ice: [2.8, 2.2, 1.6], lightning: [2.2, 1.8, 1.3], holy: [2.6, 2, 1.5], shadow: [3, 2.4, 1.6], arcane: [3, 2.4, 1.6],
-  scifi: [2.6, 2, 1.5], water: [3, 2.2, 1.6], melee: [1.6, 1.3, 1], projectiles: [2.5, 2, 1.5], moves: [8, 8, 8],
+  explosions: [2.4, 2, 1.5], fire: [2.4, 2, 1.5], impacts: [1.2, 1, 0.8], spawn: [2.2, 1.8, 1.4], nature: [2.2, 1.8, 1.4],
+  ice: [2.2, 1.8, 1.4], lightning: [1.7, 1.4, 1.2], holy: [2, 1.7, 1.4], shadow: [2.4, 2, 1.5], arcane: [2.4, 2, 1.5],
+  scifi: [2, 1.7, 1.4], water: [2.4, 2, 1.5], melee: [1.6, 1.3, 1], projectiles: [2.5, 2, 1.5], moves: [8, 8, 8],
   ui: [3.4, 3, 2.4], pickups: [4.6, 4, 3], transitions: [9, 9, 9], status: [9, 9, 9], weather: [99, 99, 99], critters: [99, 99, 99],
 };
 const CAP = [34, 52, 64];

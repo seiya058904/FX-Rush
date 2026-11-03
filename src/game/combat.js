@@ -60,8 +60,10 @@ export function damage(g, e, base, o = {}) {
 
   // impact effect at the struck point, aimed along the blow
   if (!o.noSpark) {
-    const id = crit ? "impacts/crit-hit" : o.heavy ? "impacts/blunt-hit" : ELEMENT_HIT[el];
-    if (id) impactAt(g, id, cx - dir * 4, cy, dir, { prio: crit ? 0 : 1, palette: crit ? RAMPS.crit : ELEMENT_PAL[el], light: crit ? 0.6 : 0.5, maxSame: crit ? 2 : 4 });
+    // the big crit star is for elites and bosses; a crit on the crowd is a spark in crit colours
+    const bigCrit = crit && (e.elite || e.boss);
+    const id = bigCrit ? "impacts/crit-hit" : o.heavy ? "impacts/blunt-hit" : crit ? "impacts/hit-spark" : ELEMENT_HIT[el];
+    if (id) impactAt(g, id, cx - dir * 4, cy, dir, { prio: crit ? 0 : 1, palette: crit ? RAMPS.crit : ELEMENT_PAL[el], light: crit ? 0.6 : 0.5, maxSame: bigCrit ? 1 : crit ? 3 : 4 });
   }
   // freeze: heavier blows hold longer; a flood of small hits can't stall the game
   const stop = o.stop ?? (crit ? 0.085 : 0.035);

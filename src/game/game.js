@@ -5,7 +5,7 @@
 import { Director } from "../fx/director.js";
 import { RAMPS, THEME } from "../fx/palettes.js";
 import { FX } from "../fx/registry.gen.js";
-import { beginFrame, endFrame, setCamera, image, fxModule, preload, Rng, frame } from "../engine/pfx.js";
+import { beginFrame, endFrame, setCamera, image, fxModule, preload, Rng, frame, dimBackground } from "../engine/pfx.js";
 import { W, H, M, FLOOR } from "../config.js";
 import { Hero, Bag } from "./hero.js";
 import { Enemy, TYPES } from "./enemies.js";
@@ -23,21 +23,24 @@ import { settings } from "../settings.js";
 import { rigActor, clearBanks } from "./sprites.js";
 import { SKINS } from "./rig.js";
 
+/** 0..1: how far into its show an ultimate's cinematic is (eases in, holds, eases out). */
+export const cineK = (c) => Math.min(1, c.t / 0.25, (c.dur - c.t) / 0.4);
+
 // ultimates: PixelFX moves performed by the hero when the rush meter fills.
 // zone per hit: [kind, a, b, damage multiple] — "front": box from the hero to a px ahead; "at": radius b around the act's target; "around": radius around the hero
 export const MOVES = {
-  "moves/sword-combo": { name: "SWORD COMBO", hits: [["front", 70, 0, 2], ["front", 74, 0, 1.4], ["front", 74, 0, 1.4], ["front", 90, 0, 4]], to: 2.3, rate: 1.2 },
-  "moves/dash-strike": { name: "DASH STRIKE", hits: [["front", -190, 0, 5.5]], to: 1.4, rate: 1.1 },
-  "moves/earth-stomp": { name: "EARTH STOMP", hits: [["around", 0, 60, 1.2], ["at", 0, 46, 5]], to: 1.4, rate: 1.15 },
-  "moves/fireball-throw": { name: "FIREBALL", hits: [["at", 0, 64, 6]], to: 2.1, rate: 1.15 },
-  "moves/ground-pound": { name: "GROUND POUND", hits: [["at", 0, 92, 5], ["at", 0, 130, 1.2]], to: 1.7, rate: 1.1 },
-  "moves/holy-smite": { name: "HOLY SMITE", hits: [["at", 0, 56, 6]], to: 1.3, rate: 1.1 },
-  "moves/ice-lance-throw": { name: "ICE LANCE", hits: [["at", 0, 56, 5, "ice"]], to: 1.8, rate: 1.15 },
-  "moves/lightning-call": { name: "LIGHTNING", hits: [["at", 0, 56, 4, "shock"], ["at", 0, 60, 1.5, "shock"], ["at", 0, 60, 1.5, "shock"]], to: 1.6, rate: 1.1 },
-  "moves/meteor-call": { name: "METEOR CALL", hits: [["around", 0, 40, 0.5], ["at", 0, 90, 7, "fire"]], to: 2.6, rate: 1.25 },
-  "moves/pistol-shots": { name: "GUNSLINGER", hits: [["line", 0, 0, 2.6], ["line", 0, 0, 2.6], ["line", 0, 0, 3.5]], to: 1.3, rate: 1.1 },
-  "moves/rocket-launcher": { name: "ROCKET", hits: [["none"], ["at", 0, 86, 7, "fire"]], to: 1.8, rate: 1.2 },
-  "moves/arrow-shot": { name: "PIERCING ARROW", hits: [["line", 0, 0, 5, "melee", true]], to: 1.2, rate: 1.15 },
+  "moves/sword-combo": { name: "SWORD COMBO", cn: "三段剑舞", color: "#ffc65a", hits: [["front", 70, 0, 2], ["front", 74, 0, 1.4], ["front", 74, 0, 1.4], ["front", 90, 0, 4]], to: 2.3, rate: 1.2 },
+  "moves/dash-strike": { name: "DASH STRIKE", cn: "残影突斩", color: "#c8a8ff", hits: [["front", -190, 0, 5.5]], to: 1.4, rate: 1.1 },
+  "moves/earth-stomp": { name: "EARTH STOMP", cn: "地裂踏", color: "#e0a060", hits: [["around", 0, 60, 1.2], ["at", 0, 46, 5]], to: 1.4, rate: 1.15 },
+  "moves/fireball-throw": { name: "FIREBALL", cn: "巨型火球", color: "#ff7a3a", hits: [["at", 0, 64, 6]], to: 2.1, rate: 1.15 },
+  "moves/ground-pound": { name: "GROUND POUND", cn: "天坠重击", color: "#ffae35", hits: [["at", 0, 92, 5], ["at", 0, 130, 1.2]], to: 1.7, rate: 1.1 },
+  "moves/holy-smite": { name: "HOLY SMITE", cn: "圣锤裁决", color: "#fff0a0", hits: [["at", 0, 56, 6]], to: 1.3, rate: 1.1 },
+  "moves/ice-lance-throw": { name: "ICE LANCE", cn: "冰枪投掷", color: "#8ae0ff", hits: [["at", 0, 56, 5, "ice"]], to: 1.8, rate: 1.15 },
+  "moves/lightning-call": { name: "LIGHTNING", cn: "召雷", color: "#a8c8ff", hits: [["at", 0, 56, 4, "shock"], ["at", 0, 60, 1.5, "shock"], ["at", 0, 60, 1.5, "shock"]], to: 1.6, rate: 1.1 },
+  "moves/meteor-call": { name: "METEOR CALL", cn: "陨星咏唱", color: "#ff5a3a", hits: [["around", 0, 40, 0.5], ["at", 0, 90, 7, "fire"]], to: 2.6, rate: 1.25 },
+  "moves/pistol-shots": { name: "GUNSLINGER", cn: "快枪三连", color: "#ffd84a", hits: [["line", 0, 0, 2.6], ["line", 0, 0, 2.6], ["line", 0, 0, 3.5]], to: 1.3, rate: 1.1 },
+  "moves/rocket-launcher": { name: "ROCKET", cn: "火箭轰炸", color: "#ff8a4a", hits: [["none"], ["at", 0, 86, 7, "fire"]], to: 1.8, rate: 1.2 },
+  "moves/arrow-shot": { name: "PIERCING ARROW", cn: "穿云箭", color: "#b8ffb0", hits: [["line", 0, 0, 5, "melee", true]], to: 1.2, rate: 1.15 },
 };
 // every ultimate can come up anywhere; each scene deals its own six first, then the rest, from a shuffle bag
 const MOVE_POOL = {
@@ -315,7 +318,6 @@ export class Game {
   }
   damageNumber(dmg, x, y, crit, el, e) {
     // small pixel numbers, merged per enemy, so a flurry reads as one rising total instead of a pile of bursts.
-    // (PixelFX's big crit starburst stays out of the fight: it presents the best hit on the results screen.)
     if (dmg > (this.stats.bestHit ?? 0)) this.stats.bestHit = dmg;
     const kind = crit ? "crit" : "dmg";
     const m = e && this.floats.find((f) => f.src === e && f.t < 0.3 && (f.kind === "dmg" || f.kind === "crit"));
@@ -394,8 +396,8 @@ export class Game {
     }
     if (!hit2.length) return;
     if (a.heavy) {
-      this.fx.play("impacts/ground-slam", { x: ox + f * 46, y: 0, flip: f < 0, palette: RAMPS.hero, prio: 1, life: 1, light: 0.8, layer: "ground", speed: 1.4 });
-      this.shake(3, 0.25);
+      this.fx.play("impacts/ground-slam", { x: ox + f * 46, y: 0, flip: f < 0, palette: RAMPS.hero, prio: 1, life: 0.6, light: 0.5, layer: "ground", speed: 1.6, reach: 60, maxSame: 1 });
+      this.shake(2.5, 0.22);
     }
   }
   enemyMeleeHit(e, a, hit) {
@@ -693,13 +695,22 @@ export class Game {
         }
         if (el === "ice") for (const e of this.enemies) if (!e.dead && Math.abs(e.x - (act.ox + f * targetX)) < r + 20) afflict(this, e, "frozen", 2.2);
         if (el === "shock") for (const e of this.enemies) if (!e.dead && Math.abs(e.x - (act.ox + f * targetX)) < r + 20) afflict(this, e, "stunned", 1.2);
-        sfx(i === cfg.hits.length - 1 ? "bigboom" : "heavy");
+        const last = i === cfg.hits.length - 1;
+        sfx(last ? "bigboom" : "heavy");
+        // the payoff: the last hit freezes, shakes and slows the world for a beat
+        if (last) {
+          this.hitStop(0.14);
+          this.shake(4, 0.35);
+          this.slowMo(0.45, 0.35);
+          this.flashScreen(0.14, cfg.color);
+        }
       },
     });
     h.perform(player);
+    // the show: the world slows and darkens, bars close in, the move's name slides across; it all lifts after the act
     this.fx.play("impacts/impact-frame", { x: Math.round(h.x - this.camX), y: FLOOR - 24, screen: true, layer: "screen", prio: 0, life: 0.18, lines: 32 });
-    this.slowMo(0.35, 0.25);
-    this.banner = { title: "FX RUSH!", sub: cfg.name, t: 0, dur: 1.4, small: true };
+    this.slowMo(0.7, 0.3);
+    this.cine = { t: 0, dur: cfg.to / cfg.rate + 0.9, name: cfg.cn, en: cfg.name, color: cfg.color };
     sfx("rush");
     this.hitStop(0.12);
   }
@@ -722,7 +733,6 @@ export class Game {
     sfx("combo", { pitch: 1 + Math.min(1, n / 200) });
     this.rush(n >= 50 ? 10 : 5);
     if (n === 150 || n === 400) this.timeStop();
-    if (n >= 100) this.fx.play("explosions/cartoon-pow", { x: h.x, y: h.y - 40, center: true, text: "WOW!", prio: 2, life: 0.9, palette: RAMPS.crit });
   }
 
   // ------------------------------------------------------------------ hero events
@@ -1132,6 +1142,7 @@ export class Game {
       this.fx.update(0, rdt);
       return;
     }
+    if (this.cine && (this.cine.t += rdt) >= this.cine.dur) this.cine = null;
     let dt = rdt;
     if (this.slow) {
       dt *= this.slow.scale;
@@ -1221,6 +1232,8 @@ export class Game {
     const q = this.fx.quality;
     setCamera(this.camX);
     drawBackground(this.scene, this.camX, this.realTime, this.lastRdt ?? 1 / 60, q);
+    // an ultimate darkens the scene behind the fighters
+    if (this.cine) dimBackground(1 - 0.55 * cineK(this.cine));
     // contact shadows on the floor
     shadowAt(h.x, this.camX, h.y, 10);
     for (const e of this.enemies) if (!e.dead && e.spawning <= 0) shadowAt(e.x, this.camX, e.y, e.w * 0.9);

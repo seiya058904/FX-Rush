@@ -3,6 +3,7 @@
 // level-up cards (the fight stays visible behind them). Everything uses one frame style and one pixel font.
 
 import { drawText, measureText, wrapText } from "../engine/text.js";
+import { cineK } from "../game/game.js";
 import { icon } from "./icons.js";
 import { SKILLS, STAT_CARDS } from "../game/skills.js";
 import { W, H, FLOOR } from "../config.js";
@@ -142,6 +143,26 @@ export function drawFloats(ctx, g) {
       drawText(ctx, f.text, sx, sy, { color: col, outline: INK, align: "center", alpha });
     }
   }
+}
+
+/** An ultimate's show: bars close in top and bottom, the move's name slides across in its colour. */
+export function drawCinema(ctx, g) {
+  const c = g.cine;
+  if (!c) return;
+  const k = Math.max(0, cineK(c)), bar = Math.round(16 * k);
+  ctx.fillStyle = "#05030a";
+  ctx.fillRect(0, 0, W, bar);
+  ctx.fillRect(0, H - bar, W, bar);
+  const slide = Math.min(1, c.t / 0.3), x = Math.round(-120 + slide * 132);
+  ctx.globalAlpha = k;
+  ctx.fillStyle = "rgba(5,3,10,0.7)";
+  ctx.fillRect(x - 4, 26, 132, 30);
+  ctx.fillStyle = c.color;
+  ctx.fillRect(x - 4, 26, 3, 30);
+  ctx.fillRect(x - 4, 55, Math.round(132 * slide), 1);
+  drawText(ctx, c.name, x + 4, 29, { scale: 2, color: c.color, outline: INK });
+  drawText(ctx, `FX RUSH · ${c.en}`, x + 4, 47, { font: "mini", color: "#e8dcff", outline: INK });
+  ctx.globalAlpha = 1;
 }
 
 export function drawBanner(ctx, g) {

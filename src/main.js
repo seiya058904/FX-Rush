@@ -10,7 +10,7 @@ import { Game } from "./game/game.js";
 import { damage } from "./game/combat.js";
 import { Director } from "./fx/director.js";
 import { RAMPS } from "./fx/palettes.js";
-import { drawHud, drawFloats, drawBanner, drawFlash, drawCards, cardRect } from "./render/hud.js";
+import { drawHud, drawFloats, drawBanner, drawFlash, drawCinema, drawCards, cardRect } from "./render/hud.js";
 import { drawTitle, drawPause, PAUSE_ITEMS, pauseRect, drawResults, resultsButton } from "./render/screens.js";
 import { scene, drawBackground, shadowAt } from "./render/background.js";
 import { drawRig, SKINS } from "./game/rig.js";
@@ -38,7 +38,7 @@ const CORE = [
   "melee/dagger-flurry", "melee/whip-crack", "melee/spear-sweep", "melee/uppercut", "melee/hammer-smash",
   "impacts/hit-spark", "impacts/crit-hit", "impacts/blunt-hit", "impacts/ground-slam", "impacts/heavy-landing", "impacts/hit-flash", "impacts/impact-frame",
   "critters/slime", "critters/bat", "critters/flying-skull", "spawn/poof", "spawn/dissolve-burn", "spawn/respawn-beam", "spawn/spawn-portal",
-  "ui/damage-number", "ui/crit-number", "ui/level-up", "ui/combo-counter", "pickups/collect-burst",
+  "ui/damage-number", "ui/level-up", "ui/combo-counter", "pickups/collect-burst",
   "transitions/slash-wipe", "transitions/pixel-dissolve", "fire/brazier", "fire/torch", "weather/fireflies", "weather/clouds",
   "ice/frost-nova", "fire/fire-ring", "lightning/lightning-strike", "holy/smite", "arcane/mana-burst", "melee/scythe-reap",
 ];
@@ -366,10 +366,7 @@ function step(now) {
       if (game.mode === "over" && state === "play") {
         state = "results";
         resultsSel = 0;
-        // the run's best hit gets PixelFX's crit starburst, once, before the stats slide in
-        const best = game.result?.bestHit ?? 0;
-        resultsT = best > 0 ? -1.3 : 0;
-        if (best > 0) game.fx.play("ui/crit-number", { x: 160, y: 84, screen: true, center: true, text: `${best}!`, label: "BEST", layer: "screen", prio: 0, life: 1.5, light: 0.6 });
+        resultsT = 0;
       }
     } else if (state === "results") {
       resultsT += rdt;
@@ -378,6 +375,7 @@ function step(now) {
     game.draw(ctx);
     drawFloats(ctx, game);
     drawFlash(ctx, game);
+    drawCinema(ctx, game);
     drawHud(ctx, game, rdt);
     drawBanner(ctx, game);
     drawCards(ctx, game);

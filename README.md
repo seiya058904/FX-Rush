@@ -7,7 +7,7 @@
 <p align="center">
   A short, explosive side-view pixel auto-battler that runs in your browser.<br>
   The hero fights on his own (or switch to manual and fight yourself); you pick a power at every level-up,<br>
-  and watch the screen turn into a symphony of 244 hand-crafted PixelFX effects.
+  and watch the screen turn into a symphony of 242 hand-crafted PixelFX effects.
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <sub>THREE SCENES &nbsp;·&nbsp; THREE BOSSES &nbsp;·&nbsp; 12 AUTO-CAST SKILLS &nbsp;·&nbsp; 244 / 244 PIXELFX EFFECTS IN PLAY &nbsp;·&nbsp; 100% OFFLINE</sub>
+  <sub>THREE SCENES &nbsp;·&nbsp; THREE BOSSES &nbsp;·&nbsp; 12 AUTO-CAST SKILLS &nbsp;·&nbsp; 242 / 244 PIXELFX EFFECTS IN PLAY &nbsp;·&nbsp; 100% OFFLINE</sub>
 </p>
 
 <p align="center">
@@ -133,8 +133,10 @@ FX Rush is built on [**PixelFX**](https://github.com/patch-gg/pixelfx) (MIT) —
 |---|---|
 | Effects in the upstream index / vendored files | **244 / 244** |
 | Load and pass the headless self-test (draws, stays in bounds, ends or stops) | **244 / 244** |
-| Wired into game code | **244 / 244** |
-| Seen on screen in recorded play sessions | **244 / 244** |
+| Wired into game code | **242 / 244** |
+| Seen on screen in recorded play sessions | **242 / 244** |
+
+Two effects are deliberately kept out of play because their big full-canvas bursts covered the fight: `ui/crit-number` (the CRIT starburst) and `explosions/cartoon-pow` (POW!/WOW!). Both still load, pass the self-test and can be previewed in the FX Lab.
 
 Every effect has a job — monster bodies (critters), the hero's and enemies' attacks (melee acts and moves), skills, statuses wrapped round each monster's real silhouette, deaths, loot, UI, scenery, weather, sky, screen transitions. The full table with each effect's role is in [docs/COVERAGE.md](docs/COVERAGE.md). The **FX Lab** (`/fxlab.html`) previews any effect with its act and re-runs the self-test in the browser through the same loader the game uses.
 

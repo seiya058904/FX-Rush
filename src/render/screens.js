@@ -87,7 +87,6 @@ export function drawPause(ctx, sel, fps) {
 
 export function drawResults(ctx, g, t, sel) {
   const r = g.result;
-  if (t < 0) return; // the best-hit starburst plays first
   const open = Math.min(1, t / 0.4);
   ctx.fillStyle = `rgba(5,3,12,${0.55 * open})`;
   ctx.fillRect(0, 0, W, H);

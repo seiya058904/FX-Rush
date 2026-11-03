@@ -109,7 +109,7 @@ export const SKILLS = {
       g.blastBudget--;
       const x = e.x, y = e.y - e.cy, r = 30 + lv * 5;
       g.later(0.05, () => {
-        g.fx.play("explosions/small-explosion", { x, y: Math.min(0, y + 14), palette: RAMPS.fire, prio: 1, life: 1, size: 0.4 + lv * 0.05, light: 0.9, layer: "back" });
+        g.fx.play("explosions/small-explosion", { x, y: Math.min(0, y + 14), palette: RAMPS.fire, prio: 1, life: 0.7, speed: 1.3, size: 0.32 + lv * 0.03, light: 0.6, layer: "back", maxSame: 3 });
         damageRadius(g, x, y, r, A(g) * (0.9 + lv * 0.15), { el: "fire", push: 150, lift: 90, stop: 0.03, shake: 1.5, quiet: true, src: "inferno" });
         if (lv >= 2) for (const m of g.enemies) if (!m.dead && Math.abs(m.x - x) < r + 10) afflict(g, m, "burning", 2.5, { power: 0.2 });
         sfx("explode", { w: 0.4, pan: g.pan(x) });

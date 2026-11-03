@@ -8,7 +8,7 @@ Browser pixel auto-battler on the vendored PixelFX library. Status and the curre
 - `npm ci` — install (Node 20.19+ / 22.12+; `node_modules/` is not committed).
 - `npm run dev` — game at http://localhost:5173, FX Lab at `/fxlab.html`.
 - `npm run smoke` — headless self-test of all PixelFX effects (must stay 244 pass).
-- `npm run audit` — regenerates `docs/COVERAGE.md`; wired-in-code count must stay 244/244.
+- `npm run audit` — regenerates `docs/COVERAGE.md`; wired-in-code count must stay 242/244 (see the exclusions below).
 - `npm run e2e` — needs a running dev server and local Chrome; writes `docs/screenshots/`. Sessions can be picked
   with arguments (see the header of `tools/e2e.mjs`).
 - `npm run build` — static site in `dist/`.
@@ -25,8 +25,9 @@ Browser pixel auto-battler on the vendored PixelFX library. Status and the curre
 ## Rules
 
 - PixelFX under `third_party/pixelfx/` is vendored unmodified; do not edit it. Adapt in `src/engine/pfx.js` / `src/fx/`.
-- Keep every upstream effect in use (244/244). When removing an effect from one role, make sure it still has another,
-  and keep its role text in `src/fx/usage.js` accurate.
+- Keep every upstream effect in use, except the two the owner excluded as too big and distracting:
+  `ui/crit-number` and `explosions/cartoon-pow` (FX Lab only; do not bring them back into play). When removing an
+  effect from one role, make sure it still has another, and keep its role text in `src/fx/usage.js` accurate.
 - Controls: two modes (`settings.mode`, Tab / title strip / pause menu). **auto** (default): the hero does
   everything, the player only picks level-up cards; clicks do nothing. **manual**: A/D move, Space jump, click =
   attack toward the clicked side; no auto walk, target or attack. Skills, ultimates and combo variety are automatic
@@ -34,6 +35,7 @@ Browser pixel auto-battler on the vendored PixelFX library. Status and the curre
 - Variety: hero blows come from shuffle bags (`src/game/hero.js` `COMBO`, all 12 melee acts); ultimates from a
   shuffle bag over all 12 moves; skills fire longest-waiting first. Don't reintroduce plain random picks.
 - Readability over spectacle: damage numbers are small and merged; world effect light is scaled by `FX_LIGHT` in
-  `src/fx/director.js`; the crit starburst only presents the best hit on the results screen; nothing bright should
+  `src/fx/director.js`; big bursts stay out of the fight (the ultimates are
+  the one place for a show: slow motion, dimmed scene, letterbox, name plate); nothing bright should
   sit on top of the fighters for long.
 - README is in English.

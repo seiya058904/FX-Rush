@@ -31,7 +31,7 @@ const R = {
   // explosions
   "explosions/barrel-explosion": "余烬熔炉 炸药桶事件",
   "explosions/big-explosion": "技能·陨石 Lv5 毁灭巨爆；Boss1 死亡",
-  "explosions/cartoon-pow": "连击 100 WOW!",
+  "explosions/cartoon-pow": "已移出游戏（爆字过大遮挡画面，按用户要求）；仅 FX Lab 预览",
   "explosions/dirt-explosion": "Boss1 重拳砸地",
   "explosions/firework-burst": "精英击杀庆祝",
   "explosions/firework-rocket": "关卡通关/胜利烟火",
@@ -224,7 +224,7 @@ const R = {
   "ui/combo-counter": "连击 100/150/200… 里程碑",
   "ui/confetti": "胜利结算 彩带",
   "ui/countdown": "Boss 登场倒数 FIGHT!",
-  "ui/crit-number": "结算页 本局最高一击",
+  "ui/crit-number": "已移出游戏（星爆过大遮挡画面，按用户要求）；仅 FX Lab 预览",
   "ui/damage-number": "英雄受伤数字",
   "ui/exclamation": "敌人攻击预警 !",
   "ui/health-bar-hit": "精英受重击 血条掉块",

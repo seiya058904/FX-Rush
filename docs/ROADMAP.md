@@ -5,7 +5,7 @@ Living status and iteration plan. Update it at the end of each iteration so work
 ## Status (2026-11-03)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
-- PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load, pass the headless self-test, are wired into game code and were seen on screen in recorded play (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
+- PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load and pass the headless self-test; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
 
 ## Iteration 2 — one-button attack, calmer screen (done locally, not pushed)
@@ -50,6 +50,17 @@ Use every upstream move and avoid repeats.
       for the 100 combo
 - [x] D. e2e 10/10 (manual mode, move variety; per-session time limit), docs, smoke/audit 244/244, build, local commit
 - [ ] owner playtest in Ego; push + Pages deploy (needs the owner's OK)
+
+## Iteration 4 — no big bursts, trimmed effects, ultimate shows (done locally, not pushed)
+
+Owner feedback: the crit starburst must not appear at all; trim effects that are too bright / big / dominant; every
+ultimate should be a show (slow motion, a clear presentation); otherwise keep the screen normal, not flashy.
+
+- [x] `ui/crit-number` and `explosions/cartoon-pow` removed from play (FX Lab only) — coverage now 242/244 by choice
+- [x] crit star only on elites/bosses; smaller ground crack on heavy blows; smaller inferno blasts; shorter effect tails
+- [x] ultimate cinematic: slow motion, darkened scene, letterbox, coloured name plate (`drawCinema`), last-hit payoff
+- [x] e2e 10/10, audit (wired 242/244), build, local commit
+- [ ] owner playtest; push + Pages deploy (needs the owner's OK)
 
 ## Resuming on another machine
 

@@ -88,6 +88,14 @@ export function setCamera(camX) {
 export function beginFrame() {
   clearFrame(frame);
 }
+/** Darken the painted background (k: 0..1 brightness) before the fighters and effects go on top. */
+export function dimBackground(k) {
+  const n = bg32.length;
+  for (let i = 0; i < n; i++) {
+    const c = bg32[i];
+    bg32[i] = (c & 0xff000000) | ((((c >>> 16) & 255) * k) << 16) | ((((c >>> 8) & 255) * k) << 8) | ((c & 255) * k);
+  }
+}
 export function endFrame(lightK = 1) {
   composite(frame, image.data, bg32, lightK);
 }
