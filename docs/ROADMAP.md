@@ -2,9 +2,10 @@
 
 Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
 
-## Status (2026-11-03, after iteration 4)
+## Status (2026-11-03, after iteration 5; the live site still has iteration 4)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
+- Sound: 24 sounds use Freesound samples, the rest and the music are synthesized (see iteration 5).
 - PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load and pass the headless self-test; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
 
@@ -61,6 +62,23 @@ ultimate should be a show (slow motion, a clear presentation); otherwise keep th
 - [x] ultimate cinematic: slow motion, darkened scene, letterbox, coloured name plate (`drawCinema`), last-hit payoff
 - [x] e2e 10/10, audit (wired 242/244), build, local commit
 - [x] owner playtest; pushed and deployed to GitHub Pages (2026-11-03 closeout)
+
+## Iteration 5 — sound upgrade with Freesound samples
+
+Owner request: replace only the sounds that clearly sound bad; music stays. Sounds are picked by the owner's ear, since
+the tools can only measure level, attack and spectrum.
+
+- [x] pipeline: `tools/sfx.mjs` (search, measure, render, credits), `tools/sfx-recipes.mjs`, `tools/sfx-picks.json`
+- [x] runtime: samples with shuffle-bag variants and synth fallback in `src/engine/audio.js`; onset alignment
+- [x] audition page `tools/audition.html`; levels from `tools/sfx-measure.mjs` (`tools/sfx-levels.json`)
+- [x] owner rounds 1 and 2: 24 sounds replaced (30 files), including xp and card; crit, heavy, whoosh, missile, spawn,
+      rush, chest, magic and the other chiptune cues keep the synth
+- [x] heavy impact no longer plays on the hammer's wind-up (`hitSfx`, plain `swing` at the start)
+- [x] credits, LICENSE, README
+- [x] e2e 10/10 on the final sounds; one earlier run had a 600 s hang in build-s3-16 and a level measurement had one
+      page crash, neither reproduced nor explained (e2e now fails a session at once if its page crashes)
+- [x] owner playtest of a whole run: sounds approved (2026-11-03); local commit
+- [ ] push and deploy to GitHub Pages, on the owner's word
 
 ## Resuming on another machine
 

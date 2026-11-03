@@ -23,4 +23,7 @@ the reservation above:
 - Fusion Pixel Font 10px (https://github.com/TakWolf/fusion-pixel-font),
   bundled unmodified under `public/fonts/fusion-pixel/` — SIL Open Font
   License 1.1, with its component font licenses in that folder.
+- Sound effects under `public/audio/sfx/` — from Freesound (https://freesound.org),
+  modified for the game, each under CC0 1.0 or the CC BY license named for that
+  file in `public/audio/CREDITS.md`.
 - Vite and playwright-core are build/test tools only and are not shipped.

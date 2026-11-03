@@ -404,6 +404,7 @@ export class Game {
     const h = this.hero, f = e.act?.facing ?? e.facing, ox = e.act?.ox ?? e.x;
     const [x0, y0, x1, y1] = a.box;
     const bx0 = f > 0 ? ox + x0 : ox - x1, bx1 = f > 0 ? ox + x1 : ox - x0;
+    if (a.hitSfx) sfx(a.hitSfx, { w: a.weight, pan: this.pan(ox) });
     if (h.x + 7 > bx0 && h.x - 7 < bx1 && h.y - 34 < y1 && h.y > y0) {
       if (h.hurt(e.dmg * a.dmg, e.x, { push: a.push * 0.7, lift: a.lift ? a.lift * 0.6 : 0 })) {
         this.hitStop(a.stop * 0.8);

@@ -5,5 +5,6 @@ output/
 third_party/pixelfx/records/
 third_party/pixelfx/sheets/
 *.log
+.env.local
 .DS_Store
 Thumbs.db

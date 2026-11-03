@@ -72,7 +72,7 @@
 
 **Grow fast, grow loud.** Kills drop experience; every level offers three cards. Twelve skills — **Blade Waves, Chain Lightning, Inferno, Frost Nova, Arcane Barrage, Black Hole, Aegis, Meteor, Thunder, Holy Smite, Earth Fury, Plague** — each gain five levels, and every level changes what you see. They feed each other: frozen monsters shatter under fire, poison spreads on death, kill explosions chain into more kills. A 150-hit combo stops time.
 
-**Feel every hit.** Each blow is a PixelFX *act*: a real wind-up, the contact frame, a freeze tuned by weight (budgeted so a crowd never stalls the game), knockback, squash, a flash, a small damage number (merged per enemy so a flurry stays readable) and a layered synthesized sound on the same frame. Normal hits, crits, area blasts and boss finishers each read differently; the run's best hit gets PixelFX's crit starburst on the results screen.
+**Feel every hit.** Each blow is a PixelFX *act*: a real wind-up, the contact frame, a freeze tuned by weight (budgeted so a crowd never stalls the game), knockback, squash, a flash, a small damage number (merged per enemy so a flurry stays readable) and its sound on the same frame. Normal hits, crits, area blasts and boss finishers each read differently; the run's best hit gets PixelFX's crit starburst on the results screen.
 
 **Readable chaos.** Bosses and elites telegraph with a red rune, a raised fist, a scanner lock or an opening pool — and the hero's AI reads those tells too, stepping out of marked zones and jumping shock waves, so you can play fully idle.
 
@@ -146,16 +146,16 @@ Every effect has a job — monster bodies (critters), the hero's and enemies' at
 - **Rendering:** PixelFX's two-buffer frame (color + additive light) at 320×180, composited over a parallax background so every glow lights the scene; integer scaling with nearest-neighbour filtering.
 - **Characters:** the hero and every knight are PixelFX's 3D skeleton rig with custom skins; monsters are PixelFX critters baked lazily into sprite frames (hit flash, tints, squash). Bosses are original procedural pixel art drawn with the PixelFX painter.
 - **Effect director:** priorities and budgets per quality level, per-category trimming of long tails, baked scenery loops, throttled full-screen weather, measured visual centres for placement, runtime coverage tracking.
-- **Feel:** fixed 60 Hz logic, hit-stop budget, slow motion for big moments, capped and reducible screen shake, every sound synthesized with Web Audio (layered hits, ring on crits, explosions, music per scene and boss).
+- **Feel:** fixed 60 Hz logic, hit-stop budget, slow motion for big moments, capped and reducible screen shake, recorded sound effects with level-matched variants, plus chiptune cues and music per scene and boss synthesized with Web Audio (which also stands in for any sample that has not loaded).
 - **Performance:** automatic quality (drops non-essential detail first, never the contact frame). Measured on Windows Chrome 156, Ryzen 7 9700X / RX 7900 XT, 1280×720 window: typically 4–9 ms of CPU per frame at full detail, comfortably above 60 FPS; with 4× CPU throttling the game falls back to its lowest quality level.
 
 ```text
-src/engine/     PixelFX adapter, input, Web Audio synth, pixel text, screen
+src/engine/     PixelFX adapter, input, audio (samples and Web Audio synth), pixel text, screen
 src/fx/         effect director, palettes, generated registry, roles, custom effect
 src/game/       hero, monsters, bosses, skills, combat, statuses, stages, loot
 src/render/     scenes, HUD, cards, screens, icons
 src/dev/        FX Lab
-tools/          registry generator, effect self-test, coverage audit, e2e play tests
+tools/          registry generator, effect self-test, coverage audit, e2e play tests, sound pipeline
 third_party/    PixelFX, vendored at a pinned commit
 ```
 
@@ -171,9 +171,10 @@ third_party/    PixelFX, vendored at a pinned commit
 
 - Effects, runtime and character rig: **[PixelFX](https://github.com/patch-gg/pixelfx)** by Patch, with parts adapted from Hugo Duprez's Sprite Fusion VFX and Hollow Crown — MIT ([LICENSE](third_party/pixelfx/LICENSE), [NOTICE](third_party/pixelfx/NOTICE.md)). The non-MIT Patch Pixel gallery font is **not** included.
 - Chinese UI font: **[Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font)** 10px — SIL Open Font License 1.1, bundled unmodified with its component licenses in `public/fonts/fusion-pixel/`.
-- Bosses, scenes, HUD, icons, sound and music: original to FX Rush.
+- Sound effects: from **[Freesound](https://freesound.org)**, modified for the game, under CC0 or CC BY. Every file, author and license is listed in [public/audio/CREDITS.md](public/audio/CREDITS.md).
+- Bosses, scenes, HUD, icons, synthesized sounds and music: original to FX Rush.
 
-The original FX Rush code, art, sound and branding are © seiya058904, all rights reserved — see [LICENSE](LICENSE). Third-party components keep their own licenses.
+The original FX Rush code, art, synthesized sound and branding are © seiya058904, all rights reserved — see [LICENSE](LICENSE). Third-party components keep their own licenses.
 
 ---
 

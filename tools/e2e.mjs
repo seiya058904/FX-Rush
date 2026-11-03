@@ -41,8 +41,10 @@ async function session(name, url, viewport, fn, opts = {}) {
   const res = { name, url, errors, ok: true, notes: [] };
   // a hung browser call must fail its own session, not stall the whole suite
   const limit = (opts.limit ?? 600) * 1000;
+  const crashed = new Promise((_, reject) => page.once("crash", () => reject(new Error("the page crashed"))));
+  crashed.catch(() => {});
   try {
-    await within(fn(page, res), limit, `session timed out after ${limit / 1000}s`);
+    await within(Promise.race([fn(page, res), crashed]), limit, `session timed out after ${limit / 1000}s`);
   } catch (e) {
     res.ok = false;
     res.notes.push("exception: " + String(e.message).split("\n")[0]);

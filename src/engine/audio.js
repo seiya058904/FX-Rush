@@ -1,7 +1,10 @@
-// Every sound in FX Rush is synthesised here with Web Audio: no sample files, nothing to license. Hits are
-// layered (a click for the contact, a body thump, a crunch, and for crits a bright metallic ring) and fire on
-// the same frame the damage lands. A per-sound voice limit keeps a 30-kill explosion chain loud, not clipped.
-// The music is a small step sequencer: one loop per scene and a harder one for bosses.
+// Sound in FX Rush has two sources. Recorded samples (public/audio/sfx, listed in sfx-manifest.js, credited in
+// public/audio/CREDITS.md) carry the physical sounds; the chiptune cues and the music are synthesised here with Web
+// Audio. Every synth voice stays as the fallback, so a sound still plays while its sample loads or if it fails.
+// Everything fires on the same frame the damage lands. A per-sound voice limit keeps a 30-kill explosion chain loud,
+// not clipped. The music is a small step sequencer: one loop per scene and a harder one for bosses.
+
+import { SFX_SAMPLES } from "./sfx-manifest.js";
 
 let ac = null, master, sfxBus, musicBus, comp, noiseBuf, delay, delayGain;
 const settings = { master: 0.8, sfx: 0.9, music: 0.45, muted: false };
@@ -47,6 +50,7 @@ export function initAudio() {
   const d = noiseBuf.getChannelData(0);
   for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
   applyVolumes();
+  loadSamples();
 }
 export function applyVolumes() {
   if (!ac) return;
@@ -453,18 +457,97 @@ const SOUNDS = {
   },
 };
 
+// ---- recorded samples
+const samples = {}; // name -> { voices: [{ buf, offset, gain }], bag: [], last, dur }
+let samplesAsked = false;
+
+/** Where a decoded sound really starts: encoders put silence in front, and a hit must land on its frame. */
+function onsetOf(buf) {
+  const d = buf.getChannelData(0);
+  let peak = 0;
+  for (let i = 0; i < d.length; i++) peak = Math.max(peak, Math.abs(d[i]));
+  const limit = peak * 0.02;
+  for (let i = 0; i < d.length; i++) if (Math.abs(d[i]) > limit) return i / buf.sampleRate;
+  return 0;
+}
+function loadSamples() {
+  if (samplesAsked) return;
+  samplesAsked = true;
+  const base = import.meta.env?.BASE_URL ?? "./";
+  const queue = Object.entries(SFX_SAMPLES).flatMap(([name, s]) => s.files.map((v) => ({ name, ...v })));
+  const worker = async () => {
+    for (let job = queue.shift(); job; job = queue.shift()) {
+      try {
+        const res = await fetch(`${base}audio/sfx/${job.file}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const buf = await ac.decodeAudioData(await res.arrayBuffer());
+        const s = (samples[job.name] ??= { voices: [], bag: [], last: -1, dur: 0 });
+        s.voices.push({ buf, offset: onsetOf(buf), gain: job.gain });
+        s.bag.length = 0;
+        s.dur = Math.max(s.dur, buf.duration);
+      } catch (e) {
+        console.warn("sample", job.file, e); // this one stays on the synth voice
+      }
+    }
+  };
+  for (let i = 0; i < 4; i++) worker();
+}
+/** Variants come from a shuffle bag, never the same one twice running. */
+function nextVoice(s) {
+  if (!s.bag.length) {
+    s.bag = s.voices.map((_, i) => i);
+    for (let i = s.bag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [s.bag[i], s.bag[j]] = [s.bag[j], s.bag[i]];
+    }
+    if (s.bag.length > 1 && s.bag[s.bag.length - 1] === s.last) s.bag.reverse();
+  }
+  s.last = s.bag.pop();
+  return s.voices[s.last];
+}
+function playVoice(v, t, { w = 0.5, pan = 0, pitch = 1 } = {}) {
+  // a heavier blow is a little louder and lower; every take is slightly different
+  const src = ac.createBufferSource();
+  src.buffer = v.buf;
+  src.playbackRate.value = pitch * (1.08 - w * 0.16) * rnd(0.975, 1.025);
+  src.connect(bus(v.gain * (0.8 + w * 0.4), pan));
+  src.start(t, v.offset);
+}
+
 /** Play a named sound now (or `delay` seconds from now). */
 export function sfx(name, opts = {}, delaySec = 0) {
   if (!ac || ac.state !== "running") return;
-  const f = SOUNDS[name];
-  if (!f) return;
-  if (!gate(name, 0.4)) return;
+  const f = SOUNDS[name], s = samples[name];
+  if (!f && !s) return;
+  if (!gate(name, s ? s.dur : 0.4)) return;
   try {
-    f(ac.currentTime + 0.002 + delaySec, opts);
+    const t = ac.currentTime + 0.002 + delaySec;
+    if (s) playVoice(nextVoice(s), t, opts);
+    else f(t, opts);
   } catch (e) {
     console.warn("sfx", name, e);
   }
 }
+
+/** For tools/audition.html and tools/sfx-measure.mjs: both sources through the game's own chain, and a level meter. */
+export const audioLab = {
+  context: () => ac,
+  synth(name, opts = {}) {
+    SOUNDS[name]?.(ac.currentTime + 0.002, opts);
+  },
+  decode: (bytes) => ac.decodeAudioData(bytes),
+  sample(buf, gain, opts = {}) {
+    playVoice({ buf, offset: onsetOf(buf), gain }, ac.currentTime + 0.002, opts);
+  },
+  sampleNames: () => Object.keys(samples),
+  /** A meter on the effects bus, before the compressor, so levels stay linear and comparable; or on the final output. */
+  meter(output = false) {
+    const a = ac.createAnalyser();
+    a.fftSize = 32768;
+    (output ? master : sfxBus).connect(a);
+    return a;
+  },
+};
 
 // ---- music: a tiny step sequencer
 const NOTE = (n) => 440 * 2 ** ((n - 69) / 12);

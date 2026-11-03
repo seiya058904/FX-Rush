@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FX Rush 音效试听</title>
+<link rel="icon" href="data:,">
+<style>
+  :root { color-scheme: dark; --bg: #14121a; --panel: #1f1c28; --line: #363142; --text: #ece8f4; --dim: #a59fb4; --accent: #ffb454; --good: #7bd88f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 system-ui, "Microsoft YaHei", sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+  h1 { font-size: 17px; margin: 0; }
+  main { max-width: 1040px; margin: auto; padding: 12px 16px 80px; }
+  h2 { font-size: 15px; margin: 26px 0 4px; color: var(--accent); }
+  .hint { color: var(--dim); margin: 0 0 10px; }
+  section.sound { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin: 10px 0; }
+  .head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .head b { font-size: 15px; }
+  .head .use { color: var(--dim); flex: 1 1 200px; }
+  .state { color: var(--good); font-size: 13px; }
+  .state.keep { color: var(--dim); }
+  button, select { font: inherit; color: var(--text); background: #2c2838; border: 1px solid var(--line); border-radius: 6px; padding: 3px 9px; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  .cand { display: grid; grid-template-columns: auto auto auto 1fr auto; gap: 8px; align-items: center; padding: 5px 0; border-top: 1px solid var(--line); margin-top: 5px; }
+  .meta { min-width: 0; overflow-wrap: anywhere; }
+  .meta small { color: var(--dim); display: block; }
+  .meta a { color: inherit; }
+  .star { color: var(--accent); }
+  label.pick { display: flex; gap: 4px; align-items: center; cursor: pointer; white-space: nowrap; }
+  textarea { width: 100%; height: 120px; background: #0e0c13; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 8px; font: 12px monospace; }
+  @media (max-width: 640px) { .cand { grid-template-columns: auto auto 1fr; } .cand .meta { grid-column: 1 / -1; order: 5; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>FX Rush 音效试听</h1>
+  <label>背景音乐 <select id="music"><option value="">关</option><option value="ember">场景</option><option value="boss">Boss</option></select></label>
+  <button id="copy">复制结果</button>
+  <span id="saved" class="hint" style="margin:0"></span>
+</header>
+<main>
+  <p class="hint">每种音效可勾选 2–4 个变体，游戏里会轮流播放；什么都不勾就保留原声。“连打”模拟实战的连续触发，用来听会不会腻或刺耳。原声和候选走同一条音频链路，响度已对齐。选择会自动保存。</p>
+  <div id="list"></div>
+  <h2>结果</h2>
+  <textarea id="result" readonly></textarea>
+</main>
+<script type="module">
+import { initAudio, audioLab, sfx, playMusic, stopMusic, setVolume, toggleMute } from "/src/engine/audio.js";
+import { RECIPES, KEEP } from "/tools/sfx-recipes.mjs";
+
+const USE = {
+  swing: "挥砍起手（最常听到）", hit: "普通命中（最常听到）", crit: "暴击命中", heavy: "重击命中，Boss 落地", kill: "敌人死亡", hurt: "主角受伤", land: "主角落地", whoosh: "鞭、镰刀和 Boss 位移",
+  shoot: "敌人开枪", explode: "爆炸", bigboom: "大招和 Boss 级大爆炸", thunder: "雷击技能", fire: "火焰技能", ice: "冰霜技能", shatter: "冰碎、破碎", earth: "地裂和岩石", zap: "闪电连锁", roar: "Boss 登场怒吼",
+  missile: "导弹发射", laser: "激光", poison: "毒技能", portal: "传送门，换场", spawn: "敌人出现", shield: "护盾，格挡子弹", vortex: "黑洞技能", rush: "大招蓄满启动", chest: "宝箱", jump: "跳跃", magic: "魔法弹，拾取增益", holy: "神圣技能",
+  xp: "拾取经验", coin: "金币", card: "升级卡牌出现", ui: "界面点击", select: "选中卡牌", levelup: "升级", heal: "治疗", combo: "连击里程碑", warn: "危险预警", stage: "过关", victory: "胜利", defeat: "失败",
+};
+// how the game fires the frequent ones
+const BURST = { hit: { n: 8, gap: 105, pitch: [0.9, 1.15] }, swing: { n: 7, gap: 170 }, kill: { n: 6, gap: 150, pitch: [0.8, 1.3] }, xp: { n: 8, gap: 70, pitch: [1, 1.5] }, shoot: { n: 3, gap: 180 } };
+const NAMES = [...Object.keys(RECIPES), ...KEEP];
+const STORE = "fxrush.audition";
+const [index, draft, levels] = await Promise.all(["/output/sfx-candidates/index.json", "/tools/sfx-picks.json", "/tools/sfx-levels.json"].map((u) => fetch(u).then((r) => (r.ok ? r.json() : {})).catch(() => ({}))));
+const sounds = index.sounds ?? {};
+
+let saved = {};
+try { saved = JSON.parse(localStorage.getItem(STORE) ?? "{}"); } catch {}
+const state = { picks: saved.picks ?? Object.fromEntries(NAMES.map((n) => [n, draft[n]?.ids ?? []])), flagged: saved.flagged ?? [] };
+
+function start() {
+  initAudio();
+  const ac = audioLab.context();
+  if (ac?.state === "suspended") ac.resume();
+}
+const cache = new Map();
+function loudest(buf) {
+  const d = buf.getChannelData(0), r = buf.numberOfChannels > 1 ? buf.getChannelData(1) : d, win = Math.round(buf.sampleRate * 0.05);
+  let acc = 0, best = 0;
+  for (let i = 0; i < d.length; i++) {
+    const m = (d[i] + r[i]) / 2;
+    acc += m * m;
+    if (i >= win) { const o = (d[i - win] + r[i - win]) / 2; acc -= o * o; }
+    if (acc > best) best = acc;
+  }
+  return 20 * Math.log10(Math.sqrt(best / win) || 1e-7);
+}
+async function load(name, id) {
+  const key = `${name}/${id}`;
+  if (!cache.has(key)) {
+    const bytes = await (await fetch(`/output/sfx-candidates/${key}.mp3`)).arrayBuffer();
+    const buf = await audioLab.decode(bytes), level = loudest(buf);
+    const gain = levels[name] == null ? 0.5 : Math.min(4, Math.max(0.05, 10 ** ((levels[name] - level) / 20)));
+    cache.set(key, { buf, gain });
+  }
+  return cache.get(key);
+}
+const rand = (a, b) => a + Math.random() * (b - a);
+const playSynth = (name, opts) => audioLab.synth(name, opts);
+async function playCand(name, id, opts) {
+  const c = await load(name, id);
+  audioLab.sample(c.buf, c.gain, opts);
+}
+let burstId = 0;
+async function burst(name, play) {
+  start();
+  const b = BURST[name] ?? { n: 5, gap: Math.max(140, (RECIPES[name]?.trim ?? 0.3) * 650) }, id = ++burstId;
+  for (let i = 0; i < b.n && id === burstId; i++) {
+    const opts = { pan: rand(-0.5, 0.5), w: 0.5 };
+    if (b.pitch) opts.pitch = rand(...b.pitch);
+    play(i, opts);
+    await new Promise((r) => setTimeout(r, b.gap));
+  }
+}
+function save() {
+  try { localStorage.setItem(STORE, JSON.stringify(state)); } catch {}
+  document.getElementById("result").value = result();
+  document.getElementById("saved").textContent = `已选替换 ${NAMES.filter((n) => state.picks[n]?.length).length} 种`;
+}
+function result() {
+  const picks = {};
+  for (const n of NAMES) if (state.picks[n]?.length) picks[n] = state.picks[n];
+  return JSON.stringify({ picks, flagged: state.flagged });
+}
+const el = (tag, props = {}, ...kids) => {
+  const e = Object.assign(document.createElement(tag), props);
+  e.append(...kids);
+  return e;
+};
+function row(name, group) {
+  const info = sounds[name], section = el("section", { className: "sound" });
+  const status = el("span", { className: "state" });
+  const refresh = () => {
+    const n = state.picks[name]?.length ?? 0;
+    status.textContent = n ? `替换：${n} 个变体` : "保留原声";
+    status.className = n ? "state" : "state keep";
+  };
+  const head = el("div", { className: "head" }, el("b", {}, name), el("span", { className: "use" }, USE[name] ?? ""), status);
+  head.append(
+    el("button", { textContent: "▶ 原声", onclick: () => { start(); playSynth(name); } }),
+    el("button", { textContent: "原声连打", onclick: () => burst(name, (_, o) => playSynth(name, o)) }),
+  );
+  section.append(head);
+  if (info) {
+    head.append(el("button", { textContent: "所选连打", onclick: () => {
+      const ids = state.picks[name] ?? [];
+      if (ids.length) burst(name, (i, o) => playCand(name, ids[i % ids.length], o));
+    } }));
+    const suggest = draft[name]?.suggest ?? [];
+    for (const c of info.candidates) {
+      const box = el("input", { type: "checkbox", checked: state.picks[name]?.includes(c.id), onchange: () => {
+        const list = (state.picks[name] ??= []);
+        if (box.checked) list.push(c.id);
+        else list.splice(list.indexOf(c.id), 1);
+        refresh();
+        save();
+      } });
+      const star = (draft[name]?.ids ?? []).includes(c.id) || suggest.includes(c.id) ? el("span", { className: "star", textContent: "★ " }) : "";
+      section.append(el("div", { className: "cand" },
+        el("button", { textContent: "▶", onclick: () => { start(); playCand(name, c.id); } }),
+        el("button", { textContent: "连打", onclick: () => burst(name, (_, o) => playCand(name, c.id, o)) }),
+        el("label", { className: "pick" }, box, "用"),
+        el("div", { className: "meta" }, star, el("a", { href: c.url, target: "_blank", rel: "noreferrer", textContent: c.name }),
+          el("small", {}, `${c.username} · ${c.license} · ${Math.min(c.active + 0.03, info.trim).toFixed(2)} s`)),
+        el("span", {}),
+      ));
+    }
+  } else if (group === "C") {
+    const box = el("input", { type: "checkbox", checked: state.flagged.includes(name), onchange: () => {
+      if (box.checked) state.flagged.push(name);
+      else state.flagged.splice(state.flagged.indexOf(name), 1);
+      save();
+    } });
+    head.append(el("label", { className: "pick" }, box, "不满意，下一轮找候选"));
+  }
+  refresh();
+  return section;
+}
+const list = document.getElementById("list");
+const GROUPS = [
+  ["A", "A. 真实物理声（★ 是我的预选，默认替换）"],
+  ["B", "B. 魔法和科幻（★ 是我的建议，默认保留原声，听后决定）"],
+  ["C", "C. 芯片风提示音（默认保留，不满意就勾选）"],
+];
+for (const [g, title] of GROUPS) {
+  list.append(el("h2", {}, title));
+  for (const n of NAMES) if ((RECIPES[n]?.group ?? "C") === g) list.append(row(n, g));
+}
+document.getElementById("music").onchange = (e) => {
+  start();
+  if (e.target.value) playMusic(e.target.value);
+  else stopMusic();
+};
+document.getElementById("copy").onclick = async (e) => {
+  try {
+    await navigator.clipboard.writeText(result());
+    e.target.textContent = "已复制";
+  } catch {
+    document.getElementById("result").select();
+    e.target.textContent = "请手动复制下方结果";
+  }
+};
+save();
+
+// ---- for tools/sfx-measure.mjs
+function rmsPeak(data, win) {
+  let acc = 0, best = 0;
+  for (let i = 0; i < data.length; i++) {
+    acc += data[i] * data[i];
+    if (i >= win) acc -= data[i - win] * data[i - win];
+    if (acc > best) best = acc;
+  }
+  return Math.sqrt(Math.max(best, 0) / win);
+}
+let meter;
+async function measure(play, ms) {
+  const ac = audioLab.context();
+  meter ??= audioLab.meter();
+  const data = new Float32Array(meter.fftSize), win = Math.round(ac.sampleRate * 0.05);
+  await new Promise((r) => setTimeout(r, 800)); // let the buffer clear
+  play();
+  let best = 0;
+  const end = performance.now() + ms;
+  while (performance.now() < end) {
+    await new Promise((r) => setTimeout(r, 120));
+    meter.getFloatTimeDomainData(data);
+    best = Math.max(best, rmsPeak(data, win));
+  }
+  return 20 * Math.log10(best || 1e-7);
+}
+window.__lab = {
+  ready: true,
+  names: () => NAMES,
+  setVolume,
+  toggleMute,
+  result,
+  start() {
+    start();
+    setVolume("sfx", 1);
+    setVolume("master", 1);
+  },
+  measureSynth: (name) => measure(() => audioLab.synth(name), name === "bigboom" || name === "thunder" || name === "victory" ? 2400 : 1200),
+  measureGame: (name) => measure(() => sfx(name), name === "bigboom" || name === "thunder" ? 2400 : 1200),
+  async waitForGameSamples() {
+    const { SFX_SAMPLES } = await import("/src/engine/sfx-manifest.js");
+    const want = Object.keys(SFX_SAMPLES);
+    const until = performance.now() + 20000;
+    while (audioLab.sampleNames().length < want.length && performance.now() < until) await new Promise((r) => setTimeout(r, 100));
+    return audioLab.sampleNames();
+  },
+};
+</script>
+</body>
+</html>

@@ -38,4 +38,11 @@ Browser pixel auto-battler on the vendored PixelFX library. Status and the curre
   `src/fx/director.js`; big bursts stay out of the fight (the ultimates are
   the one place for a show: slow motion, dimmed scene, letterbox, name plate); nothing bright should
   sit on top of the fighters for long.
+- Sound: recorded samples come from Freesound; the rest, and the music, stay synthesized in `src/engine/audio.js`,
+  which also keeps every synth voice as the fallback for a sample that has not loaded. The owner chooses by ear in
+  `tools/audition.html` (dev server): one pick means only that one works, several mean all of them work, none means
+  keep the synth. A browser tab's unsaved view can be stale, so read the owner's choices from the owner's own tab.
+  Change sounds through `tools/sfx-picks.json` and `npm run sfx -- build` (needs ffmpeg and `FREESOUND_API_KEY` in the
+  git-ignored `.env.local`); never edit `src/engine/sfx-manifest.js` or `public/audio/CREDITS.md` by hand. Only CC0 and
+  CC BY sounds; every file must stay credited. `public/audio` stays under 1.5 MB.
 - README is in English.
