@@ -578,19 +578,23 @@ export class SkillSystem {
     const g = this.g;
     this.gap -= dt;
     g.frameDt = dt;
+    // every ready skill waits its turn; the one that has waited longest (most overdue) goes first, so a skill taken
+    // early never crowds out the later ones, and casts are spaced so their effects don't pile up on one frame
+    let pick = null;
     for (const id of this.order) {
       const s = SKILLS[id], lv = this.lv[id];
       s.passive?.(g, lv);
       if (!s.cd) continue;
       this.timers[id] = (this.timers[id] ?? 0) - dt;
-      if (this.timers[id] <= 0 && this.gap <= 0 && !g.hero.dead) {
-        const ok = s.cast?.(g, lv);
-        if (ok) {
-          this.timers[id] = s.cd[lv - 1];
-          this.gap = 0.3;
-          g.lastCast = { id, t: g.time };
-        } else this.timers[id] = 0.3;
-      }
+      if (this.timers[id] <= 0 && (!pick || this.timers[id] < this.timers[pick])) pick = id;
+    }
+    if (pick && this.gap <= 0 && !g.hero.dead) {
+      const s = SKILLS[pick], lv = this.lv[pick];
+      if (s.cast?.(g, lv)) {
+        this.timers[pick] = s.cd[lv - 1];
+        this.gap = 0.45;
+        g.lastCast = { id: pick, t: g.time };
+      } else this.timers[pick] = 0.3;
     }
   }
   /** 0..1 of the cooldown left, for the HUD. */

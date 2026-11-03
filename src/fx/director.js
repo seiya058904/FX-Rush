@@ -21,7 +21,9 @@ const TRIM = {
   scifi: [2.6, 2, 1.5], water: [3, 2.2, 1.6], melee: [1.6, 1.3, 1], projectiles: [2.5, 2, 1.5], moves: [8, 8, 8],
   ui: [3.4, 3, 2.4], pickups: [4.6, 4, 3], transitions: [9, 9, 9], status: [9, 9, 9], weather: [99, 99, 99], critters: [99, 99, 99],
 };
-const CAP = [34, 56, 80];
+const CAP = [34, 52, 64];
+// every world effect glows at this share of its own light: the fight stays readable under a pile of effects
+const FX_LIGHT = 0.7;
 const PER_ID = [4, 6, 8];
 
 /** Lay one frame's pixels over another's (color over color respecting alpha, light added). */
@@ -101,6 +103,7 @@ export class Director {
     }
     // an option passed as undefined must not wipe out the effect's own default (palettes especially)
     for (const k in rest) if (rest[k] === undefined) delete rest[k];
+    if (!screen && info.cat !== "ui" && info.cat !== "transitions") rest.light = (rest.light ?? 1) * FX_LIGHT;
     const o = { ...rest, x, y, seed: rest.seed ?? (this.seed = (this.seed * 1103515245 + 12345) & 0x7fffffff) % 9973 };
     const inst = makeFx(id, o);
     if (!inst) return null;

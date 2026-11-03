@@ -36,6 +36,21 @@ README controls, screenshots and `src/fx/usage.js` roles updated.
 - [x] smoke + audit 244/244, build, diff review, local commit
 - [ ] push to GitHub / Pages deploy (needs the owner's OK)
 
+## Iteration 3 — auto / manual modes, full move rotation, calmer light (done locally, not pushed)
+
+Playtest feedback on iteration 2: default should be fully hands-off (watch and pick cards; clicks do nothing); a
+switchable manual mode (A/D, jump, click = attack toward the clicked side; no auto walk/target/attack). Skills,
+ultimates and combos stay automatic in both. The crit starburst is still too loud; the whole screen should be calmer.
+Use every upstream move and avoid repeats.
+
+- [x] A. `settings.mode` auto/manual; title + pause toggle; tempo removed; manual hero control
+- [x] B. 7 more hero melee acts (weapon conjuring); shuffle-bag combo opener -> link -> finisher; all 12 ultimates
+      in a shuffle bag; skills fire longest-waiting first
+- [x] C. crit starburst only on the results screen; global effect light x0.7; scene light 0.7; flash cap 0.3; POW only
+      for the 100 combo
+- [x] D. e2e 10/10 (manual mode, move variety; per-session time limit), docs, smoke/audit 244/244, build, local commit
+- [ ] owner playtest in Ego; push + Pages deploy (needs the owner's OK)
+
 ## Resuming on another machine
 
 Copy the folder as-is (or clone). Needs Node 20.19+ and, for `npm run e2e` / `tools/shot.mjs`, an installed Google

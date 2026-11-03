@@ -8,7 +8,7 @@
   "previewWarn": 0,
   "wired": 244,
   "triggered": 244,
-  "runtimeSessions": 52
+  "runtimeSessions": 73
  },
  "missing": [],
  "untriggered": [],
@@ -24,7 +24,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 4,
+   "triggered": 10,
    "role": "大招·穿云箭（冰封遗迹）：直线贯穿"
   },
   {
@@ -38,7 +38,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 23,
+   "triggered": 36,
    "role": "大招·残影突斩（全场景）：冲过敌阵"
   },
   {
@@ -52,7 +52,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 13,
    "role": "大招·地裂踏（余烬熔炉）"
   },
   {
@@ -66,7 +66,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 5,
+   "triggered": 9,
    "role": "大招·巨型火球（余烬熔炉）"
   },
   {
@@ -80,7 +80,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 5,
+   "triggered": 13,
    "role": "大招·天坠重击（余烬熔炉）"
   },
   {
@@ -94,7 +94,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 21,
+   "triggered": 28,
    "role": "大招·圣锤（冰封遗迹/霓虹虚空）"
   },
   {
@@ -108,7 +108,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 9,
+   "triggered": 17,
    "role": "大招·冰枪投掷（冰封遗迹）：冻结落点"
   },
   {
@@ -122,7 +122,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 13,
+   "triggered": 22,
    "role": "大招·召雷（冰封遗迹/霓虹虚空）：眩晕"
   },
   {
@@ -136,7 +136,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 15,
+   "triggered": 26,
    "role": "大招·陨星咏唱（余烬熔炉/霓虹虚空）"
   },
   {
@@ -150,7 +150,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 8,
+   "triggered": 14,
    "role": "大招·快枪三连（霓虹虚空）"
   },
   {
@@ -164,7 +164,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 9,
+   "triggered": 15,
    "role": "大招·火箭筒（霓虹虚空）"
   },
   {
@@ -178,7 +178,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 13,
+   "triggered": 23,
    "role": "大招·三段剑舞（余烬熔炉/冰封遗迹）"
   },
   {
@@ -193,7 +193,7 @@
     "src/game/stages.js",
     "src/main.js"
    ],
-   "triggered": 360,
+   "triggered": 469,
    "role": "余烬熔炉场景装饰（烘焙帧）"
   },
   {
@@ -207,7 +207,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 188,
+   "triggered": 238,
    "role": "余烬熔炉场景装饰"
   },
   {
@@ -221,7 +221,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 200,
+   "triggered": 255,
    "role": "余烬熔炉场景装饰"
   },
   {
@@ -235,7 +235,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "Boss·余烬巨像 吐息攻击"
   },
   {
@@ -251,7 +251,7 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 137,
+   "triggered": 199,
    "role": "技能·烈焰爆破 Lv3 环形新星；Boss1 二阶段"
   },
   {
@@ -266,7 +266,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 83,
+   "triggered": 126,
    "role": "技能·烈焰爆破 Lv5 横扫龙卷；Boss1 二阶段"
   },
   {
@@ -280,7 +280,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 8,
+   "triggered": 17,
    "role": "火焰骷髅喷吐的火球弹"
   },
   {
@@ -295,7 +295,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 220,
+   "triggered": 322,
    "role": "技能·烈焰爆破 Lv4 火柱；Boss1 火柱连爆"
   },
   {
@@ -309,7 +309,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 11,
+   "triggered": 17,
    "role": "精英·熔炉蛮兵 火焰喷射"
   },
   {
@@ -325,7 +325,7 @@
     "src/game/game.js",
     "src/game/skills.js"
    ],
-   "triggered": 199,
+   "triggered": 341,
    "role": "技能·陨石天降；陨石雨事件；Boss1 召陨"
   },
   {
@@ -339,7 +339,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 57,
+   "triggered": 92,
    "role": "冰封遗迹 幽蓝鬼火装饰"
   },
   {
@@ -355,7 +355,7 @@
     "src/game/stages.js",
     "src/main.js"
    ],
-   "triggered": 539,
+   "triggered": 697,
    "role": "余烬熔炉 墙上火把装饰"
   },
   {
@@ -369,7 +369,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 24,
+   "triggered": 40,
    "role": "余烬熔炉 炸药桶事件"
   },
   {
@@ -384,7 +384,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 31,
+   "triggered": 47,
    "role": "技能·陨石 Lv5 毁灭巨爆；Boss1 死亡"
   },
   {
@@ -396,11 +396,10 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/combat.js",
     "src/game/game.js"
    ],
-   "triggered": 299,
-   "role": "大幅超杀暴击 POW!/BAM!（限频）；连击 100 WOW!"
+   "triggered": 380,
+   "role": "连击 100 WOW!"
   },
   {
    "id": "explosions/dirt-explosion",
@@ -413,7 +412,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 11,
+   "triggered": 20,
    "role": "Boss1 重拳砸地"
   },
   {
@@ -427,7 +426,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 7,
+   "triggered": 14,
    "role": "精英击杀庆祝"
   },
   {
@@ -441,7 +440,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 25,
+   "triggered": 42,
    "role": "关卡通关/胜利烟火"
   },
   {
@@ -455,7 +454,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 11,
    "role": "精英·喷气兵 火箭弹落点爆炸"
   },
   {
@@ -469,7 +468,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 134,
+   "triggered": 171,
    "role": "技能·黑洞牵引 坍缩"
   },
   {
@@ -483,7 +482,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "最终 Boss·虚空之眼 死亡终结"
   },
   {
@@ -498,7 +497,7 @@
     "src/game/boss.js",
     "src/game/enemies.js"
    ],
-   "triggered": 10,
+   "triggered": 18,
    "role": "虚空水母死亡；Boss2 死亡"
   },
   {
@@ -513,7 +512,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 1003,
+   "triggered": 1424,
    "role": "技能·烈焰爆破 击杀连锁爆炸；Boss1 死亡连爆"
   },
   {
@@ -527,7 +526,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 7,
    "role": "霓虹枪手 烟雾弹脱身"
   },
   {
@@ -541,7 +540,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 20,
+   "triggered": 39,
    "role": "冰封遗迹 温泉气泡装饰"
   },
   {
@@ -555,7 +554,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 75,
+   "triggered": 134,
    "role": "冰封遗迹 冰棱滴水装饰"
   },
   {
@@ -569,7 +568,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 5,
+   "triggered": 9,
    "role": "治愈之泉事件"
   },
   {
@@ -583,7 +582,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 10,
+   "triggered": 18,
    "role": "冰封遗迹 间歇泉事件：掀飞敌人"
   },
   {
@@ -597,7 +596,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 9,
    "role": "霓虹酸雨事件 地面水花"
   },
   {
@@ -611,7 +610,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 33,
+   "triggered": 62,
    "role": "冰封遗迹 水洼涟漪装饰"
   },
   {
@@ -627,7 +626,7 @@
     "src/game/enemies.js",
     "src/game/game.js"
    ],
-   "triggered": 12,
+   "triggered": 23,
    "role": "间歇泉/冰球落地水花；冰鱼群死亡"
   },
   {
@@ -641,7 +640,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 4,
+   "triggered": 8,
    "role": "Boss2 高压水柱"
   },
   {
@@ -655,7 +654,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 5,
+   "triggered": 9,
    "role": "Boss2 投掷水球"
   },
   {
@@ -669,7 +668,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 28,
+   "triggered": 45,
    "role": "冰封遗迹 冰瀑装饰"
   },
   {
@@ -683,7 +682,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 4,
+   "triggered": 8,
    "role": "Boss2 巨浪拍击"
   },
   {
@@ -697,7 +696,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 5,
+   "triggered": 9,
    "role": "Boss2 二阶段 漩涡"
   },
   {
@@ -712,7 +711,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 120,
+   "triggered": 198,
    "role": "技能·寒冰新星 Lv5 暴雪漩涡；Boss2 二阶段"
   },
   {
@@ -726,7 +725,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "Boss2 登场冰封"
   },
   {
@@ -740,7 +739,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 7,
+   "triggered": 13,
    "role": "Boss2 寒霜吐息（减速英雄）"
   },
   {
@@ -755,7 +754,7 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 134,
+   "triggered": 352,
    "role": "技能·寒冰新星：冻结周围"
   },
   {
@@ -769,7 +768,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 68,
+   "triggered": 118,
    "role": "冰封遗迹 浮冰晶装饰"
   },
   {
@@ -783,7 +782,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 42,
+   "triggered": 74,
    "role": "冰焰鬼火 射出的冰枪弹"
   },
   {
@@ -799,7 +798,7 @@
     "src/game/enemies.js",
     "src/game/skills.js"
    ],
-   "triggered": 73,
+   "triggered": 239,
    "role": "联动·冻结后遭火焰/暴击 碎冰爆裂；Boss2 死亡"
   },
   {
@@ -814,7 +813,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 131,
+   "triggered": 265,
    "role": "技能·寒冰新星 Lv3 地冰刺；Boss2 冰刺波"
   },
   {
@@ -829,7 +828,7 @@
     "src/game/boss.js",
     "src/game/game.js"
    ],
-   "triggered": 69,
+   "triggered": 118,
    "role": "冰棱坠落事件；Boss2 冰棱雨"
   },
   {
@@ -844,7 +843,7 @@
     "src/game/boss.js",
     "src/game/combat.js"
    ],
-   "triggered": 812,
+   "triggered": 1842,
    "role": "冰属性命中特效；Boss2 死亡"
   },
   {
@@ -858,7 +857,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 13,
+   "triggered": 19,
    "role": "技能·连锁闪电 Lv5 环绕球形闪电"
   },
   {
@@ -872,7 +871,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 75,
+   "triggered": 105,
    "role": "技能·连锁闪电 Lv3+ 每第 3 次的直线连锁"
   },
   {
@@ -886,7 +885,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "Boss1 吐息前蓄力"
   },
   {
@@ -900,7 +899,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 105,
+   "triggered": 172,
    "role": "状态·感电"
   },
   {
@@ -915,7 +914,7 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 289,
+   "triggered": 434,
    "role": "技能·雷霆天罚"
   },
   {
@@ -929,7 +928,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 48,
+   "triggered": 75,
    "role": "霓虹虚空 等离子球装饰"
   },
   {
@@ -943,7 +942,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 29,
+   "triggered": 43,
    "role": "霓虹虚空 电弧装饰"
   },
   {
@@ -957,7 +956,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 15,
+   "triggered": 22,
    "role": "技能·雷霆天罚 Lv5 随行雷云"
   },
   {
@@ -971,7 +970,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 9,
    "role": "特斯拉线圈事件：替英雄放电"
   },
   {
@@ -985,7 +984,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 105,
+   "triggered": 162,
    "role": "技能·雷霆天罚 Lv3 雷鸣震波"
   },
   {
@@ -999,7 +998,7 @@
    "files": [
     "src/game/combat.js"
    ],
-   "triggered": 871,
+   "triggered": 1425,
    "role": "电属性命中特效"
   },
   {
@@ -1013,7 +1012,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 3,
+   "triggered": 6,
    "role": "精英·喷气兵 死亡电磁爆"
   },
   {
@@ -1027,7 +1026,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 48,
+   "triggered": 78,
    "role": "霓虹虚空 能量核心装饰"
   },
   {
@@ -1041,7 +1040,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 10,
+   "triggered": 18,
    "role": "精英·喷气兵 力场护盾光环"
   },
   {
@@ -1055,7 +1054,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 73,
+   "triggered": 135,
    "role": "Boss3 光束命中：英雄信号故障"
   },
   {
@@ -1069,7 +1068,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 42,
+   "triggered": 65,
    "role": "霓虹虚空 全息投影装饰"
   },
   {
@@ -1083,7 +1082,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 12,
+   "triggered": 21,
    "role": "精英·喷气兵 背包推进器"
   },
   {
@@ -1097,7 +1096,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 13,
+   "triggered": 22,
    "role": "激光栅栏事件：灼烧走入的敌人"
   },
   {
@@ -1111,7 +1110,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 19,
+   "triggered": 37,
    "role": "Boss3 光束前锁定扫描（预警）"
   },
   {
@@ -1125,7 +1124,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 33,
+   "triggered": 52,
    "role": "霓虹虚空 传送台装饰"
   },
   {
@@ -1139,7 +1138,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 3,
+   "triggered": 5,
    "role": "Boss3 二阶段 牵引光束"
   },
   {
@@ -1153,7 +1152,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 35,
+   "triggered": 56,
    "role": "第 3 关英雄入场；虚空敌人传送出现"
   },
   {
@@ -1167,7 +1166,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 18,
+   "triggered": 30,
    "role": "通关时英雄传送离场"
   },
   {
@@ -1179,10 +1178,11 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/moves.js"
+    "src/game/moves.js",
+    "src/main.js"
    ],
-   "triggered": 8,
-   "role": "敌·灰烬食尸鬼 爪击"
+   "triggered": 142,
+   "role": "英雄连招·起手 幻爪；敌·灰烬食尸鬼 爪击"
   },
   {
    "id": "melee/dagger-flurry",
@@ -1193,10 +1193,11 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/moves.js"
+    "src/game/moves.js",
+    "src/main.js"
    ],
-   "triggered": 10,
-   "role": "敌·虚空收割者 匕首乱舞"
+   "triggered": 141,
+   "role": "英雄连招·起手 匕首乱舞；敌·虚空收割者"
   },
   {
    "id": "melee/double-slash",
@@ -1211,8 +1212,8 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 728,
-   "role": "英雄普攻第 2 段；剑气斩 Lv2 剑气"
+   "triggered": 933,
+   "role": "英雄连招·衔接 交叉斩/空中斩；剑气斩 Lv2 剑气"
   },
   {
    "id": "melee/hammer-smash",
@@ -1223,10 +1224,11 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/moves.js"
+    "src/game/moves.js",
+    "src/main.js"
    ],
-   "triggered": 13,
-   "role": "精英·熔炉蛮兵 重锤"
+   "triggered": 111,
+   "role": "英雄连招·终结 幻化重锤；精英·熔炉蛮兵 重锤"
   },
   {
    "id": "melee/heavy-cleave",
@@ -1240,8 +1242,8 @@
     "src/game/moves.js",
     "src/main.js"
    ],
-   "triggered": 360,
-   "role": "英雄普攻第 3 段终结重劈"
+   "triggered": 456,
+   "role": "英雄连招·终结 重劈"
   },
   {
    "id": "melee/scythe-reap",
@@ -1256,8 +1258,8 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 37,
-   "role": "敌·虚空收割者 镰刀；剑气斩 Lv5 巨型镰刃"
+   "triggered": 151,
+   "role": "英雄连招·终结 幻化镰刀；敌·虚空收割者；剑气斩 Lv5 巨型镰刃"
   },
   {
    "id": "melee/spear-sweep",
@@ -1268,10 +1270,11 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/moves.js"
+    "src/game/moves.js",
+    "src/main.js"
    ],
-   "triggered": 4,
-   "role": "敌·冰霜枪兵 横扫"
+   "triggered": 244,
+   "role": "英雄连招·衔接/突进 长枪横扫；敌·冰霜枪兵"
   },
   {
    "id": "melee/spin-slash",
@@ -1285,8 +1288,8 @@
     "src/game/moves.js",
     "src/main.js"
    ],
-   "triggered": 77,
-   "role": "英雄自动连招：前后被围时旋风斩"
+   "triggered": 211,
+   "role": "英雄连招·终结 旋风斩（前后被围优先）"
   },
   {
    "id": "melee/sword-slash",
@@ -1301,8 +1304,8 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 1082,
-   "role": "英雄普攻第 1 段；剑气斩飞行剑气；灰烬骑士斩击"
+   "triggered": 1421,
+   "role": "英雄连招·起手 斩/空中斩；剑气斩飞行剑气；灰烬骑士斩击"
   },
   {
    "id": "melee/thrust",
@@ -1316,8 +1319,8 @@
     "src/game/moves.js",
     "src/main.js"
    ],
-   "triggered": 523,
-   "role": "英雄自动连招：突进刺/连段收尾；冰霜枪兵突刺"
+   "triggered": 791,
+   "role": "英雄连招·起手/突进 突刺；冰霜枪兵突刺"
   },
   {
    "id": "melee/uppercut",
@@ -1328,10 +1331,11 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/moves.js"
+    "src/game/moves.js",
+    "src/main.js"
    ],
-   "triggered": 8,
-   "role": "精英·熔炉蛮兵 上勾拳"
+   "triggered": 130,
+   "role": "英雄连招·衔接 上勾拳挑空；精英·熔炉蛮兵"
   },
   {
    "id": "melee/whip-crack",
@@ -1342,10 +1346,11 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/moves.js"
+    "src/game/moves.js",
+    "src/main.js"
    ],
-   "triggered": 6,
-   "role": "敌·冰咒女巫 长鞭"
+   "triggered": 260,
+   "role": "英雄连招·衔接/突进 长鞭；敌·冰咒女巫"
   },
   {
    "id": "impacts/blunt-hit",
@@ -1359,7 +1364,7 @@
     "src/game/combat.js",
     "src/main.js"
    ],
-   "triggered": 1265,
+   "triggered": 2138,
    "role": "重击命中；大地属性命中"
   },
   {
@@ -1374,7 +1379,7 @@
     "src/game/combat.js",
     "src/game/game.js"
    ],
-   "triggered": 91,
+   "triggered": 150,
    "role": "敌方弹丸落地；箭矢落点"
   },
   {
@@ -1389,7 +1394,7 @@
     "src/game/combat.js",
     "src/main.js"
    ],
-   "triggered": 4589,
+   "triggered": 6985,
    "role": "暴击命中"
   },
   {
@@ -1405,7 +1410,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 365,
+   "triggered": 571,
    "role": "英雄重劈落地冲击；精英登场；Boss1 砸地冲击波"
   },
   {
@@ -1420,7 +1425,7 @@
     "src/game/hero.js",
     "src/main.js"
    ],
-   "triggered": 69,
+   "triggered": 91,
    "role": "英雄起跳/重落地"
   },
   {
@@ -1435,7 +1440,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 243,
+   "triggered": 419,
    "role": "英雄受伤闪红"
   },
   {
@@ -1450,7 +1455,7 @@
     "src/game/combat.js",
     "src/main.js"
    ],
-   "triggered": 3554,
+   "triggered": 7792,
    "role": "普通命中火花"
   },
   {
@@ -1466,7 +1471,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 156,
+   "triggered": 267,
    "role": "大招发动；Boss 击杀 动漫冲击帧"
   },
   {
@@ -1481,7 +1486,7 @@
     "src/game/combat.js",
     "src/game/game.js"
    ],
-   "triggered": 121,
+   "triggered": 226,
    "role": "英雄挥剑劈落敌方飞弹（弹反）"
   },
   {
@@ -1495,7 +1500,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 23,
+   "triggered": 44,
    "role": "霓虹枪手子弹跳弹"
   },
   {
@@ -1509,7 +1514,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 17,
+   "triggered": 56,
    "role": "技能·圣盾反击 格挡"
   },
   {
@@ -1523,7 +1528,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 32,
+   "triggered": 65,
    "role": "敌·冰霜弓手 箭矢"
   },
   {
@@ -1537,7 +1542,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 122,
+   "triggered": 251,
    "role": "敌·霓虹枪手 曳光弹"
   },
   {
@@ -1551,7 +1556,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 18,
+   "triggered": 30,
    "role": "熔炉火炮支援事件"
   },
   {
@@ -1565,7 +1570,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 139,
+   "triggered": 226,
    "role": "敌·虚空收割者 远程飞盘"
   },
   {
@@ -1579,7 +1584,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 34,
+   "triggered": 58,
    "role": "精英来袭 信号弹"
   },
   {
@@ -1593,7 +1598,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 9,
    "role": "精英·喷气兵 追踪导弹"
   },
   {
@@ -1607,7 +1612,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 139,
+   "triggered": 232,
    "role": "敌·虚空之眼(小怪) 激光"
   },
   {
@@ -1621,7 +1626,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 116,
+   "triggered": 193,
    "role": "技能·追踪弹幕 Lv4 重型奥术弹"
   },
   {
@@ -1635,7 +1640,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 29,
+   "triggered": 59,
    "role": "敌·霓虹枪手 枪口火光"
   },
   {
@@ -1649,7 +1654,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 10,
+   "triggered": 16,
    "role": "精英·喷气兵 火箭发射火光"
   },
   {
@@ -1663,7 +1668,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 54,
+   "triggered": 115,
    "role": "敌·霓虹枪手 连射火光"
   },
   {
@@ -1678,7 +1683,7 @@
     "src/game/enemies.js",
     "src/game/skills.js"
    ],
-   "triggered": 557,
+   "triggered": 1674,
    "role": "技能·追踪弹幕 弹体；虚空水母等离子弹"
   },
   {
@@ -1692,7 +1697,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 10,
+   "triggered": 16,
    "role": "精英·喷气兵 火箭弹"
   },
   {
@@ -1706,7 +1711,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 19,
+   "triggered": 37,
    "role": "精英击杀 金币四溅"
   },
   {
@@ -1721,7 +1726,7 @@
     "src/game/combat.js",
     "src/game/enemies.js"
    ],
-   "triggered": 471,
+   "triggered": 678,
    "role": "电属性击杀 分解消散；虚空怪死亡"
   },
   {
@@ -1737,7 +1742,7 @@
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": 419,
+   "triggered": 626,
    "role": "火属性击杀 燃烧成灰"
   },
   {
@@ -1751,7 +1756,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 121,
+   "triggered": 187,
    "role": "史莱姆破蛋而出"
   },
   {
@@ -1767,7 +1772,7 @@
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": 769,
+   "triggered": 1166,
    "role": "普通击杀 烟团"
   },
   {
@@ -1782,7 +1787,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 148,
+   "triggered": 190,
    "role": "第 1/2 关英雄光柱入场"
   },
   {
@@ -1797,7 +1802,7 @@
     "src/game/combat.js",
     "src/game/enemies.js"
    ],
-   "triggered": 78,
+   "triggered": 201,
    "role": "冰属性/冻结击杀 碎冰而亡"
   },
   {
@@ -1812,7 +1817,7 @@
     "src/game/combat.js",
     "src/game/enemies.js"
    ],
-   "triggered": 406,
+   "triggered": 707,
    "role": "暗影/圣光击杀 灵魂升天"
   },
   {
@@ -1827,7 +1832,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 274,
+   "triggered": 426,
    "role": "怪物成群从传送门涌出"
   },
   {
@@ -1841,7 +1846,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "Boss1 余烬巨像 破土登场"
   },
   {
@@ -1855,7 +1860,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 19,
+   "triggered": 36,
    "role": "Boss3 虚空光束"
   },
   {
@@ -1869,7 +1874,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 58,
+   "triggered": 123,
    "role": "技能·追踪弹幕 Lv3 每第 3 次奥术齐射"
   },
   {
@@ -1883,7 +1888,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 14,
+   "triggered": 22,
    "role": "技能·追踪弹幕 Lv4 环绕奥术宝珠"
   },
   {
@@ -1897,7 +1902,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 37,
+   "triggered": 72,
    "role": "冰霜敌人闪现入场；枪手闪回"
   },
   {
@@ -1911,7 +1916,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 7,
    "role": "霓虹枪手 闪离"
   },
   {
@@ -1925,7 +1930,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 36,
+   "triggered": 60,
    "role": "精英召唤法阵"
   },
   {
@@ -1940,7 +1945,7 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 40,
+   "triggered": 152,
    "role": "技能·追踪弹幕 Lv3 法力爆裂"
   },
   {
@@ -1955,7 +1960,7 @@
     "src/game/boss.js",
     "src/game/game.js"
    ],
-   "triggered": 133,
+   "triggered": 229,
    "role": "虚空裂隙刷怪；Boss3 召唤"
   },
   {
@@ -1972,7 +1977,7 @@
     "src/game/skills.js",
     "src/game/stages.js"
    ],
-   "triggered": 340,
+   "triggered": 583,
    "role": "危险落点预警符阵；虚空地面装饰"
   },
   {
@@ -1986,7 +1991,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 388,
+   "triggered": 647,
    "role": "远程怪 施法蓄力（预警）"
   },
   {
@@ -2001,7 +2006,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 31,
+   "triggered": 48,
    "role": "技能·追踪弹幕 Lv5 流星雨；Boss3 星坠"
   },
   {
@@ -2015,7 +2020,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 41,
+   "triggered": 88,
    "role": "连击 150/400 时停：全场沉睡"
   },
   {
@@ -2029,7 +2034,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 14,
+   "triggered": 20,
    "role": "技能·圣光审判 Lv5 祝福光柱"
   },
   {
@@ -2044,7 +2049,7 @@
     "src/game/enemies.js",
     "src/game/skills.js"
    ],
-   "triggered": 35,
+   "triggered": 84,
    "role": "技能·圣盾反击 充能护盾；冰霜守卫精英光环"
   },
   {
@@ -2058,7 +2063,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 11,
+   "triggered": 38,
    "role": "圣盾格挡 羽毛迸散"
   },
   {
@@ -2072,7 +2077,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 17,
+   "triggered": 23,
    "role": "技能·圣光审判 Lv5 光环"
   },
   {
@@ -2087,7 +2092,7 @@
     "src/game/pickups.js",
     "src/game/skills.js"
    ],
-   "triggered": 175,
+   "triggered": 288,
    "role": "拾取心形回血；活力卡"
   },
   {
@@ -2101,7 +2106,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 4,
+   "triggered": 8,
    "role": "治愈之泉 地面治疗环"
   },
   {
@@ -2115,7 +2120,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 150,
+   "triggered": 318,
    "role": "技能·圣光审判 Lv3 光柱"
   },
   {
@@ -2129,7 +2134,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 2,
+   "triggered": 3,
    "role": "每局一次 圣光复活"
   },
   {
@@ -2144,7 +2149,7 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 219,
+   "triggered": 406,
    "role": "技能·圣光审判 圣锤；圣盾 Lv5"
   },
   {
@@ -2158,7 +2163,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 17,
+   "triggered": 53,
    "role": "圣盾格挡 日冕反击"
   },
   {
@@ -2173,7 +2178,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 131,
+   "triggered": 171,
    "role": "技能·黑洞牵引；Boss3 二阶段"
   },
   {
@@ -2187,7 +2192,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 5,
+   "triggered": 10,
    "role": "Boss3 诅咒（英雄减速）"
   },
   {
@@ -2202,7 +2207,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 105,
+   "triggered": 148,
    "role": "技能·黑洞 Lv5 暗影大爆炸；Boss3 爆发"
   },
   {
@@ -2216,7 +2221,7 @@
    "files": [
     "src/render/background.js"
    ],
-   "triggered": 12,
+   "triggered": 19,
    "role": "霓虹虚空 天空日蚀"
   },
   {
@@ -2230,7 +2235,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 21,
+   "triggered": 40,
    "role": "Boss3 地底鬼手"
   },
   {
@@ -2244,7 +2249,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 5,
+   "triggered": 11,
    "role": "Boss3 诅咒符印（预警）"
   },
   {
@@ -2258,7 +2263,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 9,
+   "triggered": 15,
    "role": "嗜血卡 获得演出"
   },
   {
@@ -2272,7 +2277,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 4,
+   "triggered": 7,
    "role": "Boss3 二阶段 环绕骷髅"
   },
   {
@@ -2286,7 +2291,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 45,
+   "triggered": 70,
    "role": "霓虹虚空 暗焰装饰"
   },
   {
@@ -2300,7 +2305,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 12,
+   "triggered": 26,
    "role": "Boss3 暗影触手"
   },
   {
@@ -2314,7 +2319,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 5,
+   "triggered": 12,
    "role": "Boss3 召唤时吸魂"
   },
   {
@@ -2329,7 +2334,7 @@
     "src/game/boss.js",
     "src/game/skills.js"
    ],
-   "triggered": 138,
+   "triggered": 178,
    "role": "技能·黑洞 抛射虚空球；Boss3 本体虚空光晕"
   },
   {
@@ -2343,7 +2348,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 25,
+   "triggered": 35,
    "role": "状态·流血（剑气斩 Lv2）"
   },
   {
@@ -2357,7 +2362,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 123,
+   "triggered": 154,
    "role": "状态·燃烧（烈焰/陨石/吐息）"
   },
   {
@@ -2371,7 +2376,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 55,
+   "triggered": 130,
    "role": "状态·魅惑（圣光审判 Lv2）"
   },
   {
@@ -2385,7 +2390,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 11,
+   "triggered": 59,
    "role": "状态·混乱（追踪弹幕 Lv2）"
   },
   {
@@ -2399,7 +2404,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 518,
+   "triggered": 645,
    "role": "状态·诅咒 增伤（黑洞 Lv2）"
   },
   {
@@ -2413,7 +2418,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 14,
+   "triggered": 64,
    "role": "状态·冻结（寒冰新星）"
   },
   {
@@ -2429,7 +2434,7 @@
     "src/game/skills.js",
     "src/game/status.js"
    ],
-   "triggered": 33,
+   "triggered": 53,
    "role": "狂怒卡；星星无敌"
   },
   {
@@ -2443,7 +2448,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 21,
+   "triggered": 29,
    "role": "状态·石化（大地之怒 Lv3）"
   },
   {
@@ -2457,7 +2462,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 692,
+   "triggered": 1223,
    "role": "状态·中毒（剧毒瘟疫）"
   },
   {
@@ -2474,7 +2479,7 @@
     "src/game/skills.js",
     "src/game/status.js"
    ],
-   "triggered": 72,
+   "triggered": 108,
    "role": "精英·熔炉蛮兵光环；锋锐/力量卡；星星无敌"
   },
   {
@@ -2488,7 +2493,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 55,
+   "triggered": 117,
    "role": "状态·沉睡（时停）"
   },
   {
@@ -2503,7 +2508,7 @@
     "src/game/game.js",
     "src/game/status.js"
    ],
-   "triggered": 194,
+   "triggered": 649,
    "role": "状态·减速（寒冰 Lv2）；英雄被吐息/诅咒"
   },
   {
@@ -2517,7 +2522,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 118,
+   "triggered": 189,
    "role": "状态·眩晕（雷霆/连锁闪电 Lv3）"
   },
   {
@@ -2531,7 +2536,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 331,
+   "triggered": 580,
    "role": "剧毒瘟疫 Lv2 中毒者死亡酸液传染"
   },
   {
@@ -2545,7 +2550,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 7,
+   "triggered": 11,
    "role": "Boss1 投掷巨石"
   },
   {
@@ -2559,7 +2564,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 188,
+   "triggered": 252,
    "role": "大地之怒 Lv3 石刺"
   },
   {
@@ -2573,7 +2578,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 2,
+   "triggered": 3,
    "role": "低血时每关一次 治愈之花"
   },
   {
@@ -2587,7 +2592,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 141,
+   "triggered": 190,
    "role": "大地之怒 Lv2 施法落叶风暴"
   },
   {
@@ -2601,7 +2606,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 316,
+   "triggered": 494,
    "role": "技能·剧毒瘟疫 毒云"
   },
   {
@@ -2615,7 +2620,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 62,
+   "triggered": 95,
    "role": "大地之怒 Lv5 全屏地震"
   },
   {
@@ -2629,7 +2634,7 @@
    "files": [
     "src/game/status.js"
    ],
-   "triggered": 45,
+   "triggered": 65,
    "role": "状态·定身（荆棘）"
   },
   {
@@ -2643,7 +2648,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 128,
+   "triggered": 192,
    "role": "剧毒瘟疫 Lv5 孢子爆发"
   },
   {
@@ -2657,7 +2662,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 213,
+   "triggered": 278,
    "role": "技能·大地之怒 荆棘破土"
   },
   {
@@ -2671,7 +2676,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 5,
+   "triggered": 9,
    "role": "冰封遗迹 寒风龙卷事件"
   },
   {
@@ -2685,7 +2690,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 101,
+   "triggered": 167,
    "role": "剧毒瘟疫 Lv3 毒沼"
   },
   {
@@ -2699,7 +2704,7 @@
    "files": [
     "src/game/skills.js"
    ],
-   "triggered": 148,
+   "triggered": 211,
    "role": "大地之怒 Lv4 藤鞭横扫"
   },
   {
@@ -2713,7 +2718,7 @@
    "files": [
     "src/render/background.js"
    ],
-   "triggered": 10,
+   "triggered": 16,
    "role": "冰封遗迹 天空极光（天空层）"
   },
   {
@@ -2727,7 +2732,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 6,
+   "triggered": 9,
    "role": "Boss2 二阶段 暴风雪"
   },
   {
@@ -2741,7 +2746,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "胜利结算 樱花"
   },
   {
@@ -2756,7 +2761,7 @@
     "src/main.js",
     "src/render/background.js"
    ],
-   "triggered": 82,
+   "triggered": 107,
    "role": "标题画面 夜云天空"
   },
   {
@@ -2770,7 +2775,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 32,
+   "triggered": 39,
    "role": "战败结算 落叶飘零"
   },
   {
@@ -2784,7 +2789,7 @@
    "files": [
     "src/main.js"
    ],
-   "triggered": 84,
+   "triggered": 111,
    "role": "标题画面 萤火"
   },
   {
@@ -2798,7 +2803,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "冰封遗迹 雾（高画质）"
   },
   {
@@ -2812,7 +2817,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 4,
+   "triggered": 7,
    "role": "Boss2 登场 光束"
   },
   {
@@ -2826,7 +2831,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 9,
    "role": "霓虹酸雨事件"
   },
   {
@@ -2840,7 +2845,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 6,
+   "triggered": 9,
    "role": "霓虹虚空 流星（中高画质）"
   },
   {
@@ -2854,7 +2859,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 10,
+   "triggered": 16,
    "role": "冰封遗迹 降雪"
   },
   {
@@ -2868,7 +2873,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 4,
+   "triggered": 7,
    "role": "Boss3 二阶段 雷暴"
   },
   {
@@ -2882,7 +2887,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 18,
+   "triggered": 35,
    "role": "精英击杀 ELITE DOWN"
   },
   {
@@ -2896,7 +2901,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 51,
+   "triggered": 90,
    "role": "拾取金币"
   },
   {
@@ -2911,7 +2916,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 139,
+   "triggered": 291,
    "role": "连击 100/150/200… 里程碑"
   },
   {
@@ -2925,7 +2930,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 14,
+   "triggered": 23,
    "role": "胜利结算 彩带"
   },
   {
@@ -2939,7 +2944,7 @@
    "files": [
     "src/game/boss.js"
    ],
-   "triggered": 18,
+   "triggered": 30,
    "role": "Boss 登场倒数 FIGHT!"
   },
   {
@@ -2951,11 +2956,10 @@
    "preview": "pass",
    "wired": true,
    "files": [
-    "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 240,
-   "role": "Boss/精英重暴击数字（稀有）"
+   "triggered": 244,
+   "role": "结算页 本局最高一击"
   },
   {
    "id": "ui/damage-number",
@@ -2969,7 +2973,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 712,
+   "triggered": 888,
    "role": "英雄受伤数字"
   },
   {
@@ -2983,7 +2987,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 182,
+   "triggered": 322,
    "role": "敌人攻击预警 !"
   },
   {
@@ -2997,7 +3001,7 @@
    "files": [
     "src/game/combat.js"
    ],
-   "triggered": 39,
+   "triggered": 65,
    "role": "精英受重击 血条掉块"
   },
   {
@@ -3011,7 +3015,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 40,
+   "triggered": 51,
    "role": "英雄受重伤 HUD 心碎"
   },
   {
@@ -3026,7 +3030,7 @@
     "src/game/game.js",
     "src/main.js"
    ],
-   "triggered": 232,
+   "triggered": 349,
    "role": "升级 光柱"
   },
   {
@@ -3040,7 +3044,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 18,
+   "triggered": 30,
    "role": "STAGE CLEAR / VICTORY"
   },
   {
@@ -3054,7 +3058,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 21,
+   "triggered": 40,
    "role": "精英掉落宝箱"
   },
   {
@@ -3068,7 +3072,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 103,
+   "triggered": 172,
    "role": "金币"
   },
   {
@@ -3085,7 +3089,7 @@
     "src/game/skills.js",
     "src/main.js"
    ],
-   "triggered": 179,
+   "triggered": 298,
    "role": "拾取/选卡 光爆"
   },
   {
@@ -3099,7 +3103,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 13,
+   "triggered": 23,
    "role": "水晶碎片：Rush 槽 +20%"
   },
   {
@@ -3113,7 +3117,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 33,
+   "triggered": 55,
    "role": "宝石：大量经验"
   },
   {
@@ -3127,7 +3131,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 149,
+   "triggered": 244,
    "role": "心：回血"
   },
   {
@@ -3141,7 +3145,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 18,
+   "triggered": 30,
    "role": "Boss 钥匙：通关"
   },
   {
@@ -3155,7 +3159,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 36,
+   "triggered": 57,
    "role": "稀有掉落光柱"
   },
   {
@@ -3169,7 +3173,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 13,
+   "triggered": 23,
    "role": "药水：Rush 槽 +30%"
   },
   {
@@ -3183,7 +3187,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 18,
+   "triggered": 27,
    "role": "星星：无敌 + 攻速"
   },
   {
@@ -3197,7 +3201,7 @@
    "files": [
     "src/game/pickups.js"
    ],
-   "triggered": 2,
+   "triggered": 6,
    "role": "经验球"
   },
   {
@@ -3211,7 +3215,7 @@
    "files": [
     "src/main.js"
    ],
-   "triggered": 64,
+   "triggered": 78,
    "role": "重新开始 百叶窗"
   },
   {
@@ -3225,7 +3229,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "第 1→2 关 燃尽"
   },
   {
@@ -3239,7 +3243,7 @@
    "files": [
     "src/main.js"
    ],
-   "triggered": 32,
+   "triggered": 39,
    "role": "返回标题 关屏"
   },
   {
@@ -3253,7 +3257,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "第 2→3 关 菱形擦除"
   },
   {
@@ -3267,7 +3271,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 8,
+   "triggered": 13,
    "role": "第 3 关入场 故障擦除"
   },
   {
@@ -3281,7 +3285,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 32,
+   "triggered": 39,
    "role": "战败 光圈收拢"
   },
   {
@@ -3295,7 +3299,7 @@
    "files": [
     "src/main.js"
    ],
-   "triggered": 52,
+   "triggered": 72,
    "role": "标题画面 像素溶解浮现"
   },
   {
@@ -3309,7 +3313,7 @@
    "files": [
     "src/game/stages.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "第 2 关入场 碎玻璃"
   },
   {
@@ -3324,7 +3328,7 @@
     "src/game/stages.js",
     "src/main.js"
    ],
-   "triggered": 148,
+   "triggered": 189,
    "role": "开始游戏 一刀斩开标题"
   },
   {
@@ -3338,7 +3342,7 @@
    "files": [
     "src/game/game.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "最终胜利 星形光圈"
   },
   {
@@ -3353,7 +3357,7 @@
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": 41,
+   "triggered": 56,
    "role": "怪·熔炉蝙蝠"
   },
   {
@@ -3367,7 +3371,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 7,
+   "triggered": 13,
    "role": "怪·霜鸦（俯冲）"
   },
   {
@@ -3381,7 +3385,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 9,
+   "triggered": 15,
    "role": "怪·霓虹飞蛾"
   },
   {
@@ -3395,7 +3399,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 8,
+   "triggered": 13,
    "role": "怪·虚空之眼（激光）"
   },
   {
@@ -3409,7 +3413,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "怪·幽灵冰鱼群"
   },
   {
@@ -3424,7 +3428,7 @@
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "怪·火焰骷髅（俯冲/火球）"
   },
   {
@@ -3438,7 +3442,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "怪·熔岩蟾蜍"
   },
   {
@@ -3452,7 +3456,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 8,
+   "triggered": 13,
    "role": "怪·冰魂"
   },
   {
@@ -3466,7 +3470,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "怪·虚空水母（等离子弹）"
   },
   {
@@ -3481,7 +3485,7 @@
     "src/game/enemies.js",
     "src/main.js"
    ],
-   "triggered": 59,
+   "triggered": 84,
    "role": "怪·熔岩/冰霜/虚空史莱姆"
   },
   {
@@ -3495,7 +3499,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "怪·熔火蛇（突袭）"
   },
   {
@@ -3509,7 +3513,7 @@
    "files": [
     "src/game/enemies.js"
    ],
-   "triggered": 6,
+   "triggered": 10,
    "role": "怪·冰焰鬼火（冰枪）"
   }
  ]

@@ -13,13 +13,20 @@ import { poseAt, STAND, fxModule } from "../engine/pfx.js";
  * push: knockback px/s, lift: upward launch px/s, shake: screen shake px, weight: sound/feel weight 0..1.
  */
 export const ATTACKS = {
-  // the hero's auto chain
+  // the hero's own blows (both modes draw from these through the combo bags in hero.js)
   slash: { fx: "melee/sword-slash", from: -0.3, cancel: 0.22, rate: 1.55, box: [-4, -50, 54, 4], dmg: 1, stop: 0.05, push: 120, shake: 1, weight: 0.4, palette: "hero", sfx: "swing" },
   cross: { fx: "melee/double-slash", from: -0.18, cancel: 0.3, rate: 1.55, box: [-2, -50, 58, 4], dmg: 0.75, stop: 0.04, push: 90, shake: 1, weight: 0.45, palette: "hero", sfx: "swing" },
   cleave: { fx: "melee/heavy-cleave", from: -0.3, cancel: 0.62, rate: 1.45, box: [-8, -56, 70, 6], dmg: 2.4, stop: 0.11, push: 240, lift: 60, shake: 3, weight: 1, palette: "crit", sfx: "swing", heavy: true },
-  // clicks
   thrust: { fx: "melee/thrust", from: -0.12, cancel: 0.16, rate: 1.9, box: [-6, -40, 70, 2], dmg: 1.35, stop: 0.06, push: 170, shake: 1.5, weight: 0.6, palette: "heroAlt", sfx: "swing" },
   spin: { fx: "melee/spin-slash", from: -0.14, cancel: 0.3, rate: 1.7, box: [-56, -50, 56, 4], dmg: 1.2, stop: 0.07, push: 160, shake: 2, weight: 0.7, palette: "heroAlt", sfx: "swing", both: true },
+  // the hero's conjured arsenal: the rest of PixelFX's melee acts, each with its own weapon
+  claw: { fx: "melee/claw-swipe", from: -0.2, cancel: 0.2, rate: 1.6, box: [0, -44, 46, 4], dmg: 0.45, stop: 0.03, push: 70, shake: 0.8, weight: 0.4, palette: "heroAlt", sfx: "swing" },
+  flurry: { fx: "melee/dagger-flurry", from: -0.16, cancel: 0.46, rate: 1.7, box: [0, -44, 48, 4], dmg: 0.3, stop: 0.015, push: 35, shake: 0.5, weight: 0.3, palette: "hero", sfx: "swing" },
+  whip: { fx: "melee/whip-crack", from: -0.2, cancel: 0.3, rate: 1.6, box: [10, -34, 86, 0], dmg: 1.15, stop: 0.06, push: 150, shake: 1.5, weight: 0.6, palette: "heroAlt", sfx: "whoosh" },
+  sweep: { fx: "melee/spear-sweep", from: -0.24, cancel: 0.3, rate: 1.6, box: [-20, -24, 78, 4], dmg: 1.15, stop: 0.06, push: 160, shake: 1.5, weight: 0.6, palette: "hero", sfx: "swing" },
+  uppercut: { fx: "melee/uppercut", from: -0.2, cancel: 0.3, rate: 1.6, box: [0, -60, 46, 4], dmg: 1.15, stop: 0.07, push: 80, lift: 230, shake: 2, weight: 0.7, palette: "crit", sfx: "swing" },
+  hammer: { fx: "melee/hammer-smash", from: -0.36, cancel: 0.55, rate: 1.5, box: [0, -50, 76, 6], dmg: 2.6, stop: 0.12, push: 260, lift: 80, shake: 3.5, weight: 1, palette: "crit", sfx: "heavy", heavy: true },
+  reap: { fx: "melee/scythe-reap", from: -0.28, cancel: 0.5, rate: 1.5, box: [-14, -58, 76, 4], dmg: 2.2, stop: 0.1, push: 220, lift: 60, shake: 2.5, weight: 0.9, palette: "heroAlt", sfx: "whoosh" },
   // enemy attacks (played in the enemy's colors)
   eSlash: { fx: "melee/sword-slash", from: -0.55, cancel: 0.86, rate: 0.9, box: [0, -46, 46, 4], dmg: 1, stop: 0.06, push: 140, shake: 1.5, weight: 0.5, sfx: "swing" },
   eClaw: { fx: "melee/claw-swipe", from: -0.46, cancel: 0.5, rate: 0.95, box: [0, -44, 40, 4], dmg: 1, stop: 0.05, push: 120, shake: 1.5, weight: 0.5, sfx: "swing" },

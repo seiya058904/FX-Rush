@@ -7,7 +7,7 @@ import { RAMPS, THEME } from "../fx/palettes.js";
 import { FX } from "../fx/registry.gen.js";
 import { beginFrame, endFrame, setCamera, image, fxModule, preload, Rng, frame } from "../engine/pfx.js";
 import { W, H, M, FLOOR } from "../config.js";
-import { Hero } from "./hero.js";
+import { Hero, Bag } from "./hero.js";
 import { Enemy, TYPES } from "./enemies.js";
 import { ATTACKS, ActPlayer } from "./moves.js";
 import { damage, damageBox, damageRadius, kill } from "./combat.js";
@@ -39,11 +39,13 @@ export const MOVES = {
   "moves/rocket-launcher": { name: "ROCKET", hits: [["none"], ["at", 0, 86, 7, "fire"]], to: 1.8, rate: 1.2 },
   "moves/arrow-shot": { name: "PIERCING ARROW", hits: [["line", 0, 0, 5, "melee", true]], to: 1.2, rate: 1.15 },
 };
+// every ultimate can come up anywhere; each scene deals its own six first, then the rest, from a shuffle bag
 const MOVE_POOL = {
   ember: ["moves/sword-combo", "moves/fireball-throw", "moves/ground-pound", "moves/earth-stomp", "moves/meteor-call", "moves/dash-strike"],
   frost: ["moves/ice-lance-throw", "moves/arrow-shot", "moves/holy-smite", "moves/sword-combo", "moves/dash-strike", "moves/lightning-call"],
   void: ["moves/pistol-shots", "moves/rocket-launcher", "moves/lightning-call", "moves/dash-strike", "moves/meteor-call", "moves/holy-smite"],
 };
+const ALL_MOVES = Object.keys(MOVES);
 
 // fast early levels (the fight changes shape within seconds), then a steady climb
 const XP_EARLY = [0, 4, 7, 10, 14, 18, 23, 28];
@@ -200,7 +202,7 @@ export class Game {
     }
     for (const d of st.decor) ids.add(d.id);
     for (const w of st.weather) ids.add(w.id);
-    for (const m of MOVE_POOL[st.theme]) ids.add(m);
+    for (const m of ALL_MOVES) ids.add(m);
     if (this.scene?.skyFx) ids.add(this.scene.skyFx.id);
     return [...ids].filter((id) => FX[id]);
   }
@@ -313,12 +315,8 @@ export class Game {
   }
   damageNumber(dmg, x, y, crit, el, e) {
     // small pixel numbers, merged per enemy, so a flurry reads as one rising total instead of a pile of bursts.
-    // PixelFX's big crit starburst is kept for rare moments: a heavy crit on a boss or an elite.
-    if (crit && e && (e.boss || e.elite) && dmg >= this.hero.stats.atk * 4.5 && this.time - (this.lastCritFx ?? -9) > 4) {
-      this.lastCritFx = this.time;
-      const h = this.fx.play("ui/crit-number", { x, y: y - 8, center: true, text: `${dmg}!`, label: "CRIT", prio: 1, layer: "top", life: 0.8, speed: 1.6, maxSame: 1, light: 0.4, palette: RAMPS.crit });
-      if (h) return;
-    }
+    // (PixelFX's big crit starburst stays out of the fight: it presents the best hit on the results screen.)
+    if (dmg > (this.stats.bestHit ?? 0)) this.stats.bestHit = dmg;
     const kind = crit ? "crit" : "dmg";
     const m = e && this.floats.find((f) => f.src === e && f.t < 0.3 && (f.kind === "dmg" || f.kind === "crit"));
     if (m) {
@@ -377,12 +375,11 @@ export class Game {
   }
 
   // ------------------------------------------------------------------ the hero's blows
-  heroHit(a, hit, i, act, hot) {
+  heroHit(a, hit, i, act) {
     const h = this.hero, f = act.facing, ox = act.ox;
     const [x0, y0, x1, y1] = a.box;
     const bx0 = f > 0 ? ox + x0 : ox - x1, bx1 = f > 0 ? ox + x1 : ox - x0;
-    // clicking drives the tempo: a little more damage and RUSH, the same blow
-    const mult = a.dmg * (hot ? 1.2 : 1) * (h.stats.atkMul ?? 1);
+    const mult = a.dmg * (h.stats.atkMul ?? 1);
     const hit2 = damageBox(this, bx0, h.y + y0, bx1, h.y + y1, h.stats.atk * mult, {
       el: "melee", dir: f, push: a.push, lift: a.lift, stop: a.stop, shake: a.shake, weight: a.weight, heavy: a.heavy,
     });
@@ -396,7 +393,6 @@ export class Game {
       sfx("shield", { pan: this.pan(p.x) });
     }
     if (!hit2.length) return;
-    if (hot) this.rush(0.8);
     if (a.heavy) {
       this.fx.play("impacts/ground-slam", { x: ox + f * 46, y: 0, flip: f < 0, palette: RAMPS.hero, prio: 1, life: 1, light: 0.8, layer: "ground", speed: 1.4 });
       this.shake(3, 0.25);
@@ -659,11 +655,19 @@ export class Game {
     if (this.rushV < 100 || h.busy || h.dead || !h.onGround || this.cards) return;
     const near = this.enemies.filter((e) => !e.dead && e.spawning <= 0 && Math.abs(e.x - h.x) < 160).length;
     if (near < (this.boss ? 1 : 3)) return;
-    const pool = MOVE_POOL[this.stage.theme], id = pool[Math.floor(this.rng() * pool.length)];
+    // the bag: this scene's six first (shuffled), then the other six, then round again; no move twice in a row
+    if (!this.moveBag || this.moveBag.theme !== this.stage.theme) {
+      const home = MOVE_POOL[this.stage.theme], rng = () => this.rng();
+      this.moveBag = { theme: this.stage.theme, home: new Bag(home, rng), away: new Bag(ALL_MOVES.filter((m) => !home.includes(m)), rng), n: 0 };
+    }
+    const mb = this.moveBag;
+    const id = (mb.n % 12 < 6 ? mb.home : mb.away).next();
     const mod = fxModule(id);
     if (!mod) return;
+    mb.n++;
+    this.stats.moves = (this.stats.moves ?? []).concat(id);
     const cfg = MOVES[id], tgt = h.target;
-    if (tgt) h.facing = tgt.x >= h.x ? 1 : -1;
+    if (tgt && !h.manual) h.facing = tgt.x >= h.x ? 1 : -1;
     this.rushV = 0;
     this.stats.ultimates++;
     const targetX = mod.act?.targets?.[0]?.x ?? mod.act?.target?.x ?? 100;
@@ -693,7 +697,7 @@ export class Game {
       },
     });
     h.perform(player);
-    this.fx.play("impacts/impact-frame", { x: Math.round(h.x - this.camX), y: FLOOR - 24, screen: true, layer: "screen", prio: 0, life: 0.3, lines: 48 });
+    this.fx.play("impacts/impact-frame", { x: Math.round(h.x - this.camX), y: FLOOR - 24, screen: true, layer: "screen", prio: 0, life: 0.18, lines: 32 });
     this.slowMo(0.35, 0.25);
     this.banner = { title: "FX RUSH!", sub: cfg.name, t: 0, dur: 1.4, small: true };
     sfx("rush");
@@ -772,7 +776,7 @@ export class Game {
       // autumn leaves drift down over the defeat screen
       this.fx.play("weather/falling-leaves", { x: 160, y: 170, screen: true, layer: "front", prio: 0, life: 999, every: 2, light: 0.5 });
     }
-    this.result = { won, gameTime: Math.round(this.time), time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, stageTimes: this.stats.stageTimes, bossTimes: this.stats.bossTimes, ultimates: this.stats.ultimates, skills: { ...this.skills.lv } };
+    this.result = { won, gameTime: Math.round(this.time), time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, stageTimes: this.stats.stageTimes, bossTimes: this.stats.bossTimes, ultimates: this.stats.ultimates, bestHit: this.stats.bestHit ?? 0, skills: { ...this.skills.lv } };
     this.mode = "over";
   }
 

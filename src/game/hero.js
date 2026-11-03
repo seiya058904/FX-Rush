@@ -1,15 +1,17 @@
-// The hero: a PixelFX skeleton in ivory armour with a crimson scarf. He finds the nearest monster, walks in and
-// picks his own attacks from the situation (spin when surrounded, a thrust lunge for a target a step away, a
-// slash -> cross -> finisher chain otherwise). Clicking / tapping anywhere is the only attack input: it adds tempo
-// (faster cuts, earlier recovery cancels, faster RUSH), never a separate move. Arrows or A/D take over the walking;
-// he hands control back to the AI a moment after the keys are released. Every attack is a PixelFX act: its wind-up,
-// its hit frames, its freeze.
+// The hero: a PixelFX skeleton in ivory armour with a crimson scarf. Two modes (settings.mode):
+// - auto (default): he finds the nearest monster, walks in, reads telegraphs and cuts on his own; the player only
+//   watches and picks level-up cards.
+// - manual: A/D walk, Space jumps, a click attacks toward the clicked side; nothing is targeted or walked for him.
+// Either way his blows come from the same combo bags: opener -> link -> finisher, each drawn from a shuffle bag so
+// all twelve PixelFX melee acts (and their conjured weapons) take turns without repeating. Every attack is a
+// PixelFX act: its wind-up, its hit frames, its freeze.
 
 import { READY, fxModule, poseAt } from "../engine/pfx.js";
 import { ATTACKS, ActPlayer } from "./moves.js";
 import { drawRig, drawGhost, SKINS, jointsOf, addLight } from "./rig.js";
 import { input } from "../engine/input.js";
 import { sfx } from "../engine/audio.js";
+import { settings } from "../settings.js";
 import { RAMPS } from "../fx/palettes.js";
 import { frame, hex } from "../engine/pfx.js";
 
@@ -19,6 +21,39 @@ const IDLE = [
   [0.6, { ...GUARD, crouch: 4, fy: -20, by: -20 }],
   [1.2, { ...GUARD }],
 ];
+/** A shuffle bag: every item comes out once before any repeats, and never the same one twice in a row. */
+export class Bag {
+  constructor(items, rng) {
+    this.items = items;
+    this.rng = rng;
+    this.left = [];
+    this.last = null;
+  }
+  /** The next item; prefer: names to take first if any is still in the bag. */
+  next(prefer) {
+    if (!this.left.length) {
+      const L = this.items.slice();
+      for (let i = L.length - 1; i > 0; i--) {
+        const j = Math.floor(this.rng() * (i + 1));
+        [L[i], L[j]] = [L[j], L[i]];
+      }
+      if (L.length > 1 && L[0] === this.last) L.push(L.shift());
+      this.left = L;
+    }
+    let i = prefer ? this.left.findIndex((n) => prefer.includes(n)) : -1;
+    if (i < 0) i = 0;
+    return (this.last = this.left.splice(i, 1)[0]);
+  }
+}
+// combo roles: quick openers, links that move or launch, heavy finishers; lunges close a gap
+const COMBO = {
+  open: ["slash", "claw", "flurry", "thrust"],
+  link: ["cross", "whip", "sweep", "uppercut"],
+  finish: ["cleave", "hammer", "reap", "spin"],
+  lunge: ["thrust", "whip", "sweep"],
+};
+const SLOW = new Set(["cleave", "hammer", "reap", "spin", "flurry"]);
+
 const RUNP = { ...READY, weapon: "sword", fx: 13, fy: -23, sa: -1.9, bx: 4, by: -21, lean: 5 };
 const RUN = [
   [0, { ...RUNP, crouch: 3, ffx: 10, ffy: -3, fbx: -9, fby: -7, bx: -2 }],
@@ -55,11 +90,12 @@ export class Hero {
     this.chain = 0;
     this.chainT = 0;
     this.atkCd = 0;
-    this.tempo = 0; // seconds of click-driven tempo left
-    this.clickCd = 0;
+    this.queued = 0; // manual mode: a click waiting for the current blow (-1 left, 1 right)
+    this.queuedT = 0;
     this.spinCd = 0;
-    this.thrustCd = 0;
-    this.manualT = 0;
+    this.lungeCd = 0;
+    this.bags = null;
+    this.moveCount = {}; // blows thrown per attack name (for the tests)
     this.animT = 0;
     this.landT = 0;
     this.airAttacked = false;
@@ -80,17 +116,15 @@ export class Hero {
     return !!this.act || !!this.moveOverride;
   }
 
-  /** True while clicks are driving the tempo. */
-  get hot() {
-    return this.tempo > 0;
+  get manual() {
+    return settings.mode === "manual";
   }
 
-  /** A click / tap: more tempo. Rate-limited so autoclickers gain little. */
-  click() {
-    if (this.dead || this.clickCd > 0) return;
-    this.clickCd = 0.1;
-    this.tempo = Math.min(1.2, this.tempo + 0.4);
-    this.game.rush(0.5);
+  /** Manual mode: a click attacks toward the clicked side (held briefly if a blow is still landing). */
+  click(worldX) {
+    if (this.dead || !this.manual) return;
+    this.queued = worldX < this.x ? -1 : 1;
+    this.queuedT = 0.35;
   }
 
   update(dt, enemies) {
@@ -100,12 +134,12 @@ export class Hero {
     this.invuln = Math.max(0, this.invuln - dt);
     this.flash = Math.max(0, this.flash - dt * 6);
     this.hurtT = Math.max(0, this.hurtT - dt);
-    this.clickCd = Math.max(0, this.clickCd - dt);
     this.atkCd = Math.max(0, this.atkCd - dt);
     this.chainT = Math.max(0, this.chainT - dt);
-    this.tempo = Math.max(0, this.tempo - dt);
     this.spinCd = Math.max(0, this.spinCd - dt);
-    this.thrustCd = Math.max(0, this.thrustCd - dt);
+    this.lungeCd = Math.max(0, this.lungeCd - dt);
+    this.queuedT = Math.max(0, this.queuedT - dt);
+    if (this.queuedT <= 0) this.queued = 0;
     this.landT = Math.max(0, this.landT - dt);
     this.glow = Math.max(0, this.glow - dt * 3);
     if (this.chainT <= 0) this.chain = 0;
@@ -129,31 +163,32 @@ export class Hero {
       return;
     }
 
-    // ---- manual control
-    const L = input.held("left"), R = input.held("right");
-    let moveDir = 0;
-    if (L !== R) {
-      moveDir = R ? 1 : -1;
-      this.manualT = 0.5;
-    } else this.manualT = Math.max(0, this.manualT - dt);
-    const free = !this.act || this.act.t < 0 || this.act.t >= ATTACKS[this.actName].cancel;
-    if (input.take("jump") && this.onGround && free) {
-      this.act = null;
-      this.actName = null;
-      this.vy = -285;
-      this.onGround = false;
-      this.airAttacked = false;
-      sfx("jump");
-      g.fx.play("impacts/heavy-landing", { x: this.x, y: 0, prio: 2, life: 0.45, speed: 1.6, light: 0.5, layer: "back" });
-    }
+    const manual = this.manual;
 
-    // ---- choose a target
+    // ---- the player's keys (manual mode only; in auto mode the hero is left to himself)
+    let moveDir = 0;
+    if (manual) {
+      const L = input.held("left"), R = input.held("right");
+      if (L !== R) moveDir = R ? 1 : -1;
+      const free = !this.act || this.act.t < 0 || this.act.t >= ATTACKS[this.actName].cancel;
+      if (input.take("jump") && this.onGround && free) {
+        this.act = null;
+        this.actName = null;
+        this.vy = -285;
+        this.onGround = false;
+        this.airAttacked = false;
+        sfx("jump");
+        g.fx.play("impacts/heavy-landing", { x: this.x, y: 0, prio: 2, life: 0.45, speed: 1.6, light: 0.5, layer: "back" });
+      }
+    } else input.clear("jump");
+
+    // ---- the target: skills and ultimates aim at it in both modes; only auto mode walks to it and cuts it
     const tgt = this.pickTarget(enemies);
     this.target = tgt;
 
-    // ---- the AI reads telegraphs: step out of marked zones, jump shock waves
+    // ---- auto: read telegraphs, step out of marked zones, jump shock waves
     let evade = 0;
-    if (this.manualT <= 0 && g.dangers.length) {
+    if (!manual && g.dangers.length) {
       for (const d of g.dangers) {
         const tt = d.at - g.time;
         if (tt > 0.55 || g.time > d.until) continue;
@@ -185,42 +220,49 @@ export class Hero {
       this.actName = null;
     }
 
-    // ---- attacks in progress
+    // ---- attacks in progress: the next blow may cut the recovery short
+    const wantNext = () => (manual ? this.queued !== 0 : tgt && this.atkCd <= 0 && (this.inReach(tgt) || this.inLunge(tgt)));
     if (this.act) {
       this.act.update(dt);
       this.x = g.clampX(this.act.rootX);
       if (this.onGround) this.y = Math.min(0, this.act.rootY);
       const a = ATTACKS[this.actName];
-      const canCancel = this.act.t >= a.cancel;
-      const next = tgt && this.atkCd <= 0 && this.act.t >= a.cancel + (this.hot ? 0 : 0.1) && (this.inReach(tgt) || this.inThrust(tgt));
-      if (this.act.done || (canCancel && next)) {
+      if (this.act.done || (this.act.t >= a.cancel && wantNext())) {
         this.act = null;
         this.actName = null;
       }
     }
 
-    if (!this.act && !evade && tgt && this.atkCd <= 0 && this.manualT <= 0.35 && (this.inReach(tgt) || this.inThrust(tgt))) {
-      this.facing = tgt.x >= this.x ? 1 : -1;
-      this.startAuto(tgt, enemies);
+    // ---- start the next blow
+    if (!this.act) {
+      if (manual) {
+        if (this.queued && (this.onGround || !this.airAttacked)) {
+          this.facing = this.queued;
+          this.queued = 0;
+          this.queuedT = 0;
+          this.startCombo(null, enemies);
+        }
+      } else if (!evade && tgt && this.atkCd <= 0 && (this.inReach(tgt) || this.inLunge(tgt))) {
+        this.facing = tgt.x >= this.x ? 1 : -1;
+        this.startCombo(tgt, enemies);
+      }
     }
 
     // ---- walking
     if (!this.act) {
       let want = 0;
-      if (moveDir) want = moveDir * this.stats.speed;
+      if (manual) want = moveDir * this.stats.speed;
       else if (evade) {
         want = evade * this.stats.speed * 1.25;
         this.facing = evade;
-      } else if (this.manualT <= 0) {
-        if (tgt) {
-          const dx = tgt.x - this.x, standoff = 26 + (tgt.w ?? 8);
-          if (Math.abs(dx) > standoff + 6) want = Math.sign(dx) * this.stats.speed;
-          else if (Math.abs(dx) < standoff - 14 && this.onGround) want = -Math.sign(dx) * this.stats.speed * 0.5;
-          if (want) this.facing = Math.sign(dx);
-        } else if (g.advance) {
-          want = this.stats.speed * 0.8;
-          this.facing = 1;
-        }
+      } else if (tgt) {
+        const dx = tgt.x - this.x, standoff = 26 + (tgt.w ?? 8);
+        if (Math.abs(dx) > standoff + 6) want = Math.sign(dx) * this.stats.speed;
+        else if (Math.abs(dx) < standoff - 14 && this.onGround) want = -Math.sign(dx) * this.stats.speed * 0.5;
+        if (want) this.facing = Math.sign(dx);
+      } else if (g.advance) {
+        want = this.stats.speed * 0.8;
+        this.facing = 1;
       }
       if (moveDir) this.facing = moveDir;
       const accel = this.onGround ? 900 : 500;
@@ -275,15 +317,20 @@ export class Hero {
     return dx < 40 && top < 10 && e.y > -70 + this.y;
   }
 
-  /** A target a step beyond sword reach, in front and on the ground: worth a thrust lunge. */
-  inThrust(e) {
-    if (!this.onGround || this.thrustCd > 0) return false;
+  /** A target a step beyond sword reach, on the ground ahead: worth a lunge. */
+  inLunge(e) {
+    if (!this.onGround || this.lungeCd > 0) return false;
     const dx = Math.abs(e.x - this.x) - (e.w ?? 8), top = e.y - (e.h ?? 20);
     return dx >= 30 && dx < 62 && top < 10 && e.y > -40;
   }
 
-  /** The AI's choice of attack: read the crowd, then cut. */
-  startAuto(tgt, enemies) {
+  /**
+   * The next blow of the combo: opener -> link -> finisher, each from its own shuffle bag so every act takes its
+   * turn. tgt (auto mode) lets the situation steer the pick: a lunge to close a gap, a spin when surrounded, an
+   * uppercut for something in the air, a heavy finisher for elites and bosses.
+   */
+  startCombo(tgt, enemies) {
+    if (!this.bags) this.bags = Object.fromEntries(Object.entries(COMBO).map(([k, v]) => [k, new Bag(v, () => this.game.rng())]));
     const f = this.facing;
     let front = 0, back = 0;
     for (const e of enemies) {
@@ -293,29 +340,34 @@ export class Hero {
       if (Math.sign(dx) === f || dx === 0) front++;
       else back++;
     }
-    const tough = tgt.elite || tgt.boss || front >= 3;
     let name;
-    if (front && back && this.spinCd <= 0) {
-      name = "spin";
-      this.spinCd = 1.4;
-    } else if (!this.inReach(tgt)) {
-      name = "thrust";
-      this.thrustCd = 0.9;
-    } else {
-      // slash -> cross -> finisher: a cleave for anything that can take it, a thrust that clears small fry
-      name = ["slash", "cross", tough ? "cleave" : "thrust"][this.chain % 3];
+    if (!this.onGround) {
+      // in the air: a quick cut on the way down
+      name = this.chain % 2 ? "cross" : "slash";
       this.chain = (this.chain + 1) % 3;
-      this.chainT = 1.1;
+    } else if (front && back && this.spinCd <= 0) {
+      name = "spin";
+      this.spinCd = 1.6;
+    } else if (tgt && !this.inReach(tgt)) {
+      name = this.bags.lunge.next();
+      this.lungeCd = 0.9;
+    } else {
+      const step = ["open", "link", "finish"][this.chain % 3];
+      const high = tgt && tgt.y - (tgt.h ?? 20) < -34;
+      const tough = tgt && (tgt.elite || tgt.boss || front >= 3);
+      const prefer = step === "link" && high ? ["uppercut"] : step === "finish" && tough ? ["hammer", "cleave"] : null;
+      name = this.bags[step].next(prefer);
+      this.chain = (this.chain + 1) % 3;
     }
+    this.chainT = 1.1;
     if (!this.begin(name)) return;
-    const s = this.stats.atkSpeed * (this.hot ? 1.5 : 1);
-    this.atkCd = (name === "cleave" || name === "spin" ? 0.32 : 0.12) / s;
+    this.moveCount[name] = (this.moveCount[name] ?? 0) + 1;
+    this.atkCd = (SLOW.has(name) ? 0.3 : 0.1) / this.stats.atkSpeed;
   }
   begin(name) {
     const a = ATTACKS[name], mod = fxModule(a.fx);
     if (!mod) return false;
-    const hot = this.hot;
-    const g = this.game, rate = a.rate * this.stats.atkSpeed * (hot ? 1.25 : 1);
+    const g = this.game, rate = a.rate * this.stats.atkSpeed;
     this.actName = name;
     this.act = new ActPlayer(mod, {
       id: a.fx, rate, from: a.from, x: this.x, y: 0, facing: this.facing, director: g.fx,
@@ -324,10 +376,10 @@ export class Hero {
         sfx(a.sfx, { w: a.weight, pan: g.pan(this.x) });
         this.glow = 1;
       },
-      onHit: (hit, i, act) => g.heroHit(a, hit, i, act, hot),
+      onHit: (hit, i, act) => g.heroHit(a, hit, i, act),
     });
-    // a thrust lunges into the gap it was chosen to close
-    if (name === "thrust" && this.onGround) this.vx = this.facing * 90;
+    // a lunge closes the gap it was chosen for
+    if (COMBO.lunge.includes(name) && this.onGround) this.vx = this.facing * 90;
     if (!this.onGround) this.airAttacked = true;
     return true;
   }

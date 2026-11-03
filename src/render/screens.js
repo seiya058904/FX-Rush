@@ -51,12 +51,14 @@ export function drawTitle(ctx, t, loading) {
   ctx.fillRect(0, 153, W, 27);
   ctx.fillStyle = "rgba(200,170,255,0.25)";
   ctx.fillRect(0, 153, W, 1);
-  drawText(ctx, "自动战斗 · 点击任意处加速连击 · A/D 移动 · 空格 跳跃", 160, 156, { color: "#b8acd0", align: "center", shadow: INK });
-  drawText(ctx, "Esc 暂停/设置 · M 静音", 160, 167, { color: "#8a7ea8", align: "center", shadow: INK });
+  const manual = settings.mode === "manual";
+  drawText(ctx, manual ? "手动模式：A/D 移动 · 空格 跳跃 · 点击 攻击" : "托管模式：英雄自动战斗 · 你只管选强化", 160, 156, { color: manual ? "#ffd27a" : "#b8acd0", align: "center", shadow: INK });
+  drawText(ctx, "Tab/点此 切换模式 · Esc 暂停 · M 静音", 160, 167, { color: "#8a7ea8", align: "center", shadow: INK });
 }
 
 export const PAUSE_ITEMS = [
   { id: "resume", label: () => "继续游戏" },
+  { id: "mode", label: () => `模式：${settings.mode === "manual" ? "手动" : "托管"}` },
   { id: "restart", label: () => "重新开始" },
   { id: "shake", label: () => `震屏：${settings.shake >= 1 ? "强" : settings.shake > 0 ? "弱" : "关"}` },
   { id: "flashes", label: () => `闪光：${settings.flashes ? "开" : "关"}` },
@@ -85,6 +87,7 @@ export function drawPause(ctx, sel, fps) {
 
 export function drawResults(ctx, g, t, sel) {
   const r = g.result;
+  if (t < 0) return; // the best-hit starburst plays first
   const open = Math.min(1, t / 0.4);
   ctx.fillStyle = `rgba(5,3,12,${0.55 * open})`;
   ctx.fillRect(0, 0, W, H);

@@ -6,8 +6,9 @@
 // Sessions:
 //   afk      a whole run with nobody touching anything (real damage): must reach the end, no page errors
 //   builds   god-mode runs with forced builds and seeds, to drive every skill level and branch on screen
-//   manual   clicks (tempo), keyboard movement and jumps, pause/resume, focus loss, window resizes, restart flows
-//   mobile   a phone viewport (touch): taps push the tempo, swipe jumps, layout fits
+//   manual   auto mode ignores clicks; Tab switches to manual: idle hero stays put, clicks attack toward the clicked
+//            side, keyboard movement and jumps; pause/resume, focus loss, window resizes, restart flows
+//   mobile   a phone viewport (touch): tap to start, the hero fights by himself, layout fits
 // Every session records which PixelFX ids actually reached the screen; the union goes to docs/fx-runtime.json
 // (the "triggered" column of the audit). Representative screenshots go to docs/screenshots/.
 
@@ -38,21 +39,27 @@ async function session(name, url, viewport, fn, opts = {}) {
   const t0 = Date.now();
   await page.goto(url, { waitUntil: "load" });
   const res = { name, url, errors, ok: true, notes: [] };
+  // a hung browser call must fail its own session, not stall the whole suite
+  const limit = (opts.limit ?? 600) * 1000;
   try {
-    await fn(page, res);
+    await within(fn(page, res), limit, `session timed out after ${limit / 1000}s`);
   } catch (e) {
     res.ok = false;
     res.notes.push("exception: " + String(e.message).split("\n")[0]);
   }
-  const u = await page.evaluate(() => window.__fxrush?.usedAll?.() ?? {}).catch(() => ({}));
+  const u = await within(page.evaluate(() => window.__fxrush?.usedAll?.() ?? {}), 15000, "usedAll timed out").catch(() => ({}));
   merge(u);
   res.distinctFx = Object.keys(u).length;
   res.seconds = Math.round((Date.now() - t0) / 1000);
   if (errors.length) res.ok = false;
   report.sessions.push(res);
   console.log(`${res.ok ? "PASS" : "FAIL"} ${name} (${res.seconds}s, ${res.distinctFx} fx)`, res.notes.join(" | "), errors.slice(0, 3).join(" / "));
-  await ctx.close();
+  await within(ctx.close(), 15000, "close timed out").catch(() => {});
   return res;
+}
+function within(promise, ms, message) {
+  let timer;
+  return Promise.race([promise, new Promise((_, reject) => (timer = setTimeout(() => reject(new Error(message)), ms)))]).finally(() => clearTimeout(timer));
 }
 const state = (page) =>
   page.evaluate(() => {
@@ -85,6 +92,13 @@ if (only.includes("afk"))
     res.minQuality = Math.min(...samples.map((s) => s.q));
     res.notes.push(`result ${JSON.stringify(last.result && { won: last.result.won, stage: last.result.stage, time: Math.round(last.result.time), kills: last.result.kills, level: last.result.level })}`);
     if (last.state !== "results") (res.ok = false), res.notes.push("did not reach the results screen");
+    // variety: the combo bags should have dealt (nearly) every melee act, and no ultimate twice in a row
+    const v = await page.evaluate(() => { const g = window.__fxrush.game; return { blows: g.hero.moveCount, ults: g.stats.moves ?? [], best: g.result?.bestHit ?? 0 }; });
+    const kinds = Object.keys(v.blows).length, repeats = v.ults.filter((m, i) => i && m === v.ults[i - 1]).length;
+    res.notes.push(`${kinds} melee acts used, ${new Set(v.ults).size} distinct ultimates in ${v.ults.length}, ${repeats} back-to-back repeats, best hit ${v.best}`);
+    if (kinds < 10) (res.ok = false), res.notes.push("too few distinct melee acts");
+    if (repeats) (res.ok = false), res.notes.push("an ultimate repeated back to back");
+    await page.waitForTimeout(1800);
     await shot(page, "results.png");
   });
 
@@ -162,16 +176,11 @@ if (only.includes("manual"))
     let s = await state(page);
     if (s.state !== "play" || !(s.enemies > 0)) (res.ok = false), res.notes.push("fight did not start within 3 s");
     res.notes.push(`3s after start: ${s.enemies} enemies, ${s.kills} kills`);
-    // rapid clicks anywhere: they only push the tempo, the AI keeps choosing the attacks
     const k0 = s.kills;
-    let tempo = 0;
-    for (let i = 0; i < 24; i++) {
-      await page.mouse.click(cx, cy);
-      await page.waitForTimeout(110);
-      tempo = Math.max(tempo, await page.evaluate(() => window.__fxrush.game.hero.tempo));
-    }
-    res.notes.push(`peak tempo while clicking ${tempo.toFixed(2)} s`);
-    if (!(tempo > 0.3)) (res.ok = false), res.notes.push("clicks did not raise the tempo");
+    // auto mode (the default): clicks do nothing to the hero
+    for (let i = 0; i < 6; i++) await page.mouse.click(cx, cy);
+    const queued = await page.evaluate(() => window.__fxrush.game.hero.queued);
+    if (queued) (res.ok = false), res.notes.push("a click reached the hero in auto mode");
     await shot(page, "fight-clicks.png");
     // walk left and right, jump (first close a level-up card screen if one is up: it pauses the world)
     const noCards = async () => {
@@ -183,6 +192,32 @@ if (only.includes("manual"))
       // no knockback from hits and no slow motion while they are measured
       await page.evaluate(() => { const g = window.__fxrush.game; g.pendingLevels = 0; g.xp = -1e9; g.rushV = 0; g.hero.god = true; g.slow = null; });
     };
+    // Tab: manual mode
+    await page.keyboard.press("Tab");
+    await page.waitForFunction(() => window.__fxrush.game.hero.manual, undefined, { timeout: 2000 }).catch(() => {});
+    const mode = await page.evaluate(() => JSON.parse(localStorage.getItem("fxrush.settings") ?? "{}").mode);
+    if (mode !== "manual") (res.ok = false), res.notes.push(`Tab did not switch to manual (mode ${mode})`);
+    await noCards();
+    // left alone, the hero neither walks nor cuts
+    const idle0 = await page.evaluate(() => { const h = window.__fxrush.game.hero; return { x: h.x, n: Object.values(h.moveCount).reduce((a, b) => a + b, 0) }; });
+    await page.waitForTimeout(1200);
+    const idle1 = await page.evaluate(() => { const h = window.__fxrush.game.hero; return { x: h.x, n: Object.values(h.moveCount).reduce((a, b) => a + b, 0) }; });
+    res.notes.push(`manual idle: moved ${Math.round(idle1.x - idle0.x)}px, ${idle1.n - idle0.n} blows`);
+    if (Math.abs(idle1.x - idle0.x) > 4 || idle1.n !== idle0.n) (res.ok = false), res.notes.push("the hero acted on his own in manual mode");
+    // a click attacks toward the clicked side
+    const sideClick = async (dx) => {
+      const hx = await page.evaluate(() => { const g = window.__fxrush.game; return g.hero.x - g.camX; });
+      const [px, py] = await canvasPoint(Math.max(4, Math.min(316, hx + dx)), 110);
+      const n0 = await page.evaluate(() => Object.values(window.__fxrush.game.hero.moveCount).reduce((a, b) => a + b, 0));
+      await page.mouse.click(px, py);
+      await page.waitForTimeout(250);
+      return page.evaluate((n0) => { const h = window.__fxrush.game.hero; return { blows: Object.values(h.moveCount).reduce((a, b) => a + b, 0) - n0, facing: h.facing }; }, n0);
+    };
+    const right = await sideClick(70);
+    await page.waitForTimeout(500);
+    const left = await sideClick(-70);
+    res.notes.push(`click right: ${right.blows} blow facing ${right.facing}; click left: ${left.blows} blow facing ${left.facing}`);
+    if (!(right.blows >= 1 && right.facing === 1 && left.blows >= 1 && left.facing === -1)) (res.ok = false), res.notes.push("manual clicks did not attack toward the clicked side");
     await noCards();
     const x0 = await page.evaluate(() => window.__fxrush.game.hero.x);
     await page.keyboard.down("KeyD");
@@ -202,10 +237,11 @@ if (only.includes("manual"))
     res.notes.push(`move D ${Math.round(x1 - x0)}px, Left ${Math.round(x2 - x1b)}px, jump y ${Math.round(air)}`);
     if (!(x1 - x0 > 20 && x2 - x1b < -20 && air < -10)) (res.ok = false), res.notes.push("movement/jump did not respond");
     await page.evaluate(() => { const g = window.__fxrush.game; g.hero.god = false; g.xp = 0; });
-    // the auto AI takes back over
+    // Tab again: back to auto, and the hero takes over
+    await page.keyboard.press("Tab");
     await page.waitForTimeout(3000);
     s = await state(page);
-    if (s.kills <= k0) (res.ok = false), res.notes.push("no kills after handing back to the AI");
+    if (s.kills <= k0) (res.ok = false), res.notes.push("no kills after handing back to auto mode");
     // pause with Esc; nothing moves while paused; resume
     await page.keyboard.press("Escape");
     const p0 = await page.evaluate(() => window.__fxrush.game.stageT);
@@ -264,10 +300,7 @@ if (only.includes("mobile"))
     };
     await tap(160, 100);
     await page.waitForTimeout(2500);
-    for (let i = 0; i < 12; i++) {
-      await tap(280, 140);
-      await page.waitForTimeout(150);
-    }
+    await page.waitForTimeout(1800);
     const s = await state(page);
     await shot(page, "mobile-landscape.png");
     res.notes.push(`touch play: ${s.state}, kills ${s.kills}`);

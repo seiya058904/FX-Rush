@@ -139,12 +139,7 @@ export function kill(g, e, { el = "melee", dir = 1, crit = false, overkill = 0 }
     e.deathLen = 0.2;
     // a quick pop behind the living: the crowd and the hero stay readable through a chain of kills
     const poof = (id ?? "spawn/poof") === "spawn/poof";
-    g.fx.play(id ?? "spawn/poof", { x: cx, y: cy, center: true, palette: poof ? SMOKE_POP : pal, prio: 2, life: poof ? 0.5 : 1.1, speed: poof ? 1.9 : 1.4, light: poof ? 0.3 : 0.6, layer: "back" });
-  }
-  // a big overkill crit gets a POW!, but only now and then
-  if (crit && overkill > 1 && g.time - (g.lastPow ?? -9) > 2.5) {
-    g.lastPow = g.time;
-    g.fx.play("explosions/cartoon-pow", { x: cx, y: cy, center: true, prio: 2, life: 0.7, speed: 1.4, palette: RAMPS.crit, text: g.rng() < 0.5 ? "POW!" : "BAM!" });
+    g.fx.play(id ?? "spawn/poof", { x: cx, y: cy, center: true, palette: poof ? SMOKE_POP : pal, prio: 2, life: poof ? 0.4 : 1.1, speed: poof ? 2 : 1.4, light: poof ? 0.3 : 0.6, layer: "back" });
   }
   sfx("kill", { pan: g.pan(cx), pitch: 0.8 + g.rng() * 0.5 });
   g.onKill(e, el);

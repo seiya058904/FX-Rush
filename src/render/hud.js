@@ -166,7 +166,7 @@ export function drawBanner(ctx, g) {
 export function drawFlash(ctx, g) {
   const f = g.screenFlash;
   if (!f) return;
-  ctx.globalAlpha = Math.min(0.55, (f.t / f.dur) * 0.55);
+  ctx.globalAlpha = Math.min(0.3, (f.t / f.dur) * 0.3);
   ctx.fillStyle = f.color;
   ctx.fillRect(0, 0, W, H);
   ctx.globalAlpha = 1;

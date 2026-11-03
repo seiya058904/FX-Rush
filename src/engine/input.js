@@ -11,6 +11,7 @@ const KEYS = {
   Enter: "confirm", NumpadEnter: "confirm",
   Escape: "pause", KeyP: "pause",
   KeyM: "mute",
+  Tab: "mode",
   Digit1: "pick1", Digit2: "pick2", Digit3: "pick3", Numpad1: "pick1", Numpad2: "pick2", Numpad3: "pick3",
   F3: "debug",
 };
@@ -33,7 +34,7 @@ let usedTouch = false;
 window.addEventListener("keydown", (e) => {
   const a = KEYS[e.code];
   if (!a) return;
-  if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F3"].includes(e.code)) e.preventDefault();
+  if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F3", "Tab"].includes(e.code)) e.preventDefault();
   if (!e.repeat) press(a);
   held.add(a);
   lastInput = performance.now();

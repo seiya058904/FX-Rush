@@ -34,7 +34,8 @@ let showFps = settings.showFps;
 
 // ---- what the first seconds need: the hero's blows, the first scene, hit feedback, UI
 const CORE = [
-  "melee/sword-slash", "melee/double-slash", "melee/heavy-cleave", "melee/thrust", "melee/spin-slash",
+  "melee/sword-slash", "melee/double-slash", "melee/heavy-cleave", "melee/thrust", "melee/spin-slash", "melee/claw-swipe",
+  "melee/dagger-flurry", "melee/whip-crack", "melee/spear-sweep", "melee/uppercut", "melee/hammer-smash",
   "impacts/hit-spark", "impacts/crit-hit", "impacts/blunt-hit", "impacts/ground-slam", "impacts/heavy-landing", "impacts/hit-flash", "impacts/impact-frame",
   "critters/slime", "critters/bat", "critters/flying-skull", "spawn/poof", "spawn/dissolve-burn", "spawn/respawn-beam", "spawn/spawn-portal",
   "ui/damage-number", "ui/crit-number", "ui/level-up", "ui/combo-counter", "pickups/collect-burst",
@@ -127,7 +128,12 @@ function handleInput() {
   if (input.take("debug")) showFps = !showFps;
   const clicks = input.takeClicks();
   if (state === "title") {
-    const any = clicks.length || input.take("confirm") || input.take("jump");
+    // Tab, or a click on the bottom strip, switches auto / manual; anything else starts the run
+    let toggle = input.take("mode");
+    const starts = clicks.filter((c) => c.y < 153);
+    if (clicks.length > starts.length) toggle = true;
+    if (toggle) toggleMode();
+    const any = starts.length || input.take("confirm") || input.take("jump");
     if (any && loadStats().loaded >= CORE.length) {
       initAudio();
       sfx("select");
@@ -160,12 +166,12 @@ function handleInput() {
       if ((cs.auto || TEST.auto) && cs.chosen < 0 && cs.t > (TEST.auto ? 0.6 : 6)) g.chooseCard(bestCard(g));
       return;
     }
-    let attack = false;
+    if (input.take("mode")) toggleMode();
+    // clicks attack only in manual mode, toward the clicked side; in auto mode the hero needs nothing from you
     for (const c of clicks) {
       if (c.x > W - 22 && c.y < 46) return pause();
-      attack = true;
+      game.hero.click(game.camX + c.x);
     }
-    if (attack) game.hero.click();
     return;
   }
   if (state === "pause") {
@@ -244,6 +250,12 @@ function toTitle() {
   titleAmbience();
   playMusic("title");
 }
+function toggleMode(quiet) {
+  settings.mode = settings.mode === "manual" ? "auto" : "manual";
+  saveSettings();
+  if (!quiet) sfx("card");
+  if (game && state === "play") game.banner = { title: settings.mode === "manual" ? "手动模式" : "托管模式", sub: settings.mode === "manual" ? "A/D 移动 · 空格 跳跃 · 点击 攻击" : "英雄自动战斗，你只管选强化", t: 0, dur: 1.6, small: true };
+}
 function pauseAction(id) {
   sfx("card");
   switch (id) {
@@ -253,6 +265,9 @@ function pauseAction(id) {
       return outroThen("transitions/blinds", startRun);
     case "title":
       return outroThen("transitions/crt-off", toTitle);
+    case "mode":
+      toggleMode(true);
+      break;
     case "shake":
       settings.shake = settings.shake >= 1 ? 0.5 : settings.shake > 0 ? 0 : 1;
       break;
@@ -350,8 +365,11 @@ function step(now) {
       if (n >= 4 * TEST.speed) acc = 0;
       if (game.mode === "over" && state === "play") {
         state = "results";
-        resultsT = 0;
         resultsSel = 0;
+        // the run's best hit gets PixelFX's crit starburst, once, before the stats slide in
+        const best = game.result?.bestHit ?? 0;
+        resultsT = best > 0 ? -1.3 : 0;
+        if (best > 0) game.fx.play("ui/crit-number", { x: 160, y: 84, screen: true, center: true, text: `${best}!`, label: "BEST", layer: "screen", prio: 0, life: 1.5, light: 0.6 });
       }
     } else if (state === "results") {
       resultsT += rdt;
