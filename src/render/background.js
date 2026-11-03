@@ -177,7 +177,7 @@ function emberScene() {
   S.floorGlow = { mask: glowMask, cool: c("#7a1e10"), hot: c("#ffb040"), light: c("#ff6a1a"), speed: 1.4 };
   S.ambient = { color: c("#ff6a1a"), rise: true, n: 26, kind: "ember" };
   S.skyFx = null;
-  S.lightK = 1;
+  S.lightK = 0.8;
   return S;
 }
 
@@ -257,7 +257,7 @@ function frostScene() {
   S.floorGlow = { mask: glowMask, cool: c("#2a405e"), hot: c("#e8f8ff"), light: c("#6cc4ec"), speed: 3, twinkle: true };
   S.ambient = { color: c("#cfe8ff"), rise: false, n: 0, kind: "none" };
   S.skyFx = { id: "weather/aurora", opts: { palette: ["#04060e", "#0a2a2a", "#0e5a4a", "#22a070", "#5ae0a0", "#b8ffd8", "#ffffff"], upper: ["#1a0a3a", "#4a1a7a", "#8a3ab0"] }, light: 0.8 };
-  S.lightK = 1;
+  S.lightK = 0.8;
   return S;
 }
 
@@ -334,7 +334,7 @@ function voidScene() {
   S.floorGlow = { mask: glowMask, cool: c("#123040"), hot: c("#3af0ff"), light: c("#3af0ff"), speed: 2.2, wave: true };
   S.ambient = { color: c("#ff6ad8"), rise: true, n: 18, kind: "mote" };
   S.skyFx = { id: "shadow/eclipse", x: 250, y: 64, opts: { palette: ["#05020a", "#1a0628", "#4a0e5a", "#9a1a9a", "#ff3df0", "#ffb0f0", "#ffffff"], pearl: ["#ffd0f0", "#ffffff"] }, light: 0.8 };
-  S.lightK = 1;
+  S.lightK = 0.8;
   return S;
 }
 

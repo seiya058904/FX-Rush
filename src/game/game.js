@@ -311,19 +311,28 @@ export class Game {
   floatText(text, x, y, kind = "info") {
     this.floats.push({ text, x, y, t: 0, kind });
   }
-  damageNumber(dmg, x, y, crit, el) {
-    // PixelFX's damage and crit numbers when the budget allows; a light-weight number otherwise
-    const pal = crit ? RAMPS.crit : el === "melee" ? ["#3a2a20", "#8a6a4a", "#d8c8a8", "#fff0d0", "#ffffff", "#ffffff"] : null;
-    if (crit && dmg >= this.hero.stats.atk * 4.5 && this.time - (this.lastCritFx ?? -9) > 1.2) {
+  damageNumber(dmg, x, y, crit, el, e) {
+    // small pixel numbers, merged per enemy, so a flurry reads as one rising total instead of a pile of bursts.
+    // PixelFX's big crit starburst is kept for rare moments: a heavy crit on a boss or an elite.
+    if (crit && e && (e.boss || e.elite) && dmg >= this.hero.stats.atk * 4.5 && this.time - (this.lastCritFx ?? -9) > 4) {
       this.lastCritFx = this.time;
-      const h = this.fx.play("ui/crit-number", { x, y: y - 8, center: true, text: `${dmg}!`, label: "CRIT", prio: 1, layer: "top", life: 0.95, speed: 1.35, maxSame: 1, palette: pal });
-      if (h) return;
-    } else if (dmg >= this.hero.stats.atk * 1.4 && this.rng() < 0.5) {
-      const h = this.fx.play("ui/damage-number", { x, y: y - 4, center: true, text: String(dmg), prio: 2, layer: "top", life: 0.8, speed: 1.3, maxSame: 3, palette: pal ?? undefined });
+      const h = this.fx.play("ui/crit-number", { x, y: y - 8, center: true, text: `${dmg}!`, label: "CRIT", prio: 1, layer: "top", life: 0.8, speed: 1.6, maxSame: 1, light: 0.4, palette: RAMPS.crit });
       if (h) return;
     }
-    this.floats.push({ text: String(dmg), x: x + (this.rng() - 0.5) * 8, y, t: 0, kind: crit ? "crit" : "dmg", el });
-    if (this.floats.length > 10) this.floats.splice(0, this.floats.length - 10);
+    const kind = crit ? "crit" : "dmg";
+    const m = e && this.floats.find((f) => f.src === e && f.t < 0.3 && (f.kind === "dmg" || f.kind === "crit"));
+    if (m) {
+      m.n += dmg;
+      m.text = String(m.n);
+      if (crit) m.kind = "crit";
+      m.t = Math.min(m.t, 0.12);
+      return;
+    }
+    // stack fresh numbers upward when they start near one another
+    const near = this.floats.filter((f) => (f.kind === "dmg" || f.kind === "crit") && f.t < 0.4 && Math.abs(f.x - x) < 14).length;
+    this.floats.push({ text: String(dmg), n: dmg, src: e, x: x + (this.rng() - 0.5) * 6, y: y - near * 7, t: 0, kind, el });
+    const nums = this.floats.filter((f) => f.kind === "dmg" || f.kind === "crit");
+    if (nums.length > 6) this.floats.splice(this.floats.indexOf(nums[0]), 1);
   }
   /** Slow the hero (frost breath, curses): half speed, and PixelFX's slowed clock behind his head. */
   slowHero(t) {
@@ -368,14 +377,14 @@ export class Game {
   }
 
   // ------------------------------------------------------------------ the hero's blows
-  heroHit(a, hit, i, act, empowered) {
+  heroHit(a, hit, i, act, hot) {
     const h = this.hero, f = act.facing, ox = act.ox;
     const [x0, y0, x1, y1] = a.box;
     const bx0 = f > 0 ? ox + x0 : ox - x1, bx1 = f > 0 ? ox + x1 : ox - x0;
-    const mult = a.dmg * (empowered ? 1.6 : 1) * (h.stats.atkMul ?? 1);
-    const crit = empowered && this.rng() < 0.4;
+    // clicking drives the tempo: a little more damage and RUSH, the same blow
+    const mult = a.dmg * (hot ? 1.2 : 1) * (h.stats.atkMul ?? 1);
     const hit2 = damageBox(this, bx0, h.y + y0, bx1, h.y + y1, h.stats.atk * mult, {
-      el: "melee", dir: f, push: a.push, lift: a.lift, stop: a.stop * (empowered ? 1.4 : 1), shake: a.shake, weight: a.weight, heavy: a.heavy, crit: crit || undefined,
+      el: "melee", dir: f, push: a.push, lift: a.lift, stop: a.stop, shake: a.shake, weight: a.weight, heavy: a.heavy,
     });
     if (i === 0) this.skills.onAttack(a);
     // a blade through an enemy shot knocks it out of the air
@@ -387,7 +396,7 @@ export class Game {
       sfx("shield", { pan: this.pan(p.x) });
     }
     if (!hit2.length) return;
-    if (empowered) this.rush(2);
+    if (hot) this.rush(0.8);
     if (a.heavy) {
       this.fx.play("impacts/ground-slam", { x: ox + f * 46, y: 0, flip: f < 0, palette: RAMPS.hero, prio: 1, life: 1, light: 0.8, layer: "ground", speed: 1.4 });
       this.shake(3, 0.25);

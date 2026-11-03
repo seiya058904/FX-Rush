@@ -6,7 +6,8 @@
 import { sfx } from "../engine/audio.js";
 import { RAMPS } from "../fx/palettes.js";
 
-const SMOKE_POP = ["#120c16", "#2a1e2e", "#4a3a48", "#7a6470", "#b8a0a0", "#f0e0d0", "#ffffff"];
+// dusky, never white: a kill pop must not turn into a bright cloud behind the numbers
+const SMOKE_POP = ["#120c16", "#1e1622", "#2a1e2e", "#3a2e3c", "#4a3a48", "#5e4c5a", "#76626e"];
 const ELEMENT_HIT = {
   melee: "impacts/hit-spark",
   fire: "impacts/hit-spark",
@@ -60,7 +61,7 @@ export function damage(g, e, base, o = {}) {
   // impact effect at the struck point, aimed along the blow
   if (!o.noSpark) {
     const id = crit ? "impacts/crit-hit" : o.heavy ? "impacts/blunt-hit" : ELEMENT_HIT[el];
-    if (id) impactAt(g, id, cx - dir * 4, cy, dir, { prio: crit ? 0 : 1, palette: crit ? RAMPS.crit : ELEMENT_PAL[el], light: crit ? 1 : 0.8, maxSame: crit ? 3 : 5 });
+    if (id) impactAt(g, id, cx - dir * 4, cy, dir, { prio: crit ? 0 : 1, palette: crit ? RAMPS.crit : ELEMENT_PAL[el], light: crit ? 0.6 : 0.5, maxSame: crit ? 2 : 4 });
   }
   // freeze: heavier blows hold longer; a flood of small hits can't stall the game
   const stop = o.stop ?? (crit ? 0.085 : 0.035);
@@ -75,7 +76,7 @@ export function damage(g, e, base, o = {}) {
   }
 
   // numbers
-  if (!o.quiet || crit) g.damageNumber(dmg, cx, cy - 6, crit, el);
+  if (!o.quiet || crit) g.damageNumber(dmg, cx, cy - 6, crit, el, e);
   g.combo.hit();
   g.rush(crit ? 0.9 : 0.35);
   g.stats.damage += dmg;
@@ -138,9 +139,13 @@ export function kill(g, e, { el = "melee", dir = 1, crit = false, overkill = 0 }
     e.deathLen = 0.2;
     // a quick pop behind the living: the crowd and the hero stay readable through a chain of kills
     const poof = (id ?? "spawn/poof") === "spawn/poof";
-    g.fx.play(id ?? "spawn/poof", { x: cx, y: cy, center: true, palette: poof ? SMOKE_POP : pal, prio: 2, life: poof ? 0.75 : 1.1, speed: poof ? 1.8 : 1.4, light: 0.9, layer: "back" });
+    g.fx.play(id ?? "spawn/poof", { x: cx, y: cy, center: true, palette: poof ? SMOKE_POP : pal, prio: 2, life: poof ? 0.5 : 1.1, speed: poof ? 1.9 : 1.4, light: poof ? 0.3 : 0.6, layer: "back" });
   }
-  if (crit && overkill > 0.5) g.fx.play("explosions/cartoon-pow", { x: cx, y: cy, center: true, prio: 2, life: 0.7, speed: 1.4, palette: RAMPS.crit, text: g.rng() < 0.5 ? "POW!" : "BAM!" });
+  // a big overkill crit gets a POW!, but only now and then
+  if (crit && overkill > 1 && g.time - (g.lastPow ?? -9) > 2.5) {
+    g.lastPow = g.time;
+    g.fx.play("explosions/cartoon-pow", { x: cx, y: cy, center: true, prio: 2, life: 0.7, speed: 1.4, palette: RAMPS.crit, text: g.rng() < 0.5 ? "POW!" : "BAM!" });
+  }
   sfx("kill", { pan: g.pan(cx), pitch: 0.8 + g.rng() * 0.5 });
   g.onKill(e, el);
 }

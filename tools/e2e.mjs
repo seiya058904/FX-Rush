@@ -6,8 +6,8 @@
 // Sessions:
 //   afk      a whole run with nobody touching anything (real damage): must reach the end, no page errors
 //   builds   god-mode runs with forced builds and seeds, to drive every skill level and branch on screen
-//   manual   clicks, keyboard movement and jumps, pause/resume, focus loss, window resizes, restart flows
-//   mobile   a phone viewport (touch): taps attack, swipe jumps, layout fits
+//   manual   clicks (tempo), keyboard movement and jumps, pause/resume, focus loss, window resizes, restart flows
+//   mobile   a phone viewport (touch): taps push the tempo, swipe jumps, layout fits
 // Every session records which PixelFX ids actually reached the screen; the union goes to docs/fx-runtime.json
 // (the "triggered" column of the audit). Representative screenshots go to docs/screenshots/.
 
@@ -162,12 +162,16 @@ if (only.includes("manual"))
     let s = await state(page);
     if (s.state !== "play" || !(s.enemies > 0)) (res.ok = false), res.notes.push("fight did not start within 3 s");
     res.notes.push(`3s after start: ${s.enemies} enemies, ${s.kills} kills`);
-    // rapid clicks: empowered thrusts
+    // rapid clicks anywhere: they only push the tempo, the AI keeps choosing the attacks
     const k0 = s.kills;
+    let tempo = 0;
     for (let i = 0; i < 24; i++) {
       await page.mouse.click(cx, cy);
       await page.waitForTimeout(110);
+      tempo = Math.max(tempo, await page.evaluate(() => window.__fxrush.game.hero.tempo));
     }
+    res.notes.push(`peak tempo while clicking ${tempo.toFixed(2)} s`);
+    if (!(tempo > 0.3)) (res.ok = false), res.notes.push("clicks did not raise the tempo");
     await shot(page, "fight-clicks.png");
     // walk left and right, jump (first close a level-up card screen if one is up: it pauses the world)
     const noCards = async () => {
@@ -175,7 +179,9 @@ if (only.includes("manual"))
         await page.keyboard.press("Digit1");
         await page.waitForTimeout(500);
       }
-      await page.evaluate(() => { const g = window.__fxrush.game; g.pendingLevels = 0; });
+      // isolate the keys from the fight: no level-ups (no XP either), no ultimate (a full RUSH meter takes over the body),
+      // no knockback from hits and no slow motion while they are measured
+      await page.evaluate(() => { const g = window.__fxrush.game; g.pendingLevels = 0; g.xp = -1e9; g.rushV = 0; g.hero.god = true; g.slow = null; });
     };
     await noCards();
     const x0 = await page.evaluate(() => window.__fxrush.game.hero.x);
@@ -195,6 +201,7 @@ if (only.includes("manual"))
     const air = await page.evaluate(() => window.__fxrush.game.hero.y);
     res.notes.push(`move D ${Math.round(x1 - x0)}px, Left ${Math.round(x2 - x1b)}px, jump y ${Math.round(air)}`);
     if (!(x1 - x0 > 20 && x2 - x1b < -20 && air < -10)) (res.ok = false), res.notes.push("movement/jump did not respond");
+    await page.evaluate(() => { const g = window.__fxrush.game; g.hero.god = false; g.xp = 0; });
     // the auto AI takes back over
     await page.waitForTimeout(3000);
     s = await state(page);

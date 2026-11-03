@@ -127,7 +127,7 @@ function handleInput() {
   if (input.take("debug")) showFps = !showFps;
   const clicks = input.takeClicks();
   if (state === "title") {
-    const any = clicks.length || input.take("attack") || input.take("confirm") || input.take("jump");
+    const any = clicks.length || input.take("confirm") || input.take("jump");
     if (any && loadStats().loaded >= CORE.length) {
       initAudio();
       sfx("select");
@@ -158,10 +158,9 @@ function handleInput() {
         }
       // idle play: the game picks after a few seconds
       if ((cs.auto || TEST.auto) && cs.chosen < 0 && cs.t > (TEST.auto ? 0.6 : 6)) g.chooseCard(bestCard(g));
-      input.clear("attack");
       return;
     }
-    let attack = input.take("attack");
+    let attack = false;
     for (const c of clicks) {
       if (c.x > W - 22 && c.y < 46) return pause();
       attack = true;
@@ -178,7 +177,7 @@ function handleInput() {
       if (pointer.moved && pointer.x >= x && pointer.x < x + w && pointer.y >= y - 1 && pointer.y < y + h) pauseSel = i;
     }
     pointer.moved = false;
-    let act = input.take("confirm") || input.take("attack");
+    let act = input.take("confirm");
     for (const c of clicks) {
       for (let i = 0; i < PAUSE_ITEMS.length; i++) {
         const [x, y, w, h] = pauseRect(i);
@@ -195,7 +194,7 @@ function handleInput() {
       const [x, y, w, h] = resultsButton(i, resultsT);
       if (pointer.x >= x && pointer.x < x + w && pointer.y >= y && pointer.y < y + h) resultsSel = i;
     }
-    let act = resultsT > 1 && (input.take("confirm") || input.take("attack"));
+    let act = resultsT > 1 && input.take("confirm");
     for (const c of clicks)
       for (let i = 0; i < 2; i++) {
         const [x, y, w, h] = resultsButton(i, resultsT);

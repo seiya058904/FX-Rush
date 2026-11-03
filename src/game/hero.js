@@ -1,7 +1,9 @@
 // The hero: a PixelFX skeleton in ivory armour with a crimson scarf. He finds the nearest monster, walks in and
-// cuts on his own (slash -> cross -> cleave), and a click / tap / J cancels his recovery into an empowered
-// thrust (rapid clicks chain into a spin). Arrows or A/D take over the walking; he hands control back to the AI
-// a moment after the keys are released. Every attack is a PixelFX act: its wind-up, its hit frames, its freeze.
+// picks his own attacks from the situation (spin when surrounded, a thrust lunge for a target a step away, a
+// slash -> cross -> finisher chain otherwise). Clicking / tapping anywhere is the only attack input: it adds tempo
+// (faster cuts, earlier recovery cancels, faster RUSH), never a separate move. Arrows or A/D take over the walking;
+// he hands control back to the AI a moment after the keys are released. Every attack is a PixelFX act: its wind-up,
+// its hit frames, its freeze.
 
 import { READY, fxModule, poseAt } from "../engine/pfx.js";
 import { ATTACKS, ActPlayer } from "./moves.js";
@@ -53,10 +55,10 @@ export class Hero {
     this.chain = 0;
     this.chainT = 0;
     this.atkCd = 0;
-    this.clicks = 0;
+    this.tempo = 0; // seconds of click-driven tempo left
     this.clickCd = 0;
-    this.clickChain = 0;
-    this.clickChainT = 0;
+    this.spinCd = 0;
+    this.thrustCd = 0;
     this.manualT = 0;
     this.animT = 0;
     this.landT = 0;
@@ -78,15 +80,17 @@ export class Hero {
     return !!this.act || !!this.moveOverride;
   }
 
-  /** Request an attack from a click/tap/key. Rate-limited so autoclickers gain little. */
+  /** True while clicks are driving the tempo. */
+  get hot() {
+    return this.tempo > 0;
+  }
+
+  /** A click / tap: more tempo. Rate-limited so autoclickers gain little. */
   click() {
-    if (this.dead) return;
-    if (this.clickCd > 0) {
-      this.clicks = 1;
-      return;
-    }
-    this.clicks = 1;
-    this.clickCd = 0.14;
+    if (this.dead || this.clickCd > 0) return;
+    this.clickCd = 0.1;
+    this.tempo = Math.min(1.2, this.tempo + 0.4);
+    this.game.rush(0.5);
   }
 
   update(dt, enemies) {
@@ -99,11 +103,12 @@ export class Hero {
     this.clickCd = Math.max(0, this.clickCd - dt);
     this.atkCd = Math.max(0, this.atkCd - dt);
     this.chainT = Math.max(0, this.chainT - dt);
-    this.clickChainT = Math.max(0, this.clickChainT - dt);
+    this.tempo = Math.max(0, this.tempo - dt);
+    this.spinCd = Math.max(0, this.spinCd - dt);
+    this.thrustCd = Math.max(0, this.thrustCd - dt);
     this.landT = Math.max(0, this.landT - dt);
     this.glow = Math.max(0, this.glow - dt * 3);
     if (this.chainT <= 0) this.chain = 0;
-    if (this.clickChainT <= 0) this.clickChain = 0;
     if (this.stats.regen) this.heal(this.stats.regen * dt, true);
 
     if (this.dead) {
@@ -173,8 +178,9 @@ export class Hero {
     }
     this.evading = evade;
 
-    // a held direction takes over at once: cut the wind-up or the recovery, never the blow itself
-    if (moveDir && this.act && (this.act.t < 0 || this.act.t >= ATTACKS[this.actName].cancel)) {
+    // a held direction takes over at once: cut the wind-up or the recovery (as soon as the last hit has landed),
+    // never the blow itself
+    if (moveDir && this.act && (this.act.t < 0 || this.act.t >= ATTACKS[this.actName].cancel || this.act.nh >= this.act.hits.length)) {
       this.act = null;
       this.actName = null;
     }
@@ -186,22 +192,16 @@ export class Hero {
       if (this.onGround) this.y = Math.min(0, this.act.rootY);
       const a = ATTACKS[this.actName];
       const canCancel = this.act.t >= a.cancel;
-      if (this.act.done || (canCancel && (this.clicks > 0 || (tgt && this.inReach(tgt) && this.atkCd <= 0 && this.act.t >= a.cancel + 0.1)))) {
+      const next = tgt && this.atkCd <= 0 && this.act.t >= a.cancel + (this.hot ? 0 : 0.1) && (this.inReach(tgt) || this.inThrust(tgt));
+      if (this.act.done || (canCancel && next)) {
         this.act = null;
         this.actName = null;
       }
     }
 
-    if (!this.act && !evade) {
-      if (this.clicks > 0) {
-        this.clicks = 0;
-        if (tgt) this.facing = tgt.x >= this.x ? 1 : -1;
-        if (moveDir) this.facing = moveDir;
-        this.startClickAttack();
-      } else if (tgt && this.inReach(tgt) && this.atkCd <= 0 && this.manualT <= 0.35) {
-        this.facing = tgt.x >= this.x ? 1 : -1;
-        this.startChainAttack();
-      }
+    if (!this.act && !evade && tgt && this.atkCd <= 0 && this.manualT <= 0.35 && (this.inReach(tgt) || this.inThrust(tgt))) {
+      this.facing = tgt.x >= this.x ? 1 : -1;
+      this.startAuto(tgt, enemies);
     }
 
     // ---- walking
@@ -275,29 +275,48 @@ export class Hero {
     return dx < 40 && top < 10 && e.y > -70 + this.y;
   }
 
-  startChainAttack() {
-    const names = ["slash", "cross", "cleave"];
-    const name = names[this.chain % 3];
-    if (!this.begin(name, false)) return;
-    this.chain = (this.chain + 1) % 3;
-    this.chainT = 1.1;
-    const s = this.stats.atkSpeed;
-    this.atkCd = (name === "cleave" ? 0.32 : 0.12) / s;
+  /** A target a step beyond sword reach, in front and on the ground: worth a thrust lunge. */
+  inThrust(e) {
+    if (!this.onGround || this.thrustCd > 0) return false;
+    const dx = Math.abs(e.x - this.x) - (e.w ?? 8), top = e.y - (e.h ?? 20);
+    return dx >= 30 && dx < 62 && top < 10 && e.y > -40;
   }
-  startClickAttack() {
-    const name = this.clickChain >= 3 ? "spin" : "thrust";
-    if (!this.begin(name, true)) return;
-    this.clickChain = this.clickChain >= 3 ? 0 : this.clickChain + 1;
-    this.clickChainT = 0.9;
-    this.atkCd = 0.1;
-    this.game.rush(1.6);
+
+  /** The AI's choice of attack: read the crowd, then cut. */
+  startAuto(tgt, enemies) {
+    const f = this.facing;
+    let front = 0, back = 0;
+    for (const e of enemies) {
+      if (e.dead || e.spawning > 0 || e.untargetable) continue;
+      const dx = e.x - this.x, d = Math.abs(dx) - (e.w ?? 8);
+      if (d > 34 || e.y < -60 + this.y) continue;
+      if (Math.sign(dx) === f || dx === 0) front++;
+      else back++;
+    }
+    const tough = tgt.elite || tgt.boss || front >= 3;
+    let name;
+    if (front && back && this.spinCd <= 0) {
+      name = "spin";
+      this.spinCd = 1.4;
+    } else if (!this.inReach(tgt)) {
+      name = "thrust";
+      this.thrustCd = 0.9;
+    } else {
+      // slash -> cross -> finisher: a cleave for anything that can take it, a thrust that clears small fry
+      name = ["slash", "cross", tough ? "cleave" : "thrust"][this.chain % 3];
+      this.chain = (this.chain + 1) % 3;
+      this.chainT = 1.1;
+    }
+    if (!this.begin(name)) return;
+    const s = this.stats.atkSpeed * (this.hot ? 1.5 : 1);
+    this.atkCd = (name === "cleave" || name === "spin" ? 0.32 : 0.12) / s;
   }
-  begin(name, empowered) {
+  begin(name) {
     const a = ATTACKS[name], mod = fxModule(a.fx);
     if (!mod) return false;
-    const g = this.game, rate = a.rate * (empowered ? 1.05 : this.stats.atkSpeed);
+    const hot = this.hot;
+    const g = this.game, rate = a.rate * this.stats.atkSpeed * (hot ? 1.25 : 1);
     this.actName = name;
-    this.empowered = empowered;
     this.act = new ActPlayer(mod, {
       id: a.fx, rate, from: a.from, x: this.x, y: 0, facing: this.facing, director: g.fx,
       fx: { palette: RAMPS[a.palette] ?? RAMPS.hero, light: 1 },
@@ -305,10 +324,10 @@ export class Hero {
         sfx(a.sfx, { w: a.weight, pan: g.pan(this.x) });
         this.glow = 1;
       },
-      onHit: (hit, i, act) => g.heroHit(a, hit, i, act, empowered),
+      onHit: (hit, i, act) => g.heroHit(a, hit, i, act, hot),
     });
-    // a click lunges a little even with nothing in reach
-    if (empowered && this.onGround) this.vx = this.facing * 60;
+    // a thrust lunges into the gap it was chosen to close
+    if (name === "thrust" && this.onGround) this.vx = this.facing * 90;
     if (!this.onGround) this.airAttacked = true;
     return true;
   }

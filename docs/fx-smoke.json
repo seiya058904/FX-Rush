@@ -1,11 +1,11 @@
 {
- "when": "2026-11-02T18:09:48.077Z",
+ "when": "2026-11-03T02:38:24.454Z",
  "node": "v24.15.0",
  "total": 244,
  "pass": 244,
  "warn": 0,
  "fail": 0,
- "seconds": 17.451,
+ "seconds": 17.468,
  "results": [
   {
    "id": "moves/arrow-shot",
@@ -13,8 +13,8 @@
    "notes": [],
    "frames": 58,
    "drawnFrames": 22,
-   "avgMs": 0.087,
-   "worstMs": 1.89,
+   "avgMs": 0.088,
+   "worstMs": 1.92,
    "outsidePx": 0
   },
   {
@@ -23,8 +23,8 @@
    "notes": [],
    "frames": 70,
    "drawnFrames": 25,
-   "avgMs": 0.206,
-   "worstMs": 2.19,
+   "avgMs": 0.21,
+   "worstMs": 2.22,
    "outsidePx": 0
   },
   {
@@ -33,8 +33,8 @@
    "notes": [],
    "frames": 105,
    "drawnFrames": 97,
-   "avgMs": 1.021,
-   "worstMs": 2.88,
+   "avgMs": 1.042,
+   "worstMs": 2.9,
    "outsidePx": 0
   },
   {
@@ -43,8 +43,8 @@
    "notes": [],
    "frames": 206,
    "drawnFrames": 193,
-   "avgMs": 0.352,
-   "worstMs": 1.84,
+   "avgMs": 0.351,
+   "worstMs": 2.16,
    "outsidePx": 0
   },
   {
@@ -53,8 +53,8 @@
    "notes": [],
    "frames": 116,
    "drawnFrames": 89,
-   "avgMs": 0.46,
-   "worstMs": 1.95,
+   "avgMs": 0.459,
+   "worstMs": 2.13,
    "outsidePx": 0
   },
   {
@@ -63,8 +63,8 @@
    "notes": [],
    "frames": 85,
    "drawnFrames": 79,
-   "avgMs": 0.253,
-   "worstMs": 1.14,
+   "avgMs": 0.258,
+   "worstMs": 1.54,
    "outsidePx": 0
   },
   {
@@ -73,8 +73,8 @@
    "notes": [],
    "frames": 132,
    "drawnFrames": 122,
-   "avgMs": 0.147,
-   "worstMs": 1.32,
+   "avgMs": 0.146,
+   "worstMs": 1.14,
    "outsidePx": 0
   },
   {
@@ -83,8 +83,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 86,
-   "avgMs": 0.524,
-   "worstMs": 3.33,
+   "avgMs": 0.507,
+   "worstMs": 3.07,
    "outsidePx": 0
   },
   {
@@ -93,8 +93,8 @@
    "notes": [],
    "frames": 194,
    "drawnFrames": 184,
-   "avgMs": 1.101,
-   "worstMs": 5.22,
+   "avgMs": 1.081,
+   "worstMs": 4.95,
    "outsidePx": 0
   },
   {
@@ -103,8 +103,8 @@
    "notes": [],
    "frames": 79,
    "drawnFrames": 67,
-   "avgMs": 0.193,
-   "worstMs": 3.31,
+   "avgMs": 0.196,
+   "worstMs": 3.37,
    "outsidePx": 0
   },
   {
@@ -113,8 +113,8 @@
    "notes": [],
    "frames": 198,
    "drawnFrames": 170,
-   "avgMs": 0.482,
-   "worstMs": 4,
+   "avgMs": 0.474,
+   "worstMs": 3.46,
    "outsidePx": 0
   },
   {
@@ -123,8 +123,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 85,
-   "avgMs": 0.491,
-   "worstMs": 1.86,
+   "avgMs": 0.504,
+   "worstMs": 1.85,
    "outsidePx": 0
   },
   {
@@ -133,8 +133,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.486,
-   "worstMs": 2,
+   "avgMs": 0.484,
+   "worstMs": 2.06,
    "outsidePx": 0
   },
   {
@@ -143,8 +143,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.518,
-   "worstMs": 1.69,
+   "avgMs": 0.547,
+   "worstMs": 1.67,
    "outsidePx": 0
   },
   {
@@ -154,7 +154,7 @@
    "frames": 120,
    "drawnFrames": 120,
    "avgMs": 0.064,
-   "worstMs": 0.38,
+   "worstMs": 0.41,
    "outsidePx": 0
   },
   {
@@ -163,8 +163,8 @@
    "notes": [],
    "frames": 45,
    "drawnFrames": 45,
-   "avgMs": 0.881,
-   "worstMs": 1.66,
+   "avgMs": 0.899,
+   "worstMs": 1.86,
    "outsidePx": 0
   },
   {
@@ -173,8 +173,8 @@
    "notes": [],
    "frames": 118,
    "drawnFrames": 110,
-   "avgMs": 0.456,
-   "worstMs": 1.28,
+   "avgMs": 0.452,
+   "worstMs": 1.2,
    "outsidePx": 0
   },
   {
@@ -183,7 +183,7 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.605,
+   "avgMs": 0.604,
    "worstMs": 1.55,
    "outsidePx": 0
   },
@@ -193,7 +193,7 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.251,
+   "avgMs": 0.252,
    "worstMs": 0.35,
    "outsidePx": 0
   },
@@ -203,8 +203,8 @@
    "notes": [],
    "frames": 151,
    "drawnFrames": 131,
-   "avgMs": 0.578,
-   "worstMs": 2.19,
+   "avgMs": 0.586,
+   "worstMs": 2.18,
    "outsidePx": 0
   },
   {
@@ -213,8 +213,8 @@
    "notes": [],
    "frames": 48,
    "drawnFrames": 48,
-   "avgMs": 0.434,
-   "worstMs": 1.23,
+   "avgMs": 0.432,
+   "worstMs": 1.21,
    "outsidePx": 0
   },
   {
@@ -223,8 +223,8 @@
    "notes": [],
    "frames": 151,
    "drawnFrames": 143,
-   "avgMs": 0.642,
-   "worstMs": 1.46,
+   "avgMs": 0.628,
+   "worstMs": 1.41,
    "outsidePx": 0
   },
   {
@@ -233,8 +233,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.168,
-   "worstMs": 0.72,
+   "avgMs": 0.164,
+   "worstMs": 0.69,
    "outsidePx": 0
   },
   {
@@ -243,8 +243,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.224,
-   "worstMs": 0.65,
+   "avgMs": 0.219,
+   "worstMs": 0.58,
    "outsidePx": 0
   },
   {
@@ -253,8 +253,8 @@
    "notes": [],
    "frames": 157,
    "drawnFrames": 156,
-   "avgMs": 0.609,
-   "worstMs": 3.28,
+   "avgMs": 0.592,
+   "worstMs": 2.01,
    "outsidePx": 0
   },
   {
@@ -263,8 +263,8 @@
    "notes": [],
    "frames": 217,
    "drawnFrames": 210,
-   "avgMs": 1.817,
-   "worstMs": 4.7,
+   "avgMs": 1.831,
+   "worstMs": 5.03,
    "outsidePx": 0
   },
   {
@@ -273,8 +273,8 @@
    "notes": [],
    "frames": 33,
    "drawnFrames": 31,
-   "avgMs": 0.668,
-   "worstMs": 1.45,
+   "avgMs": 0.665,
+   "worstMs": 1.55,
    "outsidePx": 0
   },
   {
@@ -283,8 +283,8 @@
    "notes": [],
    "frames": 109,
    "drawnFrames": 104,
-   "avgMs": 0.766,
-   "worstMs": 1.63,
+   "avgMs": 0.764,
+   "worstMs": 1.66,
    "outsidePx": 0
   },
   {
@@ -293,8 +293,8 @@
    "notes": [],
    "frames": 109,
    "drawnFrames": 97,
-   "avgMs": 0.331,
-   "worstMs": 1.12,
+   "avgMs": 0.325,
+   "worstMs": 1.13,
    "outsidePx": 0
   },
   {
@@ -303,8 +303,8 @@
    "notes": [],
    "frames": 115,
    "drawnFrames": 115,
-   "avgMs": 0.192,
-   "worstMs": 0.45,
+   "avgMs": 0.188,
+   "worstMs": 0.48,
    "outsidePx": 0
   },
   {
@@ -313,8 +313,8 @@
    "notes": [],
    "frames": 127,
    "drawnFrames": 118,
-   "avgMs": 0.149,
-   "worstMs": 0.74,
+   "avgMs": 0.154,
+   "worstMs": 1.26,
    "outsidePx": 0
   },
   {
@@ -323,8 +323,8 @@
    "notes": [],
    "frames": 51,
    "drawnFrames": 46,
-   "avgMs": 0.411,
-   "worstMs": 0.98,
+   "avgMs": 0.401,
+   "worstMs": 0.96,
    "outsidePx": 0
   },
   {
@@ -333,8 +333,8 @@
    "notes": [],
    "frames": 271,
    "drawnFrames": 255,
-   "avgMs": 2.107,
-   "worstMs": 9.07,
+   "avgMs": 2.104,
+   "worstMs": 9.31,
    "outsidePx": 0
   },
   {
@@ -343,8 +343,8 @@
    "notes": [],
    "frames": 52,
    "drawnFrames": 43,
-   "avgMs": 0.415,
-   "worstMs": 1.8,
+   "avgMs": 0.419,
+   "worstMs": 1.9,
    "outsidePx": 0
   },
   {
@@ -353,8 +353,8 @@
    "notes": [],
    "frames": 163,
    "drawnFrames": 153,
-   "avgMs": 0.298,
-   "worstMs": 1.05,
+   "avgMs": 0.291,
+   "worstMs": 0.92,
    "outsidePx": 0
   },
   {
@@ -363,8 +363,8 @@
    "notes": [],
    "frames": 151,
    "drawnFrames": 145,
-   "avgMs": 0.57,
-   "worstMs": 1.55,
+   "avgMs": 0.571,
+   "worstMs": 1.56,
    "outsidePx": 0
   },
   {
@@ -373,8 +373,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.552,
-   "worstMs": 1.73,
+   "avgMs": 0.541,
+   "worstMs": 1.88,
    "outsidePx": 0
   },
   {
@@ -383,8 +383,8 @@
    "notes": [],
    "frames": 48,
    "drawnFrames": 48,
-   "avgMs": 0.086,
-   "worstMs": 0.48,
+   "avgMs": 0.085,
+   "worstMs": 0.46,
    "outsidePx": 0
   },
   {
@@ -393,7 +393,7 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.343,
+   "avgMs": 0.34,
    "worstMs": 1.51,
    "outsidePx": 0
   },
@@ -403,8 +403,8 @@
    "notes": [],
    "frames": 151,
    "drawnFrames": 145,
-   "avgMs": 0.553,
-   "worstMs": 1.38,
+   "avgMs": 0.535,
+   "worstMs": 1.31,
    "outsidePx": 0
   },
   {
@@ -413,8 +413,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.805,
-   "worstMs": 2.38,
+   "avgMs": 0.824,
+   "worstMs": 2.13,
    "outsidePx": 0
   },
   {
@@ -423,8 +423,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.571,
-   "worstMs": 2.03,
+   "avgMs": 0.494,
+   "worstMs": 1.92,
    "outsidePx": 0
   },
   {
@@ -433,8 +433,8 @@
    "notes": [],
    "frames": 76,
    "drawnFrames": 71,
-   "avgMs": 0.248,
-   "worstMs": 0.72,
+   "avgMs": 0.246,
+   "worstMs": 0.79,
    "outsidePx": 0
   },
   {
@@ -443,8 +443,8 @@
    "notes": [],
    "frames": 30,
    "drawnFrames": 30,
-   "avgMs": 0.38,
-   "worstMs": 0.97,
+   "avgMs": 0.378,
+   "worstMs": 0.95,
    "outsidePx": 0
   },
   {
@@ -453,8 +453,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.329,
-   "worstMs": 0.98,
+   "avgMs": 0.325,
+   "worstMs": 1,
    "outsidePx": 0
   },
   {
@@ -463,8 +463,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 1.054,
-   "worstMs": 3.76,
+   "avgMs": 1.031,
+   "worstMs": 3.87,
    "outsidePx": 0
   },
   {
@@ -473,8 +473,8 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 91,
-   "avgMs": 0.286,
-   "worstMs": 0.79,
+   "avgMs": 0.282,
+   "worstMs": 0.6,
    "outsidePx": 0
   },
   {
@@ -483,8 +483,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 1.204,
-   "worstMs": 2.44,
+   "avgMs": 1.208,
+   "worstMs": 2.74,
    "outsidePx": 0
   },
   {
@@ -493,8 +493,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.983,
-   "worstMs": 2.37,
+   "avgMs": 0.595,
+   "worstMs": 1.77,
    "outsidePx": 0
   },
   {
@@ -503,7 +503,7 @@
    "notes": [],
    "frames": 121,
    "drawnFrames": 118,
-   "avgMs": 0.245,
+   "avgMs": 0.253,
    "worstMs": 2.33,
    "outsidePx": 0
   },
@@ -513,8 +513,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 1.528,
-   "worstMs": 2.96,
+   "avgMs": 1.495,
+   "worstMs": 2.79,
    "outsidePx": 0
   },
   {
@@ -523,8 +523,8 @@
    "notes": [],
    "frames": 103,
    "drawnFrames": 102,
-   "avgMs": 0.357,
-   "worstMs": 1.21,
+   "avgMs": 0.389,
+   "worstMs": 1.35,
    "outsidePx": 0
   },
   {
@@ -533,8 +533,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.154,
-   "worstMs": 1.42,
+   "avgMs": 0.156,
+   "worstMs": 1.46,
    "outsidePx": 0
   },
   {
@@ -543,8 +543,8 @@
    "notes": [],
    "frames": 24,
    "drawnFrames": 24,
-   "avgMs": 0.272,
-   "worstMs": 0.49,
+   "avgMs": 0.269,
+   "worstMs": 0.46,
    "outsidePx": 0
   },
   {
@@ -553,8 +553,8 @@
    "notes": [],
    "frames": 85,
    "drawnFrames": 82,
-   "avgMs": 0.481,
-   "worstMs": 1.66,
+   "avgMs": 0.489,
+   "worstMs": 1.77,
    "outsidePx": 0
   },
   {
@@ -563,8 +563,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 87,
-   "avgMs": 0.623,
-   "worstMs": 2.54,
+   "avgMs": 0.613,
+   "worstMs": 2.29,
    "outsidePx": 0
   },
   {
@@ -573,8 +573,8 @@
    "notes": [],
    "frames": 79,
    "drawnFrames": 74,
-   "avgMs": 0.101,
-   "worstMs": 0.48,
+   "avgMs": 0.104,
+   "worstMs": 0.62,
    "outsidePx": 0
   },
   {
@@ -583,8 +583,8 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 94,
-   "avgMs": 0.114,
-   "worstMs": 0.4,
+   "avgMs": 0.111,
+   "worstMs": 0.48,
    "outsidePx": 0
   },
   {
@@ -593,8 +593,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.113,
-   "worstMs": 0.42,
+   "avgMs": 0.115,
+   "worstMs": 0.48,
    "outsidePx": 0
   },
   {
@@ -603,8 +603,8 @@
    "notes": [],
    "frames": 55,
    "drawnFrames": 50,
-   "avgMs": 0.153,
-   "worstMs": 0.47,
+   "avgMs": 0.164,
+   "worstMs": 0.5,
    "outsidePx": 0
   },
   {
@@ -613,7 +613,7 @@
    "notes": [],
    "frames": 82,
    "drawnFrames": 78,
-   "avgMs": 0.216,
+   "avgMs": 0.217,
    "worstMs": 1.18,
    "outsidePx": 0
   },
@@ -623,8 +623,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.099,
-   "worstMs": 0.61,
+   "avgMs": 0.109,
+   "worstMs": 0.67,
    "outsidePx": 0
   },
   {
@@ -633,8 +633,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 89,
-   "avgMs": 0.501,
-   "worstMs": 3.72,
+   "avgMs": 0.489,
+   "worstMs": 3.65,
    "outsidePx": 0
   },
   {
@@ -643,8 +643,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.388,
-   "worstMs": 1.11,
+   "avgMs": 0.389,
+   "worstMs": 1.2,
    "outsidePx": 0
   },
   {
@@ -653,8 +653,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.149,
-   "worstMs": 0.71,
+   "avgMs": 0.15,
+   "worstMs": 0.7,
    "outsidePx": 0
   },
   {
@@ -663,8 +663,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 1.563,
-   "worstMs": 4.24,
+   "avgMs": 1.591,
+   "worstMs": 3.98,
    "outsidePx": 0
   },
   {
@@ -673,8 +673,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.345,
-   "worstMs": 2.99,
+   "avgMs": 0.325,
+   "worstMs": 2.88,
    "outsidePx": 0
   },
   {
@@ -683,8 +683,8 @@
    "notes": [],
    "frames": 58,
    "drawnFrames": 54,
-   "avgMs": 0.276,
-   "worstMs": 1.4,
+   "avgMs": 0.272,
+   "worstMs": 1.32,
    "outsidePx": 0
   },
   {
@@ -693,7 +693,7 @@
    "notes": [],
    "frames": 28,
    "drawnFrames": 27,
-   "avgMs": 0.119,
+   "avgMs": 0.125,
    "worstMs": 0.32,
    "outsidePx": 0
   },
@@ -703,7 +703,7 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 89,
-   "avgMs": 0.221,
+   "avgMs": 0.23,
    "worstMs": 1.31,
    "outsidePx": 0
   },
@@ -713,8 +713,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.381,
-   "worstMs": 1.74,
+   "avgMs": 0.341,
+   "worstMs": 1.73,
    "outsidePx": 0
   },
   {
@@ -723,8 +723,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 1.005,
-   "worstMs": 7.93,
+   "avgMs": 0.966,
+   "worstMs": 6.92,
    "outsidePx": 0
   },
   {
@@ -733,8 +733,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.06,
-   "worstMs": 0.36,
+   "avgMs": 0.063,
+   "worstMs": 0.35,
    "outsidePx": 0
   },
   {
@@ -743,8 +743,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.367,
-   "worstMs": 1.6,
+   "avgMs": 0.342,
+   "worstMs": 1,
    "outsidePx": 0
   },
   {
@@ -753,8 +753,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.726,
-   "worstMs": 2.88,
+   "avgMs": 0.723,
+   "worstMs": 2.5,
    "outsidePx": 0
   },
   {
@@ -763,8 +763,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 1.648,
-   "worstMs": 3.89,
+   "avgMs": 1.632,
+   "worstMs": 3.73,
    "outsidePx": 0
   },
   {
@@ -773,7 +773,7 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 88,
-   "avgMs": 0.033,
+   "avgMs": 0.031,
    "worstMs": 0.58,
    "outsidePx": 0
   },
@@ -783,8 +783,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.357,
-   "worstMs": 1.06,
+   "avgMs": 0.374,
+   "worstMs": 1.04,
    "outsidePx": 0
   },
   {
@@ -793,8 +793,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.721,
-   "worstMs": 3.52,
+   "avgMs": 0.761,
+   "worstMs": 2.77,
    "outsidePx": 0
   },
   {
@@ -803,8 +803,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 90,
-   "avgMs": 0.622,
-   "worstMs": 3.25,
+   "avgMs": 0.631,
+   "worstMs": 3.13,
    "outsidePx": 0
   },
   {
@@ -813,8 +813,8 @@
    "notes": [],
    "frames": 79,
    "drawnFrames": 69,
-   "avgMs": 0.156,
-   "worstMs": 0.55,
+   "avgMs": 0.16,
+   "worstMs": 0.54,
    "outsidePx": 0
   },
   {
@@ -823,8 +823,8 @@
    "notes": [],
    "frames": 28,
    "drawnFrames": 23,
-   "avgMs": 0.535,
-   "worstMs": 1.47,
+   "avgMs": 0.596,
+   "worstMs": 2.16,
    "outsidePx": 0
   },
   {
@@ -833,8 +833,8 @@
    "notes": [],
    "frames": 30,
    "drawnFrames": 27,
-   "avgMs": 0.234,
-   "worstMs": 0.79,
+   "avgMs": 0.241,
+   "worstMs": 0.71,
    "outsidePx": 0
   },
   {
@@ -843,7 +843,7 @@
    "notes": [],
    "frames": 25,
    "drawnFrames": 22,
-   "avgMs": 0.567,
+   "avgMs": 0.572,
    "worstMs": 1.35,
    "outsidePx": 0
   },
@@ -853,8 +853,8 @@
    "notes": [],
    "frames": 61,
    "drawnFrames": 55,
-   "avgMs": 0.291,
-   "worstMs": 1.01,
+   "avgMs": 0.294,
+   "worstMs": 1,
    "outsidePx": 0
   },
   {
@@ -863,8 +863,8 @@
    "notes": [],
    "frames": 58,
    "drawnFrames": 55,
-   "avgMs": 0.328,
-   "worstMs": 1.2,
+   "avgMs": 0.319,
+   "worstMs": 1.23,
    "outsidePx": 0
   },
   {
@@ -873,8 +873,8 @@
    "notes": [],
    "frames": 64,
    "drawnFrames": 55,
-   "avgMs": 0.459,
-   "worstMs": 1.24,
+   "avgMs": 0.47,
+   "worstMs": 1.29,
    "outsidePx": 0
   },
   {
@@ -883,8 +883,8 @@
    "notes": [],
    "frames": 46,
    "drawnFrames": 43,
-   "avgMs": 0.268,
-   "worstMs": 0.66,
+   "avgMs": 0.273,
+   "worstMs": 0.68,
    "outsidePx": 0
   },
   {
@@ -893,8 +893,8 @@
    "notes": [],
    "frames": 25,
    "drawnFrames": 22,
-   "avgMs": 0.364,
-   "worstMs": 0.98,
+   "avgMs": 0.366,
+   "worstMs": 0.97,
    "outsidePx": 0
   },
   {
@@ -903,8 +903,8 @@
    "notes": [],
    "frames": 24,
    "drawnFrames": 18,
-   "avgMs": 0.235,
-   "worstMs": 1.07,
+   "avgMs": 0.23,
+   "worstMs": 0.97,
    "outsidePx": 0
   },
   {
@@ -913,7 +913,7 @@
    "notes": [],
    "frames": 24,
    "drawnFrames": 19,
-   "avgMs": 0.057,
+   "avgMs": 0.055,
    "worstMs": 0.25,
    "outsidePx": 0
   },
@@ -923,8 +923,8 @@
    "notes": [],
    "frames": 27,
    "drawnFrames": 18,
-   "avgMs": 0.185,
-   "worstMs": 0.61,
+   "avgMs": 0.187,
+   "worstMs": 0.62,
    "outsidePx": 0
   },
   {
@@ -933,7 +933,7 @@
    "notes": [],
    "frames": 27,
    "drawnFrames": 25,
-   "avgMs": 0.059,
+   "avgMs": 0.051,
    "worstMs": 0.26,
    "outsidePx": 0
   },
@@ -943,8 +943,8 @@
    "notes": [],
    "frames": 28,
    "drawnFrames": 27,
-   "avgMs": 0.224,
-   "worstMs": 0.48,
+   "avgMs": 0.253,
+   "worstMs": 0.74,
    "outsidePx": 0
   },
   {
@@ -953,8 +953,8 @@
    "notes": [],
    "frames": 43,
    "drawnFrames": 38,
-   "avgMs": 0.023,
-   "worstMs": 0.28,
+   "avgMs": 0.022,
+   "worstMs": 0.27,
    "outsidePx": 0
   },
   {
@@ -963,7 +963,7 @@
    "notes": [],
    "frames": 28,
    "drawnFrames": 25,
-   "avgMs": 0.122,
+   "avgMs": 0.13,
    "worstMs": 0.46,
    "outsidePx": 0
   },
@@ -973,8 +973,8 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 90,
-   "avgMs": 0.59,
-   "worstMs": 1.15,
+   "avgMs": 0.598,
+   "worstMs": 1.28,
    "outsidePx": 0
   },
   {
@@ -983,8 +983,8 @@
    "notes": [],
    "frames": 49,
    "drawnFrames": 44,
-   "avgMs": 0.294,
-   "worstMs": 0.75,
+   "avgMs": 0.295,
+   "worstMs": 0.84,
    "outsidePx": 0
   },
   {
@@ -993,8 +993,8 @@
    "notes": [],
    "frames": 16,
    "drawnFrames": 11,
-   "avgMs": 0.061,
-   "worstMs": 0.25,
+   "avgMs": 0.073,
+   "worstMs": 0.26,
    "outsidePx": 0
   },
   {
@@ -1013,8 +1013,8 @@
    "notes": [],
    "frames": 10,
    "drawnFrames": 8,
-   "avgMs": 0.637,
-   "worstMs": 1.27,
+   "avgMs": 0.629,
+   "worstMs": 1.28,
    "outsidePx": 0
   },
   {
@@ -1023,8 +1023,8 @@
    "notes": [],
    "frames": 31,
    "drawnFrames": 26,
-   "avgMs": 0.06,
-   "worstMs": 0.31,
+   "avgMs": 0.066,
+   "worstMs": 0.35,
    "outsidePx": 0
   },
   {
@@ -1034,7 +1034,7 @@
    "frames": 34,
    "drawnFrames": 31,
    "avgMs": 0.024,
-   "worstMs": 0.15,
+   "worstMs": 0.14,
    "outsidePx": 0
   },
   {
@@ -1043,8 +1043,8 @@
    "notes": [],
    "frames": 34,
    "drawnFrames": 33,
-   "avgMs": 0.454,
-   "worstMs": 1.27,
+   "avgMs": 0.476,
+   "worstMs": 1.24,
    "outsidePx": 0
   },
   {
@@ -1063,8 +1063,8 @@
    "notes": [],
    "frames": 18,
    "drawnFrames": 18,
-   "avgMs": 0.178,
-   "worstMs": 0.22,
+   "avgMs": 0.187,
+   "worstMs": 0.32,
    "outsidePx": 0
   },
   {
@@ -1073,8 +1073,8 @@
    "notes": [],
    "frames": 115,
    "drawnFrames": 98,
-   "avgMs": 0.417,
-   "worstMs": 3.64,
+   "avgMs": 0.371,
+   "worstMs": 3.45,
    "outsidePx": 0
   },
   {
@@ -1083,8 +1083,8 @@
    "notes": [],
    "frames": 15,
    "drawnFrames": 15,
-   "avgMs": 0.139,
-   "worstMs": 0.44,
+   "avgMs": 0.115,
+   "worstMs": 0.41,
    "outsidePx": 0
   },
   {
@@ -1093,8 +1093,8 @@
    "notes": [],
    "frames": 151,
    "drawnFrames": 147,
-   "avgMs": 0.184,
-   "worstMs": 0.45,
+   "avgMs": 0.191,
+   "worstMs": 0.56,
    "outsidePx": 0
   },
   {
@@ -1103,8 +1103,8 @@
    "notes": [],
    "frames": 115,
    "drawnFrames": 106,
-   "avgMs": 0.347,
-   "worstMs": 1.55,
+   "avgMs": 0.366,
+   "worstMs": 1.17,
    "outsidePx": 0
   },
   {
@@ -1113,8 +1113,8 @@
    "notes": [],
    "frames": 15,
    "drawnFrames": 15,
-   "avgMs": 0.083,
-   "worstMs": 0.36,
+   "avgMs": 0.08,
+   "worstMs": 0.33,
    "outsidePx": 0
   },
   {
@@ -1123,8 +1123,8 @@
    "notes": [],
    "frames": 58,
    "drawnFrames": 58,
-   "avgMs": 0.061,
-   "worstMs": 0.23,
+   "avgMs": 0.059,
+   "worstMs": 0.22,
    "outsidePx": 0
   },
   {
@@ -1133,8 +1133,8 @@
    "notes": [],
    "frames": 55,
    "drawnFrames": 52,
-   "avgMs": 0.067,
-   "worstMs": 1.38,
+   "avgMs": 0.042,
+   "worstMs": 0.34,
    "outsidePx": 0
   },
   {
@@ -1144,7 +1144,7 @@
    "frames": 97,
    "drawnFrames": 95,
    "avgMs": 0.172,
-   "worstMs": 1.99,
+   "worstMs": 1.19,
    "outsidePx": 0
   },
   {
@@ -1153,8 +1153,8 @@
    "notes": [],
    "frames": 30,
    "drawnFrames": 30,
-   "avgMs": 0.286,
-   "worstMs": 0.84,
+   "avgMs": 0.296,
+   "worstMs": 1,
    "outsidePx": 0
   },
   {
@@ -1163,8 +1163,8 @@
    "notes": [],
    "frames": 24,
    "drawnFrames": 24,
-   "avgMs": 0.337,
-   "worstMs": 1.99,
+   "avgMs": 0.372,
+   "worstMs": 2.14,
    "outsidePx": 0
   },
   {
@@ -1173,8 +1173,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.565,
-   "worstMs": 0.67,
+   "avgMs": 0.649,
+   "worstMs": 0.83,
    "outsidePx": 0
   },
   {
@@ -1183,8 +1183,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 91,
-   "avgMs": 0.044,
-   "worstMs": 0.22,
+   "avgMs": 0.048,
+   "worstMs": 0.21,
    "outsidePx": 0
   },
   {
@@ -1193,8 +1193,8 @@
    "notes": [],
    "frames": 103,
    "drawnFrames": 93,
-   "avgMs": 0.175,
-   "worstMs": 0.98,
+   "avgMs": 0.155,
+   "worstMs": 0.78,
    "outsidePx": 0
   },
   {
@@ -1203,7 +1203,7 @@
    "notes": [],
    "frames": 109,
    "drawnFrames": 105,
-   "avgMs": 0.206,
+   "avgMs": 0.207,
    "worstMs": 0.39,
    "outsidePx": 0
   },
@@ -1213,8 +1213,8 @@
    "notes": [],
    "frames": 94,
    "drawnFrames": 94,
-   "avgMs": 0.199,
-   "worstMs": 1.1,
+   "avgMs": 0.192,
+   "worstMs": 1.13,
    "outsidePx": 0
   },
   {
@@ -1223,7 +1223,7 @@
    "notes": [],
    "frames": 49,
    "drawnFrames": 43,
-   "avgMs": 0.083,
+   "avgMs": 0.082,
    "worstMs": 0.3,
    "outsidePx": 0
   },
@@ -1233,8 +1233,8 @@
    "notes": [],
    "frames": 76,
    "drawnFrames": 72,
-   "avgMs": 0.308,
-   "worstMs": 2.04,
+   "avgMs": 0.296,
+   "worstMs": 2.02,
    "outsidePx": 0
   },
   {
@@ -1243,8 +1243,8 @@
    "notes": [],
    "frames": 100,
    "drawnFrames": 97,
-   "avgMs": 0.216,
-   "worstMs": 1.72,
+   "avgMs": 0.214,
+   "worstMs": 1.06,
    "outsidePx": 0
   },
   {
@@ -1253,8 +1253,8 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 93,
-   "avgMs": 0.111,
-   "worstMs": 0.26,
+   "avgMs": 0.119,
+   "worstMs": 0.4,
    "outsidePx": 0
   },
   {
@@ -1263,8 +1263,8 @@
    "notes": [],
    "frames": 115,
    "drawnFrames": 109,
-   "avgMs": 0.362,
-   "worstMs": 1.08,
+   "avgMs": 0.364,
+   "worstMs": 1.05,
    "outsidePx": 0
   },
   {
@@ -1273,8 +1273,8 @@
    "notes": [],
    "frames": 139,
    "drawnFrames": 134,
-   "avgMs": 0.375,
-   "worstMs": 0.84,
+   "avgMs": 0.385,
+   "worstMs": 0.87,
    "outsidePx": 0
   },
   {
@@ -1283,8 +1283,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.782,
-   "worstMs": 1.6,
+   "avgMs": 0.711,
+   "worstMs": 1.63,
    "outsidePx": 0
   },
   {
@@ -1293,8 +1293,8 @@
    "notes": [],
    "frames": 54,
    "drawnFrames": 51,
-   "avgMs": 0.231,
-   "worstMs": 0.69,
+   "avgMs": 0.236,
+   "worstMs": 0.65,
    "outsidePx": 0
   },
   {
@@ -1303,8 +1303,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.258,
-   "worstMs": 0.79,
+   "avgMs": 0.267,
+   "worstMs": 0.84,
    "outsidePx": 0
   },
   {
@@ -1313,8 +1313,8 @@
    "notes": [],
    "frames": 43,
    "drawnFrames": 39,
-   "avgMs": 0.084,
-   "worstMs": 0.34,
+   "avgMs": 0.095,
+   "worstMs": 0.36,
    "outsidePx": 0
   },
   {
@@ -1323,8 +1323,8 @@
    "notes": [],
    "frames": 49,
    "drawnFrames": 44,
-   "avgMs": 0.086,
-   "worstMs": 0.32,
+   "avgMs": 0.088,
+   "worstMs": 0.33,
    "outsidePx": 0
   },
   {
@@ -1333,8 +1333,8 @@
    "notes": [],
    "frames": 118,
    "drawnFrames": 105,
-   "avgMs": 0.811,
-   "worstMs": 3.39,
+   "avgMs": 0.848,
+   "worstMs": 3.49,
    "outsidePx": 0
   },
   {
@@ -1343,8 +1343,8 @@
    "notes": [],
    "frames": 55,
    "drawnFrames": 53,
-   "avgMs": 0.234,
-   "worstMs": 0.66,
+   "avgMs": 0.259,
+   "worstMs": 0.73,
    "outsidePx": 0
   },
   {
@@ -1353,8 +1353,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 1.18,
-   "worstMs": 2.7,
+   "avgMs": 1.214,
+   "worstMs": 2.84,
    "outsidePx": 0
   },
   {
@@ -1363,8 +1363,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.582,
-   "worstMs": 1.33,
+   "avgMs": 0.561,
+   "worstMs": 1.35,
    "outsidePx": 0
   },
   {
@@ -1373,8 +1373,8 @@
    "notes": [],
    "frames": 48,
    "drawnFrames": 48,
-   "avgMs": 0.166,
-   "worstMs": 0.3,
+   "avgMs": 0.175,
+   "worstMs": 0.29,
    "outsidePx": 0
   },
   {
@@ -1383,8 +1383,8 @@
    "notes": [],
    "frames": 76,
    "drawnFrames": 71,
-   "avgMs": 0.19,
-   "worstMs": 0.51,
+   "avgMs": 0.186,
+   "worstMs": 0.35,
    "outsidePx": 0
   },
   {
@@ -1393,8 +1393,8 @@
    "notes": [],
    "frames": 109,
    "drawnFrames": 106,
-   "avgMs": 0.49,
-   "worstMs": 0.96,
+   "avgMs": 0.489,
+   "worstMs": 0.97,
    "outsidePx": 0
   },
   {
@@ -1403,8 +1403,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.636,
-   "worstMs": 2.23,
+   "avgMs": 0.631,
+   "worstMs": 2.26,
    "outsidePx": 0
   },
   {
@@ -1413,8 +1413,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.538,
-   "worstMs": 1.68,
+   "avgMs": 0.533,
+   "worstMs": 1.64,
    "outsidePx": 0
   },
   {
@@ -1423,8 +1423,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 79,
-   "avgMs": 0.196,
-   "worstMs": 0.87,
+   "avgMs": 0.2,
+   "worstMs": 0.89,
    "outsidePx": 0
   },
   {
@@ -1433,7 +1433,7 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.039,
+   "avgMs": 0.035,
    "worstMs": 0.26,
    "outsidePx": 0
   },
@@ -1443,8 +1443,8 @@
    "notes": [],
    "frames": 58,
    "drawnFrames": 52,
-   "avgMs": 0.142,
-   "worstMs": 0.31,
+   "avgMs": 0.14,
+   "worstMs": 0.32,
    "outsidePx": 0
   },
   {
@@ -1453,8 +1453,8 @@
    "notes": [],
    "frames": 88,
    "drawnFrames": 84,
-   "avgMs": 0.48,
-   "worstMs": 1.13,
+   "avgMs": 0.462,
+   "worstMs": 0.96,
    "outsidePx": 0
   },
   {
@@ -1463,8 +1463,8 @@
    "notes": [],
    "frames": 106,
    "drawnFrames": 101,
-   "avgMs": 0.532,
-   "worstMs": 2.1,
+   "avgMs": 0.526,
+   "worstMs": 1.93,
    "outsidePx": 0
   },
   {
@@ -1473,8 +1473,8 @@
    "notes": [],
    "frames": 145,
    "drawnFrames": 136,
-   "avgMs": 0.572,
-   "worstMs": 1.21,
+   "avgMs": 0.559,
+   "worstMs": 1.22,
    "outsidePx": 0
   },
   {
@@ -1493,8 +1493,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.333,
-   "worstMs": 0.91,
+   "avgMs": 0.335,
+   "worstMs": 0.86,
    "outsidePx": 0
   },
   {
@@ -1503,8 +1503,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.796,
-   "worstMs": 2.75,
+   "avgMs": 0.843,
+   "worstMs": 2.63,
    "outsidePx": 0
   },
   {
@@ -1514,7 +1514,7 @@
    "frames": 103,
    "drawnFrames": 101,
    "avgMs": 0.132,
-   "worstMs": 0.42,
+   "worstMs": 0.4,
    "outsidePx": 0
   },
   {
@@ -1523,8 +1523,8 @@
    "notes": [],
    "frames": 115,
    "drawnFrames": 114,
-   "avgMs": 1.009,
-   "worstMs": 4.63,
+   "avgMs": 0.983,
+   "worstMs": 4.38,
    "outsidePx": 0
   },
   {
@@ -1534,7 +1534,7 @@
    "frames": 120,
    "drawnFrames": 120,
    "avgMs": 0.452,
-   "worstMs": 1.36,
+   "worstMs": 1.19,
    "outsidePx": 0
   },
   {
@@ -1543,8 +1543,8 @@
    "notes": [],
    "frames": 94,
    "drawnFrames": 84,
-   "avgMs": 0.382,
-   "worstMs": 0.82,
+   "avgMs": 0.399,
+   "worstMs": 0.98,
    "outsidePx": 0
   },
   {
@@ -1553,7 +1553,7 @@
    "notes": [],
    "frames": 127,
    "drawnFrames": 114,
-   "avgMs": 0.111,
+   "avgMs": 0.115,
    "worstMs": 0.39,
    "outsidePx": 0
   },
@@ -1563,8 +1563,8 @@
    "notes": [],
    "frames": 67,
    "drawnFrames": 63,
-   "avgMs": 0.099,
-   "worstMs": 0.48,
+   "avgMs": 0.096,
+   "worstMs": 0.35,
    "outsidePx": 0
   },
   {
@@ -1573,8 +1573,8 @@
    "notes": [],
    "frames": 90,
    "drawnFrames": 90,
-   "avgMs": 0.371,
-   "worstMs": 0.88,
+   "avgMs": 0.374,
+   "worstMs": 1.25,
    "outsidePx": 0
   },
   {
@@ -1583,8 +1583,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.299,
-   "worstMs": 0.96,
+   "avgMs": 0.303,
+   "worstMs": 1.04,
    "outsidePx": 0
   },
   {
@@ -1594,7 +1594,7 @@
    "frames": 97,
    "drawnFrames": 88,
    "avgMs": 0.505,
-   "worstMs": 1.07,
+   "worstMs": 1.04,
    "outsidePx": 0
   },
   {
@@ -1603,8 +1603,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.162,
-   "worstMs": 0.78,
+   "avgMs": 0.165,
+   "worstMs": 0.77,
    "outsidePx": 0
   },
   {
@@ -1613,8 +1613,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.492,
-   "worstMs": 3.52,
+   "avgMs": 0.482,
+   "worstMs": 3.58,
    "outsidePx": 0
   },
   {
@@ -1623,8 +1623,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.021,
-   "worstMs": 0.74,
+   "avgMs": 0.027,
+   "worstMs": 1.11,
    "outsidePx": 0
   },
   {
@@ -1633,8 +1633,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.176,
-   "worstMs": 1.3,
+   "avgMs": 0.183,
+   "worstMs": 1.51,
    "outsidePx": 0
   },
   {
@@ -1643,7 +1643,7 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.103,
+   "avgMs": 0.104,
    "worstMs": 0.81,
    "outsidePx": 0
   },
@@ -1653,7 +1653,7 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.062,
+   "avgMs": 0.057,
    "worstMs": 0.33,
    "outsidePx": 0
   },
@@ -1663,8 +1663,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.306,
-   "worstMs": 0.74,
+   "avgMs": 0.313,
+   "worstMs": 0.73,
    "outsidePx": 0
   },
   {
@@ -1673,8 +1673,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.103,
-   "worstMs": 0.94,
+   "avgMs": 0.1,
+   "worstMs": 0.93,
    "outsidePx": 0
   },
   {
@@ -1683,8 +1683,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.121,
-   "worstMs": 0.55,
+   "avgMs": 0.129,
+   "worstMs": 0.82,
    "outsidePx": 0
   },
   {
@@ -1693,8 +1693,8 @@
    "notes": [],
    "frames": 115,
    "drawnFrames": 110,
-   "avgMs": 0.069,
-   "worstMs": 0.31,
+   "avgMs": 0.068,
+   "worstMs": 0.3,
    "outsidePx": 0
   },
   {
@@ -1703,8 +1703,8 @@
    "notes": [],
    "frames": 48,
    "drawnFrames": 48,
-   "avgMs": 0.139,
-   "worstMs": 1.09,
+   "avgMs": 0.135,
+   "worstMs": 1.23,
    "outsidePx": 0
   },
   {
@@ -1713,8 +1713,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.133,
-   "worstMs": 0.7,
+   "avgMs": 0.135,
+   "worstMs": 0.81,
    "outsidePx": 0
   },
   {
@@ -1724,7 +1724,7 @@
    "frames": 72,
    "drawnFrames": 72,
    "avgMs": 0.061,
-   "worstMs": 0.37,
+   "worstMs": 0.33,
    "outsidePx": 0
   },
   {
@@ -1733,8 +1733,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.184,
-   "worstMs": 0.59,
+   "avgMs": 0.169,
+   "worstMs": 0.54,
    "outsidePx": 0
   },
   {
@@ -1743,7 +1743,7 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.278,
+   "avgMs": 0.281,
    "worstMs": 1.19,
    "outsidePx": 0
   },
@@ -1753,8 +1753,8 @@
    "notes": [],
    "frames": 85,
    "drawnFrames": 82,
-   "avgMs": 0.13,
-   "worstMs": 0.4,
+   "avgMs": 0.123,
+   "worstMs": 0.38,
    "outsidePx": 0
   },
   {
@@ -1763,8 +1763,8 @@
    "notes": [],
    "frames": 70,
    "drawnFrames": 69,
-   "avgMs": 0.293,
-   "worstMs": 0.68,
+   "avgMs": 0.297,
+   "worstMs": 0.69,
    "outsidePx": 0
   },
   {
@@ -1773,8 +1773,8 @@
    "notes": [],
    "frames": 103,
    "drawnFrames": 97,
-   "avgMs": 0.684,
-   "worstMs": 1.27,
+   "avgMs": 0.694,
+   "worstMs": 1.34,
    "outsidePx": 0
   },
   {
@@ -1783,8 +1783,8 @@
    "notes": [],
    "frames": 100,
    "drawnFrames": 97,
-   "avgMs": 0.204,
-   "worstMs": 0.46,
+   "avgMs": 0.206,
+   "worstMs": 0.55,
    "outsidePx": 0
   },
   {
@@ -1794,7 +1794,7 @@
    "frames": 72,
    "drawnFrames": 72,
    "avgMs": 0.396,
-   "worstMs": 0.91,
+   "worstMs": 0.9,
    "outsidePx": 0
   },
   {
@@ -1803,8 +1803,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.844,
-   "worstMs": 2.18,
+   "avgMs": 0.836,
+   "worstMs": 2,
    "outsidePx": 0
   },
   {
@@ -1813,8 +1813,8 @@
    "notes": [],
    "frames": 94,
    "drawnFrames": 88,
-   "avgMs": 0.365,
-   "worstMs": 0.8,
+   "avgMs": 0.361,
+   "worstMs": 0.81,
    "outsidePx": 0
   },
   {
@@ -1823,8 +1823,8 @@
    "notes": [],
    "frames": 82,
    "drawnFrames": 80,
-   "avgMs": 0.319,
-   "worstMs": 0.65,
+   "avgMs": 0.32,
+   "worstMs": 0.69,
    "outsidePx": 0
   },
   {
@@ -1833,8 +1833,8 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 94,
-   "avgMs": 0.493,
-   "worstMs": 0.97,
+   "avgMs": 0.494,
+   "worstMs": 0.93,
    "outsidePx": 0
   },
   {
@@ -1843,8 +1843,8 @@
    "notes": [],
    "frames": 73,
    "drawnFrames": 71,
-   "avgMs": 0.82,
-   "worstMs": 1.9,
+   "avgMs": 0.817,
+   "worstMs": 1.95,
    "outsidePx": 0
   },
   {
@@ -1853,8 +1853,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.862,
-   "worstMs": 2.49,
+   "avgMs": 0.878,
+   "worstMs": 2.48,
    "outsidePx": 0
   },
   {
@@ -1863,8 +1863,8 @@
    "notes": [],
    "frames": 120,
    "drawnFrames": 120,
-   "avgMs": 0.213,
-   "worstMs": 0.91,
+   "avgMs": 0.219,
+   "worstMs": 0.93,
    "outsidePx": 0
   },
   {
@@ -1873,8 +1873,8 @@
    "notes": [],
    "frames": 43,
    "drawnFrames": 41,
-   "avgMs": 0.268,
-   "worstMs": 1,
+   "avgMs": 0.271,
+   "worstMs": 1.05,
    "outsidePx": 0
   },
   {
@@ -1883,8 +1883,8 @@
    "notes": [],
    "frames": 360,
    "drawnFrames": 360,
-   "avgMs": 1.302,
-   "worstMs": 31.59,
+   "avgMs": 1.272,
+   "worstMs": 27.78,
    "outsidePx": 0
   },
   {
@@ -1893,8 +1893,8 @@
    "notes": [],
    "frames": 240,
    "drawnFrames": 240,
-   "avgMs": 1.586,
-   "worstMs": 67.23,
+   "avgMs": 1.564,
+   "worstMs": 61.76,
    "outsidePx": 0
   },
   {
@@ -1903,8 +1903,8 @@
    "notes": [],
    "frames": 300,
    "drawnFrames": 300,
-   "avgMs": 0.855,
-   "worstMs": 4.54,
+   "avgMs": 0.85,
+   "worstMs": 5.8,
    "outsidePx": 0
   },
   {
@@ -1913,8 +1913,8 @@
    "notes": [],
    "frames": 360,
    "drawnFrames": 360,
-   "avgMs": 1.863,
-   "worstMs": 5.51,
+   "avgMs": 1.977,
+   "worstMs": 5.41,
    "outsidePx": 0
   },
   {
@@ -1924,7 +1924,7 @@
    "frames": 300,
    "drawnFrames": 300,
    "avgMs": 1.267,
-   "worstMs": 5.4,
+   "worstMs": 5.57,
    "outsidePx": 0
   },
   {
@@ -1933,8 +1933,8 @@
    "notes": [],
    "frames": 360,
    "drawnFrames": 360,
-   "avgMs": 1.702,
-   "worstMs": 3.39,
+   "avgMs": 1.704,
+   "worstMs": 3.43,
    "outsidePx": 0
   },
   {
@@ -1943,8 +1943,8 @@
    "notes": [],
    "frames": 360,
    "drawnFrames": 360,
-   "avgMs": 1.543,
-   "worstMs": 73.41,
+   "avgMs": 1.538,
+   "worstMs": 73.13,
    "outsidePx": 0
   },
   {
@@ -1953,8 +1953,8 @@
    "notes": [],
    "frames": 300,
    "drawnFrames": 300,
-   "avgMs": 2.299,
-   "worstMs": 4.6,
+   "avgMs": 2.293,
+   "worstMs": 4.8,
    "outsidePx": 0
   },
   {
@@ -1963,8 +1963,8 @@
    "notes": [],
    "frames": 240,
    "drawnFrames": 240,
-   "avgMs": 1.644,
-   "worstMs": 37.07,
+   "avgMs": 1.635,
+   "worstMs": 37.61,
    "outsidePx": 0
   },
   {
@@ -1973,8 +1973,8 @@
    "notes": [],
    "frames": 300,
    "drawnFrames": 300,
-   "avgMs": 1.556,
-   "worstMs": 2.79,
+   "avgMs": 1.551,
+   "worstMs": 2.7,
    "outsidePx": 0
   },
   {
@@ -1983,8 +1983,8 @@
    "notes": [],
    "frames": 360,
    "drawnFrames": 360,
-   "avgMs": 1.919,
-   "worstMs": 3.89,
+   "avgMs": 1.928,
+   "worstMs": 3.77,
    "outsidePx": 0
   },
   {
@@ -1993,8 +1993,8 @@
    "notes": [],
    "frames": 300,
    "drawnFrames": 300,
-   "avgMs": 2.633,
-   "worstMs": 68.94,
+   "avgMs": 2.613,
+   "worstMs": 68.72,
    "outsidePx": 0
   },
   {
@@ -2003,8 +2003,8 @@
    "notes": [],
    "frames": 73,
    "drawnFrames": 65,
-   "avgMs": 0.501,
-   "worstMs": 1.91,
+   "avgMs": 0.5,
+   "worstMs": 1.9,
    "outsidePx": 0
   },
   {
@@ -2013,8 +2013,8 @@
    "notes": [],
    "frames": 75,
    "drawnFrames": 66,
-   "avgMs": 0.244,
-   "worstMs": 0.62,
+   "avgMs": 0.248,
+   "worstMs": 0.65,
    "outsidePx": 0
   },
   {
@@ -2023,8 +2023,8 @@
    "notes": [],
    "frames": 45,
    "drawnFrames": 44,
-   "avgMs": 0.76,
-   "worstMs": 4.66,
+   "avgMs": 0.779,
+   "worstMs": 4.97,
    "outsidePx": 0
   },
   {
@@ -2033,8 +2033,8 @@
    "notes": [],
    "frames": 103,
    "drawnFrames": 99,
-   "avgMs": 0.372,
-   "worstMs": 0.86,
+   "avgMs": 0.368,
+   "worstMs": 0.85,
    "outsidePx": 0
   },
   {
@@ -2043,8 +2043,8 @@
    "notes": [],
    "frames": 94,
    "drawnFrames": 92,
-   "avgMs": 0.806,
-   "worstMs": 3.15,
+   "avgMs": 0.841,
+   "worstMs": 3.75,
    "outsidePx": 0
   },
   {
@@ -2053,8 +2053,8 @@
    "notes": [],
    "frames": 46,
    "drawnFrames": 44,
-   "avgMs": 1.135,
-   "worstMs": 4.05,
+   "avgMs": 1.159,
+   "worstMs": 3.86,
    "outsidePx": 0
   },
   {
@@ -2073,8 +2073,8 @@
    "notes": [],
    "frames": 43,
    "drawnFrames": 41,
-   "avgMs": 0.131,
-   "worstMs": 0.49,
+   "avgMs": 0.134,
+   "worstMs": 0.48,
    "outsidePx": 0
   },
   {
@@ -2083,8 +2083,8 @@
    "notes": [],
    "frames": 61,
    "drawnFrames": 53,
-   "avgMs": 0.234,
-   "worstMs": 0.59,
+   "avgMs": 0.236,
+   "worstMs": 0.49,
    "outsidePx": 0
   },
   {
@@ -2094,7 +2094,7 @@
    "frames": 46,
    "drawnFrames": 42,
    "avgMs": 0.114,
-   "worstMs": 0.33,
+   "worstMs": 0.32,
    "outsidePx": 0
   },
   {
@@ -2103,8 +2103,8 @@
    "notes": [],
    "frames": 97,
    "drawnFrames": 97,
-   "avgMs": 0.306,
-   "worstMs": 0.76,
+   "avgMs": 0.303,
+   "worstMs": 0.75,
    "outsidePx": 0
   },
   {
@@ -2113,8 +2113,8 @@
    "notes": [],
    "frames": 79,
    "drawnFrames": 75,
-   "avgMs": 0.434,
-   "worstMs": 1.05,
+   "avgMs": 0.437,
+   "worstMs": 0.98,
    "outsidePx": 0
   },
   {
@@ -2123,8 +2123,8 @@
    "notes": [],
    "frames": 139,
    "drawnFrames": 136,
-   "avgMs": 0.548,
-   "worstMs": 1.38,
+   "avgMs": 0.538,
+   "worstMs": 1.61,
    "outsidePx": 0
   },
   {
@@ -2134,7 +2134,7 @@
    "frames": 48,
    "drawnFrames": 48,
    "avgMs": 0.049,
-   "worstMs": 0.38,
+   "worstMs": 0.4,
    "outsidePx": 0
   },
   {
@@ -2143,8 +2143,8 @@
    "notes": [],
    "frames": 42,
    "drawnFrames": 33,
-   "avgMs": 0.076,
-   "worstMs": 0.27,
+   "avgMs": 0.079,
+   "worstMs": 0.53,
    "outsidePx": 0
   },
   {
@@ -2153,8 +2153,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.263,
-   "worstMs": 2.7,
+   "avgMs": 0.254,
+   "worstMs": 2.37,
    "outsidePx": 0
   },
   {
@@ -2163,8 +2163,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.174,
-   "worstMs": 1.43,
+   "avgMs": 0.173,
+   "worstMs": 1.34,
    "outsidePx": 0
   },
   {
@@ -2173,8 +2173,8 @@
    "notes": [],
    "frames": 36,
    "drawnFrames": 36,
-   "avgMs": 0.098,
-   "worstMs": 0.5,
+   "avgMs": 0.096,
+   "worstMs": 0.48,
    "outsidePx": 0
   },
   {
@@ -2183,8 +2183,8 @@
    "notes": [],
    "frames": 60,
    "drawnFrames": 60,
-   "avgMs": 0.08,
-   "worstMs": 0.63,
+   "avgMs": 0.076,
+   "worstMs": 0.46,
    "outsidePx": 0
   },
   {
@@ -2193,8 +2193,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.549,
-   "worstMs": 1.38,
+   "avgMs": 0.552,
+   "worstMs": 1.36,
    "outsidePx": 0
   },
   {
@@ -2213,8 +2213,8 @@
    "notes": [],
    "frames": 48,
    "drawnFrames": 48,
-   "avgMs": 1.534,
-   "worstMs": 2.09,
+   "avgMs": 1.52,
+   "worstMs": 2.03,
    "outsidePx": 0
   },
   {
@@ -2223,8 +2223,8 @@
    "notes": [],
    "frames": 54,
    "drawnFrames": 54,
-   "avgMs": 0.14,
-   "worstMs": 0.42,
+   "avgMs": 0.139,
+   "worstMs": 0.47,
    "outsidePx": 0
   },
   {
@@ -2233,8 +2233,8 @@
    "notes": [],
    "frames": 61,
    "drawnFrames": 58,
-   "avgMs": 0.764,
-   "worstMs": 2.11,
+   "avgMs": 0.736,
+   "worstMs": 1.92,
    "outsidePx": 0
   },
   {
@@ -2243,8 +2243,8 @@
    "notes": [],
    "frames": 91,
    "drawnFrames": 89,
-   "avgMs": 2.258,
-   "worstMs": 5.93,
+   "avgMs": 2.22,
+   "worstMs": 4.39,
    "outsidePx": 0
   },
   {
@@ -2253,8 +2253,8 @@
    "notes": [],
    "frames": 61,
    "drawnFrames": 57,
-   "avgMs": 0.924,
-   "worstMs": 3.28,
+   "avgMs": 0.97,
+   "worstMs": 3.18,
    "outsidePx": 0
   },
   {
@@ -2263,8 +2263,8 @@
    "notes": [],
    "frames": 61,
    "drawnFrames": 55,
-   "avgMs": 2.424,
-   "worstMs": 5.92,
+   "avgMs": 2.369,
+   "worstMs": 5.57,
    "outsidePx": 0
   },
   {
@@ -2273,7 +2273,7 @@
    "notes": [],
    "frames": 55,
    "drawnFrames": 48,
-   "avgMs": 0.499,
+   "avgMs": 0.501,
    "worstMs": 1.06,
    "outsidePx": 0
   },
@@ -2283,8 +2283,8 @@
    "notes": [],
    "frames": 67,
    "drawnFrames": 55,
-   "avgMs": 0.802,
-   "worstMs": 2.92,
+   "avgMs": 0.763,
+   "worstMs": 2.78,
    "outsidePx": 0
   },
   {
@@ -2293,8 +2293,8 @@
    "notes": [],
    "frames": 67,
    "drawnFrames": 62,
-   "avgMs": 1.98,
-   "worstMs": 3.65,
+   "avgMs": 1.989,
+   "worstMs": 3.4,
    "outsidePx": 0
   },
   {
@@ -2303,8 +2303,8 @@
    "notes": [],
    "frames": 85,
    "drawnFrames": 80,
-   "avgMs": 1.794,
-   "worstMs": 5.5,
+   "avgMs": 1.761,
+   "worstMs": 5.2,
    "outsidePx": 0
   },
   {
@@ -2313,8 +2313,8 @@
    "notes": [],
    "frames": 52,
    "drawnFrames": 47,
-   "avgMs": 1.094,
-   "worstMs": 4.48,
+   "avgMs": 1.112,
+   "worstMs": 4.62,
    "outsidePx": 0
   },
   {
@@ -2323,8 +2323,8 @@
    "notes": [],
    "frames": 67,
    "drawnFrames": 53,
-   "avgMs": 0.865,
-   "worstMs": 2.57,
+   "avgMs": 0.858,
+   "worstMs": 2.52,
    "outsidePx": 0
   },
   {
@@ -2333,7 +2333,7 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.211,
+   "avgMs": 0.209,
    "worstMs": 1.42,
    "outsidePx": 0
   },
@@ -2343,8 +2343,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.146,
-   "worstMs": 0.74,
+   "avgMs": 0.147,
+   "worstMs": 0.73,
    "outsidePx": 0
   },
   {
@@ -2353,8 +2353,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.852,
-   "worstMs": 2.11,
+   "avgMs": 0.849,
+   "worstMs": 2.22,
    "outsidePx": 0
   },
   {
@@ -2363,8 +2363,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.548,
-   "worstMs": 1.31,
+   "avgMs": 0.54,
+   "worstMs": 1.32,
    "outsidePx": 0
   },
   {
@@ -2373,8 +2373,8 @@
    "notes": [],
    "frames": 144,
    "drawnFrames": 144,
-   "avgMs": 1.144,
-   "worstMs": 2.64,
+   "avgMs": 1.164,
+   "worstMs": 2.86,
    "outsidePx": 0
   },
   {
@@ -2383,8 +2383,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 1.158,
-   "worstMs": 2.81,
+   "avgMs": 1.168,
+   "worstMs": 2.89,
    "outsidePx": 0
   },
   {
@@ -2393,8 +2393,8 @@
    "notes": [],
    "frames": 78,
    "drawnFrames": 78,
-   "avgMs": 0.192,
-   "worstMs": 1.03,
+   "avgMs": 0.187,
+   "worstMs": 1.04,
    "outsidePx": 0
   },
   {
@@ -2403,8 +2403,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.668,
-   "worstMs": 1.59,
+   "avgMs": 0.68,
+   "worstMs": 1.7,
    "outsidePx": 0
   },
   {
@@ -2413,8 +2413,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.583,
-   "worstMs": 1.93,
+   "avgMs": 0.602,
+   "worstMs": 1.96,
    "outsidePx": 0
   },
   {
@@ -2423,8 +2423,8 @@
    "notes": [],
    "frames": 54,
    "drawnFrames": 54,
-   "avgMs": 0.704,
-   "worstMs": 1.83,
+   "avgMs": 0.715,
+   "worstMs": 1.82,
    "outsidePx": 0
   },
   {
@@ -2433,8 +2433,8 @@
    "notes": [],
    "frames": 72,
    "drawnFrames": 72,
-   "avgMs": 0.115,
-   "worstMs": 0.57,
+   "avgMs": 0.123,
+   "worstMs": 0.62,
    "outsidePx": 0
   },
   {
@@ -2443,8 +2443,8 @@
    "notes": [],
    "frames": 96,
    "drawnFrames": 96,
-   "avgMs": 0.404,
-   "worstMs": 0.73,
+   "avgMs": 0.414,
+   "worstMs": 0.75,
    "outsidePx": 0
   }
  ]

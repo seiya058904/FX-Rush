@@ -6,7 +6,7 @@
 
 <p align="center">
   A short, explosive side-view pixel auto-battler that runs in your browser.<br>
-  The hero fights on his own; you click to cut faster, pick a power at every level-up,<br>
+  The hero fights on his own; you click anywhere to speed him up, pick a power at every level-up,<br>
   and watch the screen turn into a symphony of 244 hand-crafted PixelFX effects.
 </p>
 
@@ -45,7 +45,7 @@
 
 > **Three seconds after you click, the first slime is already flying.**
 >
-> A knight in ivory armour and a crimson scarf walks into three hostile worlds. He finds the nearest monster and cuts on his own — slash, cross, cleave — while every skill you pick fires by itself in rotation. Click (or tap) to cancel his recovery into an empowered thrust. Fill the **RUSH** meter and he performs a whole PixelFX move: a meteor call, a rocket launcher, a dash through the crowd.
+> A knight in ivory armour and a crimson scarf walks into three hostile worlds. He finds the nearest monster and picks his own attacks — a spin when surrounded, a thrust lunge to close a gap, slash, cross and a finisher — while every skill you pick fires by itself in rotation. Click (or tap) anywhere to push the tempo. Fill the **RUSH** meter and he performs a whole PixelFX move: a meteor call, a rocket launcher, a dash through the crowd.
 
 <a id="the-rush"></a>
 ## 🎮 The Rush
@@ -72,7 +72,7 @@
 
 **Grow fast, grow loud.** Kills drop experience; every level offers three cards. Twelve skills — **Blade Waves, Chain Lightning, Inferno, Frost Nova, Arcane Barrage, Black Hole, Aegis, Meteor, Thunder, Holy Smite, Earth Fury, Plague** — each gain five levels, and every level changes what you see. They feed each other: frozen monsters shatter under fire, poison spreads on death, kill explosions chain into more kills. A 150-hit combo stops time.
 
-**Feel every hit.** Each blow is a PixelFX *act*: a real wind-up, the contact frame, a freeze tuned by weight (budgeted so a crowd never stalls the game), knockback, squash, a flash, the number and a layered synthesized sound on the same frame. Normal hits, crits, area blasts and boss finishers each read differently.
+**Feel every hit.** Each blow is a PixelFX *act*: a real wind-up, the contact frame, a freeze tuned by weight (budgeted so a crowd never stalls the game), knockback, squash, a flash, a small damage number (merged per enemy so a flurry stays readable) and a layered synthesized sound on the same frame. Normal hits, crits, area blasts and boss finishers each read differently.
 
 **Readable chaos.** Bosses and elites telegraph with a red rune, a raised fist, a scanner lock or an opening pool — and the hero's AI reads those tells too, stepping out of marked zones and jumping shock waves, so you can play fully idle.
 
@@ -103,8 +103,8 @@
 
 | Action | Mouse / keyboard | Touch |
 |---|---|---|
-| Fight | automatic — the hero targets, walks in and cuts | automatic |
-| Empowered strike (cancels his recovery; rapid clicks chain into a spin) | **click** · **J** / **K** / **X** | **tap** anywhere |
+| Fight | automatic — the hero targets, walks in and picks his own attacks (spin when surrounded, thrust lunge, slash → cross → finisher) | automatic |
+| Speed him up (more tempo: faster cuts, earlier recovery cancels, faster RUSH) | **click** anywhere | **tap** anywhere |
 | Move (optional; the AI takes over again when you let go) | **A / D** · **← / →** | — |
 | Jump | **Space** · **W** · **↑** | swipe up |
 | Pick a level-up card | **1 / 2 / 3** · click · **←/→ + Enter** (auto-picks after 6 s) | tap |

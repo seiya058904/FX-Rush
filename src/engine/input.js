@@ -8,7 +8,6 @@ const KEYS = {
   ArrowRight: "right", KeyD: "right",
   ArrowUp: "jump", KeyW: "jump", Space: "jump",
   ArrowDown: "down", KeyS: "down",
-  KeyJ: "attack", KeyK: "attack", KeyX: "attack", KeyZ: "attack",
   Enter: "confirm", NumpadEnter: "confirm",
   Escape: "pause", KeyP: "pause",
   KeyM: "mute",

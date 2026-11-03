@@ -1,0 +1,49 @@
+# FX Rush roadmap
+
+Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
+
+## Status (2026-11-03)
+
+- Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
+- PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load, pass the headless self-test, are wired into game code and were seen on screen in recorded play (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
+- Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
+
+## Iteration 2 — one-button attack, calmer screen (done locally, not pushed)
+
+Player feedback: the extra attack keys (J/K/X/Z) were confusing; the screen was too bright mainly because of damage
+numbers and what sits behind them (crit starbursts, white death smoke) stacking over the fighters.
+
+**A. One attack input.** Clicking / tapping anywhere is the only attack input; the J/K/X/Z attack keys are removed.
+Movement (A/D, arrows) and jump (Space/W/Up, swipe up) stay. A click no longer starts a separate move: it adds
+*tempo* (faster cadence, earlier recovery cancel, faster RUSH gain). The hero picks attacks from the situation:
+enemies on both sides -> spin; target a step away in front -> thrust lunge; elites / bosses / crowds -> chain ends in
+cleave; otherwise slash -> cross -> cleave.
+
+**B. Calmer screen.** Normal hits use small pixel numbers only, merged per enemy over a short window, at most 6 on
+screen. The big `ui/crit-number` starburst is reserved for rare moments (boss crits). Death smoke is grey, shorter
+and dimmer. POW!/BAM! is rarer. Impact light and scene light are lowered. 244/244 coverage is kept.
+
+**C. Tests and docs.** e2e: rapid clicks raise tempo; movement and jump still tested; full idle run still clears.
+README controls, screenshots and `src/fx/usage.js` roles updated.
+
+### Progress (tick as done; resume from the first open box)
+
+- [x] 0. `CLAUDE.md` + this roadmap
+- [x] A. attack hotkeys removed; tempo clicks; situational attack choice (`src/game/hero.js` `startAuto`)
+- [x] B. damage numbers / death smoke / POW / light toned down
+- [x] C. e2e updated (manual key test isolated from level-ups/RUSH/knockback); README controls; usage roles
+- [x] full `npm run e2e` pass (10/10) + screenshots refreshed
+- [x] smoke + audit 244/244, build, diff review, local commit
+- [ ] push to GitHub / Pages deploy (needs the owner's OK)
+
+## Resuming on another machine
+
+Copy the folder as-is (or clone). Needs Node 20.19+ and, for `npm run e2e` / `tools/shot.mjs`, an installed Google
+Chrome. If `npm run dev` fails after a copy (different CPU architecture), run `npm ci`. Claude's private memory and
+chat history are not in the folder: this file and `CLAUDE.md` are the hand-off.
+
+## Next iterations (proposed, in priority order)
+
+1. Real combos: more upstream melee acts (uppercut launch -> air follow-up, dash pierce) chained by the AI.
+2. Meta progression: coins unlock starting skills / talents between runs.
+3. Mobile: automatic quality tier on first frames; readability options (colour-blind palette, numbers on/off).
