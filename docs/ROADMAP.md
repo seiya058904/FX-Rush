@@ -2,13 +2,13 @@
 
 Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
 
-## Status (2026-11-03)
+## Status (2026-11-03, after iteration 4)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
 - PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load and pass the headless self-test; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
 
-## Iteration 2 — one-button attack, calmer screen (done locally, not pushed)
+## Iteration 2 — one-button attack, calmer screen (done, deployed)
 
 Player feedback: the extra attack keys (J/K/X/Z) were confusing; the screen was too bright mainly because of damage
 numbers and what sits behind them (crit starbursts, white death smoke) stacking over the fighters.
@@ -34,9 +34,9 @@ README controls, screenshots and `src/fx/usage.js` roles updated.
 - [x] C. e2e updated (manual key test isolated from level-ups/RUSH/knockback); README controls; usage roles
 - [x] full `npm run e2e` pass (10/10) + screenshots refreshed
 - [x] smoke + audit 244/244, build, diff review, local commit
-- [ ] push to GitHub / Pages deploy (needs the owner's OK)
+- [x] pushed with iteration 4
 
-## Iteration 3 — auto / manual modes, full move rotation, calmer light (done locally, not pushed)
+## Iteration 3 — auto / manual modes, full move rotation, calmer light (done, deployed)
 
 Playtest feedback on iteration 2: default should be fully hands-off (watch and pick cards; clicks do nothing); a
 switchable manual mode (A/D, jump, click = attack toward the clicked side; no auto walk/target/attack). Skills,
@@ -49,9 +49,9 @@ Use every upstream move and avoid repeats.
 - [x] C. crit starburst only on the results screen; global effect light x0.7; scene light 0.7; flash cap 0.3; POW only
       for the 100 combo
 - [x] D. e2e 10/10 (manual mode, move variety; per-session time limit), docs, smoke/audit 244/244, build, local commit
-- [ ] owner playtest in Ego; push + Pages deploy (needs the owner's OK)
+- [x] owner playtest in Ego; pushed with iteration 4
 
-## Iteration 4 — no big bursts, trimmed effects, ultimate shows (done locally, not pushed)
+## Iteration 4 — no big bursts, trimmed effects, ultimate shows (done, deployed)
 
 Owner feedback: the crit starburst must not appear at all; trim effects that are too bright / big / dominant; every
 ultimate should be a show (slow motion, a clear presentation); otherwise keep the screen normal, not flashy.
@@ -60,7 +60,7 @@ ultimate should be a show (slow motion, a clear presentation); otherwise keep th
 - [x] crit star only on elites/bosses; smaller ground crack on heavy blows; smaller inferno blasts; shorter effect tails
 - [x] ultimate cinematic: slow motion, darkened scene, letterbox, coloured name plate (`drawCinema`), last-hit payoff
 - [x] e2e 10/10, audit (wired 242/244), build, local commit
-- [ ] owner playtest; push + Pages deploy (needs the owner's OK)
+- [x] owner playtest; pushed and deployed to GitHub Pages (2026-11-03 closeout)
 
 ## Resuming on another machine
 
