@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 // End-to-end play tests in a real Chrome (playwright-core, the installed Chrome channel).
 //
-//   node tools/e2e.mjs [--url http://localhost:5173/] [--only afk,builds,manual,mobile] [--speed 4]
+//   node tools/e2e.mjs [--url http://localhost:5173/] [--only afk,builds,manual,outro,mobile] [--speed 4]
 //
 // Sessions:
 //   afk      a whole run with nobody touching anything (real damage): must reach the end, no page errors
 //   builds   god-mode runs with forced builds and seeds, to drive every skill level and branch on screen
 //   manual   auto mode ignores clicks; Tab switches to manual: idle hero stays put, clicks attack toward the clicked
 //            side, keyboard movement and jumps; pause/resume, focus loss, window resizes, restart flows
+//   outro    crossed buttons, repeated confirm keys and the pause menu during a closing transition: one navigation
 //   mobile   a phone viewport (touch): tap to start, the hero fights by himself, layout fits
 // Every session records which PixelFX ids actually reached the screen; the union goes to docs/fx-runtime.json
 // (the "triggered" column of the audit). Representative screenshots go to docs/screenshots/.
@@ -21,7 +22,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, arr) => (a.startsWith("--") ? [...acc, [a.slice(2), arr[i + 1]?.startsWith("--") || arr[i + 1] === undefined ? true : arr[i + 1]]] : acc), []));
 const BASE = args.url ?? "http://localhost:5173/";
 const SPEED = +(args.speed ?? 4);
-const only = args.only ? String(args.only).split(",") : ["afk", "builds", "branches", "manual", "mobile"];
+const only = args.only ? String(args.only).split(",") : ["afk", "builds", "branches", "manual", "outro", "mobile"];
 const SHOTS = join(ROOT, "docs/screenshots");
 mkdirSync(SHOTS, { recursive: true });
 
@@ -291,6 +292,74 @@ if (only.includes("manual"))
     await page.waitForTimeout(2500);
     if ((await state(page)).state !== "play") (res.ok = false), res.notes.push("retry from results failed");
   });
+
+// ---------------------------------------------------------------- a closing transition navigates once, however often it's asked
+if (only.includes("outro"))
+  await session("outro-navigates-once", `${BASE}?seed=7`, { width: 1280, height: 720 }, async (page, res) => {
+    await waitFor(page, () => window.__fxrush.state === "title" && window.__fxrush.loadStats().loaded > 30, 30000, 200);
+    // every screen and run the page goes through, read once a frame
+    await page.evaluate(() => {
+      const f = window.__fxrush, ids = new Map();
+      const now = () => {
+        if (f.game && !ids.has(f.game)) ids.set(f.game, ids.size);
+        return `${f.state}#${f.game ? ids.get(f.game) : "-"}`;
+      };
+      window.__navMark = () => (window.__nav = [now()]);
+      window.__navMark();
+      const watch = () => {
+        requestAnimationFrame(watch);
+        const n = now();
+        if (window.__nav.at(-1) !== n) window.__nav.push(n);
+      };
+      watch();
+    });
+    const click = async (x, y) => {
+      const [cx, cy] = await page.evaluate(([x, y]) => { const r = document.getElementById("game").getBoundingClientRect(); return [r.left + (x / 320) * r.width, r.top + (y / 180) * r.height]; }, [x, y]);
+      await page.mouse.click(cx, cy);
+    };
+    // inputs of one frame are one decision; this lets the first start its transition before the second arrives
+    const frames = () => page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+    const toResults = async () => {
+      await page.evaluate(() => { const f = window.__fxrush; f.start(7); f.game.revived = true; f.test.die(); });
+      await waitFor(page, () => window.__fxrush.state === "results", 15000, 100);
+      await page.waitForTimeout(1300);
+    };
+    const toPause = async () => {
+      await page.evaluate(() => window.__fxrush.start(7));
+      await page.waitForTimeout(300);
+      await page.keyboard.press("Escape");
+      await page.waitForFunction(() => window.__fxrush.state === "pause", undefined, { timeout: 3000 });
+    };
+    const RETRY = [119, 150], LEAVE = [201, 150], MENU_RESTART = [160, 65], MENU_TITLE = [160, 161];
+    // what is asked in one go; the screen it must end on; how many new runs may appear on the way
+    const cases = [
+      ["single retry click", toResults, async () => { await click(...RETRY); }, "play", 1],
+      ["single leave click", toResults, async () => { await click(...LEAVE); }, "title", 0],
+      ["retry then leave", toResults, async () => { await click(...RETRY); await frames(); await click(...LEAVE); }, "play", 1],
+      ["leave then retry", toResults, async () => { await click(...LEAVE); await frames(); await click(...RETRY); }, "title", 0],
+      ["confirm key twice", toResults, async () => { await page.keyboard.press("Enter"); await frames(); await page.keyboard.press("Enter"); }, "play", 1],
+      ["leave, then confirm key", toResults, async () => { await click(...LEAVE); await frames(); await page.keyboard.press("Enter"); }, "title", 0],
+      ["pause menu: single restart", toPause, async () => { await click(...MENU_RESTART); }, "play", 1],
+      ["pause menu: restart twice", toPause, async () => { await click(...MENU_RESTART); await frames(); await click(...MENU_RESTART); }, "play", 1],
+      ["pause menu: restart then title", toPause, async () => { await click(...MENU_RESTART); await frames(); await click(...MENU_TITLE); }, "play", 1],
+      ["pause menu: title, then Esc", toPause, async () => { await click(...MENU_TITLE); await frames(); await page.keyboard.press("Escape"); }, "title", 0],
+    ];
+    for (const [name, setup, ask, end, runs] of cases) {
+      await setup();
+      await page.evaluate(() => window.__navMark());
+      await ask();
+      await page.waitForTimeout(2600);
+      const nav = await page.evaluate(() => window.__nav);
+      const run0 = nav[0].split("#")[1];
+      const created = new Set(nav.map((n) => n.split("#")[1]).filter((id) => id !== "-" && id !== run0)).size;
+      const screens = nav.map((n) => n.split("#")[0]);
+      // the run being left must not come back to life on the way out, and no screen may flash past
+      const revived = nav.slice(1).includes(`play#${run0}`);
+      const bad = screens.at(-1) !== end || created !== runs || revived || (end === "play" && screens.includes("title"));
+      res.notes.push(`${bad ? "BAD" : "ok"} ${name}: ${nav.join(" > ")}`);
+      if (bad) res.ok = false;
+    }
+  }, { limit: 180 });
 
 // ---------------------------------------------------------------- phone
 if (only.includes("mobile"))

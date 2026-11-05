@@ -127,6 +127,11 @@ function handleInput() {
   if (input.take("mute")) toggleMute();
   if (input.take("debug")) showFps = !showFps;
   const clicks = input.takeClicks();
+  // a closing transition is running: where to go has been decided, and nothing asked now may run after it
+  if (outro) {
+    input.clear();
+    return;
+  }
   if (state === "title") {
     // Tab, or a click on the bottom strip, switches auto / manual; anything else starts the run
     let toggle = input.take("mode");
@@ -230,6 +235,7 @@ function pause() {
   suspendAudio(false);
 }
 function resume() {
+  if (outro) return;
   state = "play";
   sfx("ui");
   last = performance.now();
@@ -237,7 +243,8 @@ function resume() {
 // a closing screen transition over the current run, then the next screen once it has covered it
 let outro = null;
 function outroThen(id, fn) {
-  if (outro || !game) return fn();
+  if (outro) return;
+  if (!game) return fn();
   const h = game.fx.play(id, { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" });
   const info = FX[id];
   outro = { t: h ? info.duration * 0.46 : 0, fn };
@@ -257,6 +264,7 @@ function toggleMode(quiet) {
   if (game && state === "play") game.banner = { title: settings.mode === "manual" ? "手动模式" : "托管模式", sub: settings.mode === "manual" ? "A/D 移动 · 空格 跳跃 · 点击 攻击" : "英雄自动战斗，你只管选强化", t: 0, dur: 1.6, small: true };
 }
 function pauseAction(id) {
+  if (outro) return;
   sfx("card");
   switch (id) {
     case "resume":
@@ -425,6 +433,7 @@ window.__fxrush = {
   },
   start: (seed) => {
     TEST.seed = seed ?? null;
+    outro = null;
     startRun();
   },
   used: () => (game ? Object.fromEntries(game.fx.used) : {}),
