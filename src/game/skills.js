@@ -45,7 +45,8 @@ export const SKILLS = {
     cd: [2.8, 2.5, 2.1, 1.8, 1.6],
     cast(g, lv) {
       const h = g.hero, hops = 3 + lv + (lv >= 4 ? 1 : 0), dmg = A(g) * (0.75 + lv * 0.12);
-      if (lv >= 3 && (this.casts = (this.casts ?? 0) + 1) % 3 === 0 && g.nearestEnemy(h.x, h.y - 20, 150)) {
+      const run = g.skills.run("chain");
+      if (lv >= 3 && (run.casts = (run.casts ?? 0) + 1) % 3 === 0 && g.nearestEnemy(h.x, h.y - 20, 150)) {
         // every third cast: PixelFX's chain lightning volley straight ahead, through three points
         const f = h.facing, x0 = h.x;
         g.fx.play("lightning/chain-lightning", { x: x0, y: 0, flip: f < 0, palette: RAMPS.electric, prio: 1, layer: "split", life: 1.6 });
@@ -81,10 +82,10 @@ export const SKILLS = {
       return true;
     },
     passive(g, lv) {
-      if (lv >= 5 && !g.fx.has("ball-lightning")) {
-        const h = g.hero, orb = { x: h.x, y: -40, facing: 1 };
-        g.orbs.push(orb);
-        g.fx.play("lightning/ball-lightning", { follow: orb, layer: "front", prio: 1, tag: "ball-lightning", life: 99, palette: RAMPS.electric, light: 0.7 });
+      if (lv < 5) return;
+      const h = g.hero;
+      const orb = g.skills.orb("chain", () => {
+        const orb = { x: h.x, y: -40, facing: 1 };
         orb.update = (dt, t) => {
           orb.x = h.x + Math.cos(t * 2.4) * 34;
           orb.y = h.y - 30 + Math.sin(t * 2.4) * 10;
@@ -97,7 +98,9 @@ export const SKILLS = {
             }
           }
         };
-      }
+        return orb;
+      });
+      if (!g.fx.has("ball-lightning")) g.fx.play("lightning/ball-lightning", { follow: orb, layer: "front", prio: 1, tag: "ball-lightning", life: 99, palette: RAMPS.electric, light: 0.7 });
     },
   },
   inferno: {
@@ -194,8 +197,17 @@ export const SKILLS = {
     cast(g, lv) {
       const h = g.hero, n = [2, 3, 4, 4, 5][lv - 1], dmg = A(g) * (0.65 + lv * 0.1);
       if (!g.nearestEnemy(h.x, h.y, 220)) return false;
-      this.n = (this.n ?? 0) + 1;
-      if (lv >= 4 && this.n % 2 === 0) {
+      const run = g.skills.run("missile");
+      run.n = (run.n ?? 0) + 1;
+      // the star fall counts every cast that found a target, whichever of the branches below it takes
+      if (lv >= 5 && (run.casts = (run.casts ?? 0) + 1) % 3 === 0) {
+        const c = g.clusterPoint(160);
+        if (c) {
+          g.fx.play("arcane/star-fall", { x: c.x, y: 0, palette: RAMPS.arcane, prio: 1, life: 2.2, light: 0.9, layer: "split" });
+          for (let k = 0; k < 5; k++) g.later(0.35 + k * 0.2, () => damageRadius(g, c.x + (g.rng() - 0.5) * 70, -14, 28, dmg * 0.9, { el: "arcane", stop: 0.02, quiet: k > 0, src: "missile" }));
+        }
+      }
+      if (lv >= 4 && run.n % 2 === 0) {
         // a heavy aimed bolt that weaves onto the toughest target
         const tgt = g.strongestEnemy(200);
         if (tgt) {
@@ -207,7 +219,7 @@ export const SKILLS = {
           return true;
         }
       }
-      if (lv >= 3 && this.n % 3 === 0) {
+      if (lv >= 3 && run.n % 3 === 0) {
         const f = h.facing, x0 = h.x;
         g.fx.play("arcane/arcane-missiles", { x: x0, y: 0, flip: f < 0, palette: RAMPS.arcane, prio: 1, layer: "split", life: 1.8 });
         [0.77, 0.85, 0.95, 1.08, 1.2].forEach((t, i) => g.later(t, () => damageRadius(g, x0 + f * 152, -24, 30, dmg * 0.9, { el: "arcane", stop: i === 4 ? 0.05 : 0.01, quiet: i < 4, src: "missile" })));
@@ -234,20 +246,13 @@ export const SKILLS = {
           sfx("missile", { pan: g.pan(h.x) });
         });
       }
-      if (lv >= 5 && (this.casts = (this.casts ?? 0) + 1) % 3 === 0) {
-        const c = g.clusterPoint(160);
-        if (c) {
-          g.fx.play("arcane/star-fall", { x: c.x, y: 0, palette: RAMPS.arcane, prio: 1, life: 2.2, light: 0.9, layer: "split" });
-          for (let k = 0; k < 5; k++) g.later(0.35 + k * 0.2, () => damageRadius(g, c.x + (g.rng() - 0.5) * 70, -14, 28, dmg * 0.9, { el: "arcane", stop: 0.02, quiet: k > 0, src: "missile" }));
-        }
-      }
       return true;
     },
     passive(g, lv) {
-      if (lv >= 4 && !g.fx.has("arcane-orb")) {
-        const h = g.hero, orb = { x: h.x, y: -30 };
-        g.orbs.push(orb);
-        g.fx.play("arcane/arcane-orb", { follow: orb, layer: "front", prio: 1, tag: "arcane-orb", life: 99, palette: RAMPS.arcane, light: 0.6 });
+      if (lv < 4) return;
+      const h = g.hero;
+      const orb = g.skills.orb("missile", () => {
+        const orb = { x: h.x, y: -30 };
         orb.update = (dt, t) => {
           orb.x = h.x + Math.cos(-t * 3) * 42;
           orb.y = h.y - 22 + Math.sin(-t * 3) * 14 + 20;
@@ -256,7 +261,9 @@ export const SKILLS = {
             if (hit.length) orb.cd = 0.35;
           }
         };
-      }
+        return orb;
+      });
+      if (!g.fx.has("arcane-orb")) g.fx.play("arcane/arcane-orb", { follow: orb, layer: "front", prio: 1, tag: "arcane-orb", life: 99, palette: RAMPS.arcane, light: 0.6 });
     },
   },
   vortex: {
@@ -343,7 +350,8 @@ export const SKILLS = {
       const n = lv >= 3 ? 2 : 1;
       const targets = [g.clusterPoint(170), g.clusterPoint(170, 50)].filter(Boolean).slice(0, n);
       if (!targets.length) return false;
-      const big = lv >= 5 && (this.casts = (this.casts ?? 0) + 1) % 3 === 0;
+      const run = g.skills.run("meteor");
+      const big = lv >= 5 && (run.casts = (run.casts ?? 0) + 1) % 3 === 0;
       targets.forEach((c, i) =>
         g.later(i * 0.35, () => {
           g.fx.play("arcane/rune-circle", { x: c.x, y: 0, palette: RAMPS.danger, prio: 1, life: 0.9, layer: "ground", light: 0.6 });
@@ -394,10 +402,10 @@ export const SKILLS = {
       return true;
     },
     passive(g, lv) {
-      if (lv >= 5 && !g.fx.has("storm-cloud")) {
-        const h = g.hero, cloud = { x: h.x, y: -96 };
-        g.orbs.push(cloud);
-        g.fx.play("lightning/storm-cloud", { follow: cloud, tag: "storm-cloud", life: 99, layer: "back", prio: 1, light: 0.6, palette: RAMPS.volt });
+      if (lv < 5) return;
+      const h = g.hero;
+      const cloud = g.skills.orb("thunder", () => {
+        const cloud = { x: h.x, y: -96 };
         cloud.update = (dt) => {
           cloud.x += (h.x - cloud.x) * Math.min(1, dt * 2);
           if ((cloud.cd = (cloud.cd ?? 1.2) - dt) <= 0) {
@@ -410,7 +418,9 @@ export const SKILLS = {
             }
           }
         };
-      }
+        return cloud;
+      });
+      if (!g.fx.has("storm-cloud")) g.fx.play("lightning/storm-cloud", { follow: cloud, tag: "storm-cloud", life: 99, layer: "back", prio: 1, light: 0.6, palette: RAMPS.volt });
     },
   },
   holy: {
@@ -440,12 +450,11 @@ export const SKILLS = {
       if (lv >= 4 && e.lastHitBy === "holy") g.hero.heal(2, true);
     },
     passive(g, lv) {
-      if (lv >= 5 && !g.fx.has("halo")) {
-        const h = g.hero;
-        g.fx.play("holy/halo", { follow: h, x: h.x, y: h.y, tag: "halo", life: 99, layer: "split", prio: 1, light: 0.7 });
-        g.fx.play("holy/blessing", { follow: h, x: h.x, y: h.y, tag: "blessing", life: 99, layer: "back", prio: 2, light: 0.5 });
-        h.stats.crit += 0.15;
-      }
+      if (lv < 5) return;
+      const h = g.hero;
+      g.skills.contribute("holy", "crit", 0.15);
+      if (!g.fx.has("halo")) g.fx.play("holy/halo", { follow: h, x: h.x, y: h.y, tag: "halo", life: 99, layer: "split", prio: 1, light: 0.7 });
+      if (!g.fx.has("blessing")) g.fx.play("holy/blessing", { follow: h, x: h.x, y: h.y, tag: "blessing", life: 99, layer: "back", prio: 2, light: 0.5 });
     },
   },
   earth: {
@@ -479,7 +488,8 @@ export const SKILLS = {
         g.fx.play("nature/vine-whip", { x: h.x - f * 4, y: 0, flip: f < 0, prio: 1, life: 1.3, layer: "split" });
         g.later(0.36, () => damageBox(g, h.x + (f > 0 ? 0 : -150), -60, h.x + (f > 0 ? 150 : 0), 2, A(g) * 1.3, { el: "earth", push: 260, stop: 0.05, src: "earth" }));
       }
-      if (lv >= 5 && (this.casts = (this.casts ?? 0) + 1) % 2 === 0) {
+      const run = g.skills.run("earth");
+      if (lv >= 5 && (run.casts = (run.casts ?? 0) + 1) % 2 === 0) {
         g.fx.play("nature/quake", { x: g.camX + 160, y: 0, palette: RAMPS.earth, prio: 1, life: 2.4, layer: "ground" });
         for (const t of [0.06, 0.5, 0.92])
           g.later(t, () => {
@@ -506,7 +516,8 @@ export const SKILLS = {
         }
       } });
       sfx("poison", { pan: g.pan(c.x) });
-      if (lv >= 5 && (this.casts = (this.casts ?? 0) + 1) % 2 === 0) {
+      const run = g.skills.run("plague");
+      if (lv >= 5 && (run.casts = (run.casts ?? 0) + 1) % 2 === 0) {
         const s = g.clusterPoint(170, 40) ?? c;
         g.fx.play("nature/spore-burst", { x: s.x, y: 0, prio: 1, life: 2.6, layer: "split" });
         g.later(0.8, () => {
@@ -555,9 +566,29 @@ export class SkillSystem {
     this.gap = 0;
     this.order = [];
     this.statLv = {};
+    this.runs = {};
   }
   level(id) {
     return this.lv[id] ?? 0;
+  }
+  /** What a skill keeps for this run: cast counters, its passive's entity and stat contributions. SKILLS itself is shared. */
+  run(id) {
+    return (this.runs[id] ??= {});
+  }
+  /**
+   * A passive's one world entity. It lives in g.orbs, so a scene change clears it and the next call makes a new one;
+   * whether its effect is showing has no say: the effect only rides on it and can be refused, expire, or load late.
+   */
+  orb(id, make) {
+    const run = this.run(id), g = this.g;
+    if (!run.orb || !g.orbs.includes(run.orb)) g.orbs.push((run.orb = make()));
+    return run.orb;
+  }
+  /** Set what a skill adds to a hero stat: the total it adds becomes `value`, however often this is called. */
+  contribute(id, stat, value) {
+    const added = (this.run(id).added ??= {});
+    this.g.hero.stats[stat] += value - (added[stat] ?? 0);
+    added[stat] = value;
   }
   add(id) {
     const s = SKILLS[id];
