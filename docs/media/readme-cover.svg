@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 480" role="img" aria-labelledby="title desc">
+  <title id="title">FX Rush — a little knight, a spectacular fight</title>
+  <desc id="desc">Original pixel-style cover with a block-letter FX Rush wordmark, an ivory knight and crimson scarf, a sweeping sword arc, and a mint-colored slime against a midnight arena. This is a vector illustration, not a gameplay screenshot.</desc>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#121322"/><stop offset="1" stop-color="#20152e"/></linearGradient>
+    <linearGradient id="slash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff3c3"/><stop offset=".48" stop-color="#ffc570"/><stop offset="1" stop-color="#ff6548"/></linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#b7a2df" stroke-opacity=".045"/></pattern>
+    <g id="wordmark"><path d="M0 0h1v1h-1ZM1 0h1v1h-1ZM2 0h1v1h-1ZM3 0h1v1h-1ZM4 0h1v1h-1ZM0 1h1v1h-1ZM0 2h1v1h-1ZM0 3h1v1h-1ZM1 3h1v1h-1ZM2 3h1v1h-1ZM3 3h1v1h-1ZM0 4h1v1h-1ZM0 5h1v1h-1ZM0 6h1v1h-1Z"/><path d="M6 0h1v1h-1ZM10 0h1v1h-1ZM6 1h1v1h-1ZM10 1h1v1h-1ZM7 2h1v1h-1ZM9 2h1v1h-1ZM8 3h1v1h-1ZM7 4h1v1h-1ZM9 4h1v1h-1ZM6 5h1v1h-1ZM10 5h1v1h-1ZM6 6h1v1h-1ZM10 6h1v1h-1Z"/><path d="M15 0h1v1h-1ZM16 0h1v1h-1ZM17 0h1v1h-1ZM18 0h1v1h-1ZM15 1h1v1h-1ZM19 1h1v1h-1ZM15 2h1v1h-1ZM19 2h1v1h-1ZM15 3h1v1h-1ZM16 3h1v1h-1ZM17 3h1v1h-1ZM18 3h1v1h-1ZM15 4h1v1h-1ZM17 4h1v1h-1ZM15 5h1v1h-1ZM18 5h1v1h-1ZM15 6h1v1h-1ZM19 6h1v1h-1Z"/><path d="M21 0h1v1h-1ZM25 0h1v1h-1ZM21 1h1v1h-1ZM25 1h1v1h-1ZM21 2h1v1h-1ZM25 2h1v1h-1ZM21 3h1v1h-1ZM25 3h1v1h-1ZM21 4h1v1h-1ZM25 4h1v1h-1ZM21 5h1v1h-1ZM25 5h1v1h-1ZM22 6h1v1h-1ZM23 6h1v1h-1ZM24 6h1v1h-1Z"/><path d="M28 0h1v1h-1ZM29 0h1v1h-1ZM30 0h1v1h-1ZM31 0h1v1h-1ZM27 1h1v1h-1ZM27 2h1v1h-1ZM28 3h1v1h-1ZM29 3h1v1h-1ZM30 3h1v1h-1ZM31 4h1v1h-1ZM31 5h1v1h-1ZM27 6h1v1h-1ZM28 6h1v1h-1ZM29 6h1v1h-1ZM30 6h1v1h-1Z"/><path d="M33 0h1v1h-1ZM37 0h1v1h-1ZM33 1h1v1h-1ZM37 1h1v1h-1ZM33 2h1v1h-1ZM37 2h1v1h-1ZM33 3h1v1h-1ZM34 3h1v1h-1ZM35 3h1v1h-1ZM36 3h1v1h-1ZM37 3h1v1h-1ZM33 4h1v1h-1ZM37 4h1v1h-1ZM33 5h1v1h-1ZM37 5h1v1h-1ZM33 6h1v1h-1ZM37 6h1v1h-1Z"/></g>
+    <g id="spark"><path d="M-3-12h6v9h9v6H3v9h-6V3h-9v-6h9Z"/></g>
+  </defs>
+  <rect width="1440" height="480" fill="url(#night)"/>
+  <rect width="1440" height="480" fill="url(#grid)"/>
+  <path d="M724 480 975 0h465v480Z" fill="#29203b" opacity=".45"/>
+  <path d="M904 480 1124 0h316v480Z" fill="#402348" opacity=".18"/>
+  <path d="M24 68V24h44M1372 24h44v44M24 412v44h44M1372 456h44v-44" fill="none" stroke="#756385" stroke-opacity=".6" stroke-width="2"/>
+  <g font-family="Consolas, 'Courier New', monospace">
+    <rect x="72" y="62" width="7" height="20" fill="#ff805c"/>
+    <text x="94" y="78" fill="#b9afc7" font-size="17" letter-spacing="2.1">BROWSER PIXEL AUTO-BATTLER</text>
+  </g>
+  <g transform="translate(72 134) scale(16)" shape-rendering="crispEdges">
+    <use xlink:href="#wordmark" transform="translate(0 .45)" fill="#7b3040"/>
+    <use xlink:href="#wordmark" fill="#fff0c7"/>
+  </g>
+  <path d="M73 270h64" stroke="#ff805c" stroke-width="4"/>
+  <text x="72" y="318" fill="#f4e5d6" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="600">A little knight. A spectacular fight.</text>
+  <text x="73" y="353" fill="#b3a7bf" font-family="Arial, Helvetica, sans-serif" font-size="21">Watch it unfold, or take the sword yourself.</text>
+  <g font-family="Consolas, 'Courier New', monospace" font-size="15" letter-spacing="1.2">
+    <path d="M73 404h36" stroke="#ff815d" stroke-width="3"/>
+    <text x="120" y="410" fill="#c5bace">AUTO / MANUAL</text>
+    <path d="M303 404h36" stroke="#85d3d5" stroke-width="3"/>
+    <text x="350" y="410" fill="#c5bace">SKILLS / RUSH</text>
+    <path d="M539 404h36" stroke="#bf8cd8" stroke-width="3"/>
+    <text x="586" y="410" fill="#c5bace">PLAY AGAIN</text>
+  </g>
+  <!-- An original symbolic arena; it is deliberately distinct from a capture. -->
+  <g shape-rendering="crispEdges">
+    <path d="M816 354h568v42H816Z" fill="#1b192d"/>
+    <path d="M816 354h568v7H816Z" fill="#62506c"/>
+    <path d="M824 364h84v5h-84m110 14h56v5h-56m101-20h72v5h-72m101 16h43v5h-43m53-16h80v5h-80" fill="#30263f"/>
+    <path d="M846 189h28v165h-28Zm412-45h28v210h-28Z" fill="#3c304c"/>
+    <path d="M838 176h44v13h-44Zm410-45h48v13h-48Z" fill="#65516f"/>
+    <path d="M850 189h5v117h-5Zm412-45h5v136h-5Z" fill="#77607c" opacity=".35"/>
+    <path d="M804 331h20v23h-20Zm498-12h25v35h-25Z" fill="#473252"/>
+  </g>
+  <g fill="#756383" opacity=".65" shape-rendering="crispEdges">
+    <rect x="929" y="72" width="4" height="4"/><rect x="1228" y="56" width="4" height="4"/><rect x="1355" y="202" width="4" height="4"/><rect x="847" y="107" width="4" height="4"/><rect x="1152" y="91" width="5" height="5"/>
+  </g>
+  <!-- Sword trail: stepped edges keep the visual language crisp at every scale. -->
+  <path d="M952 103h48v8h52v12h48v16h44v20h36v24h28v28h20v32h12v40h-21v-30h-13v-26h-18v-23h-25v-20h-32v-16h-36v-12h-43v-8h-48v-7h-49Z" fill="#ff734d" opacity=".12"/>
+  <path d="M973 116h43v7h45v11h41v15h37v19h30v23h23v27h15v29h-13v-21h-18v-22h-23v-19h-29v-16h-35v-12h-39v-9h-44v-7h-33Z" fill="url(#slash)"/>
+  <path d="M1016 128h42v9h39v13h36v16h27v17h-30v-13h-34v-11h-38v-8h-42Z" fill="#fff5d3"/>
+  <!-- Ivory armour and a crimson scarf echo the game's character palette. -->
+  <g transform="translate(1000 242)" shape-rendering="crispEdges">
+    <path d="M-24 13h-26v9h-27v10h-27v10h39V32h28V23h24Z" fill="#ed675d"/>
+    <path d="M-24 23h-26v8h-28v8h16v-5h28v-8h16Z" fill="#a94352"/>
+    <path d="M-7-26h33v7h10v32H-5v-8h-9v-24h7Z" fill="#e6d3b8"/>
+    <path d="M-7-26h29v6H-7Zm-7 7h7V2h-7Z" fill="#fff0cf"/>
+    <path d="M12-11h26v12H12Z" fill="#302337"/>
+    <path d="M28-7h7v4h-7Z" fill="#ffe5a4"/>
+    <path d="M-15 13h41v10h-41Z" fill="#d65655"/>
+    <path d="M-20 23h47v34H-13V46h-7Z" fill="#d7c1a7"/>
+    <path d="M-20 23h11v22h-11ZM-9 24h33v7H-9Z" fill="#fff0cf"/>
+    <path d="M19 30h17v21H19Zm-29 27h34v11h-34Z" fill="#9d8092"/>
+    <path d="M-9 68H5v27h-13v10h-22v-10h13v-13h8Zm26-2h15v21h12v14h-26v-9h-8V77h7Z" fill="#d9c4a9"/>
+    <path d="M-31 105h28v7h-28Zm48-4h30v11H17Z" fill="#6c526e"/>
+    <path d="M-22 31h-13v22h12v13h11V51h-10Z" fill="#b79b92"/>
+    <path d="M30 24h18v14H30Z" fill="#fff0cf"/>
+  </g>
+  <g transform="translate(1041 275) rotate(-38)" shape-rendering="crispEdges">
+    <path d="M-8-23h16V7H-8Z" fill="#704254"/>
+    <path d="M-22-28h44v8h-44Z" fill="#f2bc75"/>
+    <path d="M-7-28v-80l7-20 8 20v80Z" fill="#f8e9c8"/>
+    <path d="M0-128 8-108v80H0Z" fill="#ceb3ad"/>
+  </g>
+  <!-- Small opponent, spacious silhouette; no HUD or fabricated result data. -->
+  <g transform="translate(1242 333)" shape-rendering="crispEdges">
+    <path d="M-36 17V-5h7v-14h14v-8h28v8h14v14h8v22Z" fill="#62bfb0"/>
+    <path d="M-28-5v-9h14v-8h23v6h-23v11Z" fill="#ade8c8"/>
+    <path d="M-36 11h71v7h-71Z" fill="#347e84"/>
+    <path d="M-17-7h7v9h-7Zm21 0h7v9H4Z" fill="#1d303e"/>
+  </g>
+  <g fill="#ffc57b"><use xlink:href="#spark" x="1165" y="283"/><rect x="1191" y="258" width="6" height="6"/><rect x="1141" y="308" width="6" height="6"/></g>
+  <g fill="#92d6d6"><use xlink:href="#spark" x="915" y="207" transform="translate(274.5 62.1) scale(.7)"/><rect x="1310" y="272" width="5" height="5"/></g>
+  <path d="M935 407h55m10 0h7m11 0h7" fill="none" stroke="#796082" stroke-width="2"/>
+  <text x="1369" y="411" text-anchor="end" fill="#927f9e" font-family="Consolas, 'Courier New', monospace" font-size="13" letter-spacing="1.5">SWORD. SKILLS. SPECTACLE.</text>
+</svg>

@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://seiya058904.github.io/FX-Rush/">
+    <img src="docs/media/readme-cover.svg" width="100%" alt="Original FX Rush pixel-style illustration: an ivory knight with a crimson scarf swings a sword toward a mint-colored slime" />
+  </a>
+  <br />
+  <sub>ORIGINAL VECTOR COVER · ACTUAL GAMEPLAY CAPTURES BELOW</sub>
+</p>
+
 <h1 align="center">⚔️ FX RUSH</h1>
 
 <p align="center">
@@ -72,7 +80,7 @@
 
 **Grow fast, grow loud.** Kills drop experience; every level offers three cards. Twelve skills — **Blade Waves, Chain Lightning, Inferno, Frost Nova, Arcane Barrage, Black Hole, Aegis, Meteor, Thunder, Holy Smite, Earth Fury, Plague** — each gain five levels, and every level changes what you see. They feed each other: frozen monsters shatter under fire, poison spreads on death, kill explosions chain into more kills. A 150-hit combo stops time.
 
-**Feel every hit.** Each blow is a PixelFX *act*: a real wind-up, the contact frame, a freeze tuned by weight (budgeted so a crowd never stalls the game), knockback, squash, a flash, a small damage number (merged per enemy so a flurry stays readable) and its sound on the same frame. Normal hits, crits, area blasts and boss finishers each read differently; the run's best hit gets PixelFX's crit starburst on the results screen.
+**Feel every hit.** Each blow is a PixelFX *act*: a real wind-up, the contact frame, a freeze tuned by weight (budgeted so a crowd never stalls the game), knockback, squash, a flash, a small damage number (merged per enemy so a flurry stays readable) and its sound on the same frame. Normal hits, crits, area blasts and boss finishers each read differently.
 
 **Readable chaos.** Bosses and elites telegraph with a red rune, a raised fist, a scanner lock or an opening pool — and the hero's AI reads those tells too, stepping out of marked zones and jumping shock waves, so you can play fully idle.
 
@@ -118,7 +126,7 @@ A run is three scenes and three bosses, about **7 minutes**. One second wind per
 ## ⚙️ Run Locally
 
 ```bash
-npm install
+npm ci
 npm run dev        # http://localhost:5173 — the game;  /fxlab.html — the FX Lab
 npm run build      # static site in dist/, deployable to any static host
 ```
