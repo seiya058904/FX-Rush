@@ -173,7 +173,7 @@ third_party/    PixelFX, vendored at a pinned commit
 
 - `npm run smoke` — all 244 effects headless: **244 pass, 0 warn, 0 fail** (same bounds rule as upstream `tools/check.mjs`).
 - `npm run e2e` (needs a running dev server and local Chrome) — a full idle run with real damage that clears all three bosses, six god-mode build sessions that drive every skill to level 5 across all scenes, a rare-branch session, manual controls (click, move, jump, pause, focus loss, four window sizes, restart, back to title, death and retry) and a touch-phone session. Screenshots are kept in `docs/screenshots/`.
-- CI (`.github/workflows/pages.yml`) checks the registry against the vendored tree, runs the self-test and audit, builds, and deploys to GitHub Pages; Markdown/docs-only changes skip it.
+- CI (`.github/workflows/pages.yml`) checks the registry against the vendored tree, runs the skill tests, self-test and audit, builds, and deploys to GitHub Pages; Markdown/docs-only changes skip it.
 
 ## 🎨 Credits & License
 

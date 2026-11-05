@@ -7,6 +7,7 @@ Browser pixel auto-battler on the vendored PixelFX library. Status and the curre
 
 - `npm ci` — install (Node 20.19+ / 22.12+; `node_modules/` is not committed).
 - `npm run dev` — game at http://localhost:5173, FX Lab at `/fxlab.html`.
+- `npm test` — skill regression tests on the real game modules (also runs in CI).
 - `npm run smoke` — headless self-test of all PixelFX effects (must stay 244 pass).
 - `npm run audit` — regenerates `docs/COVERAGE.md`; wired-in-code count must stay 242/244 (see the exclusions below).
 - `npm run e2e` — needs a running dev server and local Chrome; writes `docs/screenshots/`. Sessions can be picked

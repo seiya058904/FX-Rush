@@ -31,6 +31,8 @@ jobs:
       - run: npm ci --ignore-scripts
       # the effect registry must match the vendored PixelFX tree
       - run: npm run registry && git diff --exit-code src/fx/registry.gen.js
+      # skills: passives, cast counters and whole runs, on the real game modules
+      - run: npm test
       # every one of the 244 effects loads, draws, stays in bounds and ends
       - run: npm run smoke
       - run: npm run audit
