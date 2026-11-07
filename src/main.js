@@ -5,7 +5,7 @@ import { canvas, ctx, view } from "./engine/screen.js";
 import { input, pointer, idleFor } from "./engine/input.js";
 import { loadFonts, drawText } from "./engine/text.js";
 import { initAudio, sfx, toggleMute, playMusic, setVolume, audioSettings, suspendAudio } from "./engine/audio.js";
-import { preload, loadStats, makeFx, fxModule, beginFrame, endFrame, setCamera, image, frame, ALL_IDS, extraUsed } from "./engine/pfx.js";
+import { preload, loadStats, loadProgress, makeFx, fxModule, beginFrame, endFrame, setCamera, image, frame, ALL_IDS, extraUsed } from "./engine/pfx.js";
 import { Game } from "./game/game.js";
 import { damage } from "./game/combat.js";
 import { Director } from "./fx/director.js";
@@ -19,6 +19,7 @@ import { settings, saveSettings } from "./settings.js";
 import { READY, poseAt } from "./engine/pfx.js";
 import { M, FLOOR } from "./config.js";
 import { FX } from "./fx/registry.gen.js";
+import { createControls, touchCards } from "./render/controls.js";
 
 const params = new URLSearchParams(location.search);
 const TEST = { speed: Math.max(1, Math.min(8, +(params.get("speed") ?? 1))), god: params.has("god"), seed: +(params.get("seed") ?? 0) || null, auto: params.has("auto"), stage: +(params.get("stage") ?? 1), build: Object.fromEntries((params.get("build") ?? "").split(",").filter(Boolean).map((s) => [s.split(":")[0], +(s.split(":")[1] ?? 1)])) };
@@ -33,7 +34,7 @@ let quality = 2;
 let showFps = settings.showFps;
 
 // ---- what the first seconds need: the hero's blows, the first scene, hit feedback, UI
-const CORE = [
+const FIRST_VIEW = [
   "melee/sword-slash", "melee/double-slash", "melee/heavy-cleave", "melee/thrust", "melee/spin-slash", "melee/claw-swipe",
   "melee/dagger-flurry", "melee/whip-crack", "melee/spear-sweep", "melee/uppercut", "melee/hammer-smash",
   "impacts/hit-spark", "impacts/crit-hit", "impacts/blunt-hit", "impacts/ground-slam", "impacts/heavy-landing", "impacts/hit-flash", "impacts/impact-frame",
@@ -42,6 +43,9 @@ const CORE = [
   "transitions/slash-wipe", "transitions/pixel-dissolve", "fire/brazier", "fire/torch", "weather/fireflies", "weather/clouds",
   "ice/frost-nova", "fire/fire-ring", "lightning/lightning-strike", "holy/smite", "arcane/mana-burst", "melee/scythe-reap",
 ];
+// Missing melee acts prevent attacks; missing critters make the first enemies invisible.
+// Scenery, title flourishes and hit particles can arrive later or be omitted.
+const CORE = FIRST_VIEW.filter((id) => id.startsWith("melee/") || id.startsWith("critters/"));
 
 // ---- the title: the hero shows off in front of the logo
 const title = { fx: new Director(), act: null, t: 0, next: 0.6, i: 0, x: 140 };
@@ -93,33 +97,54 @@ function titleAmbience() {
 
 // ---- boot
 async function boot() {
-  await loadFonts();
-  const total = CORE.length;
-  let done = 0;
-  await Promise.all(CORE.map((id) => preload([id]).then(() => done++)));
+  const deadline = setTimeout(() => {
+    if (state === "loading") state = "load-error";
+  }, 15000);
+  void preload(FIRST_VIEW);
+  try {
+    await Promise.all([loadFonts(), preload(CORE)]);
+  } finally {
+    clearTimeout(deadline);
+  }
+  if (!loadProgress(CORE).ready) {
+    state = "load-error";
+    return;
+  }
   state = "title";
+  resetInput();
   titleAmbience();
   // the title assembles out of pixels
   title.fx.play("transitions/pixel-dissolve", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" })?.inst.update(FX["transitions/pixel-dissolve"].duration * 0.5);
   if (TEST.auto) startRun();
   // the rest of the library streams in while the player is on the title
   setTimeout(() => preload(ALL_IDS), 1500);
-  void total;
 }
 
 // every effect id that reached the screen in this page's life (all runs, the title too), for the tests
 const usedEver = new Map();
 const keepUsed = (d) => d && d.used.forEach((n, id) => usedEver.set(id, (usedEver.get(id) ?? 0) + n)) && d.used.clear();
 function startRun() {
+  if (!loadProgress(CORE).ready) return;
   initAudio();
   keepUsed(game?.fx);
   game = new Game();
+  game.onCardsChanged = resetInput;
   game.fx.quality = quality;
   game.start(TEST.seed ?? undefined, TEST);
   if (TEST.god) game.hero.god = true;
   state = "play";
+  resetInput(true);
+  acc = 0;
   // the title is cut away by a blade
   game.fx.play("transitions/slash-wipe", { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" })?.inst.update(FX["transitions/slash-wipe"].duration * 0.5);
+}
+
+function resetInput(releaseHeld = false) {
+  input.reset(releaseHeld);
+  if (game) {
+    game.hero.queued = 0;
+    game.hero.queuedT = 0;
+  }
 }
 
 // ---- input routing per screen
@@ -132,6 +157,10 @@ function handleInput() {
     input.clear();
     return;
   }
+  if (state === "loading" || state === "load-error") {
+    input.reset();
+    return;
+  }
   if (state === "title") {
     // Tab, or a click on the bottom strip, switches auto / manual; anything else starts the run
     let toggle = input.take("mode");
@@ -139,7 +168,7 @@ function handleInput() {
     if (clicks.length > starts.length) toggle = true;
     if (toggle) toggleMode();
     const any = starts.length || input.take("confirm") || input.take("jump");
-    if (any && loadStats().loaded >= CORE.length) {
+    if (any && loadProgress(CORE).ready) {
       initAudio();
       sfx("select");
       startRun();
@@ -148,39 +177,43 @@ function handleInput() {
     return;
   }
   if (state === "play") {
-    if (input.take("pause")) return pause();
+    // This is available even while the level-up choice has paused the world.
+    if (input.take("pause") || clicks.some((c) => c.x > W - 22 && c.y < 46)) return pause();
     const g = game;
     if (g.cards) {
       const cs = g.cards;
-      cs.hover = -1;
-      for (let i = 0; i < cs.list.length; i++) {
-        const [x, y, w, h] = cardRect(i);
-        if (pointer.x >= x && pointer.x < x + w && pointer.y >= y && pointer.y < y + h) cs.hover = i;
+      if (cs.chosen >= 0) return;
+      if (pointer.moved && !touchCards()) {
+        cs.hover = -1;
+        for (let i = 0; i < cs.list.length; i++) {
+          const [x, y, w, h] = cardRect(i);
+          if (pointer.x >= x && pointer.x < x + w && pointer.y >= y && pointer.y < y + h) cs.hover = i;
+        }
       }
+      pointer.moved = false;
       for (const k of [1, 2, 3]) if (input.take("pick" + k)) g.chooseCard(k - 1);
-      if (input.take("left")) cs.hover = Math.max(0, (cs.kb ?? 1) - 1), (cs.kb = cs.hover);
-      if (input.take("right")) cs.hover = Math.min(cs.list.length - 1, (cs.kb ?? 1) + 1), (cs.kb = cs.hover);
-      if (cs.kb !== undefined && cs.hover < 0) cs.hover = cs.kb;
+      if (input.take("left")) cs.hover = Math.max(0, (cs.hover < 0 ? 1 : cs.hover) - 1);
+      if (input.take("right")) cs.hover = Math.min(cs.list.length - 1, (cs.hover < 0 ? 1 : cs.hover) + 1);
       if (input.take("confirm") && cs.hover >= 0) g.chooseCard(cs.hover);
-      for (const c of clicks)
+      for (const c of touchCards() ? [] : clicks)
         for (let i = 0; i < cs.list.length; i++) {
           const [x, y, w, h] = cardRect(i);
           if (c.x >= x && c.x < x + w && c.y >= y && c.y < y + h) g.chooseCard(i);
         }
       // idle play: the game picks after a few seconds
-      if ((cs.auto || TEST.auto) && cs.chosen < 0 && cs.t > (TEST.auto ? 0.6 : 6)) g.chooseCard(bestCard(g));
+      if ((settings.autoPick || TEST.auto) && cs.chosen < 0 && cs.t > (TEST.auto ? 0.6 : 6)) g.chooseCard(bestCard(g));
       return;
     }
     if (input.take("mode")) toggleMode();
     // clicks attack only in manual mode, toward the clicked side; in auto mode the hero needs nothing from you
     for (const c of clicks) {
-      if (c.x > W - 22 && c.y < 46) return pause();
       game.hero.click(game.camX + c.x);
     }
     return;
   }
   if (state === "pause") {
     if (input.take("pause")) return resume();
+    if (view.touch) return; // Native touch menu buttons own focus and keyboard activation.
     if (input.take("jump") || input.take("left")) pauseSel = (pauseSel + PAUSE_ITEMS.length - 1) % PAUSE_ITEMS.length;
     if (input.take("down") || input.take("right")) pauseSel = (pauseSel + 1) % PAUSE_ITEMS.length;
     for (let i = 0; i < PAUSE_ITEMS.length; i++) {
@@ -203,9 +236,11 @@ function handleInput() {
     if (input.take("right")) resultsSel = 1;
     for (let i = 0; i < 2; i++) {
       const [x, y, w, h] = resultsButton(i, resultsT);
-      if (pointer.x >= x && pointer.x < x + w && pointer.y >= y && pointer.y < y + h) resultsSel = i;
+      if (pointer.moved && pointer.x >= x && pointer.x < x + w && pointer.y >= y && pointer.y < y + h) resultsSel = i;
     }
-    let act = resultsT > 1 && input.take("confirm");
+    pointer.moved = false;
+    const confirm = input.take("confirm");
+    let act = resultsT > 1 && confirm;
     for (const c of clicks)
       for (let i = 0; i < 2; i++) {
         const [x, y, w, h] = resultsButton(i, resultsT);
@@ -231,12 +266,15 @@ function pause() {
   if (state !== "play" || game?.mode === "over") return;
   state = "pause";
   pauseSel = 0;
+  resetInput();
   sfx("ui");
   suspendAudio(false);
 }
 function resume() {
-  if (outro) return;
+  if (outro || state !== "pause") return;
   state = "play";
+  resetInput();
+  canvas.focus({ preventScroll: true });
   sfx("ui");
   last = performance.now();
 }
@@ -245,12 +283,14 @@ let outro = null;
 function outroThen(id, fn) {
   if (outro) return;
   if (!game) return fn();
+  resetInput();
   const h = game.fx.play(id, { x: 0, y: 0, screen: true, layer: "screen", prio: 0, life: 9, color: "#07050b" });
   const info = FX[id];
   outro = { t: h ? info.duration * 0.46 : 0, fn };
 }
 function toTitle() {
   state = "title";
+  resetInput(true);
   keepUsed(game?.fx);
   game = null;
   title.fx.reset();
@@ -261,7 +301,7 @@ function toggleMode(quiet) {
   settings.mode = settings.mode === "manual" ? "auto" : "manual";
   saveSettings();
   if (!quiet) sfx("card");
-  if (game && state === "play") game.banner = { title: settings.mode === "manual" ? "手动模式" : "托管模式", sub: settings.mode === "manual" ? "A/D 移动 · 空格 跳跃 · 点击 攻击" : "英雄自动战斗，你只管选强化", t: 0, dur: 1.6, small: true };
+  if (game && state === "play") game.banner = { title: settings.mode === "manual" ? "手动模式" : "托管模式", sub: settings.mode === "manual" ? (view.touch ? "点左右攻击 · 上划跳跃 · 移动需键盘" : "A/D 移动 · 空格 跳跃 · 点击 攻击") : "英雄自动战斗，你只管选强化", t: 0, dur: 1.6, small: true };
 }
 function pauseAction(id) {
   if (outro) return;
@@ -281,9 +321,12 @@ function pauseAction(id) {
       break;
     case "flashes":
       settings.flashes = !settings.flashes;
+      if (!settings.flashes && game) game.screenFlash = null;
       break;
     case "autoPick":
       settings.autoPick = !settings.autoPick;
+      // Turning it back on grants a full six seconds instead of choosing immediately.
+      if (settings.autoPick && game?.cards?.chosen === -1) game.cards.t = 0;
       break;
     case "quality":
       settings.quality = { auto: "high", high: "mid", mid: "low", low: "auto" }[settings.quality];
@@ -321,6 +364,9 @@ document.addEventListener("visibilitychange", () => {
 });
 
 // ---- the loop
+const controls = createControls({ pause, pauseAction, choose: (i) => {
+  if (state === "play" && !outro) game?.chooseCard(i);
+} });
 let last = performance.now(), acc = 0, fpsAcc = 0, fpsN = 0, slowFrames = 0, fastFrames = 0, frameMs = 16;
 let loopErrors = 0;
 function frameLoop(now) {
@@ -354,11 +400,11 @@ function step(now) {
       f();
     }
   }
-  if (state === "loading" || state === "title") {
+  if (state === "loading" || state === "load-error" || state === "title") {
     updateTitle(rdt);
     drawTitleScene(title.t);
-    const st = loadStats();
-    drawTitle(ctx, title.t, state === "loading" ? 0 : Math.min(1, st.loaded / CORE.length));
+    const progress = loadProgress(CORE);
+    drawTitle(ctx, title.t, state === "title" ? 1 : Math.min(0.99, progress.loaded / progress.total));
   } else if (game) {
     if (state === "play") {
       // fixed steps for the game, so hits, cooldowns and physics don't depend on the frame rate
@@ -373,6 +419,7 @@ function step(now) {
       if (n >= 4 * TEST.speed) acc = 0;
       if (game.mode === "over" && state === "play") {
         state = "results";
+        resetInput();
         resultsSel = 0;
         resultsT = 0;
       }
@@ -386,10 +433,11 @@ function step(now) {
     drawCinema(ctx, game);
     drawHud(ctx, game, rdt);
     drawBanner(ctx, game);
-    drawCards(ctx, game);
-    if (state === "pause") drawPause(ctx, pauseSel, fps);
+    if (!touchCards()) drawCards(ctx, game);
+    if (state === "pause" && !view.touch) drawPause(ctx, pauseSel, fps);
     if (state === "results") drawResults(ctx, game, resultsT, resultsSel);
   }
+  controls.update(state, game, !!outro);
   if (showFps) {
     drawText(ctx, `${fps}fps ${frameMs.toFixed(1)}ms q${quality} fx${game?.fx.count ?? title.fx.count} e${game?.enemies.length ?? 0}`, 4, H - 26, { font: "mini", color: "#a0ffa0", outline: "#000" });
   }
@@ -485,6 +533,7 @@ window.__fxrush = {
     else outroThen("transitions/crt-off", toTitle);
   },
   loadStats,
+  coreProgress: () => loadProgress(CORE),
   pause,
   resume,
   setGod(on) {

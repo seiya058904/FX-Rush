@@ -8,6 +8,7 @@ import { icon } from "./icons.js";
 import { SKILLS, STAT_CARDS } from "../game/skills.js";
 import { W, H, FLOOR } from "../config.js";
 import { view } from "../engine/screen.js";
+import { settings } from "../settings.js";
 
 const INK = "#05030a";
 export const UI = {
@@ -117,7 +118,7 @@ export function drawHud(ctx, g, dt) {
   drawText(ctx, full ? "RUSH!" : "RUSH", rx + 3, ry, { font: "mini", color: full ? "#ffffff" : "#ffd8b0", shadow: INK });
 
   // ---- touch: a big, quiet attack button
-  if (view.touch) {
+  if (view.touch && settings.mode === "manual") {
     ctx.globalAlpha = 0.35;
     rect(ctx, W - 40, H - 54, 32, 32, INK);
     rect(ctx, W - 39, H - 53, 30, 30, "#3a2e54");
@@ -125,7 +126,7 @@ export function drawHud(ctx, g, dt) {
     drawText(ctx, "攻", W - 24, H - 43, { align: "center", color: "#ffffff", alpha: 0.7 });
   }
   // pause hint
-  drawText(ctx, "II", W - 6, 40, { font: "mini", color: "#6a5a80", align: "right" });
+  if (!view.touch) drawText(ctx, "II", W - 6, 40, { font: "mini", color: "#6a5a80", align: "right" });
   ctx.restore();
 }
 
@@ -186,7 +187,7 @@ export function drawBanner(ctx, g) {
 
 export function drawFlash(ctx, g) {
   const f = g.screenFlash;
-  if (!f) return;
+  if (!f || !settings.flashes) return;
   ctx.globalAlpha = Math.min(0.3, (f.t / f.dur) * 0.3);
   ctx.fillStyle = f.color;
   ctx.fillRect(0, 0, W, H);
@@ -238,7 +239,7 @@ export function drawCards(ctx, g) {
     ctx.globalAlpha = 1;
   });
   // the auto-pick countdown
-  if (cs.auto && cs.chosen < 0) {
+  if (settings.autoPick && cs.chosen < 0) {
     const left = Math.max(0, 6 - cs.t);
     drawText(ctx, `${Math.ceil(left)}秒后自动选择`, 160, 146, { color: "#8a7ea8", align: "center", shadow: INK });
   }

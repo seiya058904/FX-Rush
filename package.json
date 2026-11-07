@@ -13,6 +13,7 @@
     "audit": "node tools/audit.mjs",
     "smoke": "node tools/fx-smoke.mjs",
     "test": "node --test test/skills.test.mjs",
+    "test:browser": "node tools/browser-checks.mjs",
     "e2e": "node tools/e2e.mjs",
     "sfx": "node tools/sfx.mjs"
   },

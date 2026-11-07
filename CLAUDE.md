@@ -8,10 +8,12 @@ Browser pixel auto-battler on the vendored PixelFX library. Status and the curre
 - `npm ci` — install (Node 20.19+ / 22.12+; `node_modules/` is not committed).
 - `npm run dev` — game at http://localhost:5173, FX Lab at `/fxlab.html`.
 - `npm test` — skill regression tests on the real game modules (also runs in CI).
+- `npm run build && npm run test:browser` — fast interaction, touch, settings and production loading regressions.
+  Uses installed Chrome locally; CI installs Playwright Chromium. No screenshots or reports are written into the repo.
 - `npm run smoke` — headless self-test of all PixelFX effects (must stay 244 pass).
 - `npm run audit` — regenerates `docs/COVERAGE.md`; wired-in-code count must stay 242/244 (see the exclusions below).
 - `npm run e2e` — needs a running dev server and local Chrome; writes `docs/screenshots/`. Sessions can be picked
-  with arguments (see the header of `tools/e2e.mjs`).
+  with arguments (see the header of `tools/e2e.mjs`); `--out DIR` redirects screenshots and the runtime report.
 - `npm run build` — static site in `dist/`.
 
 ## Browsers

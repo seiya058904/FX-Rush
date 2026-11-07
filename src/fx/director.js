@@ -13,6 +13,7 @@ import { makeFx, fxModule, frame, createFrame, clearFrame } from "../engine/pfx.
 import { critterBank, drawCritter } from "../game/sprites.js";
 import { FX } from "./registry.gen.js";
 import { W, M, FLOOR } from "../config.js";
+import { settings } from "../settings.js";
 
 // how long a one-shot of each category may run in play before it's faded out (quality 2 / 1 / 0)
 const TRIM = {
@@ -67,6 +68,8 @@ export class Director {
    * Returns a handle (whose x, y, alive, stop() the caller may use) or null if dropped or not loaded yet.
    */
   play(id, opts = {}) {
+    // This effect paints opaque black/white frames, independently of Game.screenFlash.
+    if (id === "impacts/impact-frame" && !settings.flashes) return null;
     const info = FX[id];
     if (!info) {
       if (import.meta.env?.DEV) console.warn("unknown effect", id);
@@ -174,6 +177,11 @@ export class Director {
   draw(layer, which = null) {
     for (const h of this.list) {
       if (!h.alive) continue;
+      // Also retire a flash already running when the player disables it while paused.
+      if (h.id === "impacts/impact-frame" && !settings.flashes) {
+        h.alive = false;
+        continue;
+      }
       const L = h.layer;
       let part;
       if (L === layer) part = undefined;

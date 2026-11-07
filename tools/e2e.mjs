@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // End-to-end play tests in a real Chrome (playwright-core, the installed Chrome channel).
 //
-//   node tools/e2e.mjs [--url http://localhost:5173/] [--only afk,builds,manual,outro,mobile] [--speed 4]
+//   node tools/e2e.mjs [--url http://localhost:5173/] [--only afk,builds,manual,outro,mobile] [--speed 4] [--out DIR]
 //
 // Sessions:
 //   afk      a whole run with nobody touching anything (real damage): must reach the end, no page errors
@@ -23,7 +23,8 @@ const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, arr) =>
 const BASE = args.url ?? "http://localhost:5173/";
 const SPEED = +(args.speed ?? 4);
 const only = args.only ? String(args.only).split(",") : ["afk", "builds", "branches", "manual", "outro", "mobile"];
-const SHOTS = join(ROOT, "docs/screenshots");
+const OUTPUT = args.out ?? join(ROOT, "docs");
+const SHOTS = join(OUTPUT, "screenshots");
 mkdirSync(SHOTS, { recursive: true });
 
 const browser = await chromium.launch({ channel: "chrome", headless: !args.headed, args: ["--autoplay-policy=no-user-gesture-required", "--disable-background-timer-throttling", "--disable-renderer-backgrounding", "--disable-backgrounding-occluded-windows", "--enable-precise-memory-info"] });
@@ -95,6 +96,7 @@ if (only.includes("afk"))
     res.minQuality = Math.min(...samples.map((s) => s.q));
     res.notes.push(`result ${JSON.stringify(last.result && { won: last.result.won, stage: last.result.stage, time: Math.round(last.result.time), kills: last.result.kills, level: last.result.level })}`);
     if (last.state !== "results") (res.ok = false), res.notes.push("did not reach the results screen");
+    if (!last.result?.won || last.result.stage !== 3) (res.ok = false), res.notes.push("idle run did not win all three stages");
     // variety: the combo bags should have dealt (nearly) every melee act, and no ultimate twice in a row
     const v = await page.evaluate(() => { const g = window.__fxrush.game; return { blows: g.hero.moveCount, ults: g.stats.moves ?? [], best: g.result?.bestHit ?? 0 }; });
     const kinds = Object.keys(v.blows).length, repeats = v.ults.filter((m, i) => i && m === v.ults[i - 1]).length;
@@ -118,7 +120,7 @@ if (only.includes("builds"))
   for (const b of BUILDS)
     await session(`build-s${b.stage}-${b.seed}`, `${BASE}?auto&god&speed=${SPEED}&stage=${b.stage}&seed=${b.seed}&build=${b.build}`, { width: 1280, height: 720 }, async (page, res) => {
       // through the scene, its boss and into the next one (or the victory screen)
-      await waitFor(page, (s) => { const g = window.__fxrush.game; return g && (g.stageIndex >= s || window.__fxrush.state === "results"); }, (130000 / SPEED) * 1.6 + 90000, 1000, b.stage).catch(() => res.notes.push("did not clear the scene in time"));
+      await waitFor(page, (s) => { const g = window.__fxrush.game; return g && (g.stageIndex >= s || g.result?.won); }, (130000 / SPEED) * 1.6 + 90000, 1000, b.stage);
       const s = await state(page);
       res.notes.push(`stage ${s.stage} phase ${s.phase} lv ${s.lv} kills ${s.kills}`);
       if (b.seed === 11) await shot(page, "stage2-frozen-ruins.png");
@@ -385,7 +387,7 @@ if (only.includes("mobile"))
 
 await browser.close();
 // merge with earlier recordings so rare branches seen in other runs count too
-const file = join(ROOT, "docs/fx-runtime.json");
+const file = join(OUTPUT, "fx-runtime.json");
 const prev = existsSync(file) && !args.fresh ? JSON.parse(readFileSync(file, "utf8")) : null;
 if (prev) merge(prev.used);
 writeFileSync(file, JSON.stringify({ when: report.when, sessions: (prev?.sessions ?? 0) + report.sessions.length, used: Object.fromEntries([...used].sort()), last: report }, null, 1));

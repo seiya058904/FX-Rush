@@ -605,7 +605,8 @@ export class Game {
   }
   openCards() {
     const opts = this.offerCards();
-    this.cards = { list: opts, t: 0, hover: -1, chosen: -1, auto: settings.autoPick };
+    this.cards = { list: opts, t: 0, hover: -1, chosen: -1 };
+    this.onCardsChanged?.();
   }
   offerCards() {
     const owned = this.skills.order;
@@ -1133,7 +1134,10 @@ export class Game {
       this.cards.t += rdt;
       if (this.cards.chosen >= 0) {
         this.cards.closeT -= rdt;
-        if (this.cards.closeT <= 0) this.cards = null;
+        if (this.cards.closeT <= 0) {
+          this.cards = null;
+          this.onCardsChanged?.();
+        }
       }
       this.fx.update(rdt * 0.08, rdt);
       return;

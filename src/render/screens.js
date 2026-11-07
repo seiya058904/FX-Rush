@@ -7,6 +7,7 @@ import { SKILLS } from "../game/skills.js";
 import { W, H } from "../config.js";
 import { audioSettings } from "../engine/audio.js";
 import { settings } from "../settings.js";
+import { view } from "../engine/screen.js";
 
 const INK = UI.ink;
 
@@ -45,15 +46,16 @@ export function drawTitle(ctx, t, loading) {
     rect(ctx, 110, 132, 100, 5, INK);
     rect(ctx, 111, 133, Math.round(98 * loading), 3, "#c86aff");
     drawText(ctx, "载入特效库…", 160, 140, { color: UI.dim, align: "center", shadow: INK });
-  } else if (Math.floor(t * 2.2) % 2 === 0) drawText(ctx, "点击 或 按空格/回车 开始", 160, 132, { color: "#ffffff", align: "center", outline: INK });
+  } else if (Math.floor(t * 2.2) % 2 === 0) drawText(ctx, view.touch ? "轻触开始" : "点击 或 按空格/回车 开始", 160, 132, { color: "#ffffff", align: "center", outline: INK });
   // a dark strip so the controls stay legible over whatever the hero is showing off
   ctx.fillStyle = "rgba(5,3,10,0.62)";
   ctx.fillRect(0, 153, W, 27);
   ctx.fillStyle = "rgba(200,170,255,0.25)";
   ctx.fillRect(0, 153, W, 1);
   const manual = settings.mode === "manual";
-  drawText(ctx, manual ? "手动模式：A/D 移动 · 空格 跳跃 · 点击 攻击" : "托管模式：英雄自动战斗 · 你只管选强化", 160, 156, { color: manual ? "#ffd27a" : "#b8acd0", align: "center", shadow: INK });
-  drawText(ctx, "Tab/点此 切换模式 · Esc 暂停 · M 静音", 160, 167, { color: "#8a7ea8", align: "center", shadow: INK });
+  const manualHint = view.touch ? "手动：点左右攻击 · 上划跳跃" : "手动模式：A/D 移动 · 空格 跳跃 · 点击 攻击";
+  drawText(ctx, manual ? manualHint : "托管模式：英雄自动战斗 · 你只管选强化", 160, 156, { color: manual ? "#ffd27a" : "#b8acd0", align: "center", shadow: INK });
+  drawText(ctx, view.touch ? "点此切换模式 · 移动需连接键盘" : "Tab/点此 切换模式 · Esc 暂停 · M 静音", 160, 167, { color: "#8a7ea8", align: "center", shadow: INK });
 }
 
 export const PAUSE_ITEMS = [

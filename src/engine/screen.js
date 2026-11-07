@@ -10,7 +10,8 @@ canvas.width = W;
 canvas.height = H;
 ctx.imageSmoothingEnabled = false;
 
-export const view = { scale: 1, left: 0, top: 0, width: W, height: H, touch: false };
+// A touch-capable laptop can still have a mouse as its primary input. Actual touch also opts in below.
+export const view = { scale: 1, left: 0, top: 0, width: W, height: H, touch: !!window.matchMedia?.("(pointer: coarse)").matches };
 
 export function fit() {
   const vw = window.innerWidth, vh = window.innerHeight;
@@ -21,7 +22,9 @@ export function fit() {
   const w = Math.floor(W * s), h = Math.floor(H * s);
   canvas.style.width = w + "px";
   canvas.style.height = h + "px";
-  const left = Math.floor((vw - w) / 2), top = Math.floor((vh - h) / 2);
+  const left = Math.floor((vw - w) / 2);
+  // Portrait leaves room below the fight for readable choices and thumb-sized controls.
+  const top = Math.floor((vh - h) * (view.touch && vh > vw ? 0.22 : 0.5));
   canvas.style.left = left + "px";
   canvas.style.top = top + "px";
   Object.assign(view, { scale: s, left, top, width: w, height: h });

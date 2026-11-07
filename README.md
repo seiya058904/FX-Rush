@@ -122,6 +122,15 @@
 
 A run is three scenes and three bosses, about **7 minutes**. One second wind per run; the boss key ends each scene.
 
+On touch screens, a larger pause button opens a menu with a separate settings page. In portrait, level-up choices
+sit below the fight with readable descriptions; tap the countdown to turn automatic selection off or on.
+Settings take effect on the current choice, and turning automatic selection back on gives you six fresh seconds.
+Touch manual mode supports tapping to attack and swiping up to jump; walking still needs a keyboard.
+
+If essential combat resources fail to load, the title offers **Reload** instead of starting an incomplete run.
+Optional scenery and decorative effects can arrive later. Turning flashes off also suppresses the large black-and-white
+impact frames used by ultimates and boss finishes.
+
 <a id="run-locally"></a>
 ## ⚙️ Run Locally
 
@@ -172,8 +181,14 @@ third_party/    PixelFX, vendored at a pinned commit
 ### Verification, Without Guesswork
 
 - `npm run smoke` — all 244 effects headless: **244 pass, 0 warn, 0 fail** (same bounds rule as upstream `tools/check.mjs`).
+- `npm run build && npm run test:browser` — seven focused browser checks: input boundaries, mixed mouse/keyboard card
+  selection, immediate settings, flash suppression, production resource failures and recovery, slow loading, and portrait/
+  landscape touch menus. Uses installed Chrome locally and Playwright Chromium in CI.
 - `npm run e2e` (needs a running dev server and local Chrome) — a full idle run with real damage that clears all three bosses, six god-mode build sessions that drive every skill to level 5 across all scenes, a rare-branch session, manual controls (click, move, jump, pause, focus loss, four window sizes, restart, back to title, death and retry) and a touch-phone session. Screenshots are kept in `docs/screenshots/`.
-- CI (`.github/workflows/pages.yml`) checks the registry against the vendored tree, runs the skill tests, self-test and audit, builds, and deploys to GitHub Pages; Markdown/docs-only changes skip it.
+  Pass `--out <directory>` to keep screenshots and the runtime report outside the repository. Idle runs must win all
+  three stages, and build sessions fail if they do not clear their stage in time.
+- CI (`.github/workflows/pages.yml`) checks the registry against the vendored tree, runs the skill tests, self-test and audit,
+  builds, runs the focused browser checks, and deploys to GitHub Pages; Markdown/docs-only changes skip it.
 
 ## 🎨 Credits & License
 

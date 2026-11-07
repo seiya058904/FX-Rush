@@ -50,6 +50,7 @@ export function loadFx(id) {
   const p = load()
     .then((mod) => {
       mods.set(id, mod);
+      failed.delete(id);
       pending.delete(id);
       return mod;
     })
@@ -68,6 +69,11 @@ export function preload(ids) {
 export const extraUsed = new Map();
 export const markUsed = (id) => extraUsed.set(id, (extraUsed.get(id) ?? 0) + 1);
 export const loadStats = () => ({ loaded: mods.size, pending: pending.size, failed: [...failed.entries()], total: ALL_IDS.length });
+/** Readiness is about the requested IDs, never the size of the global module cache. */
+export function loadProgress(ids) {
+  const loaded = ids.filter((id) => mods.has(id)).length;
+  return { loaded, total: ids.length, ready: loaded === ids.length, failed: ids.filter((id) => failed.has(id)) };
+}
 export const hasLoader = (id) => !!loaders[id];
 
 /** A live effect instance, or null if its module isn't loaded yet. */

@@ -2,12 +2,14 @@
 
 Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
 
-## Status (2026-11-03, after iteration 5; the live site still has iteration 4)
+## Local status (2026-11-07, iteration 6)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
 - Sound: 24 sounds use Freesound samples, the rest and the music are synthesized (see iteration 5).
 - PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load and pass the headless self-test; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
+- Iteration 6: input boundaries, immediate settings, essential-resource readiness/reload, and touch menus/portrait choices.
+  Publishing this iteration is not part of the local implementation task.
 
 ## Iteration 2 — one-button attack, calmer screen (done, deployed)
 
@@ -79,6 +81,26 @@ the tools can only measure level, attack and spectrum.
       page crash, neither reproduced nor explained (e2e now fails a session at once if its page crashes)
 - [x] owner playtest of a whole run: sounds approved (2026-11-03); local commit
 - [ ] push and deploy to GitHub Pages, on the owner's word
+
+## Iteration 6 — reliable controls, loading recovery and touch usability
+
+- [x] Screen changes discard queued presses and clicks without dropping held movement or combat's attack buffer.
+      Stationary pointers no longer overwrite keyboard card/result selection; focus loss releases inputs.
+- [x] Pause works during card selection. Auto-pick settings apply immediately; re-enabling grants six new seconds.
+- [x] Disabling flashes suppresses new and already-running black/white impact frames as well as ordinary screen flashes.
+      The default presentation still uses the effect; the two excluded effects remain excluded.
+- [x] Readiness checks the required melee/critter IDs. Optional first-screen effects load concurrently; essential failure
+      or a long wait shows a reload action. Other loaded modules cannot substitute for a missing core module.
+- [x] Touch pause/menu controls use screen pixels, with settings on a separate page. Portrait choices sit below the
+      320×180 fight and scroll on short screens. Touch hints match the current mode; the attack cue is manual-only.
+- [x] E2E requires a three-stage idle victory and fails build sessions that time out; `--out DIR` supports external artifacts.
+      Seven focused browser checks cover the new behavior; CI runs them against dev modules and the production build.
+- [x] Verification: 12/12 unit tests; 7/7 browser checks, including a real touch drag on the short portrait layout;
+      production idle victory, all six build sessions and rare branches passed. A touch-capable desktop routing issue
+      found by the full suite was fixed; manual/outro/mobile then passed 3/3 with the final input routing.
+      Independent smoke: **244 pass, 0 warn, 0 fail** (the earlier concurrent run had timing warnings only).
+      Build and registry check passed; wired coverage stays **242/244**. Ego desktop/portrait/landscape review completed;
+      physical phone validation remains separate from browser emulation. No dependencies or vendored effects changed.
 
 ## Resuming on another machine
 

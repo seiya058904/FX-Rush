@@ -1,7 +1,7 @@
 // Keyboard, mouse and touch, reduced to a handful of actions. Presses are latched until the game reads them,
 // so a click that lands during a hit-stop or a slow frame is never lost.
 
-import { canvas, toLogical, view } from "./screen.js";
+import { canvas, toLogical, view, fit } from "./screen.js";
 
 const KEYS = {
   ArrowLeft: "left", KeyA: "left",
@@ -32,6 +32,8 @@ export const touchInput = () => usedTouch;
 let usedTouch = false;
 
 window.addEventListener("keydown", (e) => {
+  // Native buttons keep activation/navigation keys; game-wide shortcuts still work.
+  if (e.target.closest?.("#game-controls button") && !["Escape", "KeyP", "KeyM", "F3", "Digit1", "Digit2", "Digit3", "Numpad1", "Numpad2", "Numpad3"].includes(e.code)) return;
   const a = KEYS[e.code];
   if (!a) return;
   if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F3", "Tab"].includes(e.code)) e.preventDefault();
@@ -44,11 +46,14 @@ window.addEventListener("keyup", (e) => {
   if (a) held.delete(a);
 });
 window.addEventListener("blur", () => {
-  held.clear();
+  input.reset(true);
   for (const f of listeners) f("blur");
 });
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) for (const f of listeners) f("hidden");
+  if (document.hidden) {
+    input.reset(true);
+    for (const f of listeners) f("hidden");
+  }
 });
 
 // pointer: a click/tap is an attack in play and a button press in menus; the game decides which
@@ -78,6 +83,8 @@ canvas.addEventListener("pointermove", (e) => {
 const up = (e) => {
   pointer.down = false;
   if (touchStart && e.pointerId === touchStart.id) touchStart = null;
+  // On a hybrid device, finish the first gesture before moving the canvas to its touch layout.
+  if (e.pointerType === "touch") fit();
 };
 canvas.addEventListener("pointerup", up);
 canvas.addEventListener("pointercancel", up);
@@ -97,6 +104,15 @@ export const input = {
   clear(a) {
     if (a) latched.delete(a);
     else latched.clear();
+  },
+  /** A new screen owns new presses. Held movement is separate from queued actions. */
+  reset(releaseHeld = false) {
+    latched.clear();
+    pointer.clicks = [];
+    pointer.moved = false;
+    pointer.down = false;
+    touchStart = null;
+    if (releaseHeld) held.clear();
   },
   /** Pointer clicks since last asked. */
   takeClicks() {
