@@ -2,16 +2,16 @@
 
 Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
 
-## Local status (2026-11-11, iteration 7)
+## Current status (2026-11-11, iteration 7)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
 - Sound: 24 sounds use Freesound samples, the rest and the music are synthesized (see iteration 5).
 - PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load and pass the headless self-test; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
 - Iteration 6: input boundaries, immediate settings, essential-resource readiness/reload, and touch menus/portrait choices.
-  Publishing this iteration is not part of the local implementation task.
+  Published to GitHub Pages on 2026-11-07; deployment record linked below.
 - Iteration 7: readable run builds, touch results, dialog focus, DoT/shatter correctness and hostile projectile fallbacks.
-  Local implementation only; publishing remains a separate action.
+  Published on 2026-11-11. CI, Pages deployment and live asset verification passed; closeout recorded below.
 
 ## Iteration 2 — one-button attack, calmer screen (done, deployed)
 
@@ -82,7 +82,7 @@ the tools can only measure level, attack and spectrum.
 - [x] e2e 10/10 on the final sounds; one earlier run had a 600 s hang in build-s3-16 and a level measurement had one
       page crash, neither reproduced nor explained (e2e now fails a session at once if its page crashes)
 - [x] owner playtest of a whole run: sounds approved (2026-11-03); local commit
-- [ ] push and deploy to GitHub Pages, on the owner's word
+- [x] push and Pages deployment complete (confirmed by the 2026-11-07 Pages run for `6734d46`)
 
 ## Iteration 6 — reliable controls, loading recovery and touch usability
 
@@ -103,6 +103,8 @@ the tools can only measure level, attack and spectrum.
       Independent smoke: **244 pass, 0 warn, 0 fail** (the earlier concurrent run had timing warnings only).
       Build and registry check passed; wired coverage stays **242/244**. Ego desktop/portrait/landscape review completed;
       physical phone validation remains separate from browser emulation. No dependencies or vendored effects changed.
+- [x] Pushed and deployed: [successful Pages run for `6734d46`](https://github.com/seiya058904/FX-Rush/actions/runs/42343609636)
+      (2026-11-07; historical publishing status reconciled during iteration 7 closeout).
 
 ## Iteration 7 — understand the build, readable results and combat reliability
 
@@ -122,6 +124,13 @@ the tools can only measure level, attack and spectrum.
       Independent effect self-test: **244 pass, 0 warn, 0 fail**; registry loads 244/244, wired coverage stays **242/244**.
       Ego desktop build/pause and portrait/landscape results reviewed, including a short portrait build panel;
       physical phone validation remains separate. No dependencies or vendored effects changed.
+- [x] Release closeout (2026-11-11): game changes `a1c8cb8` and browser-test timing fix `3afc2b0` pushed to `main`.
+      CI exposed keys sent before a native menu rendered; checks now wait for the controls and assert initial focus.
+      Touch drag tests hold the finger still before lifting so inertia cannot consume the next tap. Chromium passed
+      all 10 checks; the two affected checks also passed in installed Chrome. These changes only affect tests.
+      [Final CI and Pages run](https://github.com/seiya058904/FX-Rush/actions/runs/43004628285) passed: 15/15 unit tests,
+      10/10 browser checks, 244 effect passes with no warnings/failures, registry, audit and production build.
+      The live entry and all six linked JS/CSS assets returned HTTP 200; all six asset SHA-256 hashes matched the local build.
 
 ## Resuming on another machine
 
