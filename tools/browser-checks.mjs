@@ -199,6 +199,8 @@ try {
     const x = box.x + box.width / 2, y = box.y + box.height - 20;
     await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x, y }] });
     for (let i = 1; i <= 6; i++) await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x, y: y - (box.height - 40) * i / 6 }] });
+    // Hold the finger still before lifting: this tests a drag, without a fling consuming the next tap.
+    await p.waitForTimeout(200);
     await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
     await p.waitForFunction(() => document.querySelector(".touch-cards").scrollTop > 20);
     await cdp.detach();
@@ -248,12 +250,17 @@ try {
   await check("touch dialogs keep focus; portrait results stay readable through rotation and restart", { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }, async (p) => {
     await start(p, devUrl);
     await p.getByRole("button", { name: "暂停", exact: true }).tap();
+    // Menus render on the next game frame; send keys only once the new controls exist.
+    await p.getByRole("button", { name: "继续游戏", exact: true }).waitFor();
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "resume");
     await p.keyboard.press("Shift+Tab");
     assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "title");
     await p.keyboard.press("Tab");
     assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "resume");
     assert.equal(await p.locator("#game").evaluate((c) => c.inert), true);
     await p.getByRole("button", { name: "游戏设置", exact: true }).tap();
+    await p.getByRole("button", { name: "返回暂停菜单", exact: true }).waitFor();
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "back");
     await p.keyboard.press("Shift+Tab");
     assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "mute");
     await p.keyboard.press("Tab");
