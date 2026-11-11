@@ -38,7 +38,9 @@ jobs:
       - run: npm run audit
       - run: npm run build
       # Fast real-browser checks: input boundaries, settings, touch menus and failed production chunks.
-      - run: npx playwright-core install --with-deps chromium
+      # ubuntu-24.04 already provides Chromium's runtime libraries; the game's font is bundled.
+      # Avoid an apt refresh for extra font packages, which can stall on the runner's Ubuntu mirror.
+      - run: npx playwright-core install chromium
       - run: npm run test:browser
       - uses: actions/upload-pages-artifact@v5
         if: github.event_name != 'pull_request'
