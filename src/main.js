@@ -520,7 +520,7 @@ window.__fxrush = {
     spawn: (type, dx, hpMul) => game?.testSpawn(type, dx, hpMul),
     kill: (e) => e && game && e.hp > 0 && (e.hp = 1) && game.enemies.includes(e) && damage(game, e, 99999, { crit: true }),
     lowHp: () => { if (!game) return; if (game.cards) game.cards = null; game.pendingLevels = 0; game.bloomUsed = false; game.hero.hp = game.hero.maxHp * 0.2; },
-    die: () => { if (!game) return; if (game.cards) game.cards = null; game.pendingLevels = 0; game.aegisReady = false; game.aegisT = 99; game.hero.god = false; game.hero.iframes = 0; game.hero.invuln = 0; game.hero.hurt(99999, game.hero.x + 10); },
+    die: () => { if (!game) return; if (game.cards) game.cards = null; game.pendingLevels = 0; game.aegisReady = false; game.aegisT = 99; game.rushMode = 0; game.hero.god = false; game.hero.iframes = 0; game.hero.invuln = 0; game.hero.hurt(99999, game.hero.x + 10); },
     god: (on) => game && (game.hero.god = !!on),
     /** A monster of `type` right beside the (frozen) hero performs `attack` ("flame" for the fire jet). */
     attackWith(type, attack) {
@@ -543,6 +543,7 @@ window.__fxrush = {
         h.god = false;
         h.iframes = 0;
         h.invuln = 0;
+        game.rushMode = 0;
         h.hurt(5, h.x + 20);
         h.god = true;
       }, 900);

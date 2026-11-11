@@ -53,6 +53,8 @@ const ALL_MOVES = Object.keys(MOVES);
 // fast early levels (the fight changes shape within seconds), then a steady climb
 const XP_EARLY = [0, 4, 7, 10, 14, 18, 23, 28];
 const XP_CURVE = (lv) => (lv < XP_EARLY.length ? XP_EARLY[lv] : Math.round(10 + lv * 3.4 + lv * lv * 0.42));
+// All elite chests have always paid out a 20-XP gem; use that base reward for both loot and its label.
+const CHEST_XP = 20;
 
 class Combo {
   constructor(g) {
@@ -102,6 +104,7 @@ export class Game {
     this.combo = new Combo(this);
     this.level = 1;
     this.xp = 0;
+    this.xpRemainder = 0; // hundredths of XP carried between pickups and levels
     this.xpNext = XP_CURVE(1);
     this.xpMul = 1;
     this.pendingLevels = 0;
@@ -337,23 +340,9 @@ export class Game {
   /** Slow the hero (frost breath, curses): half speed, and PixelFX's slowed clock behind his head. */
   slowHero(t) {
     const h = this.hero;
-    if (h.slowT > 0) {
-      h.slowT = Math.max(h.slowT, t);
-      return;
-    }
-    h.slowT = t;
-    h.baseSpeed = h.stats.speed;
-    h.stats.speed *= 0.5;
-    h.stats.atkSpeed *= 0.8;
-    this.fx.play("status/slowed", { x: h.x, y: h.y, follow: h, actor: rigActor(SKINS.hero).actor, prio: 1, layer: "split", life: t });
-    this.timers.push({ t: 99, update: (dt) => {
-      if ((h.slowT -= dt) <= 0) {
-        h.stats.speed = h.baseSpeed;
-        h.stats.atkSpeed /= 0.8;
-        h.slowT = 0;
-        return true;
-      }
-    } });
+    h.slowT = Math.max(h.slowT, t);
+    if (h.slowFx?.alive && !h.slowFx.stopping) h.slowFx.life = h.slowFx.age + h.slowT;
+    else h.slowFx = this.fx.play("status/slowed", { x: h.x, y: h.y, follow: h, actor: rigActor(SKINS.hero).actor, prio: 1, layer: "split", life: h.slowT });
   }
   /** QA hook: a monster of a given type right next to the hero (used by the end-to-end branch tests). */
   testSpawn(type, dx = 40, hpMul = 1) {
@@ -499,7 +488,7 @@ export class Game {
     this.skills.onKill(e, el);
     // loot
     const T = e.T;
-    const xp = Math.max(1, Math.round(T.xp * this.xpMul));
+    const xp = e.elite ? CHEST_XP : Math.max(1, Math.round(T.xp));
     if (e.elite) {
       this.stats.elites++;
       this.pickups.push(new Pickup(this, "chest", e.x, e.y - 20, { value: xp, vy: -160, vx: 0 }));
@@ -509,7 +498,7 @@ export class Game {
       this.slowMo(0.5, 0.35);
       this.shake(3, 0.3);
       sfx("explode", { w: 0.9 });
-      this.fx.play("ui/achievement", { x: 160, y: 44, screen: true, title: "ELITE DOWN", text: `+${xp} XP`, prio: 1, layer: "top", life: 2.2 });
+      this.fx.play("ui/achievement", { x: 160, y: 44, screen: true, title: "ELITE DOWN", text: `${xp} BASE XP`, prio: 1, layer: "top", life: 2.2 });
     } else {
       for (let i = 0; i < xp; i++) this.pickups.push(new Pickup(this, "xp", e.x, e.y - e.cy, { value: 1 }));
       const r = this.rng();
@@ -523,10 +512,10 @@ export class Game {
     collectFx(this, p);
   }
   /** An elite's chest bursts open: experience, a heart, and a potion or a power star spill out. */
-  openChest(x) {
+  openChest(x, xp = CHEST_XP) {
     sfx("chest");
     this.later(1.2, () => {
-      this.pickups.push(new Pickup(this, "gem", x, -20, { value: 20, vy: -220 }));
+      this.pickups.push(new Pickup(this, "gem", x, -20, { value: xp, vy: -220 }));
       this.pickups.push(new Pickup(this, "heart", x + 10, -20, { vy: -240 }));
       this.pickups.push(new Pickup(this, this.rng() < 0.5 ? "potion" : "star", x - 10, -20, { vy: -260 }));
       for (let i = 0; i < 3; i++) this.pickups.push(new Pickup(this, "coin", x, -20, { value: 2 }));
@@ -584,7 +573,11 @@ export class Game {
     sfx("laser", { pan: this.pan(e.x) });
   }
   gainXp(n) {
-    this.xp += n;
+    // Apply Greed once, at collection. Hundredths preserve its 15% increments on 1-XP motes without
+    // floating-point drift at level thresholds, and without creating extra visual pickups.
+    const credit = this.xpRemainder + Math.round(n * this.xpMul * 100);
+    this.xp += Math.floor(credit / 100);
+    this.xpRemainder = credit % 100;
     while (this.xp >= this.xpNext) {
       this.xp -= this.xpNext;
       this.level++;
@@ -717,16 +710,11 @@ export class Game {
     this.hitStop(0.12);
   }
   starPower(t) {
-    const h = this.hero;
-    this.rushMode = t;
-    h.invuln = t;
-    h.stats.atkSpeed += 0.6;
-    this.later(t, () => {
-      h.stats.atkSpeed -= 0.6;
-      this.rushMode = 0;
-    });
-    this.heroBuffFx("status/rage", RAMPS.gold, t);
-    this.heroBuffFx("status/haste", RAMPS.gold, t);
+    // One clock owns every star benefit. A second pickup refreshes it instead of stacking attack speed
+    // or leaving an earlier expiry callback that could switch off the new star.
+    this.rushMode = Math.max(this.rushMode, t);
+    this.heroBuffFx("status/rage", RAMPS.gold, this.rushMode);
+    this.heroBuffFx("status/haste", RAMPS.gold, this.rushMode);
     this.banner = { title: "STAR POWER", sub: "无敌 · 攻速暴涨", t: 0, dur: 1.6, small: true };
   }
   comboMilestone(n) {
@@ -1155,6 +1143,8 @@ export class Game {
     }
     this.time += dt;
     this.blastBudget = Math.min(8, this.blastBudget + dt * 5);
+    this.rushMode = Math.max(0, this.rushMode - dt);
+    h.slowT = Math.max(0, h.slowT - dt);
 
     // timers
     for (const t of this.timers) {

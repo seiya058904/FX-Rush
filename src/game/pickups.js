@@ -149,7 +149,7 @@ export function collectFx(g, p) {
       sfx("levelup");
       break;
     case "chest":
-      g.openChest(p.x);
+      g.openChest(p.x, p.value);
       break;
     case "key":
       g.onKey();

@@ -2,16 +2,18 @@
 
 Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
 
-## Current status (2026-11-11, iteration 7)
+## Current status (2026-11-11, iteration 8 local changes)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
 - Sound: 24 sounds use Freesound samples, the rest and the music are synthesized (see iteration 5).
-- PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load and pass the headless self-test; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use.
+- PixelFX (vendored at `third_party/pixelfx/`, see `UPSTREAM.md`): **244 / 244** effects load, draw within bounds and finish/stop; 242 are wired into play (2 excluded by choice, see iteration 4) (`docs/COVERAGE.md`, `npm run audit`). All 12 `moves/*` ultimates, the `melee/*` acts and the skeleton rig are in use. Latest frame-cost warnings are recorded under iteration 8.
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
 - Iteration 6: input boundaries, immediate settings, essential-resource readiness/reload, and touch menus/portrait choices.
   Published to GitHub Pages on 2026-11-07; deployment record linked below.
 - Iteration 7: readable run builds, touch results, dialog focus, DoT/shatter correctness and hostile projectile fallbacks.
   Published on 2026-11-11. CI, Pages deployment and live asset verification passed; closeout recorded below.
+- Iteration 8: fractional XP bonuses, consistent chest rewards and descriptions, and temporary buffs that preserve
+  permanent upgrades. Implemented locally; not committed, pushed or deployed.
 
 ## Iteration 2 — one-button attack, calmer screen (done, deployed)
 
@@ -131,6 +133,29 @@ the tools can only measure level, attack and spectrum.
       [Final CI and Pages run](https://github.com/seiya058904/FX-Rush/actions/runs/43004628285) passed: 15/15 unit tests,
       10/10 browser checks, 244 effect passes with no warnings/failures, registry, audit and production build.
       The live entry and all six linked JS/CSS assets returned HTTP 200; all six asset SHA-256 hashes matched the local build.
+
+## Iteration 8 — reliable growth and temporary buffs (local)
+
+- [x] Greed applies once when XP is collected, carrying hundredths between pickups and levels. Twenty 1-XP drops
+      now credit 20 / 23 / 26 / 29 XP with zero / one / two / three Greed cards, without adding visual pickups.
+      The remainder survives scene changes and resets with a new run.
+- [x] Elite chests keep their existing 20 base XP. Their reward value reaches the gem, Greed applies at collection,
+      and the toast says `20 BASE XP`. Aegis level 4 describes its actual 7-to-6-second recharge and stronger counter.
+- [x] Permanent speed stats stay separate from slows and star power. Effective movement/attack speed is composed
+      at use, so either expiry order and Fury acquired mid-effect preserve the intended permanent upgrade.
+      Repeated stars refresh one duration for speed, protection and the existing star/RUSH behavior; other sources
+      of invulnerability retain their own duration. Card choices freeze the buff clocks; a new run clears them.
+- [x] Verification: 24/24 unit tests (nine new regressions failed before the fix), 10/10 browser checks and production
+      build passed. Production E2E passed idle victory, rare branches and manual controls (3/3): three stages,
+      621 kills, level 19, all 12 melee acts and all 12 ultimates. This uses accelerated test play/auto-picks and is
+      not a normal-duration or win-rate measurement; the six forced builds were not rerun for this focused change.
+      Ego reviewed the chest toast, desktop Aegis choice and 390px portrait choice. Registry loads 244/244 and
+      wired coverage stays 242/244. No dependencies or vendored effects changed.
+- Effect self-test: **215 pass, 29 frame-cost warnings, 0 failures** across all 244 effects. An isolated three-effect
+  rerun cleared the earth-stomp warning but retained nuke/storm timing warnings (9.587 / 8.787 ms per frame).
+  CPU load sampled after that rerun was 76%; the smoke tool and its PixelFX inputs are unchanged. Drawing, bounds
+  and lifecycle checks passed, but a warning-free timing result was not established in this run. No thresholds changed.
+- Publishing remains separate: these changes have not been committed, pushed or deployed.
 
 ## Resuming on another machine
 

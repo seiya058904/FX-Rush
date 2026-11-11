@@ -9,6 +9,7 @@ const { SKILLS, STAT_CARDS, MAX_SKILLS } = await load("/src/game/skills.js");
 const { damage } = await load("/src/game/combat.js");
 const { updateStatus } = await load("/src/game/status.js");
 const { Projectile } = await load("/src/game/projectiles.js");
+const { Pickup } = await load("/src/game/pickups.js");
 const { frame, clearFrame, setCamera } = await load("/src/engine/pfx.js");
 const { STEP } = await load("/src/config.js");
 const { preload, isLoaded } = await load("/src/engine/pfx.js");
@@ -286,4 +287,161 @@ test("hostile projectile fallback draws only without a live visual and does not 
   assert.equal(h.hp, before - 9);
   assert.equal(shot.dead, true);
   assert.equal(pixels(), false, "ended shots do not leave a marker");
+});
+
+test("greed credits small XP pickups without losing the bonus or multiplying drops twice", () => {
+  for (const count of [0, 1, 2, 3]) {
+    const g = newRun();
+    g.xpNext = 1000;
+    for (let i = 0; i < count; i++) g.skills.add("greed");
+    for (let i = 0; i < 20; i++) {
+      const e = g.testSpawn("slime", 0);
+      g.onKill(e, "melee");
+      const xp = g.pickups.filter((p) => p.kind === "xp" && !p.dead);
+      assert.equal(xp.length, 1, "bonus does not add more visual motes");
+      xp.forEach((p) => p.collect());
+    }
+    assert.equal(g.xp, 20 + count * 3);
+  }
+});
+
+test("XP bonus applies once to gems and orbs, at collection, and handles multiple levels", () => {
+  for (const [kind, value] of [["gem", 20], ["orb", 6]]) {
+    const g = newRun();
+    g.xpNext = 1000;
+    const p = new Pickup(g, kind, g.hero.x, 0, { value });
+    g.skills.add("greed");
+    for (let i = 0; i < 20; i++) g.collect({ ...p, value });
+    assert.equal(g.xp, value * 23, `${kind} retains fractional bonuses`);
+  }
+  const g = newRun();
+  g.skills.add("greed");
+  g.gainXp(20);
+  assert.equal(g.level, 4, "23 XP crosses the 4, 7 and 10 XP thresholds");
+  assert.equal(g.xp, 2);
+  assert.equal(g.pendingLevels, 3);
+});
+
+test("elite chests keep their 20 base XP and forward that reward through opening", () => {
+  for (const type of ["brute", "warden", "trooper"]) {
+    const g = newRun(), e = g.testSpawn(type, 0);
+    g.skills.add("greed");
+    g.xpNext = 1000;
+    g.onKill(e, "melee");
+    const chest = g.pickups.find((p) => p.kind === "chest");
+    assert.equal(chest.value, 20);
+    chest.collect();
+    // Advance the opening callback alone, so auto-loot cannot collect the gem before it is inspected.
+    g.timers.filter((t) => t.once).forEach((t) => t.fn());
+    const gem = g.pickups.find((p) => p.kind === "gem");
+    assert.equal(gem.value, 20);
+    gem.collect();
+    assert.equal(g.xp, 23);
+  }
+});
+
+// Keep real update ordering, timers and hero behavior, without unrelated spawns or scenery work.
+function quietRun() {
+  const g = newRun();
+  g.updateStage = () => {};
+  g.updateDecor = () => {};
+  g.fx.update = () => {};
+  g.hero.introT = 0;
+  return g;
+}
+function advance(g, seconds) { step(g, Math.ceil(seconds / STEP)); }
+const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 1e-9, `${label}: ${actual} != ${expected}`);
+
+test("slow and star expiration order cannot change permanent attack speed", () => {
+  for (const starFirst of [true, false]) {
+    const g = quietRun();
+    if (starFirst) { g.starPower(7); advance(g, 6); g.slowHero(3); advance(g, 3.1); }
+    else { g.slowHero(2); g.starPower(7); advance(g, 7.1); }
+    near(g.hero.stats.atkSpeed, 1, "permanent speed");
+    near(g.hero.attackSpeed, 1, "effective speed after both effects end");
+    near(g.hero.moveSpeed, 86, "movement recovered");
+  }
+});
+
+test("fury acquired during slow and star remains exactly one permanent upgrade", async () => {
+  await preload(["melee/sword-slash"]);
+  const g = quietRun(), h = g.hero;
+  g.slowHero(3); g.starPower(7); g.skills.add("fury");
+  near(h.stats.atkSpeed, 1.15, "permanent fury");
+  near(h.attackSpeed, 1.4, "slow applies to permanent plus star speed");
+  near(h.moveSpeed, 43, "slow movement");
+  h.begin("slash");
+  const slowRate = h.act.rate;
+  h.act = null;
+  advance(g, 7.1);
+  near(h.attackSpeed, 1.15, "fury remains after both effects end");
+  h.begin("slash");
+  near(slowRate / h.act.rate, 1.4 / 1.15, "actual melee playback uses effective speed");
+});
+
+test("a second star refreshes one shared duration for speed, invulnerability and RUSH", () => {
+  const g = quietRun(), h = g.hero;
+  h.god = false; h.invuln = 0;
+  g.starPower(7); advance(g, 3); g.starPower(7); advance(g, 4.1);
+  near(h.attackSpeed, 1.6, "stars do not stack attack speed");
+  assert.ok(g.rushMode > 2.8 && g.rushMode < 3);
+  assert.equal(h.hurt(10, h.x + 20), false, "first star's old deadline cannot end protection");
+  const rush = g.rushV; g.rush(10);
+  assert.equal(g.rushV, rush, "RUSH is still suppressed during the refreshed star");
+  advance(g, 3);
+  near(h.attackSpeed, 1, "star expires once");
+  assert.equal(g.rushMode, 0);
+  g.rush(10); assert.equal(g.rushV, rush + 10);
+  assert.equal(h.hurt(10, h.x + 20), true, "protection expires with the other star benefits");
+});
+
+test("star protection coexists with other invulnerability and hostile projectile behavior", () => {
+  const g = quietRun(), h = g.hero;
+  h.god = false; h.invuln = 5;
+  g.starPower(1); advance(g, 1.1);
+  assert.equal(h.hurt(10, h.x + 20), false, "a short star cannot shorten existing protection");
+  h.invuln = 0;
+  g.starPower(7);
+  const shot = new Projectile(g, { x: h.x, y: -18, vx: 0, vy: 0, hostile: true, dmg: 9, life: 20 });
+  shot.update(STEP);
+  assert.equal(shot.dead, false, "shots still pass through a star-protected hero");
+  assert.equal(h.hp, h.maxHp);
+  advance(g, 7.1);
+  shot.update(STEP);
+  assert.equal(shot.dead, true);
+  assert.equal(h.hp, h.maxHp - 9);
+});
+
+test("buff clocks freeze during card choices, survive a scene change, and reset with a new run", () => {
+  const g = quietRun();
+  g.starPower(7); g.slowHero(3); advance(g, 1);
+  const star = g.rushMode, slow = g.hero.slowT;
+  g.openCards();
+  for (let i = 0; i < 120; i++) g.update(STEP);
+  near(g.rushMode, star, "card choice freezes star time");
+  near(g.hero.slowT, slow, "card choice freezes slow time");
+  g.cards = null;
+  g.nextStage();
+  near(g.rushMode, star, "scene change preserves the remaining star");
+  advance(g, 6.2);
+  near(g.hero.attackSpeed, 1, "effects expire after the scene change");
+  g.start(11);
+  near(g.hero.attackSpeed, 1, "new run starts without effects");
+  assert.equal(g.rushMode, 0);
+  assert.equal(g.hero.slowT, 0);
+});
+
+test("fractional XP survives scene changes but never leaks into the next run", () => {
+  const g = newRun();
+  g.skills.add("greed");
+  g.xpNext = 1000;
+  g.gainXp(1);
+  g.nextStage();
+  for (let i = 0; i < 19; i++) g.gainXp(1);
+  assert.equal(g.xp, 23);
+  g.gainXp(1);
+  g.start(11);
+  g.skills.add("greed"); g.xpNext = 1000;
+  for (let i = 0; i < 6; i++) g.gainXp(1);
+  assert.equal(g.xp, 6, "new run must not inherit the previous fractional bonus");
 });

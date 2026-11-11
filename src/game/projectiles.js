@@ -82,7 +82,7 @@ export class Projectile {
         if (h.hurt(this.dmg, this.x - Math.sign(this.vx) * 10, { push: 110 })) {
           this.onHit?.(g, h);
           return this.end(true);
-        } else if (h.invuln <= 0 && h.iframes <= 0) return this.end(true);
+        } else if (!h.invulnerable && h.iframes <= 0) return this.end(true);
       }
       // the hero's blades and shields can swat hostile shots
       return;

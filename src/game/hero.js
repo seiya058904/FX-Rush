@@ -102,6 +102,7 @@ export class Hero {
     this.dead = false;
     this.deadT = 0;
     this.invuln = 0;
+    this.slowT = 0;
     this.ghosts = [];
     this.ghostAcc = 0;
     this.glow = 0;
@@ -118,6 +119,19 @@ export class Hero {
 
   get manual() {
     return settings.mode === "manual";
+  }
+
+  // stats holds permanent growth. Temporary effects are composed when used, never undone by arithmetic.
+  get attackSpeed() {
+    return (this.stats.atkSpeed + (this.game.rushMode > 0 ? 0.6 : 0)) * (this.slowT > 0 ? 0.8 : 1);
+  }
+
+  get moveSpeed() {
+    return this.stats.speed * (this.slowT > 0 ? 0.5 : 1);
+  }
+
+  get invulnerable() {
+    return this.invuln > 0 || this.game.rushMode > 0;
   }
 
   /** Manual mode: a click attacks toward the clicked side (held briefly if a blow is still landing). */
@@ -251,17 +265,17 @@ export class Hero {
     // ---- walking
     if (!this.act) {
       let want = 0;
-      if (manual) want = moveDir * this.stats.speed;
+      if (manual) want = moveDir * this.moveSpeed;
       else if (evade) {
-        want = evade * this.stats.speed * 1.25;
+        want = evade * this.moveSpeed * 1.25;
         this.facing = evade;
       } else if (tgt) {
         const dx = tgt.x - this.x, standoff = 26 + (tgt.w ?? 8);
-        if (Math.abs(dx) > standoff + 6) want = Math.sign(dx) * this.stats.speed;
-        else if (Math.abs(dx) < standoff - 14 && this.onGround) want = -Math.sign(dx) * this.stats.speed * 0.5;
+        if (Math.abs(dx) > standoff + 6) want = Math.sign(dx) * this.moveSpeed;
+        else if (Math.abs(dx) < standoff - 14 && this.onGround) want = -Math.sign(dx) * this.moveSpeed * 0.5;
         if (want) this.facing = Math.sign(dx);
       } else if (g.advance) {
-        want = this.stats.speed * 0.8;
+        want = this.moveSpeed * 0.8;
         this.facing = 1;
       }
       if (moveDir) this.facing = moveDir;
@@ -362,12 +376,12 @@ export class Hero {
     this.chainT = 1.1;
     if (!this.begin(name)) return;
     this.moveCount[name] = (this.moveCount[name] ?? 0) + 1;
-    this.atkCd = (SLOW.has(name) ? 0.3 : 0.1) / this.stats.atkSpeed;
+    this.atkCd = (SLOW.has(name) ? 0.3 : 0.1) / this.attackSpeed;
   }
   begin(name) {
     const a = ATTACKS[name], mod = fxModule(a.fx);
     if (!mod) return false;
-    const g = this.game, rate = a.rate * this.stats.atkSpeed;
+    const g = this.game, rate = a.rate * this.attackSpeed;
     this.actName = name;
     this.act = new ActPlayer(mod, {
       id: a.fx, rate, from: a.from, x: this.x, y: 0, facing: this.facing, director: g.fx,
@@ -393,7 +407,7 @@ export class Hero {
   }
 
   hurt(dmg, fromX, opts = {}) {
-    if (this.dead || this.iframes > 0 || this.invuln > 0 || this.god) return false;
+    if (this.dead || this.iframes > 0 || this.invulnerable || this.god) return false;
     const g = this.game;
     if (g.skills?.onHeroHurt?.(dmg, fromX)) return false; // a shield took it
     dmg = Math.max(1, dmg * (1 - this.stats.armor));

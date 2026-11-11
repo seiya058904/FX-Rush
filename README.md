@@ -126,6 +126,11 @@ You can carry **six different skills**; upgrading an owned skill does not take a
 shows the occupied slots. Open **本局构筑** (Run Build) from pause or results to review skill names, levels, acquired
 upgrades and stat-card counts. Results retain both skills and stat cards; a new run starts with an empty build.
 
+Greed's XP bonus applies when loot is collected, carrying fractional XP forward even on single-point drops.
+Elite chests contain 20 base XP, with Greed applied when their gem is collected. Power stars grant one temporary
+attack-speed bonus and invulnerability; another star refreshes the duration. Slows and stars leave permanent
+stat-card upgrades intact when they expire.
+
 On touch screens, a larger pause button opens a menu with a separate settings page. In portrait, level-up choices
 sit below the fight with readable descriptions; tap the countdown to turn automatic selection off or on.
 Settings take effect on the current choice, and turning automatic selection back on gives you six fresh seconds.
@@ -189,9 +194,10 @@ third_party/    PixelFX, vendored at a pinned commit
 
 ### Verification, Without Guesswork
 
-- `npm run smoke` — all 244 effects headless: **244 pass, 0 warn, 0 fail** (same bounds rule as upstream `tools/check.mjs`).
-- `npm test` — 15 regressions covering skill lifecycles, cast counters, freeze/shatter rules, complete build snapshots
-  and projectile fallback rendering/collisions.
+- `npm run smoke` — checks drawing, canvas bounds, lifecycle and frame cost for all 244 effects (same bounds rule as
+  upstream `tools/check.mjs`). Latest local validation results are recorded in [docs/ROADMAP.md](docs/ROADMAP.md).
+- `npm test` — 24 regressions covering skill lifecycles, cast counters, freeze/shatter rules, complete build snapshots,
+  projectile fallback rendering/collisions, fractional XP and chest rewards, and overlapping temporary buffs.
 - `npm run build && npm run test:browser` — ten focused browser checks: input boundaries, mixed mouse/keyboard card
   selection, immediate settings, flash suppression, production resource failures and recovery, slow loading, and portrait/
   landscape touch menus, build inspection, dialog focus, touch results and visible fallback projectiles.
