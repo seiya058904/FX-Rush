@@ -85,7 +85,7 @@ export function damage(g, e, base, o = {}) {
   if (hero.stats.lifesteal && el === "melee") hero.heal(dmg * hero.stats.lifesteal, true);
 
   // skills react to hits (bleed, chain, freeze...)
-  g.skills.onHit(e, dmg, { el, crit, src: o.src });
+  g.skills.onHit(e, dmg, { el, crit, src: o.src, dot: !!o.dot });
 
   if (e.elite && !e.boss && e.hp > 0 && dmg >= e.maxHp * 0.06)
     g.fx.play("ui/health-bar-hit", { x: e.x, y: e.y - e.h - 12, center: true, from: Math.min(1, (e.hp + dmg) / e.maxHp), to: e.hp / e.maxHp, prio: 2, layer: "top", life: 1.3, maxSame: 1, speed: 1.4 });

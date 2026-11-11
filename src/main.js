@@ -157,6 +157,14 @@ function handleInput() {
     input.clear();
     return;
   }
+  if (controls.modalOpen) {
+    if (input.take("pause")) {
+      if (!controls.back()) resume();
+      resetInput();
+    }
+    input.clear();
+    return;
+  }
   if (state === "loading" || state === "load-error") {
     input.reset();
     return;
@@ -232,9 +240,10 @@ function handleInput() {
     return;
   }
   if (state === "results") {
-    if (input.take("left")) resultsSel = 0;
-    if (input.take("right")) resultsSel = 1;
-    for (let i = 0; i < 2; i++) {
+    if (view.touch) return;
+    while (input.take("left")) resultsSel = Math.max(0, resultsSel - 1);
+    while (input.take("right")) resultsSel = Math.min(2, resultsSel + 1);
+    for (let i = 0; i < 3; i++) {
       const [x, y, w, h] = resultsButton(i, resultsT);
       if (pointer.moved && pointer.x >= x && pointer.x < x + w && pointer.y >= y && pointer.y < y + h) resultsSel = i;
     }
@@ -242,15 +251,22 @@ function handleInput() {
     const confirm = input.take("confirm");
     let act = resultsT > 1 && confirm;
     for (const c of clicks)
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 3; i++) {
         const [x, y, w, h] = resultsButton(i, resultsT);
         if (resultsT > 0.6 && c.x >= x && c.x < x + w && c.y >= y && c.y < y + h) (resultsSel = i), (act = true);
       }
-    if (act) {
-      sfx("select");
-      if (resultsSel === 0) outroThen("transitions/blinds", startRun);
-      else outroThen("transitions/crt-off", toTitle);
-    }
+    if (act) resultsAction(resultsSel);
+  }
+}
+function resultsAction(i) {
+  if (state !== "results" || outro || resultsT < 0.6) return;
+  resultsSel = i;
+  sfx("select");
+  if (i === 0) outroThen("transitions/blinds", startRun);
+  else if (i === 1) outroThen("transitions/crt-off", toTitle);
+  else if (i === 2) {
+    resetInput();
+    controls.showBuild("results");
   }
 }
 function bestCard(g) {
@@ -309,6 +325,12 @@ function pauseAction(id) {
   switch (id) {
     case "resume":
       return resume();
+    case "build":
+      if (state === "pause") {
+        resetInput();
+        controls.showBuild("pause");
+      }
+      return;
     case "restart":
       return outroThen("transitions/blinds", startRun);
     case "title":
@@ -364,7 +386,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 // ---- the loop
-const controls = createControls({ pause, pauseAction, choose: (i) => {
+const controls = createControls({ pause, pauseAction, result: resultsAction, choose: (i) => {
   if (state === "play" && !outro) game?.chooseCard(i);
 } });
 let last = performance.now(), acc = 0, fpsAcc = 0, fpsN = 0, slowFrames = 0, fastFrames = 0, frameMs = 16;
@@ -435,9 +457,9 @@ function step(now) {
     drawBanner(ctx, game);
     if (!touchCards()) drawCards(ctx, game);
     if (state === "pause" && !view.touch) drawPause(ctx, pauseSel, fps);
-    if (state === "results") drawResults(ctx, game, resultsT, resultsSel);
+    if (state === "results" && !view.touch) drawResults(ctx, game, resultsT, resultsSel);
   }
-  controls.update(state, game, !!outro);
+  controls.update(state, game, !!outro, resultsT);
   if (showFps) {
     drawText(ctx, `${fps}fps ${frameMs.toFixed(1)}ms q${quality} fx${game?.fx.count ?? title.fx.count} e${game?.enemies.length ?? 0}`, 4, H - 26, { font: "mini", color: "#a0ffa0", outline: "#000" });
   }
@@ -526,12 +548,7 @@ window.__fxrush = {
       }, 900);
     },
   },
-  resultsAction(i) {
-    if (state !== "results") return;
-    resultsSel = i;
-    if (i === 0) outroThen("transitions/blinds", startRun);
-    else outroThen("transitions/crt-off", toTitle);
-  },
+  resultsAction,
   loadStats,
   coreProgress: () => loadProgress(CORE),
   pause,

@@ -332,7 +332,7 @@ if (only.includes("outro"))
       await page.keyboard.press("Escape");
       await page.waitForFunction(() => window.__fxrush.state === "pause", undefined, { timeout: 3000 });
     };
-    const RETRY = [119, 150], LEAVE = [201, 150], MENU_RESTART = [160, 65], MENU_TITLE = [160, 161];
+    const RETRY = [84, 150], LEAVE = [160, 150], MENU_RESTART = [160, 74], MENU_TITLE = [160, 162];
     // what is asked in one go; the screen it must end on; how many new runs may appear on the way
     const cases = [
       ["single retry click", toResults, async () => { await click(...RETRY); }, "play", 1],

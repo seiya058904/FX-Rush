@@ -5,7 +5,11 @@ import assert from "node:assert/strict";
 import { load, close, seedRandom } from "./harness.mjs";
 
 const { Game } = await load("/src/game/game.js");
-const { SKILLS, STAT_CARDS } = await load("/src/game/skills.js");
+const { SKILLS, STAT_CARDS, MAX_SKILLS } = await load("/src/game/skills.js");
+const { damage } = await load("/src/game/combat.js");
+const { updateStatus } = await load("/src/game/status.js");
+const { Projectile } = await load("/src/game/projectiles.js");
+const { frame, clearFrame, setCamera } = await load("/src/engine/pfx.js");
 const { STEP } = await load("/src/config.js");
 const { preload, isLoaded } = await load("/src/engine/pfx.js");
 after(close);
@@ -223,4 +227,63 @@ test("AG-FX-03 two whole runs with the same build and seed play the same casts",
   const a = fight(), b = fight();
   assert.ok(a.length > 20, `only ${a.length} casts seen`);
   assert.deepEqual(a, b);
+});
+
+test("burning ticks preserve freeze; direct fire and direct critical hits still shatter", () => {
+  for (const kind of ["burning", "bleeding", "poisoned", "fire", "crit"]) {
+    const g = newRun(), e = g.testSpawn("slime", 20, 100), asked = spy(g);
+    e.spawning = 0; e.status.frozen = 2;
+    if (["burning", "bleeding", "poisoned"].includes(kind)) {
+      e.status[kind] = 3; e.dot = { [kind]: 0.2 }; e.dotT = 0;
+      updateStatus(g, e, STEP);
+      assert.equal(e.status.frozen, 2, `${kind} must not consume freeze`);
+      assert.equal(asked.includes("ice/ice-shatter"), false);
+    } else {
+      damage(g, e, 2, { el: kind === "fire" ? "fire" : "melee", crit: kind === "crit", noCrit: true });
+      assert.equal(e.status.frozen, 0);
+      assert.equal(asked.includes("ice/ice-shatter"), true);
+    }
+  }
+});
+
+test("six skill slots still allow upgrades and stats; results retain an independent full build", () => {
+  const ids = Object.keys(SKILLS).slice(0, MAX_SKILLS), g = newRun();
+  g.level = 10;
+  for (const id of ids) g.skills.add(id);
+  g.skills.add("might");
+  for (let i = 0; i < 30; i++) {
+    assert.ok(g.offerCards().every((c) => !c.skill || ids.includes(c.id)), "no seventh skill");
+  }
+  g.skills.add(ids[0]);
+  assert.equal(g.skills.order.length, MAX_SKILLS);
+  g.end(false);
+  assert.equal(g.result.skills[ids[0]], 2);
+  assert.deepEqual(g.result.statLv, { might: 1 });
+  g.skills.add("might"); g.skills.add(ids[0]);
+  assert.equal(g.result.statLv.might, 1, "result is a snapshot");
+  assert.equal(g.result.skills[ids[0]], 2);
+  assert.deepEqual(newRun().skills.statLv, {}, "new run is empty");
+});
+
+test("hostile projectile fallback draws only without a live visual and does not change collisions", async () => {
+  await preload(["fire/fireball"]);
+  const g = newRun(), h = g.hero;
+  setCamera(g.camX);
+  const shot = new Projectile(g, { x: h.x + 60, y: -18, vx: -120, vy: 0, fx: "fire/fireball", hostile: true, dmg: 9 });
+  const pixels = () => { clearFrame(frame); shot.drawFallback(); return frame.color.some((c) => c !== 0); };
+  assert.ok(shot.handle?.alive);
+  assert.equal(pixels(), false, "normal visual has no duplicate fallback");
+  shot.handle.stop();
+  assert.equal(pixels(), true, "a retired visual cannot hide a live shot");
+  shot.handle = null;
+  assert.equal(pixels(), true, "a missing visual still has a marker");
+  shot.hostile = false;
+  assert.equal(pixels(), false, "friendly shots are unchanged");
+  shot.hostile = true;
+  h.god = false; h.invuln = 0; h.iframes = 0;
+  const before = h.hp;
+  for (let i = 0; i < 120 && !shot.dead; i++) shot.update(STEP);
+  assert.equal(h.hp, before - 9);
+  assert.equal(shot.dead, true);
+  assert.equal(pixels(), false, "ended shots do not leave a marker");
 });

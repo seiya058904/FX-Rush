@@ -2,7 +2,7 @@
 
 Living status and iteration plan. Update it at the end of each iteration so work can resume on any machine.
 
-## Local status (2026-11-07, iteration 6)
+## Local status (2026-11-11, iteration 7)
 
 - Playable run: 3 scenes, 3 bosses, 12 auto-cast skills, ~7 minutes. Deployed to GitHub Pages by `.github/workflows/pages.yml`.
 - Sound: 24 sounds use Freesound samples, the rest and the music are synthesized (see iteration 5).
@@ -10,6 +10,8 @@ Living status and iteration plan. Update it at the end of each iteration so work
 - Already automatic: targeting and walking, the melee chain, every skill, ultimates (fire when RUSH is full), level-up picks (after 6 s).
 - Iteration 6: input boundaries, immediate settings, essential-resource readiness/reload, and touch menus/portrait choices.
   Publishing this iteration is not part of the local implementation task.
+- Iteration 7: readable run builds, touch results, dialog focus, DoT/shatter correctness and hostile projectile fallbacks.
+  Local implementation only; publishing remains a separate action.
 
 ## Iteration 2 — one-button attack, calmer screen (done, deployed)
 
@@ -101,6 +103,25 @@ the tools can only measure level, attack and spectrum.
       Independent smoke: **244 pass, 0 warn, 0 fail** (the earlier concurrent run had timing warnings only).
       Build and registry check passed; wired coverage stays **242/244**. Ego desktop/portrait/landscape review completed;
       physical phone validation remains separate from browser emulation. No dependencies or vendored effects changed.
+
+## Iteration 7 — understand the build, readable results and combat reliability
+
+- [x] Level-up choices show the six-skill capacity. Pause and results open the same readable build view with names,
+      levels, acquired upgrade descriptions and stat-card counts. Results snapshot both kinds of cards.
+- [x] Touch results use native controls and keep the celebration visible in portrait. Small portrait panels scroll;
+      rotating preserves the result. Desktop retains the pixel results screen with a build entry.
+- [x] Native dialogs contain Tab/Shift+Tab focus, keep the background canvas inert, and restore focus on return.
+      Escape steps back from build/settings; fast repeated result-navigation keys are consumed before confirmation.
+- [x] Damage forwards its DoT flag: burning ticks no longer consume freeze or trigger shatter; direct fire and direct
+      critical hits still do. No damage coefficients changed.
+- [x] Hostile projectiles draw a small high-contrast directional marker when their effect is absent or retired.
+      Normal effects, collision rules, lifetimes and friendly projectiles are unchanged.
+- [x] Verification: 15/15 unit tests, 10/10 focused browser checks, production build and UI detector pass.
+      E2E passed the idle victory, six builds, rare branches, transition guards and mobile session. The manual session
+      was interrupted by a registry-generated dev reload; its isolated rerun passed, including focus-loss pause.
+      Independent effect self-test: **244 pass, 0 warn, 0 fail**; registry loads 244/244, wired coverage stays **242/244**.
+      Ego desktop build/pause and portrait/landscape results reviewed, including a short portrait build panel;
+      physical phone validation remains separate. No dependencies or vendored effects changed.
 
 ## Resuming on another machine
 

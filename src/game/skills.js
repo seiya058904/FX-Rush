@@ -10,6 +10,7 @@ import { Projectile } from "./projectiles.js";
 import { sfx } from "../engine/audio.js";
 
 const A = (g) => g.hero.stats.atk;
+export const MAX_SKILLS = 6;
 
 export const SKILLS = {
   blade: {

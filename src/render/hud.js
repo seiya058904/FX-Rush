@@ -5,7 +5,7 @@
 import { drawText, measureText, wrapText } from "../engine/text.js";
 import { cineK } from "../game/game.js";
 import { icon } from "./icons.js";
-import { SKILLS, STAT_CARDS } from "../game/skills.js";
+import { SKILLS, STAT_CARDS, MAX_SKILLS } from "../game/skills.js";
 import { W, H, FLOOR } from "../config.js";
 import { view } from "../engine/screen.js";
 import { settings } from "../settings.js";
@@ -208,6 +208,7 @@ export function drawCards(ctx, g) {
   ctx.fillRect(0, 0, W, H);
   drawText(ctx, "LEVEL UP", 160, 10 - (1 - open) * 10, { font: "big", scale: 2, color: UI.gold, outline: INK, align: "center", alpha: 1 - closing });
   drawText(ctx, "选择一项强化", 160, 33, { color: "#e8dcff", align: "center", shadow: INK, alpha: open * (1 - closing) });
+  drawText(ctx, `技能 ${g.skills.order.length}/${MAX_SKILLS} · 升级不占新槽位`, 160, 44, { color: UI.dim, align: "center", shadow: INK, alpha: open * (1 - closing) });
   cs.list.forEach((c, i) => {
     let [x, y, w, h] = cardRect(i);
     const def = c.skill ? SKILLS[c.id] : STAT_CARDS[c.id];

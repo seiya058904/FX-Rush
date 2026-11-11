@@ -33,7 +33,7 @@ let usedTouch = false;
 
 window.addEventListener("keydown", (e) => {
   // Native buttons keep activation/navigation keys; game-wide shortcuts still work.
-  if (e.target.closest?.("#game-controls button") && !["Escape", "KeyP", "KeyM", "F3", "Digit1", "Digit2", "Digit3", "Numpad1", "Numpad2", "Numpad3"].includes(e.code)) return;
+  if (e.target.closest?.("#game-controls button, #game-controls summary") && !["Escape", "KeyP", "KeyM", "F3", "Digit1", "Digit2", "Digit3", "Numpad1", "Numpad2", "Numpad3"].includes(e.code)) return;
   const a = KEYS[e.code];
   if (!a) return;
   if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "F3", "Tab"].includes(e.code)) e.preventDefault();

@@ -21,6 +21,7 @@
   cursor: pointer;
   touch-action: manipulation;
 }
+#game-controls button:hover { background: #342544; }
 #game-controls button:active { background: #43305e; }
 #game-controls button:focus-visible { outline: 3px solid #ffd84a; outline-offset: 2px; }
 #game-controls button:disabled { cursor: default; }
@@ -53,7 +54,7 @@
 .control-menu, .touch-choices { display: grid; gap: 10px; }
 #game-controls button[data-action="resume"] { border-color: #ffd84a; }
 #game-controls button[data-action="restart"], #game-controls button[data-action="title"] { color: #e9a5b5; }
-.control-panel.touch-cards {
+.control-panel.below-fight {
   top: var(--cards-top);
   bottom: max(10px, env(safe-area-inset-bottom));
   width: min(520px, calc(100% - 24px));
@@ -63,14 +64,41 @@
   padding: 10px;
 }
 .touch-cards h2 { margin-bottom: 8px; font-size: 20px; }
+.control-panel .choice-slots { margin: 0 0 10px; font-size: 16px; text-align: center; }
 #game-controls .choice-countdown { width: 100%; margin-bottom: 10px; padding: 6px; color: #c8bce0; }
 #game-controls .touch-choice { display: flex; gap: 14px; align-items: center; text-align: left; }
 .touch-choice canvas { flex: 0 0 32px; width: 32px; height: 32px; image-rendering: pixelated; }
 .touch-choice strong { display: block; margin-bottom: 4px; font-weight: normal; color: var(--skill-color); }
 .touch-choice.chosen { border-color: var(--skill-color) !important; }
 .touch-choice:disabled:not(.chosen) { opacity: .55; }
+.control-panel.build-panel { width: min(620px, calc(100% - 24px)); }
+.build-panel > button { width: 100%; }
+.build-panel h3 { margin: 24px 0 8px; font: inherit; color: #ffd84a; }
+.control-panel .build-hint { margin: 0 0 12px; font-size: 16px; }
+.build-list details { border-bottom: 1px solid #665783; }
+.build-list summary { padding: 12px 0; min-height: 48px; cursor: pointer; }
+.build-list summary:focus-visible { outline: 3px solid #ffd84a; outline-offset: 2px; }
+.build-list summary:hover { background: #21182f; }
+.build-list canvas { width: 24px; height: 24px; margin: 0 10px; vertical-align: middle; image-rendering: pixelated; }
+.build-list ol { margin: 0 0 16px; padding-left: 36px; color: #c8bce0; font-size: 16px; }
+.build-list li + li { margin-top: 8px; }
+.build-stats { padding: 0; margin: 0; list-style: none; }
+.build-stats li { padding: 10px 0; border-bottom: 1px solid #665783; }
+.build-stats strong, .build-stats span { display: block; font-weight: normal; }
+.build-stats span { margin-top: 4px; color: #c8bce0; font-size: 16px; }
+.control-panel .result-message { margin: 0; text-align: center; color: #c8bce0; }
+.result-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; margin: 18px 0; }
+.result-stats div { display: flex; justify-content: space-between; gap: 8px; }
+.result-stats dt { color: #c8bce0; font-size: 16px; }
+.result-stats dd { margin: 0; font-variant-numeric: tabular-nums; }
+.results-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.results-actions [data-action="build"] { grid-column: 1 / -1; }
+#game-controls .results-actions [data-action="retry"] { border-color: #ffd84a; }
 @media (orientation: landscape) and (max-height: 540px) {
   .control-panel { width: min(620px, calc(100% - 32px)); padding: 12px 16px; }
   .control-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .control-panel h2 { margin-bottom: 10px; }
+  .result-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 12px 0; }
+  .results-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .results-actions [data-action="build"] { grid-column: auto; }
 }

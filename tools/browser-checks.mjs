@@ -173,6 +173,8 @@ try {
     await p.setViewportSize({ width: 844, height: 390 });
     await p.getByRole("button", { name: "返回暂停菜单", exact: true }).tap();
     await p.getByRole("button", { name: "继续游戏", exact: true }).waitFor();
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "settings", "return to the settings entry");
+    await p.getByRole("button", { name: "继续游戏", exact: true }).focus();
     await p.keyboard.press("ArrowDown");
     assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "mode");
     await p.keyboard.press("ArrowUp");
@@ -202,6 +204,112 @@ try {
     await cdp.detach();
     await cards.nth(2).tap();
     await p.waitForFunction(() => !window.__fxrush.game.cards);
+  });
+  await check("desktop build preserves the open choice, full result and keyboard focus", {}, async (p) => {
+    await start(p, devUrl);
+    await p.evaluate(() => {
+      const g = window.__fxrush.game;
+      for (const id of ["blade", "chain", "inferno", "frost", "missile", "aegis"]) g.skills.add(id);
+      for (let i = 0; i < 4; i++) g.skills.add("blade");
+      g.skills.add("might"); g.skills.add("might");
+      g.openCards(); window.__cards = g.cards;
+    });
+    await p.keyboard.press("Escape"); await frame(p);
+    await p.keyboard.press("ArrowDown");
+    await p.keyboard.press("Enter");
+    await p.getByRole("heading", { name: "本局构筑", exact: true }).waitFor();
+    assert.equal(await p.locator(".build-list details").count(), 6);
+    assert.match(await p.locator('[data-stat="might"]').innerText(), /力量 ×2/);
+    await p.locator('[data-skill="blade"] summary').click();
+    assert.equal(await p.locator('[data-skill="blade"] li').count(), 5);
+    assert.match(await p.locator('[data-skill="blade"]').innerText(), /巨型死神镰刃/);
+    await p.getByRole("button", { name: "返回暂停菜单", exact: true }).focus();
+    await p.keyboard.press("Shift+Tab");
+    assert.equal(await p.evaluate(() => document.activeElement.closest("details")?.dataset.skill), "aegis");
+    await p.keyboard.press("Tab");
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "back");
+    await p.keyboard.press("Escape"); await frame(p);
+    assert.equal(await p.evaluate(() => document.activeElement.id), "game");
+    assert.equal(await p.evaluate(() => window.__fxrush.state), "pause");
+    await p.keyboard.press("Escape"); await frame(p);
+    assert.equal(await p.evaluate(() => window.__fxrush.game.cards === window.__cards), true);
+    await p.evaluate(() => window.__fxrush.game.end(false));
+    await p.waitForFunction(() => window.__fxrush.state === "results");
+    await p.waitForTimeout(1100);
+    await p.keyboard.press("ArrowRight"); await p.keyboard.press("ArrowRight"); await p.keyboard.press("Enter");
+    await p.getByRole("button", { name: "返回结算", exact: true }).waitFor();
+    assert.match(await p.locator('[data-stat="might"]').innerText(), /力量 ×2/);
+    await p.keyboard.press("Escape"); await frame(p);
+    await p.keyboard.press("ArrowLeft"); await p.keyboard.press("ArrowLeft"); await p.keyboard.press("Enter");
+    await p.waitForFunction(() => window.__fxrush.state === "play" && window.__fxrush.game.level === 1);
+    assert.deepEqual(await p.evaluate(() => window.__fxrush.game.skills.statLv), {});
+  });
+
+  await check("touch dialogs keep focus; portrait results stay readable through rotation and restart", { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }, async (p) => {
+    await start(p, devUrl);
+    await p.getByRole("button", { name: "暂停", exact: true }).tap();
+    await p.keyboard.press("Shift+Tab");
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "title");
+    await p.keyboard.press("Tab");
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "resume");
+    assert.equal(await p.locator("#game").evaluate((c) => c.inert), true);
+    await p.getByRole("button", { name: "游戏设置", exact: true }).tap();
+    await p.keyboard.press("Shift+Tab");
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "mute");
+    await p.keyboard.press("Tab");
+    assert.equal(await p.evaluate(() => document.activeElement.dataset.action), "back");
+    await p.keyboard.press("Escape"); await frame(p);
+    await p.getByRole("button", { name: "继续游戏", exact: true }).tap();
+    await p.evaluate(() => {
+      const g = window.__fxrush.game; g.skills.add("frost"); g.skills.add("vigor"); g.end(true);
+      window.__result = g.result;
+    });
+    const retry = p.getByRole("button", { name: "再来一次", exact: true });
+    await retry.waitFor();
+    for (const viewport of [{ width: 390, height: 844 }, { width: 844, height: 390 }, { width: 320, height: 480 }]) {
+      await p.setViewportSize(viewport); await frame(p);
+      const sizes = await p.locator(".results-actions button").evaluateAll((bs) => bs.map((b) => ({ h: b.getBoundingClientRect().height, font: parseFloat(getComputedStyle(b).fontSize) })));
+      assert.ok(sizes.every((s) => s.h >= 48 && s.font >= 16));
+      assert.equal(await p.evaluate(() => window.__fxrush.game.result === window.__result), true);
+    }
+    await p.getByRole("button", { name: "本局构筑", exact: true }).tap();
+    assert.match(await p.locator('[data-stat="vigor"]').innerText(), /活力 ×1/);
+    await p.getByRole("button", { name: "返回结算", exact: true }).tap();
+    await retry.tap();
+    await p.evaluate(() => window.__fxrush.resultsAction(1)); // crossed action during the closing transition
+    await p.waitForFunction(() => window.__fxrush.state === "play" && !window.__fxrush.game.result);
+    assert.equal(await p.locator("#game").evaluate((c) => c.inert), false);
+  });
+
+  await check("production missing fire chunk keeps hostile projectiles visible and damaging", {}, async (p) => {
+    await p.route("**/assets/pfx-fire-*.js", (route) => route.abort());
+    await start(p, prodUrl);
+    await p.evaluate(() => {
+      const f = window.__fxrush, g = f.game; f.pause();
+      Object.assign(g.hero, { x: 100, y: 0, hp: 100, god: false, iframes: 0, invuln: 0 });
+      const e = g.testSpawn("skull", 80, 1);
+      Object.assign(e, { x: 180, y: -18, cy: 0, spawning: 0 });
+      g.enemyShoot(e);
+      window.__shot = g.projectiles.at(-1);
+    });
+    await p.waitForFunction(() => window.__fxrush.loadStats().failed.some(([id]) => id === "fire/fireball"));
+    const result = await p.evaluate(() => {
+      const g = window.__fxrush.game, shot = window.__shot;
+      // Isolate the shot from the opening full-screen wipe and screen shake.
+      g.fx.list = g.fx.list.filter((h) => !h.screen); g.shakeT = 0;
+      const ctx = document.querySelector("#game").getContext("2d");
+      g.projectiles = []; g.draw(ctx);
+      const x = Math.round(shot.x - g.camX), y = Math.round(150 + shot.y);
+      const before = [...ctx.getImageData(x, y, 1, 1).data];
+      g.projectiles = [shot]; g.draw(ctx);
+      const after = [...ctx.getImageData(x, y, 1, 1).data];
+      for (let i = 0; i < 120 && !shot.dead; i++) shot.update(1 / 60);
+      return { noEffect: !shot.handle, before, after, hp: g.hero.hp, dead: shot.dead };
+    });
+    assert.equal(result.noEffect, true);
+    assert.notDeepEqual(result.before, result.after, "the rendered collision point has a fallback marker");
+    assert.equal(result.hp, 91);
+    assert.equal(result.dead, true);
   });
   console.log(`${passed}/${passed} browser checks passed`);
 } finally {

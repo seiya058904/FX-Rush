@@ -4,6 +4,11 @@
 import { damage } from "./combat.js";
 import { sfx } from "../engine/audio.js";
 import { FX } from "../fx/registry.gen.js";
+import { frame, hex } from "../engine/pfx.js";
+
+const FALLBACK_EDGE = hex("#270916") >>> 0;
+const FALLBACK_BODY = hex("#ff526b") >>> 0;
+const FALLBACK_CORE = hex("#fff1c2") >>> 0;
 
 let pid = 1;
 export class Projectile {
@@ -28,6 +33,22 @@ export class Projectile {
   aim() {
     const a = Math.atan2(this.vy, this.vx);
     return this.vx < 0 && !this.rotate ? 0 : a;
+  }
+  /** A damaging shot stays readable if its effect loads late, fails, or is retired by the director. */
+  drawFallback() {
+    if (!this.hostile || this.dead || (this.handle?.alive && !this.handle.stopping)) return;
+    const px = Math.round(this.x) - frame.ox, py = Math.round(this.y) - frame.oy;
+    const dot = (x, y, c) => {
+      if (x >= 0 && y >= 0 && x < frame.w && y < frame.h) frame.color[y * frame.w + x] = c;
+    };
+    const speed = Math.hypot(this.vx, this.vy) || 1;
+    // A short tail marks direction; the bright centre is exactly at the collision point.
+    for (let i = 3; i <= 7; i++) dot(px - Math.round(this.vx / speed * i), py - Math.round(this.vy / speed * i), FALLBACK_BODY);
+    const r = Math.max(2, Math.min(5, Math.round(this.r)));
+    for (let y = -r; y <= r; y++) for (let x = -r; x <= r; x++) {
+      const d = Math.abs(x) + Math.abs(y);
+      if (d <= r) dot(px + x, py + y, d === r ? FALLBACK_EDGE : d <= 1 ? FALLBACK_CORE : FALLBACK_BODY);
+    }
   }
   update(dt) {
     const g = this.g;

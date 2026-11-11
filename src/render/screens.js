@@ -60,6 +60,7 @@ export function drawTitle(ctx, t, loading) {
 
 export const PAUSE_ITEMS = [
   { id: "resume", label: () => "继续游戏" },
+  { id: "build", label: () => "本局构筑" },
   { id: "mode", label: () => `模式：${settings.mode === "manual" ? "手动" : "托管"}` },
   { id: "restart", label: () => "重新开始" },
   { id: "shake", label: () => `震屏：${settings.shake >= 1 ? "强" : settings.shake > 0 ? "弱" : "关"}` },
@@ -72,7 +73,7 @@ export const PAUSE_ITEMS = [
   { id: "title", label: () => "返回标题" },
 ];
 export function pauseRect(i) {
-  return [110, 36 + i * 12, 100, 11];
+  return [110, 36 + i * 11, 100, 10];
 }
 export function drawPause(ctx, sel, fps) {
   ctx.fillStyle = "rgba(5,3,12,0.6)";
@@ -121,15 +122,17 @@ export function drawResults(ctx, g, t, sel) {
     ctx.drawImage(icon(s.icon, s.color), ix + i * 18 + 2, y0 + 103);
     drawText(ctx, `${r.skills[id]}`, ix + i * 18 + 14, y0 + 112, { font: "mini", color: "#ffffff", outline: INK, align: "right" });
   });
-  const btn = (i, label, x) => {
+  const btn = (i, label) => {
+    const [x, y, w, h] = resultsButton(i, t);
     const on = sel === i;
-    panel(ctx, x, y0 + 126, 74, 16, { rim: on ? UI.gold : UI.line, fill: on ? "rgba(70,50,110,0.95)" : UI.panel });
-    drawText(ctx, label, x + 37, y0 + 129, { color: on ? "#ffffff" : "#c8bce0", align: "center" });
+    panel(ctx, x, y, w, h, { rim: on ? UI.gold : UI.line, fill: on ? "rgba(70,50,110,0.95)" : UI.panel });
+    drawText(ctx, label, x + w / 2, y + 3, { color: on ? "#ffffff" : "#c8bce0", align: "center" });
   };
-  btn(0, "再来一次", 82);
-  btn(1, "返回标题", 164);
+  btn(0, "再来一次");
+  btn(1, "返回标题");
+  btn(2, "本局构筑");
 }
 export function resultsButton(i, t) {
   const y0 = Math.round(16 + (1 - Math.min(1, t / 0.4)) * 20);
-  return [i === 0 ? 82 : 164, y0 + 126, 74, 16];
+  return [50 + i * 76, y0 + 126, 68, 16];
 }

@@ -11,7 +11,7 @@ import { Hero, Bag } from "./hero.js";
 import { Enemy, TYPES } from "./enemies.js";
 import { ATTACKS, ActPlayer } from "./moves.js";
 import { damage, damageBox, damageRadius, kill } from "./combat.js";
-import { SkillSystem, SKILLS, STAT_CARDS } from "./skills.js";
+import { SkillSystem, SKILLS, STAT_CARDS, MAX_SKILLS } from "./skills.js";
 import { updateStatus, afflict } from "./status.js";
 import { Projectile, updateProjectiles } from "./projectiles.js";
 import { Pickup, collectFx } from "./pickups.js";
@@ -614,7 +614,7 @@ export class Game {
     for (const [id, s] of Object.entries(SKILLS)) {
       const lv = this.skills.level(id);
       if (lv >= s.max) continue;
-      if (!lv && owned.length >= 6) continue;
+      if (!lv && owned.length >= MAX_SKILLS) continue;
       pool.push({ id, w: lv ? 3.2 : 2, skill: true, lv });
     }
     for (const [id, s] of Object.entries(STAT_CARDS)) {
@@ -788,7 +788,7 @@ export class Game {
       // autumn leaves drift down over the defeat screen
       this.fx.play("weather/falling-leaves", { x: 160, y: 170, screen: true, layer: "front", prio: 0, life: 999, every: 2, light: 0.5 });
     }
-    this.result = { won, gameTime: Math.round(this.time), time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, stageTimes: this.stats.stageTimes, bossTimes: this.stats.bossTimes, ultimates: this.stats.ultimates, bestHit: this.stats.bestHit ?? 0, skills: { ...this.skills.lv } };
+    this.result = { won, gameTime: Math.round(this.time), time: (performance.now() - this.stats.startedAt) / 1000, kills: this.stats.kills, level: this.level, combo: this.combo.best, coins: this.coins, stage: this.stageIndex + 1, stageTimes: this.stats.stageTimes, bossTimes: this.stats.bossTimes, ultimates: this.stats.ultimates, bestHit: this.stats.bestHit ?? 0, skills: { ...this.skills.lv }, statLv: { ...this.skills.statLv } };
     this.mode = "over";
   }
 
@@ -1254,6 +1254,7 @@ export class Game {
     this.fx.draw("front");
     drawForeground(this.scene, this.camX, q);
     this.fx.draw("top");
+    for (const p of this.projectiles) p.drawFallback();
     this.fx.draw("screen");
     endFrame(this.scene.lightK);
     const k = this.shakeT > 0 ? this.shakeAmp * (this.shakeT / this.shakeDur) : 0;

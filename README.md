@@ -122,14 +122,23 @@
 
 A run is three scenes and three bosses, about **7 minutes**. One second wind per run; the boss key ends each scene.
 
+You can carry **six different skills**; upgrading an owned skill does not take another slot. The level-up screen
+shows the occupied slots. Open **本局构筑** (Run Build) from pause or results to review skill names, levels, acquired
+upgrades and stat-card counts. Results retain both skills and stat cards; a new run starts with an empty build.
+
 On touch screens, a larger pause button opens a menu with a separate settings page. In portrait, level-up choices
 sit below the fight with readable descriptions; tap the countdown to turn automatic selection off or on.
 Settings take effect on the current choice, and turning automatic selection back on gives you six fresh seconds.
 Touch manual mode supports tapping to attack and swiping up to jump; walking still needs a keyboard.
+Touch results also use readable screen-sized controls, with the celebration still visible above them in portrait.
+Native dialogs keep Tab/Shift+Tab inside the menu and return focus when closed; Escape steps back from build/settings.
 
 If essential combat resources fail to load, the title offers **Reload** instead of starting an incomplete run.
 Optional scenery and decorative effects can arrive later. Turning flashes off also suppresses the large black-and-white
 impact frames used by ultimates and boss finishes.
+Hostile projectiles keep a small directional pixel marker if their visual effect is missing or retired, so a failed
+effect cannot make a damaging projectile invisible. Burning damage over time preserves freeze; direct fire hits and
+direct critical hits can still trigger the shatter synergy.
 
 <a id="run-locally"></a>
 ## ⚙️ Run Locally
@@ -181,9 +190,12 @@ third_party/    PixelFX, vendored at a pinned commit
 ### Verification, Without Guesswork
 
 - `npm run smoke` — all 244 effects headless: **244 pass, 0 warn, 0 fail** (same bounds rule as upstream `tools/check.mjs`).
-- `npm run build && npm run test:browser` — seven focused browser checks: input boundaries, mixed mouse/keyboard card
+- `npm test` — 15 regressions covering skill lifecycles, cast counters, freeze/shatter rules, complete build snapshots
+  and projectile fallback rendering/collisions.
+- `npm run build && npm run test:browser` — ten focused browser checks: input boundaries, mixed mouse/keyboard card
   selection, immediate settings, flash suppression, production resource failures and recovery, slow loading, and portrait/
-  landscape touch menus. Uses installed Chrome locally and Playwright Chromium in CI.
+  landscape touch menus, build inspection, dialog focus, touch results and visible fallback projectiles.
+  Uses installed Chrome locally and Playwright Chromium in CI.
 - `npm run e2e` (needs a running dev server and local Chrome) — a full idle run with real damage that clears all three bosses, six god-mode build sessions that drive every skill to level 5 across all scenes, a rare-branch session, manual controls (click, move, jump, pause, focus loss, four window sizes, restart, back to title, death and retry) and a touch-phone session. Screenshots are kept in `docs/screenshots/`.
   Pass `--out <directory>` to keep screenshots and the runtime report outside the repository. Idle runs must win all
   three stages, and build sessions fail if they do not clear their stage in time.
